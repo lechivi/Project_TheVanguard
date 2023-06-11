@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class PlayerAbstract : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    protected PlayerCtrl playerCtrl;
 
-    // Update is called once per frame
-    void Update()
+    protected virtual void Awake()
     {
-        
+        this.playerCtrl = GetComponent<PlayerCtrl>();
     }
 }
