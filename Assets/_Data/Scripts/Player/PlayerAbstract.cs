@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAbstract : SaiMonoBehaviour
+public abstract class PlayerAbstract : SaiMonoBehaviour
 {
     [SerializeField] protected PlayerCtrl playerCtrl;
 

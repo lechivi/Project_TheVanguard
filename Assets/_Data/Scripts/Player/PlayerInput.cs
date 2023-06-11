@@ -2,17 +2,59 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput : PlayerAbstract
 {
-    // Start is called before the first frame update
-    void Start()
+    public Vector2 MovementInput;
+    public float HorizontalInput;
+    public float VerticalInput;
+    public bool SprintInput;
+    public bool JumpInput;
+    public bool AimInput;
+    public bool AttackInput;
+
+    private PlayerControls playerControls;
+
+    private void OnEnable()
     {
-        
+        if (this.playerControls == null)
+        {
+            this.playerControls = new PlayerControls();
+            this.playerControls.PlayerMovement.Movement.performed += i => this.MovementInput = i.ReadValue<Vector2>();
+
+            //this.playerControls.PlayerAction.Sprint.performed += i => this.sprintInput = true;
+            //this.playerControls.PlayerAction.Sprint.canceled += i => this.sprintInput = false;
+            //this.playerControls.PlayerAction.Jump.performed += i => this.jumpInput = true;
+
+            //this.playerControls.PlayerAction.Aim.performed += i => this.AimInput = true;
+            //this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
+
+            //this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
+        }
+
+        this.playerControls.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
-        
+        this.playerControls?.Disable();
+    }
+
+    public void HandleAllInput()
+    {
+        this.HandleMovementInput();
+        this.HandleSprintInput();
+        //this.HandleJumpInput();
+        //this.HandleAimInput();
+        //this.HandleAttackInput();
+    }
+
+    private void HandleMovementInput()
+    {
+
+    }
+
+    private void HandleSprintInput() 
+    {
+
     }
 }

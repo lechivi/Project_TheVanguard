@@ -8,6 +8,10 @@ public class PlayerCtrl : SaiMonoBehaviour
     [SerializeField] protected PlayerInput playerInput;
     [SerializeField] protected PlayerLocomotion playerLocomotion;
     [SerializeField] protected PlayerCamera playerCamera;
+    [SerializeField] protected PlayerAnimation playerAnimation;
+
+    [SerializeField] protected Animator animator;
+    [SerializeField] protected CharacterController characterController;
 
     protected override void LoadComponent()
     {
@@ -16,6 +20,10 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerInput();
         this.LoadPlayerLocomotion();
         this.LoadPlayerCamera();
+        this.LoadPlayerAnimation();
+
+        this.LoadAnimator();
+        this.LoadCharacterController();
     }
 
     protected virtual void LoadPlayerManager()
@@ -51,6 +59,33 @@ public class PlayerCtrl : SaiMonoBehaviour
         {
             this.playerCamera = GetComponentInChildren<PlayerCamera>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerCamera", gameObject);
+        }
+    }
+
+    protected virtual void LoadPlayerAnimation()
+    {
+        if (this.playerAnimation == null)
+        {
+            this.playerAnimation = GetComponentInChildren<PlayerAnimation>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerAnimation", gameObject);
+        }
+    }
+
+    protected virtual void LoadAnimator()
+    {
+        if (this.animator == null)
+        {
+            this.animator = transform.parent.GetComponent<Animator>();
+            Debug.LogWarning(gameObject.name + ": LoadAnimator", gameObject);
+        }
+    }
+
+    protected virtual void LoadCharacterController()
+    {
+        if (this.characterController == null)
+        {
+            this.characterController = transform.parent.GetComponent<CharacterController>();
+            Debug.LogWarning(gameObject.name + ": LoadCharacterController", gameObject);
         }
     }
 }
