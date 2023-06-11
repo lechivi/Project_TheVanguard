@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerAbstract : SaiMonoBehaviour
 {
-    protected PlayerCtrl playerCtrl;
+    [SerializeField] protected PlayerCtrl playerCtrl;
 
     protected override void LoadComponent()
     {
