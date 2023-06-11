@@ -2,12 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAbstract : MonoBehaviour
+public class PlayerAbstract : SaiMonoBehaviour
 {
     protected PlayerCtrl playerCtrl;
 
-    protected virtual void Awake()
+    protected override void LoadComponent()
     {
-        this.playerCtrl = GetComponent<PlayerCtrl>();
+        base.LoadComponent();
+        this.LoadPlayerCtrl();
+    }
+
+    protected virtual void LoadPlayerCtrl()
+    {
+        if (this.playerCtrl == null)
+        {
+            this.playerCtrl = transform.parent.GetComponent<PlayerCtrl>();
+            Debug.LogWarning(gameObject.name + " : LoadPlayerCtrl", gameObject);
+        }
     }
 }
