@@ -6,7 +6,30 @@ public class PlayerAnimation : PlayerAbstract
 {
     public void UpdateValuesAnimation(string name, float value)
     {
-        float snapValue;
+        float snappedValue;
+
+        if (value > 0 && value < 0.55f)
+        {
+            snappedValue = 0.5f;
+        }
+        else if (value >= 0.55f)
+        {
+            snappedValue = 1;
+        }
+        else if (value < 0 && value > -0.55f)
+        {
+            snappedValue = -0.5f;
+        }
+        else if (value <= -0.55f)
+        {
+            snappedValue = -1;
+        }
+        else
+        {
+            snappedValue = 0;
+        }
+
+        this.playerCtrl.Animator.SetFloat(name, snappedValue, 0.1f, Time.deltaTime);
 
     }
 }

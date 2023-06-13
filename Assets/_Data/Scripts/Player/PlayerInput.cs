@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInput : PlayerAbstract
 {
     public Vector2 MovementInput;
-    public float HorizontalInput;
-    public float VerticalInput;
     public bool SprintInput;
     public bool JumpInput;
     public bool AimInput;
     public bool AttackInput;
 
     private PlayerControls playerControls;
+    //private InputActionReference
 
     private void OnEnable()
     {
@@ -50,11 +50,29 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleMovementInput()
     {
+        float horizontalInput = this.MovementInput.x;
+        float verticalInput = this.MovementInput.y;
+        float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
 
+        this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("MoveState", moveAmount);
+        this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputX", horizontalInput);
+        this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputY", verticalInput);
     }
 
     private void HandleSprintInput() 
     {
 
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        if (focus)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
+        }
     }
 }

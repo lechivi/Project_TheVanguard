@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerCtrl : SaiMonoBehaviour
 {
-    [SerializeField] protected PlayerManager playerManager;
-    [SerializeField] protected PlayerInput playerInput;
-    [SerializeField] protected PlayerLocomotion playerLocomotion;
-    [SerializeField] protected PlayerCamera playerCamera;
-    [SerializeField] protected PlayerAnimation playerAnimation;
+    public PlayerManager playerManager;
+    public PlayerInput PlayerInput;
+    public PlayerLocomotion PlayerLocomotion;
+    public PlayerCamera PlayerCamera;
+    public PlayerAnimation PlayerAnimation;
 
-    [SerializeField] protected Animator animator;
-    [SerializeField] protected CharacterController characterController;
+    public Transform PlayerTransform;
+    public Transform CameraTransform;
+    public Animator Animator;
+    public CharacterController CharacterController;
 
     protected override void LoadComponent()
     {
@@ -22,6 +24,8 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerCamera();
         this.LoadPlayerAnimation();
 
+        this.LoadPlayerTransform();
+        this.LoadCameraTransform();
         this.LoadAnimator();
         this.LoadCharacterController();
     }
@@ -37,54 +41,72 @@ public class PlayerCtrl : SaiMonoBehaviour
 
     protected virtual void LoadPlayerInput()
     {
-        if (this.playerInput == null)
+        if (this.PlayerInput == null)
         {
-            this.playerInput = GetComponentInChildren<PlayerInput>();
+            this.PlayerInput = GetComponentInChildren<PlayerInput>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerInput", gameObject);
         }
     }
 
     protected virtual void LoadPlayerLocomotion()
     {
-        if (this.playerLocomotion == null)
+        if (this.PlayerLocomotion == null)
         {
-            this.playerLocomotion = GetComponentInChildren<PlayerLocomotion>();
+            this.PlayerLocomotion = GetComponentInChildren<PlayerLocomotion>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerLocomotion", gameObject);
         }
     }
 
     protected virtual void LoadPlayerCamera()
     {
-        if (this.playerCamera == null)
+        if (this.PlayerCamera == null)
         {
-            this.playerCamera = GetComponentInChildren<PlayerCamera>();
+            this.PlayerCamera = GetComponentInChildren<PlayerCamera>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerCamera", gameObject);
         }
     }
 
     protected virtual void LoadPlayerAnimation()
     {
-        if (this.playerAnimation == null)
+        if (this.PlayerAnimation == null)
         {
-            this.playerAnimation = GetComponentInChildren<PlayerAnimation>();
+            this.PlayerAnimation = GetComponentInChildren<PlayerAnimation>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerAnimation", gameObject);
+        }
+    }
+
+    protected virtual void LoadPlayerTransform()
+    {
+        if (this.PlayerTransform == null)
+        {
+            this.PlayerTransform = transform.parent;
+            Debug.LogWarning(gameObject.name + ": LoadPlayerTransform", gameObject);
+        }
+    }
+
+    protected virtual void LoadCameraTransform()
+    {
+        if (this.CameraTransform == null)
+        {
+            this.CameraTransform = Camera.main.transform;
+            Debug.LogWarning(gameObject.name + ": LoadCameraTransform", gameObject);
         }
     }
 
     protected virtual void LoadAnimator()
     {
-        if (this.animator == null)
+        if (this.Animator == null)
         {
-            this.animator = transform.parent.GetComponent<Animator>();
+            this.Animator = transform.parent.GetComponent<Animator>();
             Debug.LogWarning(gameObject.name + ": LoadAnimator", gameObject);
         }
     }
 
     protected virtual void LoadCharacterController()
     {
-        if (this.characterController == null)
+        if (this.CharacterController == null)
         {
-            this.characterController = transform.parent.GetComponent<CharacterController>();
+            this.CharacterController = transform.parent.GetComponent<CharacterController>();
             Debug.LogWarning(gameObject.name + ": LoadCharacterController", gameObject);
         }
     }
