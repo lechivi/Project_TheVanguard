@@ -32,4 +32,37 @@ public class PlayerAnimation : PlayerAbstract
         this.playerCtrl.Animator.SetFloat(name, snappedValue, 0.1f, Time.deltaTime);
 
     }
+
+    public void UpdateAnimatorValuesMoveState(float value, bool isSprinting)
+    {
+        float snappedValue;
+
+        if (value > 0 && value < 0.55f)
+        {
+            snappedValue = 0.5f;
+        }
+        else if (value >= 0.55f)
+        {
+            snappedValue = 1;
+        }
+        else if (value < 0 && value > -0.55f)
+        {
+            snappedValue = -0.5f;
+        }
+        else if (value <= -0.55f)
+        {
+            snappedValue = -1;
+        }
+        else
+        {
+            snappedValue = 0;
+        }
+
+        if (isSprinting)
+        {
+            snappedValue = 2;
+        }
+
+        this.playerCtrl.Animator.SetFloat("MoveState", snappedValue, 0.1f, Time.deltaTime);
+    }
 }
