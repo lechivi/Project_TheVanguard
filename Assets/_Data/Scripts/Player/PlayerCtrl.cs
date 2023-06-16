@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : SaiMonoBehaviour
 {
+    public PlayerAim PlayerAim;
     public PlayerAttack PlayerAttack;
     public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
@@ -31,6 +32,14 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadCharacterController();
     }
 
+    protected virtual void LoadPlayerAim()
+    {
+        if (this.PlayerAim == null)
+        {
+            this.PlayerAim = GetComponentInChildren<PlayerAim>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerAim", gameObject);
+        }
+    }
     protected virtual void LoadPlayerAttack ()
     {
         if (this.PlayerAttack == null)
