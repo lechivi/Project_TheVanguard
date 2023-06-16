@@ -191,6 +191,24 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b6bd752-a750-44b6-ac6e-9e0cc05437b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ChangeCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""618b7759-659d-4970-9c2c-c2d06d779d63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -237,6 +255,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8e1cd16-4127-474b-bd93-1896cec57c84"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d97fc722-0183-4a4b-9734-17ea250e7603"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -251,6 +291,8 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerAction = asset.FindActionMap("PlayerAction", throwIfNotFound: true);
         m_PlayerAction_Sprint = m_PlayerAction.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerAction_Jump = m_PlayerAction.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerAction_Attack = m_PlayerAction.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerAction_ChangeCamera = m_PlayerAction.FindAction("ChangeCamera", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -353,12 +395,16 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActionActions m_PlayerActionActionsCallbackInterface;
     private readonly InputAction m_PlayerAction_Sprint;
     private readonly InputAction m_PlayerAction_Jump;
+    private readonly InputAction m_PlayerAction_Attack;
+    private readonly InputAction m_PlayerAction_ChangeCamera;
     public struct PlayerActionActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Sprint => m_Wrapper.m_PlayerAction_Sprint;
         public InputAction @Jump => m_Wrapper.m_PlayerAction_Jump;
+        public InputAction @Attack => m_Wrapper.m_PlayerAction_Attack;
+        public InputAction @ChangeCamera => m_Wrapper.m_PlayerAction_ChangeCamera;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,6 +420,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
+                @Attack.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
+                @ChangeCamera.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
             }
             m_Wrapper.m_PlayerActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -384,6 +436,12 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @ChangeCamera.started += instance.OnChangeCamera;
+                @ChangeCamera.performed += instance.OnChangeCamera;
+                @ChangeCamera.canceled += instance.OnChangeCamera;
             }
         }
     }
@@ -397,5 +455,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnChangeCamera(InputAction.CallbackContext context);
     }
 }
