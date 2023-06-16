@@ -38,19 +38,16 @@ public class PlayerLocomotion : PlayerAbstract
 
     private void Update()
     {
+<<<<<<< HEAD
         //Debug.Log(playerCtrl.PlayerCamera.TPSCam.activeInHierarchy +"TPS");
         //Debug.Log(playerCtrl.PlayerCamera.FPSCam.activeInHierarchy +"FPS");
+=======
+>>>>>>> main
         if (Input.GetKeyDown(KeyCode.Q) && !playerCtrl.PlayerCamera.FPSCam.activeInHierarchy)
         {
             this.Is1D = !this.Is1D;
             this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
         }
-
-        if(Is1D)
-        {
-            this.playerCtrl.PlayerCamera.ChangeAimLookatCam1D();
-        }
-
     }
 
     public void HanldeAllMovement()
