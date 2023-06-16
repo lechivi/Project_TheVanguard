@@ -8,7 +8,7 @@ public class PlayerLocomotion : PlayerAbstract
     public bool IsSprinting;
     public bool IsJumping;
     public bool IsGrounded;
-    public bool Is1D = true;
+    public bool Is1D;
 
     [Header("Movement Speed")]
     [SerializeField] private float walkingSpeed = 0.5f;     //Multiplication
@@ -30,17 +30,25 @@ public class PlayerLocomotion : PlayerAbstract
     protected override void Awake()
     {
         base.Awake();
-        this.Is1D = true;
+        this.Is1D = false;
+        this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
         this.originalStepOffset = this.playerCtrl.CharacterController.stepOffset;
         this.IsGrounded = this.playerCtrl.CharacterController.isGrounded;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        Debug.Log(playerCtrl.PlayerCamera.TPSCam.activeInHierarchy +"TPS");
+        Debug.Log(playerCtrl.PlayerCamera.FPSCam.activeInHierarchy +"FPS");
+        if (Input.GetKeyDown(KeyCode.Q) && !playerCtrl.PlayerCamera.FPSCam.activeInHierarchy)
         {
             this.Is1D = !this.Is1D;
             this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
+        }
+
+        if(Is1D)
+        {
+            this.playerCtrl.PlayerCamera.ChangeAimLookatCam1D();
         }
 
     }
@@ -87,6 +95,7 @@ public class PlayerLocomotion : PlayerAbstract
             float yawCamera = this.playerCtrl.CameraTransform.transform.eulerAngles.y;
             this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), 15 * Time.fixedDeltaTime);
         }
+
     }
 
     private void HandleSprinting()

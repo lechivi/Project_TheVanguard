@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerCtrl : SaiMonoBehaviour
 {
-    public PlayerManager playerManager;
+    public PlayerAttack PlayerAttack;
+    public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
     public PlayerLocomotion PlayerLocomotion;
     public PlayerCamera PlayerCamera;
@@ -30,11 +31,19 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadCharacterController();
     }
 
+    protected virtual void LoadPlayerAttack ()
+    {
+        if (this.PlayerAttack == null)
+        {
+            this.PlayerAttack = GetComponentInChildren<PlayerAttack>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerAttack", gameObject);
+        }
+    }
     protected virtual void LoadPlayerManager()
     {
-        if (this.playerManager == null)
+        if (this.PlayerManager == null)
         {
-            this.playerManager = GetComponentInChildren<PlayerManager>();
+            this.PlayerManager = GetComponentInChildren<PlayerManager>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerManager", gameObject);
         }
     }

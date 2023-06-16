@@ -10,6 +10,8 @@ public class PlayerInput : PlayerAbstract
     public bool JumpInput;
     public bool AimInput;
     public bool AttackInput;
+    public bool ChangeCameraInput;
+   // public bool ShootInput;
 
     private PlayerControls playerControls;
     //private InputActionReference
@@ -29,7 +31,10 @@ public class PlayerInput : PlayerAbstract
             //this.playerControls.PlayerAction.Aim.performed += i => this.AimInput = true;
             //this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
 
-            //this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
+            this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
+            this.playerControls.PlayerAction.ChangeCamera.performed +=i => this.ChangeCameraInput = true;
+
+
         }
 
         this.playerControls.Enable();
@@ -45,6 +50,7 @@ public class PlayerInput : PlayerAbstract
         this.HandleMovementInput();
         this.HandleSprintInput();
         this.HandleJumpInput();
+        this.HandleCameraInput();
         //this.HandleAimInput();
         //this.HandleAttackInput();
     }
@@ -81,6 +87,13 @@ public class PlayerInput : PlayerAbstract
         }
     }
 
+    private void HandleAttack ()
+    {
+        if(AttackInput)
+        {
+
+        }
+    }
     private void OnApplicationFocus(bool focus)
     {
         if (focus)
@@ -90,6 +103,15 @@ public class PlayerInput : PlayerAbstract
         else
         {
             Cursor.lockState = CursorLockMode.None;
+        }
+    }
+
+    private void HandleCameraInput()
+    {
+        if(ChangeCameraInput)
+        {
+            ChangeCameraInput = false;
+            this.playerCtrl.PlayerCamera.ChangeCamera();
         }
     }
 }
