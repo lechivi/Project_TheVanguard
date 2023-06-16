@@ -8,12 +8,10 @@ public class PlayerCamera : PlayerAbstract
 
     private float originZ;
 
-    private void Awake()
+   protected override void Awake()
     {
         TPSCam.SetActive(true);
         FPSCam.SetActive(false);
-       // originZ = this.Aimlookat.transform.position.z;
-
     }
 
     private void Update()
