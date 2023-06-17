@@ -38,11 +38,8 @@ public class PlayerLocomotion : PlayerAbstract
 
     private void Update()
     {
-<<<<<<< HEAD
         //Debug.Log(playerCtrl.PlayerCamera.TPSCam.activeInHierarchy +"TPS");
         //Debug.Log(playerCtrl.PlayerCamera.FPSCam.activeInHierarchy +"FPS");
-=======
->>>>>>> main
         if (Input.GetKeyDown(KeyCode.Q) && !playerCtrl.PlayerCamera.FPSCam.activeInHierarchy)
         {
             this.Is1D = !this.Is1D;
