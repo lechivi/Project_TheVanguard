@@ -1,9 +1,17 @@
+﻿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLocomotion : PlayerAbstract
 {
+    public Transform cameraLookat;
+    public AxisState xAxis;
+    public AxisState yAxis;
+
+    [Header("Attack Flag")]
+    public bool isFiring;
+
     [Header("Movement Flag")]
     public bool IsSprinting;
     public bool IsJumping;
@@ -26,22 +34,22 @@ public class PlayerLocomotion : PlayerAbstract
     private float? lastButtonPressedTime;
     private float? lastGroundedTime;
     private float originalStepOffset;
-
+    /// đoạn code sau chưa phân code 
     protected override void Awake()
     {
         base.Awake();
         this.Is1D = false;
-        this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
+        //this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
         this.originalStepOffset = this.playerCtrl.CharacterController.stepOffset;
         this.IsGrounded = this.playerCtrl.CharacterController.isGrounded;
     }
 
     private void Update()
     {
+        this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
         if (Input.GetKeyDown(KeyCode.Q) && !playerCtrl.PlayerCamera.FPSCam.activeInHierarchy)
         {
             this.Is1D = !this.Is1D;
-            this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
         }
     }
 
@@ -50,21 +58,18 @@ public class PlayerLocomotion : PlayerAbstract
         this.HandleMovement();
         this.HandleRotation();
         this.HandleSprinting();
-        this.HandleJumping();
+       // this.HandleJumping();
     }
 
     private void HandleMovement()
     {
         //this.moveSpeed = this.IsSprinting ? this.sprintingSpeed : this.runningSpeed;
         this.movementDirection = new Vector3(this.playerCtrl.PlayerInput.MovementInput.x, 0f, this.playerCtrl.PlayerInput.MovementInput.y);
-        this.ySpeed += Physics.gravity.y * Time.deltaTime;
-
-        float magnitude = Mathf.Clamp01(movementDirection.magnitude);
-
+        this.ySpeed += Physics.gravity.y * Time.deltaTime; 
         this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.CameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
         this.movementDirection.Normalize();
 
-        Vector3 velocity = this.movementDirection * magnitude;
+        Vector3 velocity = this.movementDirection;
         velocity = this.AdjustVelocityToSlope(velocity);
         velocity.y += this.ySpeed;
 
@@ -84,6 +89,10 @@ public class PlayerLocomotion : PlayerAbstract
         else
         {
             //if (this.IsHoldingRotateCamera) return;
+            xAxis.Update(Time.fixedDeltaTime);
+            yAxis.Update(Time.fixedDeltaTime);
+            cameraLookat.eulerAngles = new Vector3(yAxis.Value, yAxis.Value, 0);
+
             float yawCamera = this.playerCtrl.CameraTransform.transform.eulerAngles.y;
             this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), 15 * Time.fixedDeltaTime);
         }
@@ -108,7 +117,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     private void HandleJumping()
     {
-        
+
 
         if (this.IsJumping)
         {
@@ -172,4 +181,6 @@ public class PlayerLocomotion : PlayerAbstract
 
         return velocity;
     }
+
+
 }

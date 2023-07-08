@@ -2,13 +2,8 @@ using UnityEngine;
 
 public class PlayerCamera : PlayerAbstract
 {
-    [SerializeField] private Transform Aimlookat;
     public GameObject TPSCam;
     public GameObject FPSCam;
-
-    public float duong;
-    public float am;
-    float y = 0;
     protected override void Awake()
     {
         TPSCam.SetActive(true);
@@ -16,9 +11,18 @@ public class PlayerCamera : PlayerAbstract
     }
 
     private void Update()
-    {
-        Debug.Log(playerCtrl.PlayerInput.MovementInput.y);
-        float x = 0.3f;
+    {/*
+        if(playerCtrl.PlayerLocomotion.Is1D)
+        {
+            if(playerCtrl.PlayerInput.MovementInput.y > 0)
+            {
+                Aimlookat.transform.localPosition = new Vector3(0, 0, 20);
+            }
+            else if(playerCtrl.PlayerInput.MovementInput.y < 0)
+            {
+                Aimlookat.transform.localPosition = new Vector3(0, 0, -20);
+            }
+        }*/
     }
     public void ChangeCamera()
     {

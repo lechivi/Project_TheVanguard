@@ -65,4 +65,6 @@ public class PlayerAnimation : PlayerAbstract
 
         this.playerCtrl.Animator.SetFloat("MoveState", snappedValue, 0.1f, Time.deltaTime);
     }
+
+  
 }

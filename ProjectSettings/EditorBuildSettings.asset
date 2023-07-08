@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Map04_Dungeon.unity
-    guid: f249f045127dd054c8a7be6bc34a0438
+    path: Assets/Scenes/TestCamera.unity
+    guid: e240150615e6a1b49b159e0ebbdeaaff
   m_configObjects: {}

@@ -11,10 +11,12 @@ public class PlayerCtrl : SaiMonoBehaviour
     public PlayerLocomotion PlayerLocomotion;
     public PlayerCamera PlayerCamera;
     public PlayerAnimation PlayerAnimation;
+    public PlayerWeapon PlayerWeapon;
 
     public Transform PlayerTransform;
     public Transform CameraTransform;
     public Animator Animator;
+    public Animator Rigcontroller;
     public CharacterController CharacterController;
 
     protected override void LoadComponent()
@@ -25,6 +27,7 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerLocomotion();
         this.LoadPlayerCamera();
         this.LoadPlayerAnimation();
+        this.LoadPlayerWeapon();
 
         this.LoadPlayerTransform();
         this.LoadCameraTransform();
@@ -40,6 +43,7 @@ public class PlayerCtrl : SaiMonoBehaviour
             Debug.LogWarning(gameObject.name + ": LoadPlayerAim", gameObject);
         }
     }
+
     protected virtual void LoadPlayerAttack ()
     {
         if (this.PlayerAttack == null)
@@ -48,6 +52,7 @@ public class PlayerCtrl : SaiMonoBehaviour
             Debug.LogWarning(gameObject.name + ": LoadPlayerAttack", gameObject);
         }
     }
+
     protected virtual void LoadPlayerManager()
     {
         if (this.PlayerManager == null)
@@ -92,6 +97,16 @@ public class PlayerCtrl : SaiMonoBehaviour
             Debug.LogWarning(gameObject.name + ": LoadPlayerAnimation", gameObject);
         }
     }
+
+    protected virtual void LoadPlayerWeapon()
+    {
+        if (this.PlayerWeapon == null)
+        {
+            this.PlayerWeapon = GetComponentInChildren<PlayerWeapon>();
+            Debug.LogWarning(gameObject.name + ": LoadPLayerWeapon", gameObject);
+        }
+    }
+
 
     protected virtual void LoadPlayerTransform()
     {

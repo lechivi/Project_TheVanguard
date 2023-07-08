@@ -11,8 +11,9 @@ public class PlayerInput : PlayerAbstract
     public bool AimInput;
     public bool AttackInput;
     public bool ChangeCameraInput;
-   // public bool ShootInput;
-
+    public bool ReloadInput;
+    // public bool ShootInput;
+    //  [SerializeField] private RaycastWeapon weapon;
     private PlayerControls playerControls;
     //private InputActionReference
 
@@ -32,8 +33,9 @@ public class PlayerInput : PlayerAbstract
             //this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
 
             this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
-            this.playerControls.PlayerAction.ChangeCamera.performed +=i => this.ChangeCameraInput = true;
-
+            this.playerControls.PlayerAction.Attack.canceled += i => this.AttackInput = false;
+            this.playerControls.PlayerAction.ChangeCamera.performed += i => this.ChangeCameraInput = true;
+            this.playerControls.PlayerAction.Reload.performed += i => this.ReloadInput = true;
 
         }
 
@@ -51,8 +53,8 @@ public class PlayerInput : PlayerAbstract
         this.HandleSprintInput();
         this.HandleJumpInput();
         this.HandleCameraInput();
-        //this.HandleAimInput();
-        //this.HandleAttackInput();
+        this.HandleAttackInput();
+        this.HandleReloadInput();
     }
 
     private void HandleMovementInput()
@@ -66,7 +68,7 @@ public class PlayerInput : PlayerAbstract
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputY", verticalInput);
     }
 
-    private void HandleSprintInput() 
+    private void HandleSprintInput()
     {
         if (this.SprintInput && this.MovementInput != Vector2.zero)
         {
@@ -87,11 +89,15 @@ public class PlayerInput : PlayerAbstract
         }
     }
 
-    private void HandleAttack ()
+    private void HandleAttackInput()
     {
-        if(AttackInput)
+        if (this.AttackInput)
         {
-
+            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
+        }
+        else if (!this.AttackInput)
+        {
+            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
         }
     }
     private void OnApplicationFocus(bool focus)
@@ -108,10 +114,23 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleCameraInput()
     {
-        if(ChangeCameraInput)
+        if (ChangeCameraInput)
         {
             ChangeCameraInput = false;
             this.playerCtrl.PlayerCamera.ChangeCamera();
+        }
+    }
+
+    private void HandleReloadInput()
+    {
+        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        if (weapon)
+        {
+            if (ReloadInput || weapon.ammo <= 0)
+            {
+                playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon();
+                ReloadInput = false;
+            }
         }
     }
 }
