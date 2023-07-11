@@ -8,17 +8,17 @@ public class PlayerManager : PlayerAbstract
     private void Update()
     {
         this.playerCtrl.PlayerInput.HandleAllInput();
-       // this.playerCtrl.PlayerLocomotion.HandleFiring();
+        this.playerCtrl.PlayerLocomotion.HanldeAllMovementUpdate();
 
     }
     private void LateUpdate()
     {
-       //this.playerCtrl.PlayerLocomotion.HandleFiring();
+
     }
 
     private void FixedUpdate()
     {
-        this.playerCtrl.PlayerLocomotion.HanldeAllMovement();
+        this.playerCtrl.PlayerLocomotion.HanldeAllMovementFix();
         this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
     }
 }

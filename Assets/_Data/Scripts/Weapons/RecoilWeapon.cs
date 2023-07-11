@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class RecoilWeapon : MonoBehaviour
 {
+    public NoiseSettings FPSNoiseSetting;
+    public NoiseSettings TPSNoiseSetting;
+    public CinemachineImpulseSource CinemachineImpulse;
     //public PlayerLocomotion playerCam;
     [HideInInspector] public Cinemachine.CinemachineFreeLook playerTPSCam;
-    // [HideInInspector] public Cinemachine.CinemachineVirtualCamera playerFPSCam;
+    [HideInInspector] public Cinemachine.CinemachineVirtualCamera playerFPSCam;
     [HideInInspector] public Cinemachine.CinemachineImpulseSource cameraShake;
     [HideInInspector] public Animator rigController;
     public float verticalRecoil;
@@ -17,9 +20,11 @@ public class RecoilWeapon : MonoBehaviour
     private float time;
     public Vector2[] recoilPattern;
     public int index;
+    public int recoilFPS;
 
     protected void Awake()
     {
+        CinemachineImpulse = GetComponent<CinemachineImpulseSource>();
         cameraShake = GetComponent<CinemachineImpulseSource>();
     }
 
@@ -47,9 +52,36 @@ public class RecoilWeapon : MonoBehaviour
         //  Debug.Log(index);
         if (time > 0)
         {
-            playerTPSCam.m_YAxis.Value -= ((verticalRecoil / 1000) * Time.deltaTime) / duration;
-            playerTPSCam.m_XAxis.Value -= ((horizontalRecoil / 10) * Time.deltaTime) / duration;
-            time -= Time.deltaTime;
+            if(playerTPSCam.gameObject.activeInHierarchy == true)
+            {
+                TPSRecoil();
+                ChangeNoiseSetiing(TPSNoiseSetting);
+            }
+            if (playerFPSCam.gameObject.activeInHierarchy == true)
+            {
+                FPSRecoil();
+                ChangeNoiseSetiing(FPSNoiseSetting);
+            }
         }
+    }
+
+    private void TPSRecoil()
+    {
+        playerTPSCam.m_YAxis.Value -= ((verticalRecoil / 1000) * Time.deltaTime) / duration;
+        playerTPSCam.m_XAxis.Value -= ((horizontalRecoil / 10) * Time.deltaTime) / duration;
+        time -= Time.deltaTime;
+    }
+
+    private void FPSRecoil()
+    {
+        playerFPSCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.Value -= ((verticalRecoil /20) * Time.deltaTime) / duration;
+        playerFPSCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.Value -= ((horizontalRecoil / 10) * Time.deltaTime) / duration;
+        time -= Time.deltaTime;
+        Debug.Log("Hello");
+    }
+
+    public void ChangeNoiseSetiing(NoiseSettings newNoiseSetiing)
+    {
+        CinemachineImpulse.m_ImpulseDefinition.m_RawSignal = newNoiseSetiing;
     }
 }

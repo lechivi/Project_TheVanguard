@@ -1,79 +1,126 @@
 ﻿using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerLocomotion : PlayerAbstract
 {
+    public PlayerWeaponActiveOld weaponActive;
+    public Animator animatorPlayer;
+    public Animator rigLayer;
+    public OnEventAnimator Onanimatormove;
     public Transform cameraLookat;
     public AxisState xAxis;
     public AxisState yAxis;
-
-    [Header("Attack Flag")]
-    public bool isFiring;
+    //
 
     [Header("Movement Flag")]
+    public bool isJumping;
     public bool IsSprinting;
-    public bool IsJumping;
     public bool IsGrounded;
     public bool Is1D;
 
     [Header("Movement Speed")]
-    [SerializeField] private float walkingSpeed = 0.5f;     //Multiplication
-    [SerializeField] private float runningSpeed = 1f;       //Multiplication
-    [SerializeField] private float sprintingSpeed = 1.4f;   //Multiplication
     [SerializeField] private float rotationSpeed = 360f;
-    [SerializeField] private float jumpSpeed = 5f;
+    [SerializeField] private float speed;
+    [SerializeField] private float jumpDamp;
+    [SerializeField] private float airControl;
+    [SerializeField] private float stepDown;
+    [SerializeField] private float jumpheight;
+    [SerializeField] private float gravity;
     private Vector3 movementDirection;
-    private float motionSpeed;
-    private float ySpeed;
+    [SerializeField] private Vector3 rootMotion;
+    [SerializeField] private Vector3 velocity;
 
-    [Header("Jump")]
-    [SerializeField] private float jumpHeight = 0.2f;
-    [SerializeField] private float jumpButtonGracePeriod = 0.2f;
-    private float? lastButtonPressedTime;
-    private float? lastGroundedTime;
-    private float originalStepOffset;
     /// đoạn code sau chưa phân code 
     protected override void Awake()
     {
         base.Awake();
+        this.Onanimatormove = FindObjectOfType<OnEventAnimator>();
         this.Is1D = false;
-        //this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
-        this.originalStepOffset = this.playerCtrl.CharacterController.stepOffset;
-        this.IsGrounded = this.playerCtrl.CharacterController.isGrounded;
     }
 
-    private void Update()
+    private void Start()
     {
-        this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
-        if (Input.GetKeyDown(KeyCode.Q) && !playerCtrl.PlayerCamera.FPSCam.activeInHierarchy)
+        if (Onanimatormove != null)
         {
-            this.Is1D = !this.Is1D;
+            Onanimatormove.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
         }
     }
 
-    public void HanldeAllMovement()
+
+    public void HanldeAllMovementUpdate()
     {
-        this.HandleMovement();
-        this.HandleRotation();
-        this.HandleSprinting();
-       // this.HandleJumping();
+        HandleJump();
+        Handle1DMode();
+        HandleSprinting();
     }
 
-    private void HandleMovement()
+    public void HanldeAllMovementFix()
+    {
+
+        this.HandleRotation();
+        this.HandleUpdateMove();
+    }
+
+
+    private void Handle1DMode()
+    {
+        this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
+        if (Input.GetKeyDown(KeyCode.Q) && !playerCtrl.PlayerCamera.FPSCam.gameObject.activeInHierarchy)
+        {
+            this.Is1D = !this.Is1D;
+        }
+        if (Is1D)
+        {
+            HandleMovement1D();
+        }
+    }
+    private void HandleMovement1D()
     {
         //this.moveSpeed = this.IsSprinting ? this.sprintingSpeed : this.runningSpeed;
         this.movementDirection = new Vector3(this.playerCtrl.PlayerInput.MovementInput.x, 0f, this.playerCtrl.PlayerInput.MovementInput.y);
-        this.ySpeed += Physics.gravity.y * Time.deltaTime; 
+        //float ySpeed = Physics.gravity.y * Time.deltaTime;
         this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.CameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
         this.movementDirection.Normalize();
 
         Vector3 velocity = this.movementDirection;
-        velocity = this.AdjustVelocityToSlope(velocity);
-        velocity.y += this.ySpeed;
+        //velocity = this.AdjustVelocityToSlope(velocity);
+        //velocity.y += ySpeed;
 
         this.playerCtrl.CharacterController.Move(velocity * Time.deltaTime);
+    }
+    private void HandleSprinting()
+    {
+        RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
+        
+        if(currentweapon != null)
+        {
+            rigLayer.SetBool("isSprinting", IsSprinting);
+        }
+        
+    }
+
+    private void HandleJump()
+    {
+        if (playerCtrl.PlayerInput.JumpInput)
+        {
+            Jump();
+            playerCtrl.PlayerInput.JumpInput = false;
+        }
+    }
+
+    private void HandleUpdateMove()
+    {
+        if (isJumping)
+        {
+            UpdateInAir();
+        }
+        else
+        {
+            UpdateOnGround();
+        }
     }
 
     private void HandleRotation()
@@ -99,71 +146,21 @@ public class PlayerLocomotion : PlayerAbstract
 
     }
 
-    private void HandleSprinting()
-    {
-        if (this.movementDirection != Vector3.zero)
-        {
-            if (this.IsSprinting)
-            {
-                this.motionSpeed = this.sprintingSpeed;
-            }
-            else
-            {
-                this.motionSpeed = this.runningSpeed;
-            }
-            this.playerCtrl.Animator.SetFloat("MotionSpeed", this.motionSpeed);
-        }
-    }
-
-    private void HandleJumping()
-    {
-
-
-        if (this.IsJumping)
-        {
-            this.IsJumping = false;
-            this.lastButtonPressedTime = Time.time;
-        }
-
-        if (this.playerCtrl.CharacterController.isGrounded)
-        {
-            this.lastGroundedTime = Time.time;
-        }
-
-        if (Time.time - this.lastGroundedTime <= this.jumpButtonGracePeriod)
-        {
-            this.ySpeed = -0.5f;
-            this.playerCtrl.CharacterController.stepOffset = this.originalStepOffset;
-
-            this.playerCtrl.Animator.SetBool("IsGrounded", true);
-            this.IsGrounded = true;
-            this.playerCtrl.Animator.SetBool("IsJumping", false);
-            this.IsJumping = false;
-            this.playerCtrl.Animator.SetBool("IsFalling", false);
-
-            if (Time.time - this.lastButtonPressedTime <= this.jumpButtonGracePeriod)
-            {
-                this.ySpeed = this.jumpSpeed;
-
-                this.playerCtrl.Animator.SetBool("IsJumping", true);
-                this.IsJumping = true;
-
-                this.lastGroundedTime = null;
-                this.lastButtonPressedTime = null;
-            }
-        }
-        else
-        {
-            this.playerCtrl.CharacterController.stepOffset = 0;
-            this.playerCtrl.Animator.SetBool("IsGrounded", false);
-            this.IsGrounded = false;
-
-            if ((this.IsJumping && this.ySpeed < 0) || this.ySpeed < -2)
-            {
-                this.playerCtrl.Animator.SetBool("IsFalling", true);
-            }
-        }
-    }
+    /*   private void HandleSprinting()
+       {
+           if (this.movementDirection != Vector3.zero)
+           {
+               if (this.IsSprinting)
+               {
+                   this.motionSpeed = this.sprintingSpeed;
+               }
+               else
+               {
+                   this.motionSpeed = this.runningSpeed;
+               }
+               this.playerCtrl.Animator.SetFloat("MotionSpeed", this.motionSpeed);
+           }
+       }*/
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     {
@@ -181,6 +178,54 @@ public class PlayerLocomotion : PlayerAbstract
 
         return velocity;
     }
+    //
 
+    public Vector3 CalculateAircontrol()
+    {
+        return ((transform.forward * playerCtrl.PlayerInput.MovementInput.y) + (transform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
+    }
 
+    private void HandleAnimatorMoveEvent()
+    {
+        rootMotion += playerCtrl.Animator.deltaPosition;
+    }
+
+    private void UpdateInAir()
+    {
+        velocity.y -= gravity * Time.fixedDeltaTime;
+        Vector3 displacement = velocity * Time.fixedDeltaTime;
+        displacement += CalculateAircontrol();
+        playerCtrl.CharacterController.Move(displacement);
+        isJumping = !this.playerCtrl.CharacterController.isGrounded;
+        rootMotion = Vector3.zero;
+        animatorPlayer.SetBool("isJumping", isJumping);
+    }
+    private void UpdateOnGround()
+    {
+        Vector3 stepForwardAmount = rootMotion * speed;
+        Vector3 stepDownAmount = Vector3.down * stepDown;
+        playerCtrl.CharacterController.Move(stepForwardAmount + stepDownAmount);
+        rootMotion = Vector3.zero;
+
+        if (!this.playerCtrl.CharacterController.isGrounded) //falling
+        {
+            SetInAir(0);
+        }
+    }
+    public void Jump()
+    {
+        if (!isJumping)
+        {
+            float jumpvelocity = Mathf.Sqrt(2 * gravity * jumpheight);
+            SetInAir(jumpvelocity);
+        }
+    }
+
+    private void SetInAir(float jumpvelocity)
+    {
+        isJumping = true;
+        velocity = playerCtrl.Animator.velocity * jumpDamp * speed;
+        velocity.y = jumpvelocity;
+        animatorPlayer.SetBool("isJumping", true);
+    }
 }

@@ -1,13 +1,14 @@
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerCamera : PlayerAbstract
 {
-    public GameObject TPSCam;
-    public GameObject FPSCam;
+    public CinemachineFreeLook TPSCam;
+    public CinemachineVirtualCamera FPSCam;
     protected override void Awake()
     {
-        TPSCam.SetActive(true);
-        FPSCam.SetActive(false);
+        TPSCam.gameObject.SetActive(true);
+        FPSCam.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -26,17 +27,17 @@ public class PlayerCamera : PlayerAbstract
     }
     public void ChangeCamera()
     {
-        if (TPSCam.activeInHierarchy == true)
+        if (TPSCam.gameObject.activeInHierarchy == true)
         {
-            TPSCam.SetActive(false);
-            FPSCam.SetActive(true);
+            TPSCam.gameObject.SetActive(false);
+            FPSCam.gameObject.SetActive(true);
             playerCtrl.PlayerLocomotion.Is1D = false;
         }
 
-        else if (FPSCam.activeInHierarchy == true)
+        else if (FPSCam.gameObject.activeInHierarchy == true)
         {
-            FPSCam.SetActive(false);
-            TPSCam.SetActive(true);
+            FPSCam.gameObject.SetActive(false);
+            TPSCam.gameObject.SetActive(true);
         }
     }
 }

@@ -18,7 +18,6 @@ public class RaycastWeapon : MonoBehaviour
     public ParticleSystem hitEffect;
     public TrailRenderer tracerEffect;
     public Transform raycastOrigin;
-    public Transform raycastTarget;
     private Ray ray;
     private RaycastHit hitInfo;
     public int fireRate = 25;
@@ -48,7 +47,7 @@ public class RaycastWeapon : MonoBehaviour
         // runtTimeFire = 0;
      }*/
 
-    public void FireBullet()
+    public void FireBullet(Vector3 target)
     {
         if (ammo <= 0)
         {
@@ -60,21 +59,20 @@ public class RaycastWeapon : MonoBehaviour
             particle.Emit(1);
         }
 
-        Vector3 raycastDirection = (raycastTarget.position - raycastOrigin.position).normalized * bulletSpeed;
+        Vector3 raycastDirection = (target - raycastOrigin.position).normalized * bulletSpeed;
         //  Vector3 raycastDirection = raycastOrigin.forward * bulletSpeed;
         var bullet = CreateBullet(raycastOrigin.position, raycastDirection);
         recoil.GenerateRecoil(weaponName);
         bullets.Add(bullet);
     }
 
-    public void UpdateFiring()
+    public void UpdateFiring(Vector3 target)
     {
         runtTimeFire += Time.deltaTime;
         float fireInterval = 1.0f / fireRate; // 1/firerate ( 1 ở đây đại diện cho 1 giây , firerate là số đạn nhả ra trong 1 giây , nếu ta set firerate = 25 là 25 viên trong 1s
         while (runtTimeFire >= 0.0f)
         {
-            Debug.Log("Animation");
-            FireBullet();
+            FireBullet(target);
             runtTimeFire -= fireInterval;
         }
     }
@@ -121,7 +119,6 @@ public class RaycastWeapon : MonoBehaviour
 
         if (Physics.Raycast(ray, out hitInfo, distance))
         {
-            Debug.Log("hit");
             hitEffect.transform.position = hitInfo.point;
             hitEffect.transform.forward =/* HandleHiteffectDirection(ray.direction, hitInfo.normal);*/ hitInfo.normal;
             hitEffect.Emit(1);

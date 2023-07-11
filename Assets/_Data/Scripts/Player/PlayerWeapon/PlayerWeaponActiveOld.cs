@@ -19,7 +19,9 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public Transform[] weaponSlots;
     public Animator rigController;
     public bool isHolster;
-    public Cinemachine.CinemachineFreeLook playerCameara;
+    public Cinemachine.CinemachineFreeLook playerTPSCam;
+    public Cinemachine.CinemachineVirtualCamera playerFPSCam;
+    public PlayerCamera playerCamera;
 
     protected override void Awake()
     {
@@ -39,7 +41,6 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 
     private void Update()
     {
-        Debug.Log(ActiveWeaponIndex);
         if (Input.GetKeyDown(KeyCode.X))
         {
             ToggleActiveWeapon();
@@ -52,7 +53,6 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         {
             SetActiveWeapon(Weaponslot.Secondary);
         }
-
     }
 
     public RaycastWeapon GetActiveWeapon()
@@ -71,16 +71,15 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public void HandleFiring()
     {
         var weaponRaycast = GetWeapon(ActiveWeaponIndex);
-        if (weaponRaycast && !isHolster)
+        if (weaponRaycast && !isHolster && !weaponRaycast.isFiring)
         {
-            Debug.Log("ActiveWeaponIndex");
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
-                weaponRaycast.FireBullet();
+                weaponRaycast.FireBullet(crossHairTarget.position);
             }
             if (isFiring)
             {
-                weaponRaycast.UpdateFiring();
+                weaponRaycast.UpdateFiring(crossHairTarget.position);
             }
             weaponRaycast.UpdateBullets();
             if (!isFiring)
@@ -109,7 +108,6 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public void Equip(RaycastWeapon newWeapon)
     {
         int index = (int)newWeapon.weaponslot;
-        //Debug.Log(index);
         var originalweaponRaycast = GetWeapon(ActiveWeaponIndex);
         var weaponRaycast = GetWeapon(index);
         /* if (weaponRaycast)
@@ -122,11 +120,12 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
             originalweaponRaycast.ammo = weaponRaycast.maxAmmo;
             return;
         }
+        Debug.Log("newWeapon");
         weaponRaycast = newWeapon;
-        weaponRaycast.raycastTarget = crossHairTarget;
         // weaponRaycast.transform.parent = weaponSlots[index];
         weaponRaycast.transform.SetParent(weaponSlots[index], false);
-        weaponRaycast.recoil.playerTPSCam = playerCameara;
+        weaponRaycast.recoil.playerTPSCam = playerCamera.TPSCam;
+        weaponRaycast.recoil.playerFPSCam = playerCamera.FPSCam;
         weaponRaycast.recoil.rigController = rigController;
 
         // weaponRaycast.transform.localPosition = Vector3.zero;

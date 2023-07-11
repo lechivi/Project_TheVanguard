@@ -18,12 +18,12 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
 
     public void SetReloadWeapon()
     {
+
         this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
     }
 
     public void OnAnimationEvent(string eventName)
     {
-        Debug.Log(eventName);
         switch (eventName)
         {
             case "detach_magazine":

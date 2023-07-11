@@ -51,7 +51,7 @@ public class PlayerInput : PlayerAbstract
     {
         this.HandleMovementInput();
         this.HandleSprintInput();
-        this.HandleJumpInput();
+       // this.HandleJumpInput();
         this.HandleCameraInput();
         this.HandleAttackInput();
         this.HandleReloadInput();
@@ -62,10 +62,13 @@ public class PlayerInput : PlayerAbstract
         float horizontalInput = this.MovementInput.x;
         float verticalInput = this.MovementInput.y;
         float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-
+        
         this.playerCtrl.PlayerAnimation.UpdateAnimatorValuesMoveState(moveAmount, this.playerCtrl.PlayerLocomotion.IsSprinting);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputX", horizontalInput);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputY", verticalInput);
+        //
+        /*this.playerCtrl.Animator.SetFloat("InputX",horizontalInput, 0.1f, Time.deltaTime);
+        this.playerCtrl.Animator.SetFloat("InputY", verticalInput, 0.1f, Time.deltaTime);*/
     }
 
     private void HandleSprintInput()
@@ -80,14 +83,13 @@ public class PlayerInput : PlayerAbstract
         }
     }
 
-    private void HandleJumpInput()
+    /*private void HandleJumpInput()
     {
         if (this.JumpInput)
         {
             this.JumpInput = false;
-            this.playerCtrl.PlayerLocomotion.IsJumping = true;
         }
-    }
+    }*/
 
     private void HandleAttackInput()
     {
