@@ -19,6 +19,6 @@ public class PlayerManager : PlayerAbstract
     private void FixedUpdate()
     {
         this.playerCtrl.PlayerLocomotion.HanldeAllMovementFix();
-        this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
+        //this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
     }
 }
