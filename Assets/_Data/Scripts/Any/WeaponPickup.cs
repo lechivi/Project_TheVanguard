@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class WeaponPickup : MonoBehaviour
 {
-  [SerializeField]  private RaycastWeapon weaponPrefab;
+    [SerializeField] private RaycastWeapon raycastWeaponPrefab;
 
     private void OnTriggerEnter(Collider other)
     {
         PlayerWeaponActiveOld activeWeapon = other.GetComponentInChildren<PlayerWeaponActiveOld>();
         if (activeWeapon)
         {
-            RaycastWeapon weapon = Instantiate(weaponPrefab);
+            RaycastWeapon weapon = Instantiate(raycastWeaponPrefab);
             activeWeapon.Equip(weapon);
         }
     }

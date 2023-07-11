@@ -93,14 +93,14 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleAttackInput()
     {
-        if (this.AttackInput)
-        {
-            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
-        }
-        else if (!this.AttackInput)
-        {
-            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
-        }
+        //if (this.AttackInput)
+        //{
+        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
+        //}
+        //else if (!this.AttackInput)
+        //{
+        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
+        //}
     }
     private void OnApplicationFocus(bool focus)
     {
@@ -125,14 +125,14 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleReloadInput()
     {
-        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
-        if (weapon)
-        {
-            if (ReloadInput || weapon.ammo <= 0)
-            {
-                playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon();
-                ReloadInput = false;
-            }
-        }
+        //RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        //if (weapon)
+        //{
+        //    if (ReloadInput || weapon.ammo <= 0)
+        //    {
+        //        playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon();
+        //        ReloadInput = false;
+        //    }
+        //}
     }
 }
