@@ -36,17 +36,31 @@ public class RaycastWeapon : MonoBehaviour
     public GameObject magazine;
     public int ammo;
     public int maxAmmo;
+
     private void Awake()
     {
         runtTimeFire = 0;
         recoil = GetComponent<RecoilWeapon>();
     }
-    /* public void StartFiring()
-     {
-         isFiring = true;
-         FireBullet();
-        // runtTimeFire = 0;
-     }*/
+
+    //public void StartFiring()
+    //{
+    //    isFiring = true;
+    //    FireBullet();
+    //    //runtTimeFire = 0;
+    //}
+
+    public void UpdateFiring() //Call from PlayerWeaponActiveWeapon
+    {
+        runtTimeFire += Time.deltaTime;
+        float fireInterval = 1.0f / fireRate; // 1/firerate ( 1 ở đây đại diện cho 1 giây , firerate là số đạn nhả ra trong 1 giây , nếu ta set firerate = 25 là 25 viên trong 1s
+        while (runtTimeFire >= 0.0f)
+        {
+            Debug.Log("Animation");
+            FireBullet();
+            runtTimeFire -= fireInterval;
+        }
+    }
 
     public void FireBullet()
     {
@@ -67,18 +81,17 @@ public class RaycastWeapon : MonoBehaviour
         bullets.Add(bullet);
     }
 
-    public void UpdateFiring()
+    public void UpdateBullets() //Call from PlayerWeaponActiveWeapon
     {
-        runtTimeFire += Time.deltaTime;
-        float fireInterval = 1.0f / fireRate; // 1/firerate ( 1 ở đây đại diện cho 1 giây , firerate là số đạn nhả ra trong 1 giây , nếu ta set firerate = 25 là 25 viên trong 1s
-        while (runtTimeFire >= 0.0f)
+        bullets.ForEach(bullet =>
         {
-            Debug.Log("Animation");
-            FireBullet();
-            runtTimeFire -= fireInterval;
-        }
+            Vector3 p0 = GetPosition(bullet);
+            bullet.time += Time.deltaTime;
+            Vector3 p1 = GetPosition(bullet);
+            RaycastSegment(p0, p1, bullet);
+        });
+        DestroyBullets();
     }
-
 
     public Bullet CreateBullet(Vector3 position, Vector3 velocity)
     {
@@ -92,17 +105,6 @@ public class RaycastWeapon : MonoBehaviour
         };
         bullet.tracer.AddPosition(position);
         return bullet;
-    }
-    public void UpdateBullets()
-    {
-        bullets.ForEach(bullet =>
-        {
-            Vector3 p0 = GetPosition(bullet);
-            bullet.time += Time.deltaTime;
-            Vector3 p1 = GetPosition(bullet);
-            RaycastSegment(p0, p1, bullet);
-        });
-        DestroyBullets();
     }
 
     public Vector3 GetPosition(Bullet bullet)
@@ -143,7 +145,7 @@ public class RaycastWeapon : MonoBehaviour
     }
 
 
-    public Vector3 HandleHiteffectDirection(Vector3 ray, Vector3 hitNor)
+    public Vector3 HandleHitEffectDirection(Vector3 ray, Vector3 hitNor)
     {
         float dot = Vector3.Dot(ray, hitNor);
         Vector3 newDerec = 2 * dot * hitNor;

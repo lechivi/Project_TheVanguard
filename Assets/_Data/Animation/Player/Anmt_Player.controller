@@ -49,7 +49,7 @@ AnimatorState:
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
   m_Mirror: 0
-  m_SpeedParameterActive: 1
+  m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
@@ -108,7 +108,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: TypeMove
     m_Mirror: 0
-  m_BlendParameter: InputX
+  m_BlendParameter: MoveState
   m_BlendParameterY: Blend
   m_MinThreshold: 0.5
   m_MaxThreshold: 1
@@ -299,49 +299,49 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MoveState
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: MotionSpeed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: InputX
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: InputY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsFalling
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IsGrounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -387,7 +387,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: TypeMove
     m_Mirror: 0
-  m_BlendParameter: InputX
+  m_BlendParameter: MoveState
   m_BlendParameterY: Blend
   m_MinThreshold: 0.5
   m_MaxThreshold: 2
@@ -467,7 +467,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: TypeMove
     m_Mirror: 0
-  m_BlendParameter: InputX
+  m_BlendParameter: MoveState
   m_BlendParameterY: Blend
   m_MinThreshold: 0.5
   m_MaxThreshold: 1
@@ -752,7 +752,7 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: TypeMove
     m_Mirror: 0
-  m_BlendParameter: InputX
+  m_BlendParameter: MoveState
   m_BlendParameterY: Blend
   m_MinThreshold: 0.5
   m_MaxThreshold: 1

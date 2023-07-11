@@ -39,7 +39,6 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 
     private void Update()
     {
-        Debug.Log(ActiveWeaponIndex);
         if (Input.GetKeyDown(KeyCode.X))
         {
             ToggleActiveWeapon();
