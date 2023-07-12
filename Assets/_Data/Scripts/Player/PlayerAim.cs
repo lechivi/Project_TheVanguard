@@ -30,28 +30,8 @@ public class PlayerAim : PlayerAbstract
             Handle();
         }
 
-        /*if (Input.GetKey(KeyCode.R))
-        {
-            EquipWeapon();
-        }
-
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            UnEquipWeapon();
-        }*/
     }
 
-  /*  private void UnEquipWeapon()
-    {
-        HandLayer.weight = 0;
-        weapon.SetActive(false);
-    }
-
-    private void EquipWeapon()
-    {
-        HandLayer.weight += Time.deltaTime / AimDuration;
-        weapon.SetActive(true);
-    }*/
 
     private void Handle()
     {

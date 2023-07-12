@@ -59,8 +59,7 @@ public class RaycastWeapon : MonoBehaviour
             particle.Emit(1);
         }
 
-        Vector3 raycastDirection = (target - raycastOrigin.position).normalized * bulletSpeed;
-        //  Vector3 raycastDirection = raycastOrigin.forward * bulletSpeed;
+        Vector3 raycastDirection = (target - raycastOrigin.position).normalized  * bulletSpeed;
         var bullet = CreateBullet(raycastOrigin.position, raycastDirection);
         recoil.GenerateRecoil(weaponName);
         bullets.Add(bullet);

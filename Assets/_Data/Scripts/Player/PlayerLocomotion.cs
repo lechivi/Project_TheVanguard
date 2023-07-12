@@ -10,10 +10,6 @@ public class PlayerLocomotion : PlayerAbstract
     public Animator animatorPlayer;
     public Animator rigLayer;
     public OnEventAnimator Onanimatormove;
-    public Transform cameraLookat;
-    public AxisState xAxis;
-    public AxisState yAxis;
-    //
 
     [Header("Movement Flag")]
     public bool isJumping;
@@ -23,6 +19,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     [Header("Movement Speed")]
     [SerializeField] private float rotationSpeed = 360f;
+    [SerializeField] private float rotationSpeedTPS = 15f;
     [SerializeField] private float speed;
     [SerializeField] private float jumpDamp;
     [SerializeField] private float airControl;
@@ -82,7 +79,7 @@ public class PlayerLocomotion : PlayerAbstract
         //this.moveSpeed = this.IsSprinting ? this.sprintingSpeed : this.runningSpeed;
         this.movementDirection = new Vector3(this.playerCtrl.PlayerInput.MovementInput.x, 0f, this.playerCtrl.PlayerInput.MovementInput.y);
         //float ySpeed = Physics.gravity.y * Time.deltaTime;
-        this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.CameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
+        this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.MainCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;
         this.movementDirection.Normalize();
 
         Vector3 velocity = this.movementDirection;
@@ -94,12 +91,12 @@ public class PlayerLocomotion : PlayerAbstract
     private void HandleSprinting()
     {
         RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
-        
-        if(currentweapon != null)
+
+        if (currentweapon != null)
         {
             rigLayer.SetBool("isSprinting", IsSprinting);
         }
-        
+
     }
 
     private void HandleJump()
@@ -135,32 +132,16 @@ public class PlayerLocomotion : PlayerAbstract
         }
         else
         {
-            //if (this.IsHoldingRotateCamera) return;
-            xAxis.Update(Time.fixedDeltaTime);
-            yAxis.Update(Time.fixedDeltaTime);
-            cameraLookat.eulerAngles = new Vector3(yAxis.Value, yAxis.Value, 0);
+            playerCtrl.PlayerCamera.xAxis.Update(Time.fixedDeltaTime);
+            playerCtrl.PlayerCamera.yAxis.Update(Time.fixedDeltaTime);
 
-            float yawCamera = this.playerCtrl.CameraTransform.transform.eulerAngles.y;
-            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), 15 * Time.fixedDeltaTime);
+            playerCtrl.PlayerCamera.cameraLookat.eulerAngles = new Vector3(playerCtrl.PlayerCamera.yAxis.Value, playerCtrl.PlayerCamera.xAxis.Value, 0);
+            float yawCamera = this.playerCtrl.MainCamera.transform.eulerAngles.y;
+            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
         }
 
     }
 
-    /*   private void HandleSprinting()
-       {
-           if (this.movementDirection != Vector3.zero)
-           {
-               if (this.IsSprinting)
-               {
-                   this.motionSpeed = this.sprintingSpeed;
-               }
-               else
-               {
-                   this.motionSpeed = this.runningSpeed;
-               }
-               this.playerCtrl.Animator.SetFloat("MotionSpeed", this.motionSpeed);
-           }
-       }*/
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     {
@@ -198,7 +179,7 @@ public class PlayerLocomotion : PlayerAbstract
         playerCtrl.CharacterController.Move(displacement);
         isJumping = !this.playerCtrl.CharacterController.isGrounded;
         rootMotion = Vector3.zero;
-        animatorPlayer.SetBool("isJumping", isJumping);
+        animatorPlayer.SetBool("IsJumping", isJumping);
     }
     private void UpdateOnGround()
     {
@@ -226,6 +207,6 @@ public class PlayerLocomotion : PlayerAbstract
         isJumping = true;
         velocity = playerCtrl.Animator.velocity * jumpDamp * speed;
         velocity.y = jumpvelocity;
-        animatorPlayer.SetBool("isJumping", true);
+        animatorPlayer.SetBool("IsJumping", true);
     }
 }

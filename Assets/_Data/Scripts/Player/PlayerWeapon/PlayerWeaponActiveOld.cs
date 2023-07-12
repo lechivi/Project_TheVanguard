@@ -124,7 +124,7 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         weaponRaycast = newWeapon;
         // weaponRaycast.transform.parent = weaponSlots[index];
         weaponRaycast.transform.SetParent(weaponSlots[index], false);
-        weaponRaycast.recoil.playerTPSCam = playerCamera.TPSCam;
+        weaponRaycast.recoil.playerTPSCam = playerCamera;
         weaponRaycast.recoil.playerFPSCam = playerCamera.FPSCam;
         weaponRaycast.recoil.rigController = rigController;
 

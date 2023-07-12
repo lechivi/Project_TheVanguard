@@ -6011,6 +6011,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 1759233638694186047}
+  cameraLookat: {fileID: 1759233636907509684}
+  xAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
+    m_InputAxisName: Mouse X
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: -180
+    m_MaxValue: 180
+    m_Wrap: 1
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
+  yAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.2
+    m_DecelTime: 0.1
+    m_InputAxisName: Mouse Y
+    m_InputAxisValue: 0
+    m_InvertInput: 1
+    m_MinValue: -90
+    m_MaxValue: 90
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
   TPSCam: {fileID: 0}
   FPSCam: {fileID: 0}
 --- !u!1 &1759233637377639506
@@ -6995,48 +7032,12 @@ MonoBehaviour:
   animatorPlayer: {fileID: 16384254797698360}
   rigLayer: {fileID: 1759233637901946849}
   Onanimatormove: {fileID: 877642250396895939}
-  cameraLookat: {fileID: 0}
-  xAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 200
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  yAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 2
-    m_AccelTime: 0.2
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
-    m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -90
-    m_MaxValue: 90
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
   isJumping: 0
   IsSprinting: 0
   IsGrounded: 0
   Is1D: 1
   rotationSpeed: 360
+  rotationSpeedTPS: 15
   speed: 2
   jumpDamp: 0.5
   airControl: 2.5
@@ -7517,7 +7518,7 @@ MonoBehaviour:
   PlayerAnimation: {fileID: 1759233638212108181}
   PlayerWeapon: {fileID: 1759233638165445967}
   PlayerTransform: {fileID: 105847957911221326}
-  CameraTransform: {fileID: 0}
+  MainCamera: {fileID: 0}
   Animator: {fileID: 16384254797698360}
   Rigcontroller: {fileID: 0}
   CharacterController: {fileID: 105847957911221313}

@@ -12,8 +12,6 @@ public class PlayerInput : PlayerAbstract
     public bool AttackInput;
     public bool ChangeCameraInput;
     public bool ReloadInput;
-    // public bool ShootInput;
-    //  [SerializeField] private RaycastWeapon weapon;
     private PlayerControls playerControls;
     //private InputActionReference
 
