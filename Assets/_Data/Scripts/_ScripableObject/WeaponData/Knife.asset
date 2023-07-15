@@ -15,7 +15,7 @@ MonoBehaviour:
   WeaponType: 6
   WeaponName: 
   Icon: {fileID: 0}
-  Model: {fileID: 0}
+  Model: {fileID: 1051651135651384505, guid: a580b9b9a619b0d40bb5927231b9612e, type: 3}
   rangedDamage: 0
   fireRate: 0
   accuracy: 0
