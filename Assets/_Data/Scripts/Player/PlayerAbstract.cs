@@ -6,6 +6,8 @@ public abstract class PlayerAbstract : SaiMonoBehaviour
 {
     [SerializeField] protected PlayerCtrl playerCtrl;
 
+    public PlayerCtrl PlayerCtrl => this.playerCtrl;
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
