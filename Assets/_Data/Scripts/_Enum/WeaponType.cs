@@ -1,10 +1,9 @@
 public enum WeaponType
 {
+    None,
     Pistol,
-    Shotgun,
     AssaultRifle,
+    Shotgun,
     SniperRifle,
-    EnergyPistol,
-    EnergyRifle,
     Melee,
 }

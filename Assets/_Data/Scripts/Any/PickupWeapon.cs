@@ -12,8 +12,9 @@ public class PickupWeapon : MonoBehaviour
         if (weaponManager)
         {
             Weapon weapon = Instantiate(weaponPrefab);
-            weaponManager.AddWeapon(weapon);
-            gameObject.SetActive(false);
+            bool canAdd = weaponManager.AddWeapon(weapon);
+            if (canAdd) 
+                gameObject.SetActive(false);
         }
     }
 }

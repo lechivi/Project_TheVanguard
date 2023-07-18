@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Shotgun
   m_EditorClassIdentifier: 
   WeaponType: 1
-  WeaponName: 
+  WeaponName: Shotgun
   Icon: {fileID: 0}
-  Model: {fileID: 0}
+  Model: {fileID: 1618894903926316441, guid: dee474a7f2b096846b8bb8d663409ee4, type: 3}
   rangedDamage: 21212
   fireRate: 0
   accuracy: 0

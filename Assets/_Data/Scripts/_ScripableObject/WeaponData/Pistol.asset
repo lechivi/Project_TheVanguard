@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   WeaponType: 0
-  WeaponName: 
+  WeaponName: Pistol
   Icon: {fileID: 0}
-  Model: {fileID: 0}
+  Model: {fileID: 7826245830978529317, guid: c6291e4fcdfd3cf4aab8a88477a196ce, type: 3}
   rangedDamage: 21212
   fireRate: 0
   accuracy: 0

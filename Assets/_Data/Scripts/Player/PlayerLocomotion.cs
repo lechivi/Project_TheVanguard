@@ -93,12 +93,12 @@ public class PlayerLocomotion : PlayerAbstract
     }
     private void HandleSprinting()
     {
-        RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
+        //RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
         
-        if(currentweapon != null)
-        {
-            rigLayer.SetBool("isSprinting", IsSprinting);
-        }
+        //if(currentweapon != null)
+        //{
+        //    rigLayer.SetBool("isSprinting", IsSprinting);
+        //}
         
     }
 
@@ -198,7 +198,7 @@ public class PlayerLocomotion : PlayerAbstract
         playerCtrl.CharacterController.Move(displacement);
         isJumping = !this.playerCtrl.CharacterController.isGrounded;
         rootMotion = Vector3.zero;
-        animatorPlayer.SetBool("isJumping", isJumping);
+        animatorPlayer.SetBool("IsJumping", isJumping);
     }
     private void UpdateOnGround()
     {
@@ -226,6 +226,6 @@ public class PlayerLocomotion : PlayerAbstract
         isJumping = true;
         velocity = playerCtrl.Animator.velocity * jumpDamp * speed;
         velocity.y = jumpvelocity;
-        animatorPlayer.SetBool("isJumping", true);
+        animatorPlayer.SetBool("IsJumping", true);
     }
 }

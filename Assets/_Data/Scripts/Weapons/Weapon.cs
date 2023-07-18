@@ -8,7 +8,6 @@ public class Weapon : MonoBehaviour
     [SerializeField] protected WeaponSlot[] weaponSlot;
 
     public WeaponSlot[] WeaponSlot { get => this.weaponSlot; set => this.weaponSlot = value; }
-
     public WeaponDataSO WeaponData { get => this.weaponData; protected set { this.weaponData = value; } }
 
     protected virtual void LeftMouseAction()
