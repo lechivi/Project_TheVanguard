@@ -1,9 +1,8 @@
 public enum AmmoType
 {
+    None,
     PistolRound,
-    ShotgunCell,
     RifleRound,
+    ShotgunCell,
     SniperRound,
-    EnergyCells,
-    EnergyRounds,
 }

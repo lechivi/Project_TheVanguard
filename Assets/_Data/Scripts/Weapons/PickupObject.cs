@@ -3,7 +3,6 @@ using UnityEngine;
 public class PickupObject : SaiMonoBehaviour
 {
     [SerializeField] protected Transform virtualObject;
-    [SerializeField] protected float force;
 
     protected Collider col;
     protected Rigidbody rb;
@@ -14,7 +13,7 @@ public class PickupObject : SaiMonoBehaviour
         base.LoadComponent();
         this.LoadVirtualObjectTransform();
         this.LoadCollider();
-        this.LoadRigidbody();
+        //this.LoadRigidbody();
     }
 
     protected virtual void LoadVirtualObjectTransform()

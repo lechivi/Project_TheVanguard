@@ -10,24 +10,19 @@ public class PickupWeapons : PickupObject
     {
         base.Awake();
 
-        int pickupObjectLayer = LayerMask.NameToLayer("PickupObject");
+        int ignorePlayer = LayerMask.NameToLayer("IgnorePlayer");
         int playerLayer = LayerMask.NameToLayer("Player");
-        Physics.IgnoreLayerCollision(pickupObjectLayer, playerLayer, true);
+        Physics.IgnoreLayerCollision(ignorePlayer, playerLayer, true);
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Pickup(PlayerWeaponManager weaponManager)
     {
-        if (this.weaponPrefab == null) return;
-        Debug.Log("Trigger");
-        PlayerWeaponManager weaponManager = other.GetComponentInChildren<PlayerWeaponManager>();
         if (weaponManager)
         {
-            //Weapon weapon = Instantiate(this.weaponPrefab);
             bool canAdd = weaponManager.AddWeapon(this.weaponPrefab);
             if (canAdd)
             {
-                //transform.parent.gameObject.SetActive(false);
-                Destroy(transform.parent.gameObject);
+                Destroy(gameObject);
             }
         }
     }
@@ -35,7 +30,30 @@ public class PickupWeapons : PickupObject
     public void SetWeapon(Weapon weapon) //Spawner Call
     {
         this.weaponPrefab = weapon;
+        transform.name = this.weaponPrefab.WeaponData.WeaponName;
+
         this.GenerateModelObject();
+    }
+
+    public void SetWeapon(GameObject weaponObject)
+    {
+        this.weaponPrefab = weaponObject.GetComponent<Weapon>();
+        transform.name = this.weaponPrefab.WeaponData.WeaponName;
+
+        if (this.weaponPrefab == null) return;
+
+        this.weaponPrefab.transform.SetParent(this.virtualObject.transform);
+        this.weaponPrefab.transform.localPosition = Vector3.zero;
+        this.weaponPrefab.transform.localRotation = Quaternion.identity;
+        this.weaponPrefab.transform.localScale = Vector3.one;
+
+        Collider collider = this.weaponPrefab.GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
+
+        this.weaponPrefab.gameObject.SetActive(true);
     }
 
     protected override void GenerateModelObject()

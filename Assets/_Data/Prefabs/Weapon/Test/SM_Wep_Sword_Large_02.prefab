@@ -113,3 +113,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 6ed0bf69d34f33b47813f34aee8a12ee, type: 2}
   weaponSlot: 02000000
+  weaponObject: {fileID: 2432951149942974531}

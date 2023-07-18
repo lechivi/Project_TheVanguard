@@ -19,6 +19,7 @@ public class SpawnPickupWeapon : MonoBehaviour
             PickupWeapons pickupWeapon = newPickupObject.GetComponentInChildren<PickupWeapons>();
             pickupWeapon.SetWeapon(this.weapons[Random.Range(0, weapons.Count)]);
             
-        }
+        }       
+
     }
 }

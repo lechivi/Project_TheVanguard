@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WarHammer
   m_EditorClassIdentifier: 
   WeaponType: 6
-  WeaponName: 
+  WeaponName: War Hammer
   Icon: {fileID: 0}
   Model: {fileID: 5270491069224457741, guid: f0bc14c7235ea9f43ae61cc1c776911e, type: 3}
   rangedDamage: 0
