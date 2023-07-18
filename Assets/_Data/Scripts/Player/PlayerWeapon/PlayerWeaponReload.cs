@@ -7,7 +7,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     [SerializeField] private PlayerRigAnimationEvents animationEvents;
     public Transform leftHand;
     GameObject magazineHand;
-
+    public bool isReload;
     private void Start()
     {
         if (this.animationEvents != null)
@@ -20,6 +20,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     {
 
         this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
+        isReload = true;
     }
 
     public void OnAnimationEvent(string eventName)
@@ -70,5 +71,6 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
         Destroy(magazineHand);
         weapon.ammo = weapon.maxAmmo;
         this.PlayerWeapon.RigAnimator.ResetTrigger("reload_weapon");
+        isReload = false;
     }
 }

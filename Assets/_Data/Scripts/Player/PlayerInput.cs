@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerInput : PlayerAbstract
 {
+
     public Vector2 MovementInput;
     public bool SprintInput;
     public bool JumpInput;
@@ -27,8 +29,8 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.PlayerAction.Jump.performed += i => this.JumpInput = true;
 
-            //this.playerControls.PlayerAction.Aim.performed += i => this.AimInput = true;
-            //this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
+            this.playerControls.PlayerAction.Aim.performed += i => this.AimInput = true;
+            this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
 
             this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
             this.playerControls.PlayerAction.Attack.canceled += i => this.AttackInput = false;
@@ -49,10 +51,11 @@ public class PlayerInput : PlayerAbstract
     {
         this.HandleMovementInput();
         this.HandleSprintInput();
-       // this.HandleJumpInput();
+        // this.HandleJumpInput();
         this.HandleCameraInput();
         this.HandleAttackInput();
         this.HandleReloadInput();
+        this.HandleAimInput();
     }
 
     private void HandleMovementInput()
@@ -60,7 +63,7 @@ public class PlayerInput : PlayerAbstract
         float horizontalInput = this.MovementInput.x;
         float verticalInput = this.MovementInput.y;
         float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
-        
+
         this.playerCtrl.PlayerAnimation.UpdateAnimatorValuesMoveState(moveAmount, this.playerCtrl.PlayerLocomotion.IsSprinting);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputX", horizontalInput);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputY", verticalInput);
@@ -91,6 +94,9 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleAttackInput()
     {
+        /*RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        if (weapon == null) return*/
+        ;
         if (this.AttackInput)
         {
             playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
@@ -114,10 +120,27 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleCameraInput()
     {
+        playerCtrl.PlayerCamera.HandleCameraAim();
         if (ChangeCameraInput)
         {
             ChangeCameraInput = false;
             this.playerCtrl.PlayerCamera.ChangeCamera();
+        }
+        if (playerCtrl.PlayerAim.isAim)
+        {
+            this.playerCtrl.PlayerCamera.ChangeFPSCam();
+        }
+        if (/*!playerCtrl.PlayerAim.isAim*/Input.GetMouseButtonUp(1))
+        {
+            if (this.playerCtrl.PlayerCamera.originalTPSCam)
+            {
+                this.playerCtrl.PlayerCamera.ChangeTPSCam();
+            }
+            if (!this.playerCtrl.PlayerCamera.originalTPSCam)
+            {
+                this.playerCtrl.PlayerCamera.ChangeFPSCam();
+            }
+
         }
     }
 
@@ -130,6 +153,22 @@ public class PlayerInput : PlayerAbstract
             {
                 playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon();
                 ReloadInput = false;
+            }
+        }
+    }
+
+    private void HandleAimInput()
+    {
+        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        if (weapon)
+        {
+            if (AimInput && !playerCtrl.PlayerWeapon.PlayerWeaponActive.isHolster && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload)
+            {
+                playerCtrl.PlayerAim.isAim = true;
+            }
+            else
+            {
+                playerCtrl.PlayerAim.isAim = false;
             }
         }
     }

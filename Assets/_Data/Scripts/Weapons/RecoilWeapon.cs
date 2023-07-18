@@ -10,7 +10,7 @@ public class RecoilWeapon : MonoBehaviour
     public NoiseSettings TPSNoiseSetting;
     public CinemachineImpulseSource CinemachineImpulse;
     //public PlayerLocomotion playerCam;
-    [HideInInspector] public PlayerCamera playerTPSCam;
+    [HideInInspector] public CinemachineFreeLook playerTPSCam;
     [HideInInspector] public CinemachineVirtualCamera playerFPSCam;
     [HideInInspector] public CinemachineImpulseSource cameraShake;
     [HideInInspector] public Animator rigController;
@@ -67,8 +67,10 @@ public class RecoilWeapon : MonoBehaviour
 
     private void TPSRecoil()
     {
-        playerTPSCam.yAxis.Value -= ((verticalRecoil / 10) * Time.deltaTime) / duration;
-        playerTPSCam.xAxis.Value -= ((horizontalRecoil / 10) * Time.deltaTime) / duration;
+        /* playerTPSCam.yAxis.Value -= ((verticalRecoil / 10) * Time.deltaTime) / duration;
+         playerTPSCam.xAxis.Value -= ((horizontalRecoil / 10) * Time.deltaTime) / duration;*/
+        playerTPSCam.m_YAxis.Value -= ((verticalRecoil / 1000) * Time.deltaTime) / duration;
+        playerTPSCam.m_XAxis.Value -= ((horizontalRecoil / 10) * Time.deltaTime) / duration;
         time -= Time.deltaTime;
     }
 

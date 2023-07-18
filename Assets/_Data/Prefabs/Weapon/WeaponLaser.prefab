@@ -10168,7 +10168,6 @@ GameObject:
   - component: {fileID: 8468002345293528531}
   - component: {fileID: 8501752242630074529}
   - component: {fileID: 8493661888644394425}
-  - component: {fileID: 8468002345293528530}
   m_Layer: 7
   m_Name: SM_Wep_Rifle_Laser_01
   m_TagString: Untagged
@@ -10244,18 +10243,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8468002345293528530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8470705440464731923}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48948dfe9d76b07488dacd46a7955fa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8471150925915482921
 GameObject:
   m_ObjectHideFlags: 0

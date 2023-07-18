@@ -133,10 +133,10 @@ public class PlayerLocomotion : PlayerAbstract
         }
         else
         {
-            playerCtrl.PlayerCamera.xAxis.Update(Time.fixedDeltaTime);
+            /*playerCtrl.PlayerCamera.xAxis.Update(Time.fixedDeltaTime);
             playerCtrl.PlayerCamera.yAxis.Update(Time.fixedDeltaTime);
 
-            playerCtrl.PlayerCamera.cameraLookat.eulerAngles = new Vector3(playerCtrl.PlayerCamera.yAxis.Value, playerCtrl.PlayerCamera.xAxis.Value, 0);
+            playerCtrl.PlayerCamera.cameraLookat.eulerAngles = new Vector3(playerCtrl.PlayerCamera.yAxis.Value, playerCtrl.PlayerCamera.xAxis.Value, 0);*/
             float yawCamera = this.playerCtrl.MainCamera.transform.eulerAngles.y;
             this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
         }

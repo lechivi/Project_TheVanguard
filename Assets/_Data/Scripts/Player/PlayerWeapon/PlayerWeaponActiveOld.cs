@@ -15,12 +15,10 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public GameObject weapon;
     public RaycastWeapon[] equipped_weapon = new RaycastWeapon[2];
     public int ActiveWeaponIndex;
-    public bool isFiring;
+    public bool isFiring = false;
     public Transform[] weaponSlots;
     public Animator rigController;
     public bool isHolster;
-    public Cinemachine.CinemachineFreeLook playerTPSCam;
-    public Cinemachine.CinemachineVirtualCamera playerFPSCam;
     public PlayerCamera playerCamera;
 
     protected override void Awake()
@@ -71,7 +69,7 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public void HandleFiring()
     {
         var weaponRaycast = GetWeapon(ActiveWeaponIndex);
-        if (weaponRaycast && !isHolster && !weaponRaycast.isFiring)
+        if (weaponRaycast && !isHolster )
         {
             if (Input.GetKeyDown(KeyCode.Alpha0))
             {
@@ -124,7 +122,7 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         weaponRaycast = newWeapon;
         // weaponRaycast.transform.parent = weaponSlots[index];
         weaponRaycast.transform.SetParent(weaponSlots[index], false);
-        weaponRaycast.recoil.playerTPSCam = playerCamera;
+        weaponRaycast.recoil.playerTPSCam = playerCamera.TPSCam;
         weaponRaycast.recoil.playerFPSCam = playerCamera.FPSCam;
         weaponRaycast.recoil.rigController = rigController;
 

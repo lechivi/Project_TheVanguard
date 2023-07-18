@@ -22,6 +22,7 @@ public class PlayerCtrl : SaiMonoBehaviour
     protected override void LoadComponent()
     {
         base.LoadComponent();
+        this.LoadPlayerAim();
         this.LoadPlayerManager();
         this.LoadPlayerInput();
         this.LoadPlayerLocomotion();
@@ -41,15 +42,6 @@ public class PlayerCtrl : SaiMonoBehaviour
         {
             this.PlayerAim = GetComponentInChildren<PlayerAim>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerAim", gameObject);
-        }
-    }
-
-    protected virtual void LoadPlayerAttack ()
-    {
-        if (this.PlayerAttack == null)
-        {
-            this.PlayerAttack = GetComponentInChildren<PlayerAttack>();
-            Debug.LogWarning(gameObject.name + ": LoadPlayerAttack", gameObject);
         }
     }
 

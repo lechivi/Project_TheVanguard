@@ -218,6 +218,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""d47f51bc-70c2-428d-a5e7-c86b40965a50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -297,6 +306,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87f39b62-c1bf-4ef0-afd4-fbc4bbc9b25e"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -314,6 +334,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerAction_Attack = m_PlayerAction.FindAction("Attack", throwIfNotFound: true);
         m_PlayerAction_ChangeCamera = m_PlayerAction.FindAction("ChangeCamera", throwIfNotFound: true);
         m_PlayerAction_Reload = m_PlayerAction.FindAction("Reload", throwIfNotFound: true);
+        m_PlayerAction_Aim = m_PlayerAction.FindAction("Aim", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -419,6 +440,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerAction_Attack;
     private readonly InputAction m_PlayerAction_ChangeCamera;
     private readonly InputAction m_PlayerAction_Reload;
+    private readonly InputAction m_PlayerAction_Aim;
     public struct PlayerActionActions
     {
         private @PlayerControls m_Wrapper;
@@ -428,6 +450,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Attack => m_Wrapper.m_PlayerAction_Attack;
         public InputAction @ChangeCamera => m_Wrapper.m_PlayerAction_ChangeCamera;
         public InputAction @Reload => m_Wrapper.m_PlayerAction_Reload;
+        public InputAction @Aim => m_Wrapper.m_PlayerAction_Aim;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -452,6 +475,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reload.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnReload;
+                @Aim.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
             }
             m_Wrapper.m_PlayerActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -471,6 +497,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
             }
         }
     }
@@ -487,5 +516,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnChangeCamera(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
     }
 }
