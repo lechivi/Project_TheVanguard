@@ -1,121 +1,326 @@
 fileFormatVersion: 2
 guid: dbe810ea622d32240ad5fc1179849c0d
-timeCreated: 1522658806
-licenseType: Store
 ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: Rig
-    100004: RigBottom
-    100006: RigBottomGizmo
-    100008: RigCover
-    100010: RigCoverGizmo
-    100012: RigLHandle
-    100014: RigLHandleGizmo
-    100016: RigLLegA1
-    100018: RigLLegA2
-    100020: RigLLegAAnkle
-    100022: RigLLegAPlatform
-    100024: RigLLegB1
-    100026: RigLLegB2
-    100028: RigLLegBAnkle
-    100030: RigLLegBPlatform
-    100032: RigLLegC1
-    100034: RigLLegC2
-    100036: RigLLegCAnkle
-    100038: RigLLegCPlatform
-    100040: RigRHandle
-    100042: RigRHandleGizmo
-    100044: RigRLegA1
-    100046: RigRLegA2
-    100048: RigRLegAAnkle
-    100050: RigRLegAPlatform
-    100052: RigRLegB1
-    100054: RigRLegB2
-    100056: RigRLegBAnkle
-    100058: RigRLegBPlatform
-    100060: RigRLegC1
-    100062: RigRLegC2
-    100064: RigRLegCAnkle
-    100066: RigRLegCPlatform
-    100068: RigTongue1
-    100070: RigTongue1Gizmo
-    100072: RigTongue2
-    100074: RigTongue2Gizmo
-    100076: RigTongue3
-    100078: RigTongue3Gizmo
-    100080: RigTongue4
-    100082: RigTongue4Gizmo
-    100084: RigTongue5
-    100086: RigTongue5Gizmo
-    100088: RigTongue6
-    100090: RigTongue6Gizmo
-    100092: RigTongue7
-    100094: RigTongue7Gizmo
-    100096: Treasure Chest Monster
-    400000: //RootNode
-    400002: Rig
-    400004: RigBottom
-    400006: RigBottomGizmo
-    400008: RigCover
-    400010: RigCoverGizmo
-    400012: RigLHandle
-    400014: RigLHandleGizmo
-    400016: RigLLegA1
-    400018: RigLLegA2
-    400020: RigLLegAAnkle
-    400022: RigLLegAPlatform
-    400024: RigLLegB1
-    400026: RigLLegB2
-    400028: RigLLegBAnkle
-    400030: RigLLegBPlatform
-    400032: RigLLegC1
-    400034: RigLLegC2
-    400036: RigLLegCAnkle
-    400038: RigLLegCPlatform
-    400040: RigRHandle
-    400042: RigRHandleGizmo
-    400044: RigRLegA1
-    400046: RigRLegA2
-    400048: RigRLegAAnkle
-    400050: RigRLegAPlatform
-    400052: RigRLegB1
-    400054: RigRLegB2
-    400056: RigRLegBAnkle
-    400058: RigRLegBPlatform
-    400060: RigRLegC1
-    400062: RigRLegC2
-    400064: RigRLegCAnkle
-    400066: RigRLegCPlatform
-    400068: RigTongue1
-    400070: RigTongue1Gizmo
-    400072: RigTongue2
-    400074: RigTongue2Gizmo
-    400076: RigTongue3
-    400078: RigTongue3Gizmo
-    400080: RigTongue4
-    400082: RigTongue4Gizmo
-    400084: RigTongue5
-    400086: RigTongue5Gizmo
-    400088: RigTongue6
-    400090: RigTongue6Gizmo
-    400092: RigTongue7
-    400094: RigTongue7Gizmo
-    400096: Treasure Chest Monster
-    4300000: Treasure Chest Monster
-    7400000: Walk Forward Fast WO Root
-    9500000: //RootNode
-    13700000: Treasure Chest Monster
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: Rig
+  - first:
+      1: 100004
+    second: RigBottom
+  - first:
+      1: 100006
+    second: RigBottomGizmo
+  - first:
+      1: 100008
+    second: RigCover
+  - first:
+      1: 100010
+    second: RigCoverGizmo
+  - first:
+      1: 100012
+    second: RigLHandle
+  - first:
+      1: 100014
+    second: RigLHandleGizmo
+  - first:
+      1: 100016
+    second: RigLLegA1
+  - first:
+      1: 100018
+    second: RigLLegA2
+  - first:
+      1: 100020
+    second: RigLLegAAnkle
+  - first:
+      1: 100022
+    second: RigLLegAPlatform
+  - first:
+      1: 100024
+    second: RigLLegB1
+  - first:
+      1: 100026
+    second: RigLLegB2
+  - first:
+      1: 100028
+    second: RigLLegBAnkle
+  - first:
+      1: 100030
+    second: RigLLegBPlatform
+  - first:
+      1: 100032
+    second: RigLLegC1
+  - first:
+      1: 100034
+    second: RigLLegC2
+  - first:
+      1: 100036
+    second: RigLLegCAnkle
+  - first:
+      1: 100038
+    second: RigLLegCPlatform
+  - first:
+      1: 100040
+    second: RigRHandle
+  - first:
+      1: 100042
+    second: RigRHandleGizmo
+  - first:
+      1: 100044
+    second: RigRLegA1
+  - first:
+      1: 100046
+    second: RigRLegA2
+  - first:
+      1: 100048
+    second: RigRLegAAnkle
+  - first:
+      1: 100050
+    second: RigRLegAPlatform
+  - first:
+      1: 100052
+    second: RigRLegB1
+  - first:
+      1: 100054
+    second: RigRLegB2
+  - first:
+      1: 100056
+    second: RigRLegBAnkle
+  - first:
+      1: 100058
+    second: RigRLegBPlatform
+  - first:
+      1: 100060
+    second: RigRLegC1
+  - first:
+      1: 100062
+    second: RigRLegC2
+  - first:
+      1: 100064
+    second: RigRLegCAnkle
+  - first:
+      1: 100066
+    second: RigRLegCPlatform
+  - first:
+      1: 100068
+    second: RigTongue1
+  - first:
+      1: 100070
+    second: RigTongue1Gizmo
+  - first:
+      1: 100072
+    second: RigTongue2
+  - first:
+      1: 100074
+    second: RigTongue2Gizmo
+  - first:
+      1: 100076
+    second: RigTongue3
+  - first:
+      1: 100078
+    second: RigTongue3Gizmo
+  - first:
+      1: 100080
+    second: RigTongue4
+  - first:
+      1: 100082
+    second: RigTongue4Gizmo
+  - first:
+      1: 100084
+    second: RigTongue5
+  - first:
+      1: 100086
+    second: RigTongue5Gizmo
+  - first:
+      1: 100088
+    second: RigTongue6
+  - first:
+      1: 100090
+    second: RigTongue6Gizmo
+  - first:
+      1: 100092
+    second: RigTongue7
+  - first:
+      1: 100094
+    second: RigTongue7Gizmo
+  - first:
+      1: 100096
+    second: Treasure Chest Monster
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Rig
+  - first:
+      4: 400004
+    second: RigBottom
+  - first:
+      4: 400006
+    second: RigBottomGizmo
+  - first:
+      4: 400008
+    second: RigCover
+  - first:
+      4: 400010
+    second: RigCoverGizmo
+  - first:
+      4: 400012
+    second: RigLHandle
+  - first:
+      4: 400014
+    second: RigLHandleGizmo
+  - first:
+      4: 400016
+    second: RigLLegA1
+  - first:
+      4: 400018
+    second: RigLLegA2
+  - first:
+      4: 400020
+    second: RigLLegAAnkle
+  - first:
+      4: 400022
+    second: RigLLegAPlatform
+  - first:
+      4: 400024
+    second: RigLLegB1
+  - first:
+      4: 400026
+    second: RigLLegB2
+  - first:
+      4: 400028
+    second: RigLLegBAnkle
+  - first:
+      4: 400030
+    second: RigLLegBPlatform
+  - first:
+      4: 400032
+    second: RigLLegC1
+  - first:
+      4: 400034
+    second: RigLLegC2
+  - first:
+      4: 400036
+    second: RigLLegCAnkle
+  - first:
+      4: 400038
+    second: RigLLegCPlatform
+  - first:
+      4: 400040
+    second: RigRHandle
+  - first:
+      4: 400042
+    second: RigRHandleGizmo
+  - first:
+      4: 400044
+    second: RigRLegA1
+  - first:
+      4: 400046
+    second: RigRLegA2
+  - first:
+      4: 400048
+    second: RigRLegAAnkle
+  - first:
+      4: 400050
+    second: RigRLegAPlatform
+  - first:
+      4: 400052
+    second: RigRLegB1
+  - first:
+      4: 400054
+    second: RigRLegB2
+  - first:
+      4: 400056
+    second: RigRLegBAnkle
+  - first:
+      4: 400058
+    second: RigRLegBPlatform
+  - first:
+      4: 400060
+    second: RigRLegC1
+  - first:
+      4: 400062
+    second: RigRLegC2
+  - first:
+      4: 400064
+    second: RigRLegCAnkle
+  - first:
+      4: 400066
+    second: RigRLegCPlatform
+  - first:
+      4: 400068
+    second: RigTongue1
+  - first:
+      4: 400070
+    second: RigTongue1Gizmo
+  - first:
+      4: 400072
+    second: RigTongue2
+  - first:
+      4: 400074
+    second: RigTongue2Gizmo
+  - first:
+      4: 400076
+    second: RigTongue3
+  - first:
+      4: 400078
+    second: RigTongue3Gizmo
+  - first:
+      4: 400080
+    second: RigTongue4
+  - first:
+      4: 400082
+    second: RigTongue4Gizmo
+  - first:
+      4: 400084
+    second: RigTongue5
+  - first:
+      4: 400086
+    second: RigTongue5Gizmo
+  - first:
+      4: 400088
+    second: RigTongue6
+  - first:
+      4: 400090
+    second: RigTongue6Gizmo
+  - first:
+      4: 400092
+    second: RigTongue7
+  - first:
+      4: 400094
+    second: RigTongue7Gizmo
+  - first:
+      4: 400096
+    second: Treasure Chest Monster
+  - first:
+      43: 4300000
+    second: Treasure Chest Monster
+  - first:
+      74: 7400000
+    second: Walk Forward Fast WO Root
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Treasure Chest Monster
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
     rigImportWarnings: 
@@ -123,6 +328,8 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -134,6 +341,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk Forward Fast WO Root
       takeName: Take 001
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -165,19 +373,33 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
@@ -185,10 +407,13 @@ ModelImporter:
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -198,14 +423,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

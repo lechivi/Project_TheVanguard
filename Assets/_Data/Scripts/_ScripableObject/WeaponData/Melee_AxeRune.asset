@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Melee_AxeRune
+  m_EditorClassIdentifier: 
+  WeaponType: 5
+  WeaponName: Rune Axe
+  Icon: {fileID: 7346433223657001357, guid: bd64a8f99b1e5d5438194e23c454d8b2, type: 3}
+  Model: {fileID: 636997839080171924, guid: 561af882ceb7e1548af328ac0e53e2b9, type: 3}
+  rangedDamage: 0
+  fireRate: 0
+  accuracy: 0
+  ammoType: 0
+  magazineSize: 0
+  reloadTime: 0
+  range: 0
+  meleeDamage: 0
+  swingSpeed: 0
+  value: 0

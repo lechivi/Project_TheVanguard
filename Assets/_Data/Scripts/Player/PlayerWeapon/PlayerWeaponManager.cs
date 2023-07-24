@@ -1,10 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.Dependencies.Sqlite;
+using UnityEditor;
 using UnityEngine;
+
+public enum WeaponList
+{
+    EquippedWeapons,
+    BackpackWeapons
+}
 
 public class PlayerWeaponManager : PlayerWeaponAbstract
 {
+    public static PlayerWeaponManager Instance;
+    [SerializeField] private UI_InventoryPanel ui_InventoryPanel;
+
     [SerializeField] private int maxEquippedWeapon = 3;
     [SerializeField] private int maxBackpackWeapon = 3;
     [SerializeField] private NullAwareList<Weapon> equippedWeapons = new NullAwareList<Weapon>();
@@ -25,6 +35,14 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     private int currentWeaponIndex = -1;
     private bool isReadySwap = true;
     [SerializeField] private float swapCooldown = 0.2f;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        PlayerWeaponManager.Instance = this;
+        this.equippedWeapons.GenerateList(this.maxEquippedWeapon);
+        this.backpackWeapons.GenerateList(this.maxBackpackWeapon);
+    }
 
     private void Update()
     {
@@ -71,23 +89,27 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             this.RemoveWeaponFromBackpack(this.backpackWeapons.GetList()[index]);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha7))
+        //if (Input.GetKeyDown(KeyCode.Alpha7))
+        //{
+        //    this.SwitchWeapon(this.equippedWeapons.GetList()[0], this.equippedWeapons.GetList()[2]);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha8))
+        //{
+        //    this.SwitchWeapon(this.equippedWeapons.GetList()[0], this.backpackWeapons.GetList()[0]);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha9))
+        //{
+        //    this.SwitchWeapon(this.backpackWeapons.GetList()[0], this.equippedWeapons.GetList()[0]);
+        //}
+        //if (Input.GetKeyDown(KeyCode.Alpha0))
+        //{
+        //    this.SwitchWeapon(this.backpackWeapons.GetList()[0], this.backpackWeapons.GetList()[2]);
+        //}
+
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            this.SwitchWeapon(this.equippedWeapons.GetList()[0], this.equippedWeapons.GetList()[2]);
+            this.PlayerWeapon.PlayerCtrl.PlayerInput.gameObject.SetActive(false);
         }
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            this.SwitchWeapon(this.equippedWeapons.GetList()[0], this.backpackWeapons.GetList()[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            this.SwitchWeapon(this.backpackWeapons.GetList()[0], this.equippedWeapons.GetList()[0]);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            this.SwitchWeapon(this.backpackWeapons.GetList()[0], this.backpackWeapons.GetList()[2]);
-        }
-        
     }
 
     public bool AddWeapon(Weapon weapon)
@@ -95,11 +117,13 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (this.equippedWeapons.GetList().Count < this.maxEquippedWeapon || (this.equippedWeapons.ContainsNull() && this.equippedWeapons.GetList().Count <= this.maxEquippedWeapon))
         {
             this.AddWeaponToEquipped(this.GetNewWeapon(weapon));
+            this.UpdateUI();
             return true;
         }
         if (this.backpackWeapons.GetList().Count < this.maxBackpackWeapon || (this.backpackWeapons.ContainsNull() && this.backpackWeapons.GetList().Count <= this.maxBackpackWeapon))
         {
             this.AddWeaponToBackpack(this.GetNewWeapon(weapon));
+            this.UpdateUI();
             return true;
         }
         Debug.Log("Can't hold any more weapon");
@@ -133,7 +157,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     private void SetHolsterForWeapon(Weapon weapon)
     {
-        weapon.transform.SetParent(this.weaponHolderSlots[(int)weapon.WeaponSlot[0]]); //TODO: Change to RigLayer
+        weapon.transform.SetParent(this.weaponHolderSlots[(int)weapon.WeaponSlot[0] - 1]); //TODO: Change to RigLayer
 
         if (weapon.WeaponData.WeaponType == WeaponType.Melee)
         {
@@ -160,10 +184,22 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         weapon.gameObject.SetActive(false);
     }
 
+    public void RemoveWeaponFromEquipped(int weaponIndex)
+    {
+        Weapon weapon = this.equippedWeapons.GetList()[weaponIndex];
+        this.RemoveWeaponFromEquipped(weapon);
+    }
+
     public void RemoveWeaponFromEquipped(Weapon weapon)
     {
         this.equippedWeapons.Remove(weapon);
         this.DropWeapon(weapon);
+    }
+
+    public void RemoveWeaponFromBackpack(int weaponIndex)
+    {
+        Weapon weapon = this.backpackWeapons.GetList()[weaponIndex];
+        this.RemoveWeaponFromBackpack(weapon);
     }
 
     public void RemoveWeaponFromBackpack(Weapon weapon)
@@ -185,57 +221,85 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             Vector3 randomDropDirection = new Vector3(Random.Range(-0.5f, 0.6f), 0, 0);
             weaponRigidbody.AddForce((this.dropPoint.forward + randomDropDirection) * randomDropForce, ForceMode.Impulse);
         }
+
+        this.UpdateUI();
     }
 
-    private void SwitchWeapon(Weapon weaponA, Weapon weaponB) 
+    public void SwitchWeapon(WeaponList weaponListA, int weaponIndexA, WeaponList weaponListB, int weaponIndexB)
     {
-        bool foundWeaponA = this.equippedWeapons.GetList().Contains(weaponA) || this.backpackWeapons.GetList().Contains(weaponA);
-        bool foundWeaponB = this.equippedWeapons.GetList().Contains(weaponB) || this.backpackWeapons.GetList().Contains(weaponB);
+        Weapon weaponA, weaponB;
+        bool isTheCurrentWeaponA = false;
+        bool isTheCurrentWeaponB = false;
+        if (weaponListA == WeaponList.EquippedWeapons)
+        {
+            weaponA = this.equippedWeapons.GetList()[weaponIndexA];
 
-        if (!foundWeaponA || !foundWeaponB) return;
+            if (this.currentWeaponIndex == weaponIndexA && weaponA != null)
+            {
+                weaponA.gameObject.SetActive(false);
+                isTheCurrentWeaponA = true;
+            }
+        }
+        else
+        {
+            weaponA = this.backpackWeapons.GetList()[weaponIndexA];
+        }
+
+        if (weaponListB == WeaponList.EquippedWeapons)
+        {
+            weaponB = this.equippedWeapons.GetList()[weaponIndexB];
+            if (this.currentWeaponIndex == weaponIndexB && weaponB != null)
+            {
+                weaponB.gameObject.SetActive(false);
+                isTheCurrentWeaponB = true;
+            }
+        }
+        else
+        {
+            weaponB = this.backpackWeapons.GetList()[weaponIndexB];
+        }
+
+        //bool foundWeaponA = this.equippedWeapons.GetList().Contains(weaponA) || this.backpackWeapons.GetList().Contains(weaponA);
+        //bool foundWeaponB = this.equippedWeapons.GetList().Contains(weaponB) || this.backpackWeapons.GetList().Contains(weaponB);
+        //if (!foundWeaponA || !foundWeaponB) return;
+
         List<Weapon> equippedList = this.equippedWeapons.GetList();
         List<Weapon> backpackList = this.backpackWeapons.GetList();
 
         //Case: Equipped -> Equipped
-        if (equippedList.Contains(weaponA) && equippedList.Contains(weaponB))
+        if (weaponListA == WeaponList.EquippedWeapons && weaponListB == WeaponList.EquippedWeapons)
         {
-            Debug.Log("Case: Equipped -> Equipped");
-            int indexA = equippedList.IndexOf(weaponA);
-            int indexB = equippedList.IndexOf(weaponB);
-            equippedList[indexA] = weaponB;
-            equippedList[indexB] = weaponA;
+            Weapon temp = weaponA;
+            equippedList[weaponIndexA] = weaponB;
+            equippedList[weaponIndexB] = temp;
         }
 
         //Case: Equipped -> Backpack
-        else if (equippedList.Contains(weaponA) && backpackList.Contains(weaponB))
+        else if (weaponListA == WeaponList.EquippedWeapons && weaponListB == WeaponList.BackpackWeapons)
         {
-            Debug.Log("Case: Equipped -> Backpack");
-            int indexA = equippedList.IndexOf(weaponA);
-            int indexB = backpackList.IndexOf(weaponB);
-            equippedList[indexA] = weaponB;
-            backpackList[indexB] = weaponA;
+            equippedList[weaponIndexA] = weaponB;
+            backpackList[weaponIndexB] = weaponA;
         }
 
         //Case: Backpack -> Equipped
-        else if (backpackList.Contains(weaponA) && equippedList.Contains(weaponB))
+        else if (weaponListA == WeaponList.BackpackWeapons && weaponListB == WeaponList.EquippedWeapons)
         {
-            Debug.Log("Case: Backpack -> Equipped");
-            int indexA = backpackList.IndexOf(weaponA);
-            int indexB = equippedList.IndexOf(weaponB);
-            backpackList[indexA] = weaponB;
-            equippedList[indexB] = weaponA;
+            backpackList[weaponIndexA] = weaponB;
+            equippedList[weaponIndexB] = weaponA;
         }
 
         //Case: Backpack -> Backpack
-        else if (backpackList.Contains(weaponA) && backpackList.Contains(weaponB))
+        else if (weaponListA == WeaponList.BackpackWeapons && weaponListB == WeaponList.BackpackWeapons)
         {
-            Debug.Log("Case: Backpack -> Backpack");
-            int indexA = backpackList.IndexOf(weaponA);
-            int indexB = backpackList.IndexOf(weaponB);
-            backpackList[indexA] = weaponB;
-            backpackList[indexB] = weaponA;
+            Weapon temp = weaponA;
+            backpackList[weaponIndexA] = weaponB;
+            backpackList[weaponIndexB] = temp;
         }
-        
+
+        if (isTheCurrentWeaponA)
+            this.SetActiveWeapon(weaponIndexA, true);
+        if (isTheCurrentWeaponB) 
+            this.SetActiveWeapon(weaponIndexB, true);
     }
 
     public void SetActiveWeapon(int weaponIndex, bool isAlpha)
@@ -271,13 +335,41 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
         this.currentWeaponIndex = weaponIndex;
 
+        this.UpdateUI();
         StartCoroutine(this.StartCooldown());
     }
-
     private IEnumerator StartCooldown()
     {
         this.isReadySwap = false;
         yield return new WaitForSeconds(this.swapCooldown);
         this.isReadySwap = true;
+    }
+
+    public void UpdateUI()
+    {
+        if (this.ui_InventoryPanel == null) return;
+        this.ui_InventoryPanel.ResetSlot();
+        List<UI_DraggableItem> equippedList = this.ui_InventoryPanel.EquippedListPanel;
+        List<UI_DraggableItem> backpackList = this.ui_InventoryPanel.BackpackListPanel;
+
+        for (int i = 0; i < this.equippedWeapons.GetList().Count; i++)
+        {
+            if (this.equippedWeapons.GetList()[i] == null) continue;
+            equippedList[i].SetWeaponData(this.equippedWeapons.GetList()[i].WeaponData);
+            equippedList[i].SetModel();
+            //GameObject weaponIcon = Instantiate(this.equippedWeapons.GetList()[i].WeaponData.Icon, equippedList[i].transform);
+            //equippedList[i].WeaponIconObject = weaponIcon;
+        }
+        for (int i = 0; i < this.backpackWeapons.GetList().Count; i++)
+        {
+            if (this.backpackWeapons.GetList()[i] == null) continue;
+            backpackList[i].SetWeaponData(this.backpackWeapons.GetList()[i].WeaponData);
+            backpackList[i].SetModel();
+            //GameObject weaponIcon = Instantiate(this.backpackWeapons.GetList()[i].WeaponData.Icon, backpackList[i].transform);
+            //backpackList[i].WeaponIconObject = weaponIcon;
+        }
+
+        if (this.currentWeaponIndex == -1) return;
+        this.ui_InventoryPanel.UI_EquippedListManager.SetEquipSlot(this.currentWeaponIndex);
     }
 }

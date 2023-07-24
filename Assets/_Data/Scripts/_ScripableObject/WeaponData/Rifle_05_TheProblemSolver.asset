@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Rifle_05_TheProblemSolver
+  m_EditorClassIdentifier: 
+  WeaponType: 2
+  WeaponName: 'The Problem Solver '
+  Icon: {fileID: 6750130843343251948, guid: a3c060e02d7156a43b0ad9231c7a4829, type: 3}
+  Model: {fileID: 1681417306492486684, guid: 2ad8a0000022bed4584644504622b40e, type: 3}
+  rangedDamage: 0
+  fireRate: 0
+  accuracy: 0
+  ammoType: 2
+  magazineSize: 0
+  reloadTime: 0
+  range: 0
+  meleeDamage: 0
+  swingSpeed: 0
+  value: 0

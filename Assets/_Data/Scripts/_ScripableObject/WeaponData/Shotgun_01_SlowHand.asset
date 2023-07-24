@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Shotgun_01_SlowHand
+  m_EditorClassIdentifier: 
+  WeaponType: 3
+  WeaponName: Slow Hand
+  Icon: {fileID: 4976755378165979344, guid: ce383daae94ac3c42a100cc1688a9354, type: 3}
+  Model: {fileID: 8731942969455852540, guid: 0bcd8e49e09444d41b6df33484a505ef, type: 3}
+  rangedDamage: 0
+  fireRate: 0
+  accuracy: 0
+  ammoType: 3
+  magazineSize: 0
+  reloadTime: 0
+  range: 0
+  meleeDamage: 0
+  swingSpeed: 0
+  value: 0
