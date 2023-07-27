@@ -331,7 +331,9 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             listEquippedWeapon[this.currentWeaponIndex].gameObject.SetActive(false);
         }
-        listEquippedWeapon[weaponIndex].gameObject.SetActive(true);
+
+        if (listEquippedWeapon[weaponIndex] == null) return;
+        listEquippedWeapon[weaponIndex].gameObject?.SetActive(true);
 
         this.currentWeaponIndex = weaponIndex;
 

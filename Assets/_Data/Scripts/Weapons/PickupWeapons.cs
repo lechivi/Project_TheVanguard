@@ -6,6 +6,8 @@ public class PickupWeapons : PickupObject
 {
     protected Weapon weaponPrefab;
 
+    public Weapon Weapon { get => this.weaponPrefab; }
+
     protected override void Awake()
     {
         base.Awake();
