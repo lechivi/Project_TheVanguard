@@ -12,6 +12,19 @@ public class NullAwareList<T>
         this.list = new List<T>();
     }
 
+    public NullAwareList(int capacity)
+    {
+        this.list = new List<T>(capacity);
+    }
+
+    public void GenerateList(int capacity)
+    {
+        for (int i = 0; i < capacity; i++)
+        {
+            this.list.Add(default(T));
+        }
+    }
+
     public bool ContainsNull()
     {
         for (int i = 0; i < this.list.Count; i++)
@@ -42,13 +55,13 @@ public class NullAwareList<T>
         int childIndex = this.list.IndexOf(child);
         this.list.RemoveAt(childIndex);
         this.list.Insert(childIndex, default(T));
-
-        //if (childIndex != -1)
-        //{
-        //    this.list[childIndex] = default(T);
-        //}
     }
 
+    public void RemoveAt(int index)
+    {
+        this.list.RemoveAt(index);
+        this.list.Insert(index, default(T));
+    }
     public List<T> GetList()
     {
         return this.list;
