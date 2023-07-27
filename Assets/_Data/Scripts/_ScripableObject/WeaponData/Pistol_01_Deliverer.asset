@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Pistol_01_Deliverer
+  m_EditorClassIdentifier: 
+  WeaponType: 1
+  WeaponName: Deliverer
+  Icon: {fileID: 7196992880718527406, guid: a97e2e08ab25b064dae1f02017defb63, type: 3}
+  Model: {fileID: 2141981680209827496, guid: ece4d294ccf62684cb32ee4fbf8fdea5, type: 3}
+  rangedDamage: 25
+  fireRate: 66
+  accuracy: 67
+  ammoType: 1
+  magazineSize: 12
+  reloadTime: 0
+  range: 53
+  meleeDamage: 0
+  swingSpeed: 0
+  value: 0

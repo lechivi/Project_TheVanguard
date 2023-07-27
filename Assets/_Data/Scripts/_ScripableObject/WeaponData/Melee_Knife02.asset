@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Melee_Knife02
+  m_EditorClassIdentifier: 
+  WeaponType: 5
+  WeaponName: Knife02
+  Icon: {fileID: 7707642243962312383, guid: 305f8edb78591004f85eaa020240501e, type: 3}
+  Model: {fileID: 8219807986706157517, guid: 88624f460d964654984081cc040d19dd, type: 3}
+  rangedDamage: 0
+  fireRate: 0
+  accuracy: 0
+  ammoType: 0
+  magazineSize: 0
+  reloadTime: 0
+  range: 0
+  meleeDamage: 0
+  swingSpeed: 0
+  value: 0

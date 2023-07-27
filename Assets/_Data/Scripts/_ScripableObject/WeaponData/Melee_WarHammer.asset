@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Melee_WarHammer
+  m_EditorClassIdentifier: 
+  WeaponType: 5
+  WeaponName: War Hammer
+  Icon: {fileID: 2420060032605386392, guid: cf8a88cddd0ecc749bae32b02fb79df6, type: 3}
+  Model: {fileID: 4136580678883009909, guid: a6b3e168403528f458c153a7a3d7216b, type: 3}
+  rangedDamage: 0
+  fireRate: 0
+  accuracy: 0
+  ammoType: 0
+  magazineSize: 0
+  reloadTime: 0
+  range: 0
+  meleeDamage: 0
+  swingSpeed: 0
+  value: 0

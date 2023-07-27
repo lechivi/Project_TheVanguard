@@ -1,4 +1,5 @@
 #if UNITY_EDITOR
+using Cinemachine;
 using UnityEditor;
 #endif
 using UnityEngine;
@@ -9,8 +10,8 @@ public class WeaponDataSO : ScriptableObject
     [Header("Common Properties")]
     public WeaponType WeaponType;
     public string WeaponName;
-    public Sprite Icon;
-    public GameObject Model;
+    public GameObject Icon; //UI
+    public GameObject Model; 
 
     // Ranged weapon variables
     [Space(5)]
@@ -20,7 +21,7 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] private AmmoType ammoType;
     [SerializeField] private int magazineSize;
     [SerializeField] private float reloadTime;
-    //[SerializeField] private float range;
+    [SerializeField] private float range;
 
     // Melee weapon variables
     [Space(5)]
@@ -58,6 +59,7 @@ public class WeaponDataEditor : Editor
     SerializedProperty ammoType;
     SerializedProperty magazineSize;
     SerializedProperty reloadTime;
+    SerializedProperty range;
 
     SerializedProperty meleeDamage;
     SerializedProperty swingSpeed;
@@ -77,6 +79,7 @@ public class WeaponDataEditor : Editor
         this.ammoType = serializedObject.FindProperty("ammoType");
         this.magazineSize = serializedObject.FindProperty("magazineSize");
         this.reloadTime = serializedObject.FindProperty("reloadTime");
+        this.range = serializedObject.FindProperty("range");
 
         this.meleeDamage = serializedObject.FindProperty("meleeDamage");
         this.swingSpeed = serializedObject.FindProperty("swingSpeed");
@@ -103,6 +106,7 @@ public class WeaponDataEditor : Editor
             EditorGUILayout.PropertyField(this.ammoType);
             EditorGUILayout.PropertyField(this.magazineSize);
             EditorGUILayout.PropertyField(this.reloadTime);
+            EditorGUILayout.PropertyField(this.range);
         }
         else
         {
