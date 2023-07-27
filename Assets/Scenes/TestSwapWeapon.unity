@@ -3212,6 +3212,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 801054039}
   m_CullTransparentMesh: 1
+--- !u!1 &827919597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 827919598}
+  - component: {fileID: 827919599}
+  m_Layer: 6
+  m_Name: PlayerWeaponActive
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &827919598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827919597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 340288475096664934}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &827919599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 827919597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13274148a1b59804d89348ae20e6c567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerWeapon: {fileID: 340288475096664933}
+  crossHairTarget: {fileID: 2092539804}
+  weapon: {fileID: 0}
+  equipped_weapon:
+  - {fileID: 0}
+  - {fileID: 0}
+  ActiveWeaponIndex: 0
+  isFiring: 0
+  weaponSlots: []
+  rigController: {fileID: 0}
+  isHolster: 0
+  playerCamera: {fileID: 0}
 --- !u!1 &828491932
 GameObject:
   m_ObjectHideFlags: 0
@@ -8561,52 +8617,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 340288474567924245}
-  weaponActive: {fileID: 0}
+  weaponActive: {fileID: 827919599}
   animatorPlayer: {fileID: 2083137308972770066}
   rigLayer: {fileID: 340288474850490827}
   Onanimatormove: {fileID: 0}
-  cameraLookat: {fileID: 1055532930}
-  xAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 200
-    m_AccelTime: 0.1
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse X
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: -180
-    m_MaxValue: 180
-    m_Wrap: 1
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  yAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 2
-    m_AccelTime: 0.2
-    m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
-    m_InputAxisValue: 0
-    m_InvertInput: 1
-    m_MinValue: -90
-    m_MaxValue: 90
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
   isJumping: 0
   IsSprinting: 0
   IsGrounded: 0
   Is1D: 1
   rotationSpeed: 360
+  rotationSpeedTPS: 15
   speed: 1
   jumpDamp: 0.1
   airControl: 2.5
@@ -9074,7 +9094,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerAim: {fileID: 340288475643426449}
-  PlayerAttack: {fileID: 0}
   PlayerManager: {fileID: 340288475414895568}
   PlayerInput: {fileID: 340288474606857288}
   PlayerLocomotion: {fileID: 340288474351535883}
@@ -9082,7 +9101,7 @@ MonoBehaviour:
   PlayerAnimation: {fileID: 340288475142277567}
   PlayerWeapon: {fileID: 340288475096664933}
   PlayerTransform: {fileID: 2137788243787154020}
-  CameraTransform: {fileID: 26128592}
+  MainCamera: {fileID: 0}
   Animator: {fileID: 2083137308972770066}
   Rigcontroller: {fileID: 340288474850490827}
   CharacterController: {fileID: 2137788243787154027}
@@ -9714,6 +9733,7 @@ Transform:
   m_Children:
   - {fileID: 340288475070478567}
   - {fileID: 340288476084579003}
+  - {fileID: 827919598}
   m_Father: {fileID: 340288474567924246}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -9923,8 +9943,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 340288474567924245}
+  cameraLookat: {fileID: 0}
+  xAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 0
+    m_AccelTime: 0
+    m_DecelTime: 0
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: 0
+    m_MaxValue: 0
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
+  yAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 0
+    m_AccelTime: 0
+    m_DecelTime: 0
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: 0
+    m_MaxValue: 0
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
   TPSCam: {fileID: 455461610}
   FPSCam: {fileID: 535251110}
+  originalTPSCam: 0
 --- !u!4 &340288475378821715
 Transform:
   m_ObjectHideFlags: 0
@@ -10082,10 +10140,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 340288474567924245}
+  scope: {fileID: 0}
+  cameraMain: {fileID: 0}
+  rigLayer: {fileID: 0}
+  isAim: 0
   HandLayer: {fileID: 340288476310584646}
   weapon: {fileID: 340288476313570840}
   AimDuration: 0.3
-  AimLookat: {fileID: 0}
+  AimlookMain: {fileID: 0}
   AimLookatCam: {fileID: 0}
   distanceLook1D: 8
 --- !u!4 &340288475643426450
@@ -10552,6 +10614,7 @@ MonoBehaviour:
   PlayerWeapon: {fileID: 340288475096664933}
   animationEvents: {fileID: 340288474850490826}
   leftHand: {fileID: 2137686118102994342}
+  isReload: 0
 --- !u!4 &340288476084579003
 Transform:
   m_ObjectHideFlags: 0

@@ -15,7 +15,9 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
             animationEvents.AnimationEvent.AddListener(OnAnimationEvent);
         }
     }
-
+    private void Update()
+    {
+    }
     public void SetReloadWeapon()
     {
 
@@ -69,7 +71,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
         RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
         weapon.magazine.SetActive(true);
         Destroy(magazineHand);
-        weapon.ammo = weapon.maxAmmo;
+        weapon.ammo = 30;
         this.PlayerWeapon.RigAnimator.ResetTrigger("reload_weapon");
         isReload = false;
     }

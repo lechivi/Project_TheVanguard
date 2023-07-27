@@ -9,6 +9,7 @@ public class PlayerManager : PlayerAbstract
     {
         this.playerCtrl.PlayerInput.HandleAllInput();
         this.playerCtrl.PlayerLocomotion.HanldeAllMovementUpdate();
+        
 
     }
     private void LateUpdate()
@@ -18,7 +19,8 @@ public class PlayerManager : PlayerAbstract
 
     private void FixedUpdate()
     {
+        this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
         this.playerCtrl.PlayerLocomotion.HanldeAllMovementFix();
-        //this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
+  
     }
 }

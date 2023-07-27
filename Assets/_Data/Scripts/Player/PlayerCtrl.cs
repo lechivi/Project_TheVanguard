@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCtrl : SaiMonoBehaviour
 {
     public PlayerAim PlayerAim;
-    public PlayerAttack PlayerAttack;
     public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
     public PlayerLocomotion PlayerLocomotion;

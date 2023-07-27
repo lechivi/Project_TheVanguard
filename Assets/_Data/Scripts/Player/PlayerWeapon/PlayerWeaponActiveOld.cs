@@ -9,6 +9,7 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     {
         Primary = 0,
         Secondary = 1,
+
     }
 
     public Transform crossHairTarget;
@@ -20,6 +21,7 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public Animator rigController;
     public bool isHolster;
     public PlayerCamera playerCamera;
+    public bool iscanFire;
 
     protected override void Awake()
     {
@@ -51,8 +53,21 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         {
             SetActiveWeapon(Weaponslot.Secondary);
         }
+        CanfireCondition();
+        //Debug.Log(PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsSprinting && !PlayerWeapon.PlayerWeaponReload.isReload);
     }
 
+    public void CanfireCondition()
+    {
+        if ( !isHolster && !PlayerWeapon.PlayerWeaponReload.isReload)
+        {
+            iscanFire = true;
+        }
+        else
+        {
+            iscanFire = false;
+        }
+    }
     public RaycastWeapon GetActiveWeapon()
     {
         return GetWeapon(ActiveWeaponIndex);
@@ -69,16 +84,26 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public void HandleFiring()
     {
         var weaponRaycast = GetWeapon(ActiveWeaponIndex);
-        if (weaponRaycast && !isHolster )
+        if (weaponRaycast && iscanFire)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha0))
+            if (Input.GetMouseButtonDown(0))
             {
                 weaponRaycast.FireBullet(crossHairTarget.position);
+                Debug.Log("Fire");
             }
+            if (weaponRaycast.WeaponType == WeaponType.Shotgun)
+            {
+                weaponRaycast.UpdateBullets();
+                return;
+            }
+
+            //
             if (isFiring)
             {
                 weaponRaycast.UpdateFiring(crossHairTarget.position);
+
             }
+
             weaponRaycast.UpdateBullets();
             if (!isFiring)
             {

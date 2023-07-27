@@ -67,14 +67,12 @@ public class PlayerInput : PlayerAbstract
         this.playerCtrl.PlayerAnimation.UpdateAnimatorValuesMoveState(moveAmount, this.playerCtrl.PlayerLocomotion.IsSprinting);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputX", horizontalInput);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputY", verticalInput);
-        //
-        /*this.playerCtrl.Animator.SetFloat("InputX",horizontalInput, 0.1f, Time.deltaTime);
-        this.playerCtrl.Animator.SetFloat("InputY", verticalInput, 0.1f, Time.deltaTime);*/
     }
 
     private void HandleSprintInput()
     {
-        if (this.SprintInput && this.MovementInput != Vector2.zero)
+        bool canSprint = this.SprintInput && this.MovementInput != Vector2.zero && !AttackInput && !playerCtrl.PlayerAim.isAim && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload;
+        if (canSprint)
         {
             this.playerCtrl.PlayerLocomotion.IsSprinting = true;
         }
@@ -95,8 +93,8 @@ public class PlayerInput : PlayerAbstract
     private void HandleAttackInput()
     {
         /*RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
-        if (weapon == null) return*/
-        ;
+        if (weapon == null) return;*/
+        
         if (this.AttackInput)
         {
             playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
@@ -120,17 +118,17 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleCameraInput()
     {
-        playerCtrl.PlayerCamera.HandleCameraAim();
+        playerCtrl.PlayerCamera.HandleCameraOriginal();
         if (ChangeCameraInput)
         {
             ChangeCameraInput = false;
-            this.playerCtrl.PlayerCamera.ChangeCamera();
+            playerCtrl.PlayerCamera.originalTPSCam = !playerCtrl.PlayerCamera.originalTPSCam;
         }
         if (playerCtrl.PlayerAim.isAim)
         {
             this.playerCtrl.PlayerCamera.ChangeFPSCam();
         }
-        if (/*!playerCtrl.PlayerAim.isAim*/Input.GetMouseButtonUp(1))
+        if (!playerCtrl.PlayerAim.isAim)
         {
             if (this.playerCtrl.PlayerCamera.originalTPSCam)
             {
@@ -160,7 +158,7 @@ public class PlayerInput : PlayerAbstract
     private void HandleAimInput()
     {
         RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
-        if (weapon)
+        if (weapon )
         {
             if (AimInput && !playerCtrl.PlayerWeapon.PlayerWeaponActive.isHolster && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload)
             {
