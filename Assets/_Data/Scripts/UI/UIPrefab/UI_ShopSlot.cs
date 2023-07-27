@@ -9,11 +9,7 @@ public class UI_ShopSlot : MonoBehaviour
     [SerializeField] private Image selectImage;
     [SerializeField] private Image iconImage;
     [SerializeField] private TMP_Text text;
-    //Pistol,
-    //AssaultRifle,
-    //Shotgun,
-    //SniperRifle,
-    //Melee,
+
     [Space(10)]
     [SerializeField] private WeaponDataSO weaponData;
     [SerializeField] private List<Sprite> icons = new List<Sprite>();
@@ -21,6 +17,7 @@ public class UI_ShopSlot : MonoBehaviour
     private void OnEnable()
     {
         this.Setup();
+        this.SetSelect(false);
     }
 
     private void Setup()
@@ -31,5 +28,11 @@ public class UI_ShopSlot : MonoBehaviour
         this.iconImage.sprite = this.icons[(int)this.weaponData.WeaponType - 1];
         this.text.SetText(this.weaponData.WeaponName);
 
+    }
+
+    public void SetSelect(bool isSelected)
+    {
+        this.selectImage.gameObject.SetActive(isSelected);
+        this.text.fontStyle = isSelected ? FontStyles.Bold : FontStyles.Normal;
     }
 }
