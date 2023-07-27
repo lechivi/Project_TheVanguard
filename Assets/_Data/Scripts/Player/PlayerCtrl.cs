@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerCtrl : SaiMonoBehaviour
 {
     public PlayerAim PlayerAim;
-    public PlayerAttack PlayerAttack;
     public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
     public PlayerLocomotion PlayerLocomotion;
@@ -14,7 +13,7 @@ public class PlayerCtrl : SaiMonoBehaviour
     public PlayerWeapon PlayerWeapon;
 
     public Transform PlayerTransform;
-    public Transform CameraTransform;
+    public Transform MainCamera;
     public Animator Animator;
     public Animator Rigcontroller;
     public CharacterController CharacterController;
@@ -22,6 +21,7 @@ public class PlayerCtrl : SaiMonoBehaviour
     protected override void LoadComponent()
     {
         base.LoadComponent();
+        this.LoadPlayerAim();
         this.LoadPlayerManager();
         this.LoadPlayerInput();
         this.LoadPlayerLocomotion();
@@ -30,7 +30,7 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerWeapon();
 
         this.LoadPlayerTransform();
-        this.LoadCameraTransform();
+        this.LoadMainCamera();
         this.LoadAnimator();
         this.LoadCharacterController();
     }
@@ -41,15 +41,6 @@ public class PlayerCtrl : SaiMonoBehaviour
         {
             this.PlayerAim = GetComponentInChildren<PlayerAim>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerAim", gameObject);
-        }
-    }
-
-    protected virtual void LoadPlayerAttack ()
-    {
-        if (this.PlayerAttack == null)
-        {
-            this.PlayerAttack = GetComponentInChildren<PlayerAttack>();
-            Debug.LogWarning(gameObject.name + ": LoadPlayerAttack", gameObject);
         }
     }
 
@@ -117,11 +108,11 @@ public class PlayerCtrl : SaiMonoBehaviour
         }
     }
 
-    protected virtual void LoadCameraTransform()
+    protected virtual void LoadMainCamera()
     {
-        if (this.CameraTransform == null)
+        if (this.MainCamera == null)
         {
-            this.CameraTransform = Camera.main.transform;
+            this.MainCamera = Camera.main.transform;
             Debug.LogWarning(gameObject.name + ": LoadCameraTransform", gameObject);
         }
     }

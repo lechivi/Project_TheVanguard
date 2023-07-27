@@ -1,4 +1,4 @@
-using Cinemachine.Utility;
+﻿using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +7,19 @@ using UnityEngine.Rendering;
 
 public class PlayerAim : PlayerAbstract
 {
+
+    public float duration;
+    public Transform player;
+    public GameObject scope;
+    public Camera cameraMain;
+    public Animator rigLayer;
+    public bool isAim;
     public Rig HandLayer;
-    public GameObject weapon;
-    public float AimDuration = 0.3f;
-    
-    public Transform AimLookat;
+
+    public Transform AimlookMain;
     public Transform AimLookatCam;
     public float distanceLook1D;
+
     protected override void Awake()
     {
         base.Awake();
@@ -21,50 +27,67 @@ public class PlayerAim : PlayerAbstract
 
     private void Update()
     {
+      /*  if (Input.GetMouseButtonDown(0))
+        {
+            Invoke("reload_pershot", 0.1f);
+        }*/
         if (!playerCtrl.PlayerLocomotion.Is1D)
         {
-            AimLookat.position = AimLookatCam.position;
+            RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+            AimlookMain.position = AimLookatCam.position;
+            AimWeaponAnimator();
+            if(raycastWeapon && raycastWeapon.WeaponType == WeaponType.SniperRifle)
+            {
+                AimWeaponSCope();
+            }
         }
         else
         {
-            Handle();
+            HandleBodyAim1D();
         }
 
-        /*if (Input.GetKey(KeyCode.R))
-        {
-            EquipWeapon();
-        }
-
-        else if (Input.GetKeyDown(KeyCode.T))
-        {
-            UnEquipWeapon();
-        }*/
     }
 
-  /*  private void UnEquipWeapon()
-    {
-        HandLayer.weight = 0;
-        weapon.SetActive(false);
-    }
 
-    private void EquipWeapon()
-    {
-        HandLayer.weight += Time.deltaTime / AimDuration;
-        weapon.SetActive(true);
-    }*/
-
-    private void Handle()
+    private void HandleBodyAim1D()
     {
         Vector3 ball = this.playerCtrl.PlayerTransform.position + this.playerCtrl.PlayerTransform.forward * distanceLook1D;
         ball.y = AimLookatCam.position.y;
-        AimLookat.position = ball;
+        AimlookMain.position = ball;
     }
 
-   /* private void OnDrawGizmos()
+    private void AimWeaponAnimator()
     {
-        Vector3 ball = Player.position + Player.forward * distanceLook1D;
-        ball.y = AimLookatCam.position.y;
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(ball, 0.5f);
-    }*/
+        rigLayer.SetBool("aim_weapon", isAim);
+    }
+
+    private void AimWeaponSCope()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            StartCoroutine(AimDuration(0.2f));
+
+        }
+        if (!isAim)
+        {
+            cameraMain.cullingMask |= 1 << 7;
+            cameraMain.cullingMask |= 1 << 6;
+            scope.SetActive(false);
+        }
+    }
+
+    public IEnumerator AimDuration(float second)
+    {
+        yield return new WaitForSeconds(second);
+
+        cameraMain.cullingMask &= ~(1 << 7);
+        cameraMain.cullingMask &= ~(1 << 6);
+        scope.SetActive(true);
+    }
+
+    public void reload_pershot()
+    { // only type ShotGunSuper
+        if (playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload) return;
+        rigLayer.SetTrigger("reload_pershot");
+    }
 }

@@ -10,10 +10,6 @@ public class PlayerLocomotion : PlayerAbstract
     public Animator animatorPlayer;
     public Animator rigLayer;
     public OnEventAnimator Onanimatormove;
-    public Transform cameraLookat;
-    public AxisState xAxis;
-    public AxisState yAxis;
-    //
 
     [Header("Movement Flag")]
     public bool isJumping;
@@ -23,12 +19,14 @@ public class PlayerLocomotion : PlayerAbstract
 
     [Header("Movement Speed")]
     [SerializeField] private float rotationSpeed = 360f;
+    [SerializeField] private float rotationSpeedTPS = 15f;
     [SerializeField] private float speed;
     [SerializeField] private float jumpDamp;
     [SerializeField] private float airControl;
     [SerializeField] private float stepDown;
     [SerializeField] private float jumpheight;
     [SerializeField] private float gravity;
+    [SerializeField] private float speedDecrease;
     private Vector3 movementDirection;
     [SerializeField] private Vector3 rootMotion;
     [SerializeField] private Vector3 velocity;
@@ -62,9 +60,16 @@ public class PlayerLocomotion : PlayerAbstract
 
         this.HandleRotation();
         this.HandleUpdateMove();
+       // this.SetSpeed();
     }
 
-
+    public void SetSpeed()
+    {
+        if(playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring)
+        {
+            speed /= speedDecrease;
+        }
+    }
     private void Handle1DMode()
     {
         this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
@@ -79,27 +84,22 @@ public class PlayerLocomotion : PlayerAbstract
     }
     private void HandleMovement1D()
     {
-        //this.moveSpeed = this.IsSprinting ? this.sprintingSpeed : this.runningSpeed;
         this.movementDirection = new Vector3(this.playerCtrl.PlayerInput.MovementInput.x, 0f, this.playerCtrl.PlayerInput.MovementInput.y);
-        //float ySpeed = Physics.gravity.y * Time.deltaTime;
-        this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.CameraTransform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
+        this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.MainCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;
         this.movementDirection.Normalize();
 
         Vector3 velocity = this.movementDirection;
-        //velocity = this.AdjustVelocityToSlope(velocity);
-        //velocity.y += ySpeed;
-
         this.playerCtrl.CharacterController.Move(velocity * Time.deltaTime);
     }
     private void HandleSprinting()
     {
-        //RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
-        
-        //if(currentweapon != null)
-        //{
-        //    rigLayer.SetBool("isSprinting", IsSprinting);
-        //}
-        
+        RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
+
+        if (currentweapon != null)
+        {
+            rigLayer.SetBool("isSprinting", IsSprinting);
+        }
+
     }
 
     private void HandleJump()
@@ -129,38 +129,19 @@ public class PlayerLocomotion : PlayerAbstract
         {
             if (this.movementDirection != Vector3.zero || this.movementDirection == Vector3.forward)
             {
+                Debug.Log("Hello");
                 Quaternion toRatation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 this.playerCtrl.PlayerTransform.rotation = Quaternion.RotateTowards(this.playerCtrl.PlayerTransform.rotation, toRatation, this.rotationSpeed * Time.deltaTime);
             }
         }
         else
         {
-            //if (this.IsHoldingRotateCamera) return;
-            xAxis.Update(Time.fixedDeltaTime);
-            yAxis.Update(Time.fixedDeltaTime);
-            cameraLookat.eulerAngles = new Vector3(yAxis.Value, yAxis.Value, 0);
-
-            float yawCamera = this.playerCtrl.CameraTransform.transform.eulerAngles.y;
-            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), 15 * Time.fixedDeltaTime);
+            float yawCamera = this.playerCtrl.MainCamera.transform.eulerAngles.y;
+            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
         }
 
     }
 
-    /*   private void HandleSprinting()
-       {
-           if (this.movementDirection != Vector3.zero)
-           {
-               if (this.IsSprinting)
-               {
-                   this.motionSpeed = this.sprintingSpeed;
-               }
-               else
-               {
-                   this.motionSpeed = this.runningSpeed;
-               }
-               this.playerCtrl.Animator.SetFloat("MotionSpeed", this.motionSpeed);
-           }
-       }*/
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     {

@@ -9878,12 +9878,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c475986dd907d44934c546e13fa289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFiring: 0
+  timeDelayShot: 1
+  spreads: []
   muzzleflash:
   - {fileID: 5788381358678701115}
   - {fileID: 5788664818235864221}
   hitEffect: {fileID: 8465873382258617810}
-  tracerEffect: {fileID: 767340569853297927, guid: 364316a0ee3b56f45be452953233a211, type: 3}
   raycastOrigin: {fileID: 3777188027822793142}
   fireRate: 5
   runtTimeFire: 0
@@ -9892,12 +9892,13 @@ MonoBehaviour:
   maxlifeTime: 3
   weaponName: pistol
   weaponslot: 1
+  WeaponType: 1
   ForceRaycast: 0
-  maxBounce: 0
   recoil: {fileID: -2219018078987369080}
   magazine: {fileID: 0}
   ammo: 0
   maxAmmo: 0
+  ammoPerShot: 0
 --- !u!114 &-2219018078987369080
 MonoBehaviour:
   m_ObjectHideFlags: 0

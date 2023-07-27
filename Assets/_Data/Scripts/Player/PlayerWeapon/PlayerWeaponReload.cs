@@ -7,7 +7,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     [SerializeField] private PlayerRigAnimationEvents animationEvents;
     public Transform leftHand;
     GameObject magazineHand;
-
+    public bool isReload;
     private void Start()
     {
         if (this.animationEvents != null)
@@ -15,11 +15,14 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
             animationEvents.AnimationEvent.AddListener(OnAnimationEvent);
         }
     }
-
+    private void Update()
+    {
+    }
     public void SetReloadWeapon()
     {
 
         this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
+        isReload = true;
     }
 
     public void OnAnimationEvent(string eventName)
@@ -68,7 +71,8 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
         RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
         weapon.magazine.SetActive(true);
         Destroy(magazineHand);
-        weapon.ammo = weapon.maxAmmo;
+        weapon.ammo = 30;
         this.PlayerWeapon.RigAnimator.ResetTrigger("reload_weapon");
+        isReload = false;
     }
 }
