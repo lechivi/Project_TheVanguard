@@ -4,7 +4,6 @@ public enum WeaponType
     Pistol,
     AssaultRifle,
     Shotgun,
-    ShotgunSuper,
     SniperRifle,
     Melee,
 }

@@ -46,12 +46,10 @@ public class UI_WeaponInformation : MonoBehaviour
             this.meleeDamage.gameObject.SetActive(false);
             this.swingSpeed.gameObject.SetActive(false);
 
-            this.weaponNameText.SetText(weaponData.WeaponName);
-            this.rangedDamage.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.RangedDamage.ToString());
+            this.weaponNameText.SetText(weaponData.ItemName);
             this.fireRate.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.FireRate.ToString());
-            this.accuracy.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.Accuracy.ToString());
+            this.accuracy.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.Spreads.ToString());
             this.magazineSize.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.MagazineSize.ToString());
-            this.reloadTime.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.ReloadTime.ToString());
         }
         else
         {
@@ -63,7 +61,7 @@ public class UI_WeaponInformation : MonoBehaviour
             this.meleeDamage.gameObject.SetActive(true);
             this.swingSpeed.gameObject.SetActive(true);
 
-            this.weaponNameText.SetText(weaponData.WeaponName);
+            this.weaponNameText.SetText(weaponData.ItemName);
             this.meleeDamage.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.MeleeDamage.ToString());
             this.swingSpeed.Find("Value").GetComponent<TMP_Text>().SetText(weaponData.SwingSpeed.ToString());
         }

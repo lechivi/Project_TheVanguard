@@ -1,56 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 using static RaycastWeapon;
 
 public class RaycastWeapon : MonoBehaviour
 {
-    public float timeDelayShot = 1f;
-    public float[] spreads;
+
+    public string weaponName;
+    public PlayerWeaponActiveOld.Weaponslot weaponslot;
+    public float ForceRaycast;
+    public Weapon Weapon;
+
+    //RaycastWeapon Variable
+    public float runtTimeFire;
     public ParticleSystem[] muzzleflash;
     public ParticleSystem hitEffect;
     public Transform raycastOrigin;
     private Ray ray;
     private RaycastHit hitInfo;
-    public int fireRate = 25;
-    public float runtTimeFire;
-    public float bulletSpeed = 1000;
-    public float bulletDrop = 0;
-    public float maxlifeTime;
-    public string weaponName;
-    public PlayerWeaponActiveOld.Weaponslot weaponslot;
-    public WeaponType WeaponType;
-    public ShotGunType ShotGunType;
-    public float ForceRaycast;
+    private float maxlifeTime = 3;
     public RecoilWeapon recoil;
     public GameObject magazine;
-    public int ammo;
-    public int maxAmmo;
-    public int ammoPerShot;
+
+
+    private float bulletDrop = 0;
+
     private void Awake()
     {
+        Weapon = GetComponent<Weapon>();
         runtTimeFire = 0;
         recoil = GetComponent<RecoilWeapon>();
+    }
+    public void DelayPerShot()
+    {
+
     }
 
     public void FireBullet(Vector3 target)
     {
-        if (ammo <= 0)
+        if (Weapon.WeaponData.Ammo <= 0)
         {
             return;
         }
-        ammo --;
+        Weapon.WeaponData.Ammo--;
         foreach (var particle in muzzleflash)
         {
             particle.Emit(1);
         }
-
-        for (int i = 0; i < ammoPerShot; i++)
+        // Debug.Log(weaponData.AmmoPerShot);
+        for (int i = 0; i < Weapon.WeaponData.AmmoPerShot; i++)
         {
-            float xspread = Random.Range(spreads[0], spreads[1]);
-            float yspread = Random.Range(spreads[2], spreads[3]);
+            float xspread = Random.Range(Weapon.WeaponData.Spreads[0], Weapon.WeaponData.Spreads[1]);
+            float yspread = Random.Range(Weapon.WeaponData.Spreads[2], Weapon.WeaponData.Spreads[3]);
             Vector3 randomSpread = new Vector3(xspread, yspread, 0f);
-            Vector3 raycastDirection = ((target - raycastOrigin.position).normalized + randomSpread) * bulletSpeed;
+            Vector3 raycastDirection = ((target - raycastOrigin.position).normalized + randomSpread) * Weapon.WeaponData.BulletSpeed;
             var bullet = ObjectPool.Instance.GetPooledObject();
             bullet.Active(raycastOrigin.position, raycastDirection);
             recoil.GenerateRecoil(weaponName);
@@ -60,7 +62,12 @@ public class RaycastWeapon : MonoBehaviour
     public void UpdateFiring(Vector3 target)
     {
         runtTimeFire += Time.deltaTime;
-        float fireInterval = timeDelayShot / fireRate; // 1/firerate ( 1 ở đây đại diện cho 1 giây , firerate là số đạn nhả ra trong 1 giây , nếu ta set firerate = 25 là 25 viên trong 1s
+        if (Weapon.WeaponData.TimePerFireRate == 0)
+        {
+            Debug.LogWarning("Please set TimePerFireRate variable # 0");
+            return;
+        }
+        float fireInterval = Weapon.WeaponData.TimePerFireRate / Weapon.WeaponData.FireRate; // 1/firerate ( 1 ở đây đại diện cho 1 giây , firerate là số đạn nhả ra trong 1 giây , nếu ta set firerate = 25 là 25 viên trong 1s
         while (runtTimeFire >= 0.0f)
         {
             FireBullet(target);
@@ -96,7 +103,7 @@ public class RaycastWeapon : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, distance))
         {
             hitEffect.transform.position = hitInfo.point;
-            hitEffect.transform.forward =/* HandleHiteffectDirection(ray.direction, hitInfo.normal);*/ hitInfo.normal;
+            hitEffect.transform.forward = hitInfo.normal;
             hitEffect.Emit(1);
 
             bullet.transform.position = hitInfo.point;

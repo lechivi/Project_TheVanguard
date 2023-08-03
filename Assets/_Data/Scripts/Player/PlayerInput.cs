@@ -58,6 +58,7 @@ public class PlayerInput : PlayerAbstract
         this.HandleAimInput();
     }
 
+
     private void HandleMovementInput()
     {
         float horizontalInput = this.MovementInput.x;
@@ -92,9 +93,7 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleAttackInput()
     {
-        /*RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
-        if (weapon == null) return;*/
-        
+        if (playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
         if (this.AttackInput)
         {
             playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
@@ -144,10 +143,11 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleReloadInput()
     {
+        if (playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
         RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
         if (weapon)
         {
-            if (ReloadInput || weapon.ammo <= 0)
+            if (ReloadInput || weapon.Weapon.WeaponData.Ammo <= 0)
             {
                 playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon();
                 ReloadInput = false;
@@ -157,8 +157,9 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleAimInput()
     {
+        if (playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
         RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
-        if (weapon )
+        if (weapon)
         {
             if (AimInput && !playerCtrl.PlayerWeapon.PlayerWeaponActive.isHolster && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload)
             {

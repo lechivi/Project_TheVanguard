@@ -4,19 +4,15 @@ using UnityEngine;
 
 public class PlayerWeaponReload : PlayerWeaponAbstract
 {
-    [SerializeField] private PlayerRigAnimationEvents animationEvents;
     public Transform leftHand;
     GameObject magazineHand;
     public bool isReload;
     private void Start()
     {
-        if (this.animationEvents != null)
+        if(PlayerWeapon.animationEvents != null)
         {
-            animationEvents.AnimationEvent.AddListener(OnAnimationEvent);
+            PlayerWeapon.animationEvents.AnimationEvent.AddListener(OnAnimationEvent);
         }
-    }
-    private void Update()
-    {
     }
     public void SetReloadWeapon()
     {
@@ -41,7 +37,9 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
             case "attach_magazine":
                 AttachMagazine();
                 break;
-
+            case "exitdelay_shotgun":
+                PlayerWeapon.PlayerWeaponActive.SetisDelay(false);
+                break;
         }
     }
 
@@ -71,8 +69,14 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
         RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
         weapon.magazine.SetActive(true);
         Destroy(magazineHand);
-        weapon.ammo = 30;
+        weapon.Weapon.WeaponData.Ammo = weapon.Weapon.WeaponData.MagazineSize;
         this.PlayerWeapon.RigAnimator.ResetTrigger("reload_weapon");
+        Invoke("ChangeIsReload", 0.15f);
+    }
+
+    public void ChangeIsReload()
+    {
         isReload = false;
     }
+
 }

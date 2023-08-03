@@ -373,4 +373,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (this.currentWeaponIndex == -1) return;
         this.ui_InventoryPanel.UI_EquippedListManager.SetEquipSlot(this.currentWeaponIndex);
     }
+
+    public Weapon GetActiveWeapon()
+    {
+        if (this.currentWeaponIndex < 0 && this.equippedWeapons.GetList()[this.currentWeaponIndex] == null) return null;
+        return this.equippedWeapons.GetList()[this.currentWeaponIndex];
+    }
 }

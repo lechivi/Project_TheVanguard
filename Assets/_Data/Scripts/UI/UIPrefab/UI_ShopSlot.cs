@@ -29,7 +29,7 @@ public class UI_ShopSlot : MonoBehaviour
 
         this.selectImage.gameObject.SetActive(false);
         this.iconImage.sprite = this.icons[(int)this.weaponData.WeaponType - 1];
-        this.text.SetText(this.weaponData.WeaponName);
+        this.text.SetText(this.weaponData.ItemName);
 
     }
 }

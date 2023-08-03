@@ -60,12 +60,12 @@ public class PlayerLocomotion : PlayerAbstract
 
         this.HandleRotation();
         this.HandleUpdateMove();
-       // this.SetSpeed();
+        // this.SetSpeed();
     }
 
     public void SetSpeed()
     {
-        if(playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring)
+        if (playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring)
         {
             speed /= speedDecrease;
         }
@@ -93,6 +93,7 @@ public class PlayerLocomotion : PlayerAbstract
     }
     private void HandleSprinting()
     {
+        if (weaponActive == null) return;
         RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
 
         if (currentweapon != null)
@@ -138,6 +139,7 @@ public class PlayerLocomotion : PlayerAbstract
         {
             float yawCamera = this.playerCtrl.MainCamera.transform.eulerAngles.y;
             this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
+
         }
 
     }

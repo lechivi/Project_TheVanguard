@@ -12,17 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Knife01
   m_EditorClassIdentifier: 
-  WeaponType: 5
-  WeaponName: Knife01
+  ItemName: 
+  ItemValue: 0
+  ItemType: 0
   Icon: {fileID: 352364972703780450, guid: c3b7c0b77666e6e4f880ecc68fcf2e63, type: 3}
   Model: {fileID: 5475713247664875129, guid: c8df918dde4888246b8b52ed056c8187, type: 3}
+  WeaponType: 5
   rangedDamage: 0
   fireRate: 0
-  accuracy: 0
+  bulletSpeed: 0
+  spreads: []
   ammoType: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  timeDelayShot: 0
+  ammoPerShot: 0
+  ammo: 0
+  maxAmmo: 0
+  spreadAiming: 0
+  spreadNotAim: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

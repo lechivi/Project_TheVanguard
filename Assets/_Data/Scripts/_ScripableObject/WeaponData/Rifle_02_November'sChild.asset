@@ -12,17 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Rifle_02_November'sChild
   m_EditorClassIdentifier: 
-  WeaponType: 2
-  WeaponName: November's Child
+  ItemName: 
+  ItemValue: 0
+  ItemType: 0
   Icon: {fileID: 8093344953519539871, guid: e40b27f116e0d804bba21c2432cf87da, type: 3}
   Model: {fileID: 3506023523011908283, guid: 0a14240c16aa4a14db532c62c3537cc8, type: 3}
+  WeaponType: 2
   rangedDamage: 30
   fireRate: 40
-  accuracy: 72
+  bulletSpeed: 0
+  accuracy:
+  - 0
+  - 0
+  - 0
+  - 0
   ammoType: 2
   magazineSize: 30
-  reloadTime: 0
   range: 185
+  timeDelayShot: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0
