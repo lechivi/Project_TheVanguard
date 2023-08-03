@@ -19,7 +19,7 @@ public class PlayerManager : PlayerAbstract
 
     private void FixedUpdate()
     {
-        this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
+        //this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
         this.playerCtrl.PlayerLocomotion.HanldeAllMovementFix();
   
     }

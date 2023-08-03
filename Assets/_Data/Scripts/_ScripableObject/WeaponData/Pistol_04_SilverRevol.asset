@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Pistol_04_SilverRevol
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  WeaponName: Silver Revol
+  ItemName: Silver Revol
+  ItemValue: 1331
+  ItemType: 1
   Icon: {fileID: 6725480170457183807, guid: b046165d2fdcc5545b9cf6cb8408e072, type: 3}
   Model: {fileID: 4046468420825559304, guid: 775f751cf553d39468767ce908bcde53, type: 3}
+  WeaponType: 1
   rangedDamage: 50
   fireRate: 6
   accuracy: 74
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 119
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

@@ -14662,7 +14662,7 @@ GameObject:
   - component: {fileID: 4866587783047717362}
   - component: {fileID: 776842862751682049}
   m_Layer: 8
-  m_Name: PickupObjectPrefab
+  m_Name: PickupObject
   m_TagString: PickupObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -35,6 +35,9 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     private bool isReadySwap = true;
     [SerializeField] private float swapCooldown = 0.2f;
 
+    public NullAwareList<Weapon> EquippedWeapons { get => this.equippedWeapons; }
+    public NullAwareList<Weapon> BackpackWeapons { get => this.backpackWeapons; }
+
     protected override void Awake()
     {
         base.Awake();
@@ -79,13 +82,13 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             int index = this.equippedWeapons.GetList().FindIndex(item => item != null);
             if (index == -1) return;
-            this.RemoveWeaponFromEquipped(this.equippedWeapons.GetList()[index]);
+            this.RemoveWeaponFromEquipped(this.equippedWeapons.GetList()[index], true);
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             int index = this.backpackWeapons.GetList().FindIndex(item => item != null);
             if (index == -1) return;
-            this.RemoveWeaponFromBackpack(this.backpackWeapons.GetList()[index]);
+            this.RemoveWeaponFromBackpack(this.backpackWeapons.GetList()[index], true);
         }
 
         //if (Input.GetKeyDown(KeyCode.Alpha7))
@@ -113,13 +116,13 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public bool AddWeapon(Weapon weapon)
     {
-        if (this.equippedWeapons.GetList().Count < this.maxEquippedWeapon || (this.equippedWeapons.ContainsNull() && this.equippedWeapons.GetList().Count <= this.maxEquippedWeapon))
+        if (this.equippedWeapons.GetList().Count < this.maxEquippedWeapon || (this.equippedWeapons.IsContainsNull() && this.equippedWeapons.GetList().Count <= this.maxEquippedWeapon))
         {
             this.AddWeaponToEquipped(this.GetNewWeapon(weapon));
             this.UpdateUI();
             return true;
         }
-        if (this.backpackWeapons.GetList().Count < this.maxBackpackWeapon || (this.backpackWeapons.ContainsNull() && this.backpackWeapons.GetList().Count <= this.maxBackpackWeapon))
+        if (this.backpackWeapons.GetList().Count < this.maxBackpackWeapon || (this.backpackWeapons.IsContainsNull() && this.backpackWeapons.GetList().Count <= this.maxBackpackWeapon))
         {
             this.AddWeaponToBackpack(this.GetNewWeapon(weapon));
             this.UpdateUI();
@@ -183,28 +186,42 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         weapon.gameObject.SetActive(false);
     }
 
-    public void RemoveWeaponFromEquipped(int weaponIndex)
+    public void RemoveWeaponFromEquipped(int weaponIndex, bool isDrop)
     {
         Weapon weapon = this.equippedWeapons.GetList()[weaponIndex];
-        this.RemoveWeaponFromEquipped(weapon);
+        this.equippedWeapons.Remove(weapon);
+        if (isDrop)
+        {
+            this.DropWeapon(weapon);
+        }
     }
 
-    public void RemoveWeaponFromEquipped(Weapon weapon)
+    public void RemoveWeaponFromEquipped(Weapon weapon, bool isDrop)
     {
         this.equippedWeapons.Remove(weapon);
-        this.DropWeapon(weapon);
+        if (isDrop)
+        {
+            this.DropWeapon(weapon);
+        }
     }
 
-    public void RemoveWeaponFromBackpack(int weaponIndex)
+    public void RemoveWeaponFromBackpack(int weaponIndex, bool isDrop)
     {
         Weapon weapon = this.backpackWeapons.GetList()[weaponIndex];
-        this.RemoveWeaponFromBackpack(weapon);
+        this.backpackWeapons.Remove(weapon);
+        if (isDrop)
+        {
+            this.DropWeapon(weapon);
+        }
     }
 
-    public void RemoveWeaponFromBackpack(Weapon weapon)
+    public void RemoveWeaponFromBackpack(Weapon weapon, bool isDrop)
     {
         this.backpackWeapons.Remove(weapon);
-        this.DropWeapon(weapon);
+        if (isDrop)
+        {
+            this.DropWeapon(weapon);
+        }
     }
 
     private void DropWeapon(Weapon weapon)
@@ -297,7 +314,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
         if (isTheCurrentWeaponA)
             this.SetActiveWeapon(weaponIndexA, true);
-        if (isTheCurrentWeaponB) 
+        if (isTheCurrentWeaponB)
             this.SetActiveWeapon(weaponIndexB, true);
     }
 
@@ -350,27 +367,39 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     {
         if (this.ui_InventoryPanel == null) return;
         this.ui_InventoryPanel.ResetSlot();
-        List<UI_DraggableItem> equippedList = this.ui_InventoryPanel.EquippedListPanel;
-        List<UI_DraggableItem> backpackList = this.ui_InventoryPanel.BackpackListPanel;
+        List<UI_DraggableItem> equippedList = this.ui_InventoryPanel.DraggablesEquippedList;
+        List<UI_DraggableItem> backpackList = this.ui_InventoryPanel.DraggablesBackpackList;
 
         for (int i = 0; i < this.equippedWeapons.GetList().Count; i++)
         {
-            if (this.equippedWeapons.GetList()[i] == null) continue;
+            if (this.equippedWeapons.GetList()[i] == null)
+            {
+                equippedList[i].SetActiveSlot(false);
+                continue;
+            }
+            equippedList[i].SetActiveSlot(true);
             equippedList[i].SetWeaponData(this.equippedWeapons.GetList()[i].WeaponData);
             equippedList[i].SetModel();
-            //GameObject weaponIcon = Instantiate(this.equippedWeapons.GetList()[i].WeaponData.Icon, equippedList[i].transform);
-            //equippedList[i].WeaponIconObject = weaponIcon;
         }
         for (int i = 0; i < this.backpackWeapons.GetList().Count; i++)
         {
-            if (this.backpackWeapons.GetList()[i] == null) continue;
+            if (this.backpackWeapons.GetList()[i] == null)
+            {
+                backpackList[i].SetActiveSlot(false);
+                continue;
+            }
+            backpackList[i].SetActiveSlot(true);
             backpackList[i].SetWeaponData(this.backpackWeapons.GetList()[i].WeaponData);
             backpackList[i].SetModel();
-            //GameObject weaponIcon = Instantiate(this.backpackWeapons.GetList()[i].WeaponData.Icon, backpackList[i].transform);
-            //backpackList[i].WeaponIconObject = weaponIcon;
         }
 
         if (this.currentWeaponIndex == -1) return;
-        this.ui_InventoryPanel.UI_EquippedListManager.SetEquipSlot(this.currentWeaponIndex);
+        this.ui_InventoryPanel.EquippedList.SetEquipSlot(this.currentWeaponIndex);
+    }
+
+    public Weapon GetActiveWeapon()
+    {
+        if (this.currentWeaponIndex < 0 && this.equippedWeapons.GetList()[this.currentWeaponIndex] == null) return null;
+        return this.equippedWeapons.GetList()[this.currentWeaponIndex];
     }
 }

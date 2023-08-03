@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Sniper_04_Hawkeye
   m_EditorClassIdentifier: 
+  ItemName: Hawkeye
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 4
-  WeaponName: Hawkeye
   Icon: {fileID: 5513720291159586698, guid: dcf58a8931f384b4c924cbd6e771a577, type: 3}
-  Model: {fileID: 8513509545235603795, guid: 29a51d1eb1ec92147bfb1c46afb1dfc6, type: 3}
+  Model: {fileID: 1937876462363981338, guid: ec489a38abaea2f46a3f909b56a37efe, type: 3}
   rangedDamage: 0
   fireRate: 0
   accuracy: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

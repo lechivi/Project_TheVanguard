@@ -14,11 +14,11 @@ public class DropZone_ItemSlot : MonoBehaviour, IDropHandler
 
         if (item.WeaponList == WeaponList.EquippedWeapons)
         {
-            PlayerWeaponManager.Instance.RemoveWeaponFromEquipped(item.WeaponSlotIndex);
+            PlayerWeaponManager.Instance.RemoveWeaponFromEquipped(item.WeaponSlotIndex, true);
         }
         else
         {
-            PlayerWeaponManager.Instance.RemoveWeaponFromBackpack(item.WeaponSlotIndex);
+            PlayerWeaponManager.Instance.RemoveWeaponFromBackpack(item.WeaponSlotIndex, true);
         }
     }
 }

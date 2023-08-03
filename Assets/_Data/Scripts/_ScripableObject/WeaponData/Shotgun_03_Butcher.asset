@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Shotgun_03_Butcher
   m_EditorClassIdentifier: 
+  ItemName: Butcher
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 3
-  WeaponName: Butcher
   Icon: {fileID: 3390588199410819549, guid: 3da8a52f8a5e6b24983dd40f6b4fe3de, type: 3}
   Model: {fileID: 5371630196229813801, guid: e9422c7bc2511a744971300c8890ff6c, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

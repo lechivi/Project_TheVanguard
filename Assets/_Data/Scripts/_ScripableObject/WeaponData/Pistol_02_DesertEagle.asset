@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Pistol_02_DesertEagle
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  WeaponName: Desert Eagle
+  ItemName: Desert Eagle
+  ItemValue: 1212
+  ItemType: 1
   Icon: {fileID: 8995714266567274199, guid: 374c5f6f250aa044f8195ca3e1ffc072, type: 3}
   Model: {fileID: 6779385427265435993, guid: bb688cb57c689e8438861879580e7ce6, type: 3}
+  WeaponType: 1
   rangedDamage: 28
   fireRate: 8
   accuracy: 62
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 119
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

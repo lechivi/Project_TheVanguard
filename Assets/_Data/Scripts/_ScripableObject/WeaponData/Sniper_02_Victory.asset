@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Sniper_02_Victory
   m_EditorClassIdentifier: 
+  ItemName: Victory
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 4
-  WeaponName: Victory
   Icon: {fileID: 8445887792516056611, guid: 18650ace9c4600a4f90d9fbccac94050, type: 3}
   Model: {fileID: 2984659460463470946, guid: 613abe1a798552247948bb85a85a854f, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

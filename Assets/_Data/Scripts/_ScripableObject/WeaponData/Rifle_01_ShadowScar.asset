@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Rifle_01_ShadowScar
   m_EditorClassIdentifier: 
+  ItemName: Shadow Scar
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 2
-  WeaponName: Shadow Scar
   Icon: {fileID: 1568828997337837238, guid: 2971478ebdd27c549be04e1b166eb701, type: 3}
   Model: {fileID: 5067135797642379585, guid: abf902de462d428429bd1edf111ee662, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

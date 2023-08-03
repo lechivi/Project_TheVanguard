@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Knife04
   m_EditorClassIdentifier: 
+  ItemName: Knife 04
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 5
-  WeaponName: Knife04
   Icon: {fileID: 1307541170598548540, guid: 8c8cd2ef27d7c47418c6c385a18139d1, type: 3}
   Model: {fileID: 7262410541620119071, guid: 1d7b6bc806a1bf44dba57b9a513cc21f, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_FireAxe
   m_EditorClassIdentifier: 
-  WeaponType: 5
-  WeaponName: Fire Axe
+  ItemName: Fire Axe
+  ItemValue: 123
+  ItemType: 1
   Icon: {fileID: 2273649036962614445, guid: e18c9d13c3d7c074c888f2757468423a, type: 3}
   Model: {fileID: 1498168641921918044, guid: f02cc989ec2e6fa47b00c80e34c297be, type: 3}
+  WeaponType: 5
   rangedDamage: 0
   fireRate: 0
   accuracy: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

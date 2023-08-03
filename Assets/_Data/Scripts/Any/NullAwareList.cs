@@ -25,7 +25,7 @@ public class NullAwareList<T>
         }
     }
 
-    public bool ContainsNull()
+    public bool IsContainsNull()
     {
         for (int i = 0; i < this.list.Count; i++)
         {
@@ -35,6 +35,18 @@ public class NullAwareList<T>
             }
         }
         return false;
+    }
+
+    public bool IsAllNull()
+    {
+        for (int i = 0; i < this.list.Count; i++)
+        {
+            if (this.list[i] != null)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void Add(T child)

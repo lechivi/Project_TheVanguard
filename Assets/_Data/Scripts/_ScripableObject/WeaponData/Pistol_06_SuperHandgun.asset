@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Pistol_06_SuperHandgun
   m_EditorClassIdentifier: 
+  ItemName: Super Handgun
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 1
-  WeaponName: Super Handgun
   Icon: {fileID: 3271413386191694232, guid: 44efc973b9540b84ab86bf1172999ae5, type: 3}
   Model: {fileID: 8172358562170093355, guid: 8e90e3e389e3c3449ac764ac9dfc22ed, type: 3}
   rangedDamage: 50
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 53
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

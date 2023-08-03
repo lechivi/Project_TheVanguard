@@ -3,38 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_DroppableSlot : MonoBehaviour, IDropHandler
+public class UI_DroppableSlot : SaiMonoBehaviour, IDropHandler
 {
-    private UI_DraggableItem child;
+    [Header("REFERENCE")]
+    [SerializeField] private UI_DraggableItem childDraggable;
 
-    private void Awake()
+    protected override void LoadComponent()
     {
-        this.child = GetComponentInChildren<UI_DraggableItem>();
+        base.LoadComponent();
+        if (this.childDraggable == null)
+            this.childDraggable = GetComponentInChildren<UI_DraggableItem>();
     }
 
     public void OnDrop(PointerEventData eventData)
     {
         if (eventData.pointerDrag == null) return;
-        Debug.Log("OnDrop");
         UI_DraggableItem item = eventData.pointerDrag.GetComponent<UI_DraggableItem>();
-        if (this.child == item) return;
-        WeaponDataSO childWeaponData = this.child.GetWeaponData();
+        if (this.childDraggable == item) return;
+        WeaponDataSO childWeaponData = this.childDraggable.GetWeaponData();
 
-        this.child.SetWeaponData(item.GetWeaponData());
-        this.child.SetModel();
-        
-        if (childWeaponData != null )
+        this.childDraggable.SetWeaponData(item.GetWeaponData());
+        this.childDraggable.SetModel();
+        this.childDraggable.SetActiveSlot(true);
+
+        if (childWeaponData != null)
         {
             item.SetWeaponData(childWeaponData);
             item.SetModel();
-
+            item.SetActiveSlot(true);
         }
         else
         {
+            item.SetActiveSlot(false);
             item.ResetSlot();
         }
 
-        UI_InventoryPanel.Instance.SetSelectEquippedSlot(this.child.UI_WeaponSlotParent);
-        PlayerWeaponManager.Instance.SwitchWeapon(item.WeaponList, item.WeaponSlotIndex, this.child.WeaponList, this.child.WeaponSlotIndex);
+        UI_InventoryPanel.Instance.SetSelectEquippedSlot(this.childDraggable.UI_WeaponSlotParent);
+        PlayerWeaponManager.Instance.SwitchWeapon(item.WeaponList, item.WeaponSlotIndex, this.childDraggable.WeaponList, this.childDraggable.WeaponSlotIndex);
     }
 }

@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Rifle_03_BlackHand
   m_EditorClassIdentifier: 
+  ItemName: Black Hand
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 2
-  WeaponName: Black Hand
   Icon: {fileID: 7288736737000387588, guid: dd38ed6c20cdd0d4e9b4078176d89276, type: 3}
   Model: {fileID: 6090407069136369935, guid: 8c6e2761d53e3244b879aa158bd68f01, type: 3}
   rangedDamage: 30
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 185
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

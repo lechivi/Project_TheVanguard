@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Pistol_03_TheGainer
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  WeaponName: The Gainer
+  ItemName: The Gainer
+  ItemValue: 787
+  ItemType: 1
   Icon: {fileID: 4683345266131705801, guid: 54e962fff0c8e4e409a8574ae7d61705, type: 3}
   Model: {fileID: 838931215727257835, guid: 3892ee2083f1b1744a5127a0f1c41d1e, type: 3}
+  WeaponType: 1
   rangedDamage: 35
   fireRate: 6
   accuracy: 74
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 119
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

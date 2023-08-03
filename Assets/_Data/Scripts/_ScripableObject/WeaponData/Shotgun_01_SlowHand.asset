@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Shotgun_01_SlowHand
   m_EditorClassIdentifier: 
+  ItemName: Slow Hand
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 3
-  WeaponName: Slow Hand
   Icon: {fileID: 4976755378165979344, guid: ce383daae94ac3c42a100cc1688a9354, type: 3}
   Model: {fileID: 8731942969455852540, guid: 0bcd8e49e09444d41b6df33484a505ef, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

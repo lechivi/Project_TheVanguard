@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Sniper_03_Corba
   m_EditorClassIdentifier: 
+  ItemName: Corba
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 4
-  WeaponName: Corba
   Icon: {fileID: 6461373962698908772, guid: eb75a9c4a607fed43be9d1bb301eb881, type: 3}
   Model: {fileID: 8344293638754878587, guid: 731b9ae67b3cda14796b3fa35d7f3f1b, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

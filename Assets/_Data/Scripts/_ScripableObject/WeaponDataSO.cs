@@ -1,20 +1,15 @@
 #if UNITY_EDITOR
-using Cinemachine;
 using UnityEditor;
 #endif
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "WeaponData", menuName = "SO/WeaponData")]
-public class WeaponDataSO : ScriptableObject
+public class WeaponDataSO : ItemDataSO
 {
-    [Header("Common Properties")]
+    [Header("WEAPON")]
     public WeaponType WeaponType;
-    public string WeaponName;
-    public GameObject Icon; //UI
-    public GameObject Model; 
 
-    // Ranged weapon variables
-    [Space(5)]
+    [Header("RANGED WEAPON")]
     [SerializeField] private float rangedDamage;
     [SerializeField] private float fireRate;
     [SerializeField] private float accuracy;
@@ -23,13 +18,9 @@ public class WeaponDataSO : ScriptableObject
     [SerializeField] private float reloadTime;
     [SerializeField] private float range;
 
-    // Melee weapon variables
-    [Space(5)]
+    [Header("MELEE WEAPON")]
     [SerializeField] private float meleeDamage;
     [SerializeField] private float swingSpeed;
-
-    [Header("Other")]
-    [SerializeField] private float value;
 
     #region Getter
     public float RangedDamage { get => this.rangedDamage; private set => this.rangedDamage = value; }
@@ -38,6 +29,7 @@ public class WeaponDataSO : ScriptableObject
     public AmmoType AmmoType { get => this.AmmoType; private set => this.AmmoType = value; }
     public int MagazineSize { get => this.magazineSize; private set => this.magazineSize = value; }
     public float ReloadTime { get => this.reloadTime; private set => this.reloadTime = value; }
+    public float Range { get => this.range; private set => this.range = value; }
 
     public float MeleeDamage { get => this.meleeDamage; private set => this.meleeDamage = value; }
     public float SwingSpeed { get => this.swingSpeed; private set => this.swingSpeed = value; }
@@ -48,10 +40,14 @@ public class WeaponDataSO : ScriptableObject
 [CustomEditor(typeof(WeaponDataSO))]
 public class WeaponDataEditor : Editor
 {
-    SerializedProperty weaponType;
-    SerializedProperty weaponName;
+    SerializedProperty itemName;
+    SerializedProperty itemValue;
+    SerializedProperty itemType;
+
     SerializedProperty icon;
     SerializedProperty model;
+
+    SerializedProperty weaponType;
 
     SerializedProperty rangedDamage;
     SerializedProperty fireRate;
@@ -64,14 +60,15 @@ public class WeaponDataEditor : Editor
     SerializedProperty meleeDamage;
     SerializedProperty swingSpeed;
 
-    SerializedProperty value;
-
     private void OnEnable()
     {
-        this.weaponType = serializedObject.FindProperty("WeaponType");
-        this.weaponName = serializedObject.FindProperty("WeaponName");
+        this.itemName = serializedObject.FindProperty("ItemName");
+        this.itemValue = serializedObject.FindProperty("ItemValue");
+        this.itemType = serializedObject.FindProperty("ItemType");
         this.icon = serializedObject.FindProperty("Icon");
         this.model = serializedObject.FindProperty("Model");
+
+        this.weaponType = serializedObject.FindProperty("WeaponType");
 
         this.rangedDamage = serializedObject.FindProperty("rangedDamage");
         this.fireRate = serializedObject.FindProperty("fireRate");
@@ -83,18 +80,19 @@ public class WeaponDataEditor : Editor
 
         this.meleeDamage = serializedObject.FindProperty("meleeDamage");
         this.swingSpeed = serializedObject.FindProperty("swingSpeed");
-
-        this.value = serializedObject.FindProperty("value");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
-        EditorGUILayout.PropertyField(this.weaponType);
-        EditorGUILayout.PropertyField(this.weaponName);
+        EditorGUILayout.PropertyField(this.itemName);
+        EditorGUILayout.PropertyField(this.itemValue);
+        EditorGUILayout.PropertyField(this.itemType);
         EditorGUILayout.PropertyField(this.icon);
         EditorGUILayout.PropertyField(this.model);
+
+        EditorGUILayout.PropertyField(this.weaponType);
 
         WeaponType selectedWeaponType = (WeaponType)weaponType.enumValueIndex;
 
@@ -113,8 +111,6 @@ public class WeaponDataEditor : Editor
             EditorGUILayout.PropertyField(meleeDamage);
             EditorGUILayout.PropertyField(swingSpeed);
         }
-
-        EditorGUILayout.PropertyField(this.value);
 
         serializedObject.ApplyModifiedProperties();
     }

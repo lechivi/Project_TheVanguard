@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
+    [Header("REFERENCE")]
     [SerializeField] private Canvas canvas;
     [SerializeField] private Camera canvasCamera;
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private UI_WeaponSlot ui_WeaponSlotParent;
-    [SerializeField] private WeaponDataSO weaponData;
     
+    [SerializeField] private WeaponDataSO weaponData;
+
     public UI_WeaponSlot UI_WeaponSlotParent { get => this.ui_WeaponSlotParent; }
     public int WeaponSlotIndex;
     public WeaponList WeaponList;
@@ -66,10 +69,15 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        this.OnPointerDownDraggable();
+    }
+
+    public void OnPointerDownDraggable()
+    {
         if (this.weaponData != null)
         {
-            UI_WeaponInformation.Instance.SetInformation(this.weaponData);
-            UI_WeaponInformation.Instance.SetCanvasGroupAlpha(1);
+            UI_Inv_WeaponInformation.Instance.Show();
+            UI_Inv_WeaponInformation.Instance.SetInformation(this.weaponData);
 
             UI_InventoryPanel.Instance.SetSelectEquippedSlot(this.ui_WeaponSlotParent);
         }
@@ -88,7 +96,7 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        this.canvasGroup.blocksRaycasts = this.WeaponIconObject;
+        this.canvasGroup.blocksRaycasts = true;
         this.canvasGroup.alpha = 1;
 
         this.rectTransform.localPosition = Vector3.zero;
@@ -97,6 +105,15 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
     public WeaponDataSO GetWeaponData()
     {
         return this.weaponData;
+    }
+
+    public void SetActiveSlot(bool isActive)
+    {
+        Button button = this.UI_WeaponSlotParent.GetComponent<Button>();
+        if (button != null)
+        {
+            button.interactable = isActive;
+        }
     }
 
     public void SetWeaponData(WeaponDataSO weaponData )
@@ -121,7 +138,9 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
         Debug.Log("ResetSlot");
         this.weaponData = null;
         Destroy(this.WeaponIconObject);
+        this.WeaponIconObject= null;
 
-        this.canvasGroup.blocksRaycasts = false;
+        //this.canvasGroup.blocksRaycasts = true;
+        //this.ui_WeaponSlotParent.SetSelected(false);
     }
 }

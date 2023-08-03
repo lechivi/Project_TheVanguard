@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_AxeOrnate
   m_EditorClassIdentifier: 
-  WeaponType: 5
-  WeaponName: Ornate Axe
+  ItemName: Ornate Axe
+  ItemValue: 453
+  ItemType: 1
   Icon: {fileID: 3614661030782221666, guid: 7ce7b50a27577d643a36ad442c52174d, type: 3}
   Model: {fileID: 1686568546368113360, guid: 5743ede2984ba8245818096d839d3bba, type: 3}
+  WeaponType: 5
   rangedDamage: 0
   fireRate: 0
   accuracy: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

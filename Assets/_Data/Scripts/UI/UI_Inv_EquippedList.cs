@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class UI_EquippedListManager : SaiMonoBehaviour
+public class UI_Inv_EquippedList : SaiMonoBehaviour
 {
+    [Header("REFERENCE")]
     [SerializeField] private UI_EquippedWeaponSlot equippedSlotPrefab;
     [SerializeField] private List<UI_EquippedWeaponSlot> equippedSlots = new List<UI_EquippedWeaponSlot>();
     public List<UI_EquippedWeaponSlot> EquippedSlots { get => this.equippedSlots; }
@@ -12,13 +13,8 @@ public class UI_EquippedListManager : SaiMonoBehaviour
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadEquippedSlots();
-    }
-    protected virtual void LoadEquippedSlots()
-    {
-        if (transform.GetComponentsInChildren<UI_EquippedWeaponSlot>().ToList().Count == this.equippedSlots.Count) return;
-        this.equippedSlots = transform.GetComponentsInChildren<UI_EquippedWeaponSlot>().ToList();
-        Debug.LogWarning(transform.name + ": LoadEquippedSlots", gameObject);
+        if (this.equippedSlots.Count != transform.GetComponentsInChildren<UI_EquippedWeaponSlot>().Length)
+            this.equippedSlots = transform.GetComponentsInChildren<UI_EquippedWeaponSlot>().ToList();
     }
 
     public void SetNumberElementOfList(int number)
@@ -32,23 +28,6 @@ public class UI_EquippedListManager : SaiMonoBehaviour
         {
             UI_EquippedWeaponSlot newSlot = Instantiate(this.equippedSlotPrefab);
             this.equippedSlots.Add(newSlot);
-        }
-    }
-
-    //TODO: change to both weapon list
-    public void SetSelectSlot(int index)
-    {
-        if (index > this.equippedSlots.Count - 1) return;
-        for (int i = 0; i < this.equippedSlots.Count; i++)
-        {
-            if (i == index)
-            {
-                this.equippedSlots[i].SetSelected(true);
-            }
-            else
-            {
-                this.equippedSlots[i].SetSelected(false);
-            }
         }
     }
 

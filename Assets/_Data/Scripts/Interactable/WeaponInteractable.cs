@@ -24,7 +24,7 @@ public class WeaponInteractable : MonoBehaviour, IInteractable
 
     public string GetInteractableText()
     {
-        this.interactText = "Pick up " + this.pickupWeapon.Weapon.WeaponData.WeaponName;
+        this.interactText = "Pick up " + this.pickupWeapon.Weapon.WeaponData.ItemName;
         return this.interactText;
     }
 

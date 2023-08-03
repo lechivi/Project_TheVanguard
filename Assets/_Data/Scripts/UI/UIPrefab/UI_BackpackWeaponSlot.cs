@@ -22,7 +22,7 @@ public class UI_BackpackWeaponSlot : UI_WeaponSlot
 
     public void OnDropButtonClicked()
     {
-        PlayerWeaponManager.Instance.RemoveWeaponFromBackpack(transform.GetSiblingIndex());
+        PlayerWeaponManager.Instance.RemoveWeaponFromBackpack(transform.GetSiblingIndex(), true);
         this.SetSelected(false);
         GetComponentInChildren<UI_DraggableItem>().ResetSlot();
     }

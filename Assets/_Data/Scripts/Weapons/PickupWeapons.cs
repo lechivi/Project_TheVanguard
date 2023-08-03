@@ -32,7 +32,7 @@ public class PickupWeapons : PickupObject
     public void SetWeapon(Weapon weapon) //Spawner Call
     {
         this.weaponPrefab = weapon;
-        transform.name = this.weaponPrefab.WeaponData.WeaponName;
+        transform.name = this.weaponPrefab.WeaponData.ItemName;
 
         this.GenerateModelObject();
     }
@@ -40,7 +40,7 @@ public class PickupWeapons : PickupObject
     public void SetWeapon(GameObject weaponObject)
     {
         this.weaponPrefab = weaponObject.GetComponent<Weapon>();
-        transform.name = this.weaponPrefab.WeaponData.WeaponName;
+        transform.name = this.weaponPrefab.WeaponData.ItemName;
 
         if (this.weaponPrefab == null) return;
 
