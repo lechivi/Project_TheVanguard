@@ -384,7 +384,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 26128589}
-  m_LocalRotation: {x: -5.8521155e-10, y: 0.99896675, z: -0.045447715, w: -0.000000012863281}
+  m_LocalRotation: {x: -0.0000000037140384, y: 0.99896675, z: -0.045447715, w: -0.000000081636685}
   m_LocalPosition: {x: -3.8999996, y: 2.3695042, z: 11.739104}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5024,7 +5024,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 400061977}
-  m_LocalRotation: {x: -0.14020707, y: -0.011561976, z: 0.002268875, w: 0.99005216}
+  m_LocalRotation: {x: -0.14020705, y: -0.011561976, z: 0.0022688753, w: 0.99005216}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6115,8 +6115,6 @@ MonoBehaviour:
   playerCtrl: {fileID: 1993574175}
   prefabXB: {fileID: 1056203702842873187, guid: 1a8117f125df27a49acca0f1cd494125, type: 3}
   rigAnimator: {fileID: 774475238}
-  skinnedMeshRenderer: {fileID: 0}
-  meshToChangeTo: {fileID: 4300006, guid: 44202c79934aa8c45b2495a49b6e99b1, type: 3}
   rootXB: {fileID: 0}
   meshXB: {fileID: 0}
   avatarXB: {fileID: 9000000, guid: 833bd53ccae966f49bbaf4f3543db665, type: 3}
@@ -10790,7 +10788,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935178212}
-  m_LocalRotation: {x: -0.122223005, y: -0.011518931, z: 0.0024782568, w: 0.9924328}
+  m_LocalRotation: {x: -0.122223005, y: -0.011518897, z: 0.0024782494, w: 0.9924328}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13412,8 +13410,6 @@ MonoBehaviour:
   playerCtrl: {fileID: 485456400}
   prefabXB: {fileID: 1056203702842873187, guid: 1a8117f125df27a49acca0f1cd494125, type: 3}
   rigAnimator: {fileID: 1655377048}
-  skinnedMeshRenderer: {fileID: 5863570954526755854}
-  meshToChangeTo: {fileID: 4300006, guid: 44202c79934aa8c45b2495a49b6e99b1, type: 3}
   rootXB: {fileID: 0}
   meshXB: {fileID: 0}
   avatarXB: {fileID: 9000000, guid: 833bd53ccae966f49bbaf4f3543db665, type: 3}

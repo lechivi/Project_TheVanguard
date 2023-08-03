@@ -7,8 +7,6 @@ public class PlayerChar_Xerath : PlayerCharacter
     [Header("REFERENCE")]
     [SerializeField] private GameObject prefabXB;
     [SerializeField] private Animator rigAnimator;
-    [SerializeField] private SkinnedMeshRenderer skinnedMeshRenderer;
-    [SerializeField] private Mesh meshToChangeTo;
 
     [Header("Xerath_Beta")]
     [SerializeField] private GameObject rootXB;
@@ -31,12 +29,16 @@ public class PlayerChar_Xerath : PlayerCharacter
         //this.SetForm(true);
     }
 
+    //private void OnDisable()
+    //{
+    //    this.playerCtrl.PlayerInput.MovementInput = Vector2.zero;
+    //}
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.C))
         {
             //this.SetForm(false);
-            this.SharedMesh();
         }
     }
 
@@ -86,10 +88,6 @@ public class PlayerChar_Xerath : PlayerCharacter
         //this.rigAnimator.Rebind();
     }
 
-    private void SharedMesh()
-    {
-        this.skinnedMeshRenderer.sharedMesh = this.meshToChangeTo;
-    }
     public bool GetIsBeta()
     {
         return this.isBeta;

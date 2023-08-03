@@ -28,14 +28,29 @@ public class ChangePlayer : MonoBehaviour
 
     private void SetActivePlayer(bool check)
     {
+        Animator currentAnimator = check ? this.player1.GetComponent<Animator>() : this.player2.GetComponent<Animator>();
+        float currentNormalizedTime = currentAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime;
+        currentAnimator.enabled = false;
+
         if (check)
         {
             this.player1.transform.position = this.player2.transform.position;
+            this.player1.transform.rotation = this.player2.transform.rotation;
+            this.player1.SetActive(true);
+            this.player1.GetComponent<Animator>().enabled = true;
+            this.player1.GetComponent<Animator>().Rebind();
         }
         else
         {
             this.player2.transform.position = this.player1.transform.position;
+            this.player2.transform.rotation = this.player1.transform.rotation;
+            this.player2.SetActive(true);
+            this.player2.GetComponent<Animator>().enabled = true;
+            this.player2.GetComponent<Animator>().Rebind();
         }
+
+        currentAnimator.enabled = true;
+        currentAnimator.Play("Idle", 0, 0f);
 
         this.player1.SetActive(check);
         this.player2.SetActive(!check);
