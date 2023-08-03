@@ -11,6 +11,8 @@ public class WeaponDataSO : ItemDataSO
     public ShotGunType ShotGunType;
 
     [Header("RANGED WEAPON")]
+    [SerializeField] private float rangedDamage;
+    [SerializeField] private float accuracy;
     [SerializeField] private float timePerFireRate;//
     [SerializeField] private float fireRate; //
     [SerializeField] private float bulletSpeed;//
@@ -34,6 +36,8 @@ public class WeaponDataSO : ItemDataSO
 
 
     #region Getter
+    public float RangedDamage { get => this.rangedDamage; private set => this.rangedDamage = value; }
+    public float Accuracy { get => this.accuracy; private set => this.accuracy = value; }
     public float TimePerFireRate { get => this.timePerFireRate; private set => this.timePerFireRate = value; }
     public float FireRate { get => this.fireRate; private set => this.fireRate = value; }
 
@@ -68,6 +72,8 @@ public class WeaponDataEditor : Editor
     SerializedProperty weaponType;
     SerializedProperty shotgunType;
 
+    SerializedProperty rangedDamage;
+    SerializedProperty accuracy;
     SerializedProperty timePerFireRate;
     SerializedProperty fireRate;
     SerializedProperty bulletSpeed;
@@ -95,6 +101,8 @@ public class WeaponDataEditor : Editor
         this.weaponType = serializedObject.FindProperty("WeaponType");
         this.shotgunType = serializedObject.FindProperty("ShotGunType");
 
+        this.rangedDamage = serializedObject.FindProperty("rangedDamage");
+        this.accuracy = serializedObject.FindProperty("accuracy");
         this.timePerFireRate = serializedObject.FindProperty("timePerFireRate");
         this.fireRate = serializedObject.FindProperty("fireRate");
         this.bulletSpeed = serializedObject.FindProperty("bulletSpeed");
@@ -125,6 +133,8 @@ public class WeaponDataEditor : Editor
         EditorGUILayout.PropertyField(this.weaponType);
 
         WeaponType selectedWeaponType = (WeaponType)weaponType.enumValueIndex;
+        EditorGUILayout.PropertyField(this.rangedDamage);
+        EditorGUILayout.PropertyField(this.accuracy);
 
         if (selectedWeaponType == WeaponType.AssaultRifle)
         {
