@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Sniper_01_Patriot
   m_EditorClassIdentifier: 
+  ItemName: Patriot
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 4
-  WeaponName: Patriot
   Icon: {fileID: 8348359709251027434, guid: a826384e0e8da49468131b8ef63df3b1, type: 3}
   Model: {fileID: 5276411746701220344, guid: aa4489727dd72c949b49906a35a69bed, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

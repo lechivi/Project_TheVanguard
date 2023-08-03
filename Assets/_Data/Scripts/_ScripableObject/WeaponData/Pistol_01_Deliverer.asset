@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Pistol_01_Deliverer
   m_EditorClassIdentifier: 
-  WeaponType: 1
-  WeaponName: Deliverer
+  ItemName: Deliverer
+  ItemValue: 21
+  ItemType: 1
   Icon: {fileID: 7196992880718527406, guid: a97e2e08ab25b064dae1f02017defb63, type: 3}
   Model: {fileID: 2141981680209827496, guid: ece4d294ccf62684cb32ee4fbf8fdea5, type: 3}
+  WeaponType: 1
   rangedDamage: 25
   fireRate: 66
   accuracy: 67
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 53
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

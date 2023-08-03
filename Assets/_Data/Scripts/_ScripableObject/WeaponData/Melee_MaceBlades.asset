@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_MaceBlades
   m_EditorClassIdentifier: 
+  ItemName: Mace Blades
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 5
-  WeaponName: Mace Blades
   Icon: {fileID: 7890642487267669274, guid: c18577198a9944d4b92ef99cda1c291e, type: 3}
   Model: {fileID: 1729373979326057674, guid: 10e9dbca604152040b0c430fa2c47071, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

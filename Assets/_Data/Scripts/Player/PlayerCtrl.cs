@@ -11,6 +11,9 @@ public class PlayerCtrl : SaiMonoBehaviour
     public PlayerCamera PlayerCamera;
     public PlayerAnimation PlayerAnimation;
     public PlayerWeapon PlayerWeapon;
+    public PlayerInteract PlayerInteract;
+
+    public PlayerCharacter PlayerCharacter;
 
     public Transform PlayerTransform;
     public Transform MainCamera;
@@ -28,6 +31,9 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerCamera();
         this.LoadPlayerAnimation();
         this.LoadPlayerWeapon();
+        this.LoadPlayerInteract();
+
+        this.LoadPlayerCharacter();
 
         this.LoadPlayerTransform();
         this.LoadMainCamera();
@@ -95,6 +101,24 @@ public class PlayerCtrl : SaiMonoBehaviour
         {
             this.PlayerWeapon = GetComponentInChildren<PlayerWeapon>();
             Debug.LogWarning(gameObject.name + ": LoadPLayerWeapon", gameObject);
+        }
+    }
+
+    protected virtual void LoadPlayerInteract()
+    {
+        if (this.PlayerInteract == null)
+        {
+            this.PlayerInteract = GetComponentInChildren<PlayerInteract>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerInteract", gameObject);
+        }
+    }
+
+    protected virtual void LoadPlayerCharacter()
+    {
+        if (this.PlayerInteract == null)
+        {
+            this.PlayerCharacter = GetComponentInChildren<PlayerCharacter>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerCharacter", gameObject);
         }
     }
 

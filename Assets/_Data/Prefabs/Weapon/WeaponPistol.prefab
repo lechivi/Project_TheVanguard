@@ -9893,6 +9893,7 @@ MonoBehaviour:
   weaponName: pistol
   weaponslot: 1
   WeaponType: 1
+  ShotGunType: 0
   ForceRaycast: 0
   recoil: {fileID: -2219018078987369080}
   magazine: {fileID: 0}

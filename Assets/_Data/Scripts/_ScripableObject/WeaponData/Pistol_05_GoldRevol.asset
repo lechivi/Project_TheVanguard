@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Pistol_05_GoldRevol
   m_EditorClassIdentifier: 
+  ItemName: Gold Revol
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 1
-  WeaponName: Gold Revol
   Icon: {fileID: 7053572165255466329, guid: 6cb3ffaf521b6ff4b8687adedcb28b85, type: 3}
   Model: {fileID: 7218872523502659211, guid: 6a097ee736dbf1c4d9c2134e8e6fcee4, type: 3}
   rangedDamage: 50
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 119
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

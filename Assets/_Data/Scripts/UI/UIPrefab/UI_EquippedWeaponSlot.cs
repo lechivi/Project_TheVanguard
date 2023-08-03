@@ -4,18 +4,23 @@ using UnityEngine.UI;
 
 public class UI_EquippedWeaponSlot : UI_WeaponSlot
 {
+    [Header("REF_")]
     [SerializeField] private TMP_Text indexText;
     [SerializeField] private TMP_Text equippedText;
     [SerializeField] private Button equipButton;
-    [SerializeField] UI_EquippedListManager equippedListManager;
+    [SerializeField] private UI_Inv_EquippedList equippedList;
 
-    private void Awake()
+    protected override void LoadComponent()
     {
-        this.equippedListManager.GetComponentInParent<UI_EquippedListManager>();
+        base.LoadComponent();
+        if (this.equippedList == null)
+            this.equippedList = transform.GetComponentInParent<UI_Inv_EquippedList>();
     }
 
     protected override void OnEnable()
     {
+        base.OnEnable();
+
         this.SetSelected(false);
         this.SetEquipped(false);
         this.indexText.SetText((transform.GetSiblingIndex() + 1).ToString());
@@ -33,7 +38,7 @@ public class UI_EquippedWeaponSlot : UI_WeaponSlot
     #region BUTTON ClICK EVENT
     public void OnEquipButtonClicked()
     {
-        this.equippedListManager.SetEquipSlot(transform.GetSiblingIndex());
+        this.equippedList.SetEquipSlot(transform.GetSiblingIndex());
     }
 
     public void OnSwitchButtobClicked()
@@ -48,7 +53,7 @@ public class UI_EquippedWeaponSlot : UI_WeaponSlot
 
     public void OnDropButtonClicked()
     {
-        PlayerWeaponManager.Instance.RemoveWeaponFromEquipped(transform.GetSiblingIndex());
+        PlayerWeaponManager.Instance.RemoveWeaponFromEquipped(transform.GetSiblingIndex(), true);
         this.SetSelected(false);
         GetComponentInChildren<UI_DraggableItem>().ResetSlot();
     }

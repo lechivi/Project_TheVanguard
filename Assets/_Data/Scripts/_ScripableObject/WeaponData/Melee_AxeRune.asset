@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_AxeRune
   m_EditorClassIdentifier: 
-  WeaponType: 5
-  WeaponName: Rune Axe
+  ItemName: Rune Axe
+  ItemValue: 123
+  ItemType: 1
   Icon: {fileID: 7346433223657001357, guid: bd64a8f99b1e5d5438194e23c454d8b2, type: 3}
   Model: {fileID: 636997839080171924, guid: 561af882ceb7e1548af328ac0e53e2b9, type: 3}
+  WeaponType: 5
   rangedDamage: 0
   fireRate: 0
   accuracy: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0

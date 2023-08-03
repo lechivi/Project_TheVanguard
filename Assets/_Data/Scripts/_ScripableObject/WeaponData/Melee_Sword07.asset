@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Sword07
   m_EditorClassIdentifier: 
+  ItemName: Sword 07
+  ItemValue: 0
+  ItemType: 1
   WeaponType: 5
-  WeaponName: Sword07
   Icon: {fileID: 9027509367366604657, guid: a69ee0140bcb2c848a6db8e6da1ccf17, type: 3}
   Model: {fileID: 3578120688795125572, guid: e9c2bf3ebdaea2a44bfc6b5b381580a7, type: 3}
   rangedDamage: 0
@@ -25,4 +27,3 @@ MonoBehaviour:
   range: 0
   meleeDamage: 0
   swingSpeed: 0
-  value: 0
