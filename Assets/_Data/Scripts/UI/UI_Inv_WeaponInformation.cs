@@ -81,10 +81,8 @@ public class UI_Inv_WeaponInformation : SaiMonoBehaviour
             this.itemAttributeList[2].Show();
             this.itemAttributeList[3].SetAttributeText("Magazine size", weaponData.MagazineSize.ToString());
             this.itemAttributeList[3].Show();
-            this.itemAttributeList[4].SetAttributeText("Reload Time", weaponData.ReloadTime.ToString());
+            this.itemAttributeList[4].SetAttributeText("Range", weaponData.Range.ToString());
             this.itemAttributeList[4].Show();
-            this.itemAttributeList[5].SetAttributeText("Range", weaponData.Range.ToString());
-            this.itemAttributeList[5].Show();
         }
 
         LayoutRebuilder.ForceRebuildLayoutImmediate(GetComponent<RectTransform>());

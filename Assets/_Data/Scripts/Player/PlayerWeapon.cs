@@ -7,6 +7,7 @@ public class PlayerWeapon : PlayerAbstract
     public PlayerWeaponManager PlayerWeaponManager;
     public PlayerWeaponActiveOld PlayerWeaponActive;
     public PlayerWeaponReload PlayerWeaponReload;
+    public  PlayerRigAnimationEvents animationEvents;
 
     public Animator RigAnimator;
 

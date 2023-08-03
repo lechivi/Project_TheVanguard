@@ -12,18 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Shotgun_01_SlowHand
   m_EditorClassIdentifier: 
-  ItemName: Slow Hand
+  ItemName: 
   ItemValue: 0
-  ItemType: 1
-  WeaponType: 3
+  ItemType: 0
   Icon: {fileID: 4976755378165979344, guid: ce383daae94ac3c42a100cc1688a9354, type: 3}
-  Model: {fileID: 8731942969455852540, guid: 0bcd8e49e09444d41b6df33484a505ef, type: 3}
-  rangedDamage: 0
-  fireRate: 0
-  accuracy: 0
+  Model: {fileID: 8824270345280385828, guid: 9b1b0f181b8e98c448b95e787d8f0c97, type: 3}
+  WeaponType: 3
+  ShotGunType: 2
+  timePerFireRate: 0
+  fireRate: 4
+  bulletSpeed: 10000
+  timeDelayPerShot: 1.5
   ammoType: 3
-  magazineSize: 0
-  reloadTime: 0
+  ammoPerShot: 8
+  ammo: 6
+  magazineSize: 6
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads:
+  - -0.05
+  - 0.05
+  - -0.05
+  - 0.05
   meleeDamage: 0
   swingSpeed: 0

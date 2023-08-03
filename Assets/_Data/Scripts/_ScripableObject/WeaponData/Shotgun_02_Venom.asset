@@ -12,18 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Shotgun_02_Venom
   m_EditorClassIdentifier: 
-  ItemName: Venom
+  ItemName: 
   ItemValue: 0
-  ItemType: 1
-  WeaponType: 3
+  ItemType: 0
   Icon: {fileID: 6565743542417853683, guid: 0d49b1c0889930645971e272fb0ecfae, type: 3}
-  Model: {fileID: 7231918073048087870, guid: d85cca080094f534da04553da840a7e5, type: 3}
-  rangedDamage: 0
+  Model: {fileID: 8824270345280385828, guid: 70c5dd1609abdde478d4c9bde2200bb9, type: 3}
+  WeaponType: 3
+  ShotGunType: 1
+  timePerFireRate: 0
   fireRate: 0
-  accuracy: 0
+  bulletSpeed: 10000
+  timeDelayPerShot: 1
   ammoType: 3
-  magazineSize: 0
-  reloadTime: 0
+  ammoPerShot: 8
+  ammo: 2
+  magazineSize: 2
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads:
+  - -0.05
+  - 0.05
+  - -0.05
+  - 0.05
   meleeDamage: 0
   swingSpeed: 0

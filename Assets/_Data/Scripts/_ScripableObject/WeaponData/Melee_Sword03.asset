@@ -12,18 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Sword03
   m_EditorClassIdentifier: 
-  ItemName: Sword 03
+  ItemName: 
   ItemValue: 0
   ItemType: 1
-  WeaponType: 5
   Icon: {fileID: 365690021235385015, guid: 09d266e890bfd5e4ab667c96100e4a7b, type: 3}
   Model: {fileID: 7116092528582663203, guid: ca9434768dbc3a84d90379a669ca1fb7, type: 3}
+  WeaponType: 5
   rangedDamage: 0
+  timeDelayShot: 0
   fireRate: 0
-  accuracy: 0
+  bulletSpeed: 0
   ammoType: 0
+  ammoPerShot: 0
+  ammo: 0
+  maxAmmo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

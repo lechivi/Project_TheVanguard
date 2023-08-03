@@ -5,6 +5,6 @@ using UnityEngine;
 public enum ShotGunType
 {
     None,
-    ShotGun2Shot,
-    ShotgunSuper
+    Venom,
+    Slowhand
 }

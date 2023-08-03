@@ -1,4 +1,5 @@
 ﻿using Cinemachine.Utility;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,40 +26,50 @@ public class PlayerAim : PlayerAbstract
         base.Awake();
     }
 
+
     private void Update()
     {
-      /*  if (Input.GetMouseButtonDown(0))
-        {
-            Invoke("reload_pershot", 0.1f);
-        }*/
         if (!playerCtrl.PlayerLocomotion.Is1D)
         {
-            RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
             AimlookMain.position = AimLookatCam.position;
-            AimWeaponAnimator();
-            if(raycastWeapon && raycastWeapon.WeaponType == WeaponType.SniperRifle)
-            {
-                AimWeaponSCope();
-            }
+            AimWeapon();
         }
         else
         {
             HandleBodyAim1D();
         }
 
+        if (!isAim)
+        {
+            playerCtrl.PlayerCamera.ChangePOVFPS(40);
+            if (playerCtrl.PlayerCamera.FPSCam.enabled)
+            {
+                playerCtrl.PlayerCamera.ChangeSpeedFPSCam(300f, 300f);
+            }
+            else
+            {
+                playerCtrl.PlayerCamera.ChangeSpeedTPSCam(300f, 1.5f);
+            }
+        }
+
     }
 
-
-    private void HandleBodyAim1D()
+    public void AimWeapon()
     {
-        Vector3 ball = this.playerCtrl.PlayerTransform.position + this.playerCtrl.PlayerTransform.forward * distanceLook1D;
-        ball.y = AimLookatCam.position.y;
-        AimlookMain.position = ball;
-    }
-
-    private void AimWeaponAnimator()
-    {
-        rigLayer.SetBool("aim_weapon", isAim);
+        RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        if (raycastWeapon != null)
+        {
+            rigLayer.SetBool("aim_" + raycastWeapon.Weapon.WeaponData.WeaponType, isAim);
+            if (raycastWeapon && raycastWeapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
+            {
+                AimWeaponSCope();
+                return;
+            }
+            if(isAim)
+            {
+                playerCtrl.PlayerCamera.ChangePOVFPS(35);
+            }
+        }
     }
 
     private void AimWeaponSCope()
@@ -75,6 +86,13 @@ public class PlayerAim : PlayerAbstract
             scope.SetActive(false);
         }
     }
+    private void HandleBodyAim1D()
+    {
+        Vector3 ball = this.playerCtrl.PlayerTransform.position + this.playerCtrl.PlayerTransform.forward * distanceLook1D;
+        ball.y = AimLookatCam.position.y;
+        AimlookMain.position = ball;
+    }
+
 
     public IEnumerator AimDuration(float second)
     {
@@ -83,11 +101,7 @@ public class PlayerAim : PlayerAbstract
         cameraMain.cullingMask &= ~(1 << 7);
         cameraMain.cullingMask &= ~(1 << 6);
         scope.SetActive(true);
+        playerCtrl.PlayerCamera.ChangePOVFPS(10);
     }
 
-    public void reload_pershot()
-    { // only type ShotGunSuper
-        if (playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload) return;
-        rigLayer.SetTrigger("reload_pershot");
-    }
 }

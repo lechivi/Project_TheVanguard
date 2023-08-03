@@ -105,17 +105,15 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleAttackInput()
     {
-        /*RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
-        if (weapon == null) return;*/
-
-        //if (this.AttackInput)
-        //{
-        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
-        //}
-        //else if (!this.AttackInput)
-        //{
-        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
-        //}
+        if (playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
+        if (this.AttackInput)
+        {
+            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
+        }
+        else if (!this.AttackInput)
+        {
+            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
+        }
     }
 
     private void HandleCameraInput()
@@ -149,7 +147,7 @@ public class PlayerInput : PlayerAbstract
         RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
         if (weapon)
         {
-            if (ReloadInput || weapon.ammo <= 0)
+            if (ReloadInput || weapon.Weapon.WeaponData.Ammo <= 0)
             {
                 playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon();
                 ReloadInput = false;

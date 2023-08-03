@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.Rendering.VirtualTexturing;
 
 public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 {
@@ -22,6 +23,9 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public bool isHolster;
     public PlayerCamera playerCamera;
     public bool iscanFire;
+    public bool isDelay = false;
+    private float timedelta = 0;
+    public float Timedelay;
 
     protected override void Awake()
     {
@@ -54,12 +58,19 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
             SetActiveWeapon(Weaponslot.Secondary);
         }
         CanfireCondition();
-        //Debug.Log(PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsSprinting && !PlayerWeapon.PlayerWeaponReload.isReload);
+        /*  if (Input.GetMouseButtonDown(0))
+          {
+              isOneclick = true;
+          }
+          if (Input.GetMouseButtonUp(0))
+          {
+              isOneclick= false;
+          }*/
     }
 
     public void CanfireCondition()
     {
-        if ( !isHolster && !PlayerWeapon.PlayerWeaponReload.isReload)
+        if (!isHolster && !PlayerWeapon.PlayerWeaponReload.isReload && !isDelay)
         {
             iscanFire = true;
         }
@@ -81,29 +92,41 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         }
         return equipped_weapon[index];
     }
+
     public void HandleFiring()
     {
         var weaponRaycast = GetWeapon(ActiveWeaponIndex);
+        if (weaponRaycast &&( weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle || weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Venom))
+        {
+            DelayPerShot(weaponRaycast.Weapon.WeaponData.TimeDelayPerShot);
+        }
         if (weaponRaycast && iscanFire)
         {
             if (Input.GetMouseButtonDown(0))
             {
                 weaponRaycast.FireBullet(crossHairTarget.position);
-                Debug.Log("Fire");
+                if (weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Slowhand)
+                {
+                    DelayShotgun();
+                }
+                if (weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle || weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Venom)
+                {
+                    SetisDelay(true);
+                }
             }
-            if (weaponRaycast.WeaponType == WeaponType.Shotgun)
+            if (weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.Shotgun || weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
             {
                 weaponRaycast.UpdateBullets();
                 return;
             }
 
             //
+
             if (isFiring)
             {
                 weaponRaycast.UpdateFiring(crossHairTarget.position);
 
             }
-
             weaponRaycast.UpdateBullets();
             if (!isFiring)
             {
@@ -123,7 +146,6 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         }
         else
         {
-            Debug.Log("hello");
             StartCoroutine(HolsterWeapon(ActiveWeaponIndex));
         }
     }
@@ -133,27 +155,19 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         int index = (int)newWeapon.weaponslot;
         var originalweaponRaycast = GetWeapon(ActiveWeaponIndex);
         var weaponRaycast = GetWeapon(index);
-        /* if (weaponRaycast)
-         {
-             //Destroy(weaponRaycast.gameObject);
-         }*/
 
         if (index == ActiveWeaponIndex)
         {
-            originalweaponRaycast.ammo = weaponRaycast.maxAmmo;
+            originalweaponRaycast.Weapon.WeaponData.Ammo = weaponRaycast.Weapon.WeaponData.MagazineSize;
             return;
         }
         Debug.Log("newWeapon");
         weaponRaycast = newWeapon;
-        // weaponRaycast.transform.parent = weaponSlots[index];
         weaponRaycast.transform.SetParent(weaponSlots[index], false);
         weaponRaycast.recoil.playerTPSCam = playerCamera.TPSCam;
         weaponRaycast.recoil.playerFPSCam = playerCamera.FPSCam;
         weaponRaycast.recoil.rigController = rigController;
 
-        // weaponRaycast.transform.localPosition = Vector3.zero;
-        // weaponRaycast.transform.localRotation = Quaternion.identity;
-        // rigController.Play("equip_" + weaponRaycast.weaponName);
         equipped_weapon[index] = weaponRaycast;
         ActiveWeaponIndex = index;
         SetActiveWeapon(newWeapon.weaponslot);
@@ -207,5 +221,25 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
             while (rigController.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
             isHolster = false;
         }
+    }
+
+    public void DelayPerShot(float timedelay)
+    {
+        timedelta += Time.deltaTime;
+        if (timedelta < timedelay) return;
+        timedelta = 0;
+        SetisDelay(false);
+    }
+
+    public void DelayShotgun()
+    {
+        PlayerWeapon.RigAnimator.SetTrigger("reload_pershot");
+        timedelta = 0;
+        SetisDelay(true);
+    }
+
+    public void SetisDelay(bool isDelay)
+    {
+        this.isDelay = isDelay;
     }
 }

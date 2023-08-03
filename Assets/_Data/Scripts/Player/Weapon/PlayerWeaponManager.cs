@@ -402,4 +402,5 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (this.currentWeaponIndex < 0 && this.equippedWeapons.GetList()[this.currentWeaponIndex] == null) return null;
         return this.equippedWeapons.GetList()[this.currentWeaponIndex];
     }
+
 }

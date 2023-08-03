@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class RecoilWeapon : MonoBehaviour
 {
+    public NoiseSettings SniperNoiSetting;
     public NoiseSettings FPSNoiseSetting;
     public NoiseSettings TPSNoiseSetting;
     public CinemachineImpulseSource CinemachineImpulse;
@@ -21,10 +22,13 @@ public class RecoilWeapon : MonoBehaviour
     public int index;
     public int recoilFPS;
 
+    public RaycastWeapon raycastWeapon;
+
     protected void Awake()
     {
         CinemachineImpulse = GetComponent<CinemachineImpulseSource>();
         cameraShake = GetComponent<CinemachineImpulseSource>();
+        raycastWeapon = GetComponent<RaycastWeapon>();
     }
 
     public void ResetIndex()
@@ -55,6 +59,12 @@ public class RecoilWeapon : MonoBehaviour
             {
                 TPSRecoil();
                 ChangeNoiseSetiing(TPSNoiseSetting);
+            }
+
+            if(raycastWeapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
+            {
+                ChangeNoiseSetiing(SniperNoiSetting);
+                return;
             }
             if (playerFPSCam.gameObject.activeInHierarchy == true)
             {

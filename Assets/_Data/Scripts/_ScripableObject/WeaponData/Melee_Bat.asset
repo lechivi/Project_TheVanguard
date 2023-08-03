@@ -12,18 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Bat
   m_EditorClassIdentifier: 
-  ItemName: Baseball Bat
-  ItemValue: 456
-  ItemType: 1
+  ItemName: 
+  ItemValue: 0
+  ItemType: 0
   Icon: {fileID: 1949832082346366202, guid: 65c350b15cc960047b10ee2510a29efe, type: 3}
   Model: {fileID: 5551165291098977645, guid: 079aed8600f50f14cbb99dc5ad3bce30, type: 3}
-  WeaponType: 5
+  WeaponType: 6
   rangedDamage: 0
   fireRate: 0
-  accuracy: 0
+  bulletSpeed: 0
+  accuracy: []
   ammoType: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  timeDelayShot: 0
   meleeDamage: 0
   swingSpeed: 0

@@ -7,15 +7,13 @@ using UnityEngine.UIElements;
 public class PlayerCamera : PlayerAbstract
 {
     public Transform cameraLookat;
-    public AxisState xAxis;
-    public AxisState yAxis;
     public CinemachineFreeLook TPSCam;
     public CinemachineVirtualCamera FPSCam;
     public CinemachineCameraOffset CameraOffsetTPS;
     public bool originalTPSCam;
     public Transform player;
     public Vector3 currentRotation;
-    float y;
+    public int POV;
     protected override void Awake()
     {
         TPSCam.gameObject.SetActive(true);
@@ -23,18 +21,19 @@ public class PlayerCamera : PlayerAbstract
         FPSCam.gameObject.SetActive(false);
     }
 
-  /*  public void ChangeCamera()
-    {
-        if (TPSCam.gameObject.activeInHierarchy == true)
-        {
-            ChangeFPSCam();
-        }
 
-        else if (FPSCam.gameObject.activeInHierarchy == true)
-        {
-            ChangeTPSCam();
-        }
-    }*/
+    /*  public void ChangeCamera()
+      {
+          if (TPSCam.gameObject.activeInHierarchy == true)
+          {
+              ChangeFPSCam();
+          }
+
+          else if (FPSCam.gameObject.activeInHierarchy == true)
+          {
+              ChangeTPSCam();
+          }
+      }*/
     public void HandleCameraOriginal()
     {
         if (TPSCam.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
@@ -47,7 +46,7 @@ public class PlayerCamera : PlayerAbstract
         }
 
     }
-    
+
 
     public void ChangeFPSCam()
     {
@@ -61,4 +60,23 @@ public class PlayerCamera : PlayerAbstract
         TPSCam.gameObject.SetActive(true);
         FPSCam.gameObject.SetActive(false);
     }
+
+    public void ChangeSpeedFPSCam(float xAxis, float yAxis)
+    {
+        FPSCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = xAxis;
+        FPSCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = yAxis;
+    }
+
+    public void ChangeSpeedTPSCam(float xAxis, float yAxis)
+    {
+        TPSCam.m_XAxis.m_MaxSpeed = xAxis;
+        TPSCam.m_YAxis.m_MaxSpeed = yAxis;
+        TPSCam.m_Lens.FieldOfView = 40;
+    }
+
+    public void ChangePOVFPS(int pov)
+    {
+        FPSCam.m_Lens.FieldOfView = pov;
+    }
+
 }
