@@ -7,12 +7,10 @@ using UnityEngine;
 public class PlayerLocomotion : PlayerAbstract
 {
     public PlayerWeaponActiveOld weaponActive;
-    public Animator animatorPlayer;
-    public Animator rigLayer;
     public OnEventAnimator Onanimatormove;
 
     [Header("Movement Flag")]
-    public bool isJumping;
+    public bool IsJumping;
     public bool IsSprinting;
     public bool IsGrounded;
     public bool Is1D;
@@ -47,6 +45,10 @@ public class PlayerLocomotion : PlayerAbstract
         }
     }
 
+    private void OnDisable()
+    {
+        this.ResetLocomotion();
+    }
 
     public void HanldeAllMovementUpdate()
     {
@@ -89,7 +91,7 @@ public class PlayerLocomotion : PlayerAbstract
         this.movementDirection.Normalize();
 
         Vector3 velocity = this.movementDirection;
-        this.playerCtrl.CharacterController.Move(velocity * Time.deltaTime);
+        this.playerCtrl.CharacterController.Move(this.speed * velocity * Time.deltaTime);
     }
     private void HandleSprinting()
     {
@@ -98,7 +100,7 @@ public class PlayerLocomotion : PlayerAbstract
 
         if (currentweapon != null)
         {
-            rigLayer.SetBool("isSprinting", IsSprinting);
+            this.playerCtrl.RigAnimator.SetBool("isSprinting", IsSprinting);
         }
 
     }
@@ -114,7 +116,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     private void HandleUpdateMove()
     {
-        if (isJumping)
+        if (IsJumping)
         {
             UpdateInAir();
         }
@@ -147,7 +149,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     {
-        var ray = new Ray(transform.position, Vector3.down);
+        var ray = new Ray(this.playerCtrl.PlayerTransform.position, Vector3.down);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
         {
             var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
@@ -165,7 +167,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     public Vector3 CalculateAircontrol()
     {
-        return ((transform.forward * playerCtrl.PlayerInput.MovementInput.y) + (transform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
+        return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
     }
 
     private void HandleAnimatorMoveEvent()
@@ -179,9 +181,9 @@ public class PlayerLocomotion : PlayerAbstract
         Vector3 displacement = velocity * Time.fixedDeltaTime;
         displacement += CalculateAircontrol();
         playerCtrl.CharacterController.Move(displacement);
-        isJumping = !this.playerCtrl.CharacterController.isGrounded;
+        IsJumping = !this.playerCtrl.CharacterController.isGrounded;
         rootMotion = Vector3.zero;
-        animatorPlayer.SetBool("IsJumping", isJumping);
+        this.playerCtrl.Animator.SetBool("IsJumping", IsJumping);
     }
     private void UpdateOnGround()
     {
@@ -197,7 +199,7 @@ public class PlayerLocomotion : PlayerAbstract
     }
     public void Jump()
     {
-        if (!isJumping)
+        if (!IsJumping)
         {
             float jumpvelocity = Mathf.Sqrt(2 * gravity * jumpheight);
             SetInAir(jumpvelocity);
@@ -206,9 +208,15 @@ public class PlayerLocomotion : PlayerAbstract
 
     private void SetInAir(float jumpvelocity)
     {
-        isJumping = true;
+        IsJumping = true;
         velocity = playerCtrl.Animator.velocity * jumpDamp * speed;
         velocity.y = jumpvelocity;
-        animatorPlayer.SetBool("IsJumping", true);
+        this.playerCtrl.Animator.SetBool("IsJumping", true);
+    }
+
+    public void ResetLocomotion()
+    {
+        this.IsJumping = false;
+        this.IsSprinting = false;
     }
 }

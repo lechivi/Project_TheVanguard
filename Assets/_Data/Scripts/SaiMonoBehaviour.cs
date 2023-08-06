@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class SaiMonoBehaviour : MonoBehaviour
@@ -11,7 +10,7 @@ public class SaiMonoBehaviour : MonoBehaviour
 
     protected virtual void Reset()
     {
-        this.LoadComponent();
+        //For overrite
     }
 
     protected virtual void LoadComponent()
@@ -19,5 +18,23 @@ public class SaiMonoBehaviour : MonoBehaviour
         //For overrite
     }
 
-    
+    public void ButtonLoadComponent()
+    {
+        this.LoadComponent();
+    }
+}
+
+[CustomEditor(typeof(SaiMonoBehaviour), true)]
+public class SaiCustomInscpector : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        SaiMonoBehaviour saiMono = (SaiMonoBehaviour)target;
+        if (GUILayout.Button("Load Component"))
+        {
+            saiMono.ButtonLoadComponent();
+        }
+
+        DrawDefaultInspector();
+    }
 }

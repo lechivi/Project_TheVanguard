@@ -193,18 +193,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Attack"",
+                    ""name"": ""Crounch"",
                     ""type"": ""Button"",
-                    ""id"": ""8b6bd752-a750-44b6-ac6e-9e0cc05437b2"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""ChangeCamera"",
-                    ""type"": ""Button"",
-                    ""id"": ""618b7759-659d-4970-9c2c-c2d06d779d63"",
+                    ""id"": ""d67fb12c-5a26-4996-9dc1-da939e2954cd"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -220,18 +211,54 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Aim"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
-                    ""id"": ""d47f51bc-70c2-428d-a5e7-c86b40965a50"",
+                    ""id"": ""941d12e1-2997-4449-830a-4292eb1755b1"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""ChangeCamera"",
                     ""type"": ""Button"",
-                    ""id"": ""941d12e1-2997-4449-830a-4292eb1755b1"",
+                    ""id"": ""618b7759-659d-4970-9c2c-c2d06d779d63"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b6bd752-a750-44b6-ac6e-9e0cc05437b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Aim"",
+                    ""type"": ""Button"",
+                    ""id"": ""d47f51bc-70c2-428d-a5e7-c86b40965a50"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpecialSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3c25121-eefb-43c6-ab7e-dcad4dfd2915"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BattleSkill"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7470da3-fa34-4686-b1b1-dd012ec25d94"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -285,33 +312,22 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c8e1cd16-4127-474b-bd93-1896cec57c84"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d97fc722-0183-4a4b-9734-17ea250e7603"",
-                    ""path"": ""<Keyboard>/v"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""ChangeCamera"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9e56eb62-d37b-47f0-99cb-292491a71576"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a984035a-a8bd-41d9-a1b0-5343d320890e"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Reload"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -324,6 +340,61 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
                     ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11e8fba1-4fc2-410f-a54a-1a423c777e1f"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Aim"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2b3a5104-099a-421a-bb6c-a4705c326996"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""SpecialSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4eb3b820-1962-4b89-b401-6c225ce58efd"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""SpecialSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8e1cd16-4127-474b-bd93-1896cec57c84"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3afef845-676e-43d8-9295-bfe555649ab5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -346,6 +417,72 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19de321c-7c5a-40af-88d7-3c8b7299445b"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""BattleSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dcb446c4-11f8-4815-8726-acacc0540397"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""BattleSkill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cf1c63e7-77dc-4278-9a52-cc3be598fb73"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Crounch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a2dd2f3-43dd-4fd1-9283-01420d5e6c47"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Crounch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d97fc722-0183-4a4b-9734-17ea250e7603"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""ChangeCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bc3f654a-b892-402b-82c5-7bd5de4836f3"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""ChangeCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -424,11 +561,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerAction = asset.FindActionMap("PlayerAction", throwIfNotFound: true);
         m_PlayerAction_Sprint = m_PlayerAction.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerAction_Jump = m_PlayerAction.FindAction("Jump", throwIfNotFound: true);
-        m_PlayerAction_Attack = m_PlayerAction.FindAction("Attack", throwIfNotFound: true);
-        m_PlayerAction_ChangeCamera = m_PlayerAction.FindAction("ChangeCamera", throwIfNotFound: true);
+        m_PlayerAction_Crounch = m_PlayerAction.FindAction("Crounch", throwIfNotFound: true);
         m_PlayerAction_Reload = m_PlayerAction.FindAction("Reload", throwIfNotFound: true);
-        m_PlayerAction_Aim = m_PlayerAction.FindAction("Aim", throwIfNotFound: true);
         m_PlayerAction_Interact = m_PlayerAction.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerAction_ChangeCamera = m_PlayerAction.FindAction("ChangeCamera", throwIfNotFound: true);
+        m_PlayerAction_Attack = m_PlayerAction.FindAction("Attack", throwIfNotFound: true);
+        m_PlayerAction_Aim = m_PlayerAction.FindAction("Aim", throwIfNotFound: true);
+        m_PlayerAction_SpecialSkill = m_PlayerAction.FindAction("SpecialSkill", throwIfNotFound: true);
+        m_PlayerAction_BattleSkill = m_PlayerAction.FindAction("BattleSkill", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_MenuOpenClose = m_UI.FindAction("MenuOpenClose", throwIfNotFound: true);
@@ -534,22 +674,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActionActions m_PlayerActionActionsCallbackInterface;
     private readonly InputAction m_PlayerAction_Sprint;
     private readonly InputAction m_PlayerAction_Jump;
-    private readonly InputAction m_PlayerAction_Attack;
-    private readonly InputAction m_PlayerAction_ChangeCamera;
+    private readonly InputAction m_PlayerAction_Crounch;
     private readonly InputAction m_PlayerAction_Reload;
-    private readonly InputAction m_PlayerAction_Aim;
     private readonly InputAction m_PlayerAction_Interact;
+    private readonly InputAction m_PlayerAction_ChangeCamera;
+    private readonly InputAction m_PlayerAction_Attack;
+    private readonly InputAction m_PlayerAction_Aim;
+    private readonly InputAction m_PlayerAction_SpecialSkill;
+    private readonly InputAction m_PlayerAction_BattleSkill;
     public struct PlayerActionActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Sprint => m_Wrapper.m_PlayerAction_Sprint;
         public InputAction @Jump => m_Wrapper.m_PlayerAction_Jump;
-        public InputAction @Attack => m_Wrapper.m_PlayerAction_Attack;
-        public InputAction @ChangeCamera => m_Wrapper.m_PlayerAction_ChangeCamera;
+        public InputAction @Crounch => m_Wrapper.m_PlayerAction_Crounch;
         public InputAction @Reload => m_Wrapper.m_PlayerAction_Reload;
-        public InputAction @Aim => m_Wrapper.m_PlayerAction_Aim;
         public InputAction @Interact => m_Wrapper.m_PlayerAction_Interact;
+        public InputAction @ChangeCamera => m_Wrapper.m_PlayerAction_ChangeCamera;
+        public InputAction @Attack => m_Wrapper.m_PlayerAction_Attack;
+        public InputAction @Aim => m_Wrapper.m_PlayerAction_Aim;
+        public InputAction @SpecialSkill => m_Wrapper.m_PlayerAction_SpecialSkill;
+        public InputAction @BattleSkill => m_Wrapper.m_PlayerAction_BattleSkill;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -565,21 +711,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
-                @Attack.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
-                @Attack.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
-                @Attack.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
-                @ChangeCamera.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
-                @ChangeCamera.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
-                @ChangeCamera.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
+                @Crounch.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnCrounch;
+                @Crounch.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnCrounch;
+                @Crounch.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnCrounch;
                 @Reload.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnReload;
                 @Reload.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnReload;
                 @Reload.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnReload;
-                @Aim.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
-                @Aim.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
-                @Aim.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
                 @Interact.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnInteract;
                 @Interact.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnInteract;
                 @Interact.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnInteract;
+                @ChangeCamera.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
+                @ChangeCamera.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnChangeCamera;
+                @Attack.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
+                @Attack.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
+                @Attack.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAttack;
+                @Aim.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
+                @Aim.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
+                @Aim.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnAim;
+                @SpecialSkill.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnSpecialSkill;
+                @SpecialSkill.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnSpecialSkill;
+                @SpecialSkill.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnSpecialSkill;
+                @BattleSkill.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnBattleSkill;
+                @BattleSkill.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnBattleSkill;
+                @BattleSkill.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnBattleSkill;
             }
             m_Wrapper.m_PlayerActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -590,21 +745,30 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
-                @Attack.started += instance.OnAttack;
-                @Attack.performed += instance.OnAttack;
-                @Attack.canceled += instance.OnAttack;
-                @ChangeCamera.started += instance.OnChangeCamera;
-                @ChangeCamera.performed += instance.OnChangeCamera;
-                @ChangeCamera.canceled += instance.OnChangeCamera;
+                @Crounch.started += instance.OnCrounch;
+                @Crounch.performed += instance.OnCrounch;
+                @Crounch.canceled += instance.OnCrounch;
                 @Reload.started += instance.OnReload;
                 @Reload.performed += instance.OnReload;
                 @Reload.canceled += instance.OnReload;
-                @Aim.started += instance.OnAim;
-                @Aim.performed += instance.OnAim;
-                @Aim.canceled += instance.OnAim;
                 @Interact.started += instance.OnInteract;
                 @Interact.performed += instance.OnInteract;
                 @Interact.canceled += instance.OnInteract;
+                @ChangeCamera.started += instance.OnChangeCamera;
+                @ChangeCamera.performed += instance.OnChangeCamera;
+                @ChangeCamera.canceled += instance.OnChangeCamera;
+                @Attack.started += instance.OnAttack;
+                @Attack.performed += instance.OnAttack;
+                @Attack.canceled += instance.OnAttack;
+                @Aim.started += instance.OnAim;
+                @Aim.performed += instance.OnAim;
+                @Aim.canceled += instance.OnAim;
+                @SpecialSkill.started += instance.OnSpecialSkill;
+                @SpecialSkill.performed += instance.OnSpecialSkill;
+                @SpecialSkill.canceled += instance.OnSpecialSkill;
+                @BattleSkill.started += instance.OnBattleSkill;
+                @BattleSkill.performed += instance.OnBattleSkill;
+                @BattleSkill.canceled += instance.OnBattleSkill;
             }
         }
     }
@@ -669,11 +833,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
-        void OnAttack(InputAction.CallbackContext context);
-        void OnChangeCamera(InputAction.CallbackContext context);
+        void OnCrounch(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
-        void OnAim(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
+        void OnChangeCamera(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnAim(InputAction.CallbackContext context);
+        void OnSpecialSkill(InputAction.CallbackContext context);
+        void OnBattleSkill(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

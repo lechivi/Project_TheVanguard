@@ -12,6 +12,7 @@ public class PlayerManager : PlayerAbstract
         if (this.playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
         this.playerCtrl.PlayerWeapon.PlayerWeaponActive.HandleFiring();
     }
+
     private void LateUpdate()
     {
 

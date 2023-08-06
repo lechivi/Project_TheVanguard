@@ -6,15 +6,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerInput : PlayerAbstract
 {
-
     public Vector2 MovementInput;
     public bool SprintInput;
     public bool JumpInput;
-    public bool AimInput;
-    public bool AttackInput;
-    public bool ChangeCameraInput;
+    public bool CrounchInput;
     public bool ReloadInput;
     public bool InteractInput;
+    public bool ChangeCameraInput;
+    public bool AttackInput;
+    public bool AimInput;
+    public bool SpecialSkillInput;
+    public bool BattleSkillInput;
 
     public bool MenuOpenCloseInput;
 
@@ -34,14 +36,18 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.PlayerAction.Jump.performed += i => this.JumpInput = true;
 
+            this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
+            this.playerControls.PlayerAction.Attack.canceled += i => this.AttackInput = false;
+
             this.playerControls.PlayerAction.Aim.performed += i => this.AimInput = true;
             this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
 
-            this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
-            this.playerControls.PlayerAction.Attack.canceled += i => this.AttackInput = false;
-            this.playerControls.PlayerAction.ChangeCamera.performed += i => this.ChangeCameraInput = true;
             this.playerControls.PlayerAction.Reload.performed += i => this.ReloadInput = true;
             this.playerControls.PlayerAction.Interact.performed += i => this.InteractInput = true;
+            this.playerControls.PlayerAction.ChangeCamera.performed += i => this.ChangeCameraInput = true;
+
+            this.playerControls.PlayerAction.SpecialSkill.performed += i => this.SpecialSkillInput = true;
+            this.playerControls.PlayerAction.BattleSkill.performed += i => this.BattleSkillInput = true;
 
             this.playerControls.UI.MenuOpenClose.performed += i => this.MenuOpenCloseInput = true;
 
@@ -55,19 +61,20 @@ public class PlayerInput : PlayerAbstract
     private void OnDisable()
     {
         this.playerControls?.Disable();
+        this.ResetInput();
     }
 
     public void HandleAllInput()
     {
         this.HandleMovementInput();
         this.HandleSprintInput();
-        // this.HandleJumpInput();
         this.HandleCameraInput();
         this.HandleAttackInput();
         this.HandleReloadInput();
         this.HandleAimInput();
         this.HandleInteractInput();
-
+        this.HandleSpecialSkillInput();
+        this.HandleBattleSkillInput();
         this.HandleMenuOpenCloseInput();
     }
 
@@ -95,24 +102,22 @@ public class PlayerInput : PlayerAbstract
         }
     }
 
-    /*private void HandleJumpInput()
-    {
-        if (this.JumpInput)
-        {
-            this.JumpInput = false;
-        }
-    }*/
-
     private void HandleAttackInput()
     {
-        if (playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
+        //if (playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
+        //if (this.AttackInput)
+        //{
+        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
+        //}
+        //else if (!this.AttackInput)
+        //{
+        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
+        //}
+
         if (this.AttackInput)
         {
-            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
-        }
-        else if (!this.AttackInput)
-        {
-            playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
+            this.playerCtrl.PlayerCombatAction.ActionMouseL();
+            this.AttackInput = false;
         }
     }
 
@@ -180,6 +185,24 @@ public class PlayerInput : PlayerAbstract
         }
     }
 
+    private void HandleSpecialSkillInput()
+    {
+        if (this.SpecialSkillInput)
+        {
+            this.playerCtrl.PlayerCombatAction.SpecialSkill();
+            this.SpecialSkillInput = false;
+        }
+    }
+
+    private void HandleBattleSkillInput()
+    {
+        if (this.BattleSkillInput)
+        {
+            this.playerCtrl.PlayerCombatAction.BattleSkill();
+            this.BattleSkillInput = false;
+        }
+    }
+
     private void HandleMenuOpenCloseInput()
     {
         if (this.MenuOpenCloseInput)
@@ -197,10 +220,9 @@ public class PlayerInput : PlayerAbstract
             this.MenuOpenCloseInput = false;
         }
     }
+
     public void SetPlayerInput(bool isActive)
     {
-        this.IsPlayerActive = isActive;
-
         if (isActive)
         {
             //Lock & hide cursor (PauseMenuCanvas disable)
@@ -223,25 +245,17 @@ public class PlayerInput : PlayerAbstract
             this.playerControls.PlayerAction.Disable();
             this.playerCtrl.PlayerCamera.TPSCam.enabled = false;
             this.playerCtrl.PlayerCamera.FPSCam.enabled = false;
+
+            this.ResetInput();
         }
+
+        this.IsPlayerActive = isActive;
     }
 
-    public void TogglePlayerLookActive(bool isActive)
+    public void ResetInput()
     {
-        IsPlayerActive = isActive;
-
-        // Enable or disable the Look action based on the updated bool value
-        if (IsPlayerActive)
-        {
-            this.playerControls.PlayerMovement.Enable();
-            this.playerControls.PlayerAction.Enable();
-        }
-        else
-        {
-            this.playerControls.PlayerMovement.Disable();
-            this.playerControls.PlayerAction.Disable();
-        }
-        this.playerCtrl.PlayerCamera.TPSCam.enabled = isActive;
-        this.playerCtrl.PlayerCamera.FPSCam.enabled = isActive;
+        this.MovementInput = Vector2.zero;
     }
+
+
 }

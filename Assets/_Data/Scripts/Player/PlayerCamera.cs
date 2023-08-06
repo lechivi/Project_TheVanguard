@@ -16,9 +16,12 @@ public class PlayerCamera : PlayerAbstract
     public int POV;
     protected override void Awake()
     {
+        base.Awake();
         TPSCam.gameObject.SetActive(true);
         originalTPSCam = true;
         FPSCam.gameObject.SetActive(false);
+
+        this.SetCameraTarget();
     }
 
 
@@ -79,4 +82,11 @@ public class PlayerCamera : PlayerAbstract
         FPSCam.m_Lens.FieldOfView = pov;
     }
 
+    public void SetCameraTarget()
+    {
+        if (this.playerCtrl.Character == null) return;
+        this.TPSCam.Follow = this.PlayerCtrl.PlayerTransform;
+        this.TPSCam.LookAt = this.PlayerCtrl.Character.TPS_LookAt;
+        this.FPSCam.Follow = this.PlayerCtrl.Character.FPS_Follow;
+    }
 }

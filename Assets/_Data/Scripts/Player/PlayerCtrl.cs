@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCtrl : SaiMonoBehaviour
 {
+    public static PlayerCtrl Instance;
+
     public PlayerAim PlayerAim;
     public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
@@ -12,14 +14,16 @@ public class PlayerCtrl : SaiMonoBehaviour
     public PlayerAnimation PlayerAnimation;
     public PlayerWeapon PlayerWeapon;
     public PlayerInteract PlayerInteract;
-
+    public PlayerCombatAction PlayerCombatAction;
     public PlayerCharacter PlayerCharacter;
-
-    public Transform PlayerTransform;
     public Transform MainCamera;
-    public Animator Animator;
-    public Animator Rigcontroller;
+
+    [Header("TARGET PLAYER")]
+    public Character Character;
+    public Transform PlayerTransform;
     public CharacterController CharacterController;
+    public Animator Animator;
+    public Animator RigAnimator;
 
     protected override void LoadComponent()
     {
@@ -32,13 +36,14 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerAnimation();
         this.LoadPlayerWeapon();
         this.LoadPlayerInteract();
-
+        this.LoadPlayerCombat();
         this.LoadPlayerCharacter();
+        this.LoadMainCamera();
 
         this.LoadPlayerTransform();
-        this.LoadMainCamera();
-        this.LoadAnimator();
         this.LoadCharacterController();
+        this.LoadAnimator();
+        this.LoadRigAnimator();
     }
 
     protected virtual void LoadPlayerAim()
@@ -113,22 +118,21 @@ public class PlayerCtrl : SaiMonoBehaviour
         }
     }
 
+    protected virtual void LoadPlayerCombat()
+    {
+        if (this.PlayerCombatAction == null)
+        {
+            this.PlayerCombatAction = GetComponentInChildren<PlayerCombatAction>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerCombat", gameObject);
+        }
+    }
+
     protected virtual void LoadPlayerCharacter()
     {
         if (this.PlayerInteract == null)
         {
             this.PlayerCharacter = GetComponentInChildren<PlayerCharacter>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerCharacter", gameObject);
-        }
-    }
-
-
-    protected virtual void LoadPlayerTransform()
-    {
-        if (this.PlayerTransform == null)
-        {
-            this.PlayerTransform = transform.parent;
-            Debug.LogWarning(gameObject.name + ": LoadPlayerTransform", gameObject);
         }
     }
 
@@ -141,21 +145,57 @@ public class PlayerCtrl : SaiMonoBehaviour
         }
     }
 
-    protected virtual void LoadAnimator()
+    protected virtual void LoadPlayerTransform()
     {
-        if (this.Animator == null)
+        if (this.Character != null)
         {
-            this.Animator = transform.parent.GetComponent<Animator>();
-            Debug.LogWarning(gameObject.name + ": LoadAnimator", gameObject);
+            this.PlayerTransform = this.Character.CharacterTransform;
+            Debug.LogWarning(gameObject.name + ": LoadPlayerTransform", gameObject);
         }
     }
 
     protected virtual void LoadCharacterController()
     {
-        if (this.CharacterController == null)
+        if (this.Character != null)
         {
-            this.CharacterController = transform.parent.GetComponent<CharacterController>();
+            this.CharacterController = this.Character.CharacterController;
             Debug.LogWarning(gameObject.name + ": LoadCharacterController", gameObject);
         }
+    }
+
+    protected virtual void LoadAnimator()
+    {
+        if (this.Character != null)
+        {
+            this.Animator = this.Character.Animator;
+            Debug.LogWarning(gameObject.name + ": LoadAnimator", gameObject);
+        }
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        PlayerCtrl.Instance = this;
+    }
+
+    protected virtual void LoadRigAnimator()
+    {
+        if (this.Character != null)
+        {
+            this.RigAnimator = this.Character.RigAnimator;
+            Debug.LogWarning(gameObject.name + ": LoadRigAnimator", gameObject);
+        }
+    }
+
+    public void SetCharacter(Character character)
+    {
+        this.Character = character;
+
+        this.LoadPlayerTransform();
+        this.LoadCharacterController();
+        this.LoadAnimator();
+        this.LoadRigAnimator();
+
+        this.PlayerCamera.SetCameraTarget();
     }
 }
