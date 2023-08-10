@@ -28,12 +28,10 @@ public class Character_Xerath : Character
     [SerializeField] private Vector3 b_CameraOffset;
     [SerializeField] private Vector3 a_CameraOffset = new Vector3(1f, 0.12f, -0.25f);
     [SerializeField] private float transformTime = 2.5f;
-    [SerializeField] private float coolDownTime = 20f;
     [SerializeField] private ParticleSystem transformFX;
     [SerializeField] private ParticleSystem timeoutFX;
 
     [SerializeField] private bool isBeta = true;
-    private bool isReady = true;
 
     protected override void LoadComponent()
     {
@@ -171,15 +169,29 @@ public class Character_Xerath : Character
     public override void SpecialSkill()
     {
         base.SpecialSkill();
-        if (this.isReady)
+        if (this.isReadySpecialSkill)
         {
             StartCoroutine(this.TransformationCoroutine());
         }
     }
 
+    public override void SetActiveCharacter()
+    {
+        base.SetActiveCharacter();
+        if (this.isBeta)
+        {
+            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(false);
+        }
+        else
+        {
+            //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
+            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
+        }
+    }
+
     private IEnumerator TransformationCoroutine()
     {
-        this.isReady = false;
+        this.isReadySpecialSkill = false;
         this.b_Animator.SetTrigger("Transformation");
         yield return new WaitForSeconds(0.5f);
 
@@ -196,6 +208,7 @@ public class Character_Xerath : Character
     {
         this.ChangerCameraOffset(false);
         this.SetForm(false);
+        this.SetActiveCharacter();
         this.a_Animator.SetTrigger("Transformation");
 
         this.PlayTransformFX(this.alphaObj.transform.position);
@@ -203,9 +216,10 @@ public class Character_Xerath : Character
 
     private void Devolution()
     {
-        this.isReady = true;
+        this.isCoolingDownSpecicalSkill = true;
         this.ChangerCameraOffset(true);
         this.SetForm(true);
+        this.SetActiveCharacter();
     }
 
     private void PlayTransformFX(Vector3 position)
@@ -246,17 +260,6 @@ public class Character_Xerath : Character
         this.LoadRigAnimator();
         this.LoadTPSLookAt();
         this.LoadFPSFollow();
-
-        PlayerCtrl.Instance.SetCharacter(this);
-        if (isBeta)
-        {
-            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(false);
-        }
-        else
-        {
-            //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
-            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
-        }
     }
 
     private void ChangerCameraOffset(bool isBeta)

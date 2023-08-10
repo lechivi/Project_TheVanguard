@@ -25,6 +25,9 @@ public class PlayerCtrl : SaiMonoBehaviour
     public Animator Animator;
     public Animator RigAnimator;
 
+    [Header("UI")]
+    public UI_Skill_Icon UI_Skill_Icon;
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -178,6 +181,11 @@ public class PlayerCtrl : SaiMonoBehaviour
         PlayerCtrl.Instance = this;
     }
 
+    private void Start()
+    {
+        this.SetUI();
+    }
+
     protected virtual void LoadRigAnimator()
     {
         if (this.Character != null)
@@ -197,5 +205,12 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadRigAnimator();
 
         this.PlayerCamera.SetCameraTarget();
+    }
+
+    public void SetUI()
+    {
+        if (this.Character == null) return;
+
+        this.UI_Skill_Icon.SetSkill(this.Character.CharacterData.SpecialSkillIcon);
     }
 }

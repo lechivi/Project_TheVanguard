@@ -15,29 +15,33 @@ public class UIManager : SaiMonoBehaviour
         base.Awake();
         UIManager.Instance = this;
 
-        this.alwaysOnUICanvas.SetOpenClose(true);
-        this.pauseMenuCanvas.SetOpenClose(false);
-        this.otherUICanvas.SetOpenClose(false);
+        this.alwaysOnUICanvas.SetAlphaCanvasGroup(true);
+
+        this.pauseMenuCanvas.SetActiveGameobject(false);
+        this.otherUICanvas.SetActiveGameobject(false);
     }
 
     public void SetAlwaysOnUICanvasOpen()
     {
-        this.alwaysOnUICanvas.SetOpenClose(true);
-        this.pauseMenuCanvas.SetOpenClose(false);
-        this.otherUICanvas.SetOpenClose(false);
+        this.alwaysOnUICanvas.SetAlphaCanvasGroup(true);
+
+        this.pauseMenuCanvas.SetActiveGameobject(false);
+        this.otherUICanvas.SetActiveGameobject(false);
     }
 
     public void SetPauseMenuCanvasOpen()
     {
-        this.alwaysOnUICanvas.SetOpenClose(false);
-        this.pauseMenuCanvas.SetOpenClose(true);
-        this.otherUICanvas.SetOpenClose(false);
+        this.alwaysOnUICanvas.SetAlphaCanvasGroup(false);
+
+        this.pauseMenuCanvas.SetActiveGameobject(true);
+        this.otherUICanvas.SetActiveGameobject(false);
     }
 
     public void SetOtherUICanvasOpen()
     {
-        this.alwaysOnUICanvas.SetOpenClose(false);
-        this.pauseMenuCanvas.SetOpenClose(false);
-        this.otherUICanvas.SetOpenClose(true);
+        this.alwaysOnUICanvas.SetAlphaCanvasGroup(false);
+
+        this.pauseMenuCanvas.SetActiveGameobject(false);
+        this.otherUICanvas.SetActiveGameobject(true);
     }
 }

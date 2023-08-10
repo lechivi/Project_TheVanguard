@@ -35,17 +35,32 @@ public class CanvasCtrl : SaiMonoBehaviour
         return this.isOpen;
     }
 
-    public void SetOpenClose(bool isOpen)
+    public void SetActiveGameobject(bool isShow)
     {
-        this.isOpen = isOpen;
+        this.isOpen = isShow;
         if (this.isOpen)
         {
-            this.Show();
+            transform.gameObject.SetActive(true);
         }
         else
         {
-            this.Hide();
+            transform.gameObject.SetActive(false);
         }
     }
 
+
+    public void SetAlphaCanvasGroup(bool isShow)
+    {
+        this.isOpen = isShow;
+        if (this.isOpen)
+        {
+            this.canvasGroup.alpha = 1.0f;
+            this.canvasGroup.blocksRaycasts = true;
+        }
+        else
+        {
+            this.canvasGroup.alpha = 0f;
+            this.canvasGroup.blocksRaycasts = false;
+        }
+    }
 }

@@ -8,15 +8,6 @@ public class PickupWeapons : PickupObject
 
     public Weapon Weapon { get => this.weaponPrefab; }
 
-    protected override void Awake()
-    {
-        base.Awake();
-
-        int ignorePlayer = LayerMask.NameToLayer("IgnorePlayer");
-        int playerLayer = LayerMask.NameToLayer("Player");
-        Physics.IgnoreLayerCollision(ignorePlayer, playerLayer, true);
-    }
-
     public void Pickup(PlayerWeaponManager weaponManager)
     {
         if (weaponManager)

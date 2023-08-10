@@ -232,7 +232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerWeapon: {fileID: 5316479939727269776}
-  animationEvents: {fileID: 5316479939765841215}
   leftHand: {fileID: 5824714474580662611}
   isReload: 0
 --- !u!1 &5316479938682305226
@@ -414,7 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5316479938770077035}
   m_Layer: 6
-  m_Name: CameraLookAt
+  m_Name: TPS_LookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -737,48 +736,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 5316479940254961376}
   cameraLookat: {fileID: 0}
-  xAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 0
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: 
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: 0
-    m_MaxValue: 0
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
-  yAxis:
-    Value: 0
-    m_SpeedMode: 0
-    m_MaxSpeed: 0
-    m_AccelTime: 0
-    m_DecelTime: 0
-    m_InputAxisName: 
-    m_InputAxisValue: 0
-    m_InvertInput: 0
-    m_MinValue: 0
-    m_MaxValue: 0
-    m_Wrap: 0
-    m_Recentering:
-      m_enabled: 0
-      m_WaitTime: 0
-      m_RecenteringTime: 0
-      m_LegacyHeadingDefinition: 0
-      m_LegacyVelocityFilterStrength: 0
   TPSCam: {fileID: 0}
   FPSCam: {fileID: 0}
   CameraOffsetTPS: {fileID: 0}
   originalTPSCam: 0
   player: {fileID: 0}
   currentRotation: {x: 0, y: 0, z: 0}
+  POV: 0
 --- !u!1 &5316479939241567885
 GameObject:
   m_ObjectHideFlags: 0
@@ -887,7 +851,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5316479939339391345}
   m_Layer: 0
-  m_Name: FirstPersonCamera
+  m_Name: FPS_Follow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1235,6 +1199,7 @@ MonoBehaviour:
   PlayerWeaponManager: {fileID: 5316479939679677459}
   PlayerWeaponActive: {fileID: 0}
   PlayerWeaponReload: {fileID: 5316479938596634191}
+  animationEvents: {fileID: 0}
   RigAnimator: {fileID: 5316479939765841214}
 --- !u!1 &5316479939744169847
 GameObject:
@@ -1611,11 +1576,14 @@ MonoBehaviour:
   MovementInput: {x: 0, y: 0}
   SprintInput: 0
   JumpInput: 0
-  AimInput: 0
-  AttackInput: 0
-  ChangeCameraInput: 0
+  CrounchInput: 0
   ReloadInput: 0
   InteractInput: 0
+  ChangeCameraInput: 0
+  AttackInput: 0
+  AimInput: 0
+  SpecialSkillInput: 0
+  BattleSkillInput: 0
   MenuOpenCloseInput: 0
 --- !u!1 &5316479940082338248
 GameObject:
@@ -1824,11 +1792,14 @@ MonoBehaviour:
   PlayerAnimation: {fileID: 5316479939538001226}
   PlayerWeapon: {fileID: 5316479939727269776}
   PlayerInteract: {fileID: 5584213703692205246}
-  PlayerTransform: {fileID: 5824825379140163217}
+  PlayerCombatAction: {fileID: 0}
+  PlayerCharacter: {fileID: 0}
   MainCamera: {fileID: 0}
-  Animator: {fileID: 5879403815031781351}
-  Rigcontroller: {fileID: 5316479939765841214}
+  Character: {fileID: 0}
+  PlayerTransform: {fileID: 5824825379140163217}
   CharacterController: {fileID: 5824825379140163230}
+  Animator: {fileID: 5879403815031781351}
+  RigAnimator: {fileID: 0}
 --- !u!1 &5316479940315820334
 GameObject:
   m_ObjectHideFlags: 0
@@ -1962,10 +1933,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 5316479940254961376}
   weaponActive: {fileID: 5584213703405178464}
-  animatorPlayer: {fileID: 5879403815031781351}
-  rigLayer: {fileID: 5316479939765841214}
   Onanimatormove: {fileID: 0}
-  isJumping: 0
+  IsJumping: 0
   IsSprinting: 0
   IsGrounded: 0
   Is1D: 1
@@ -2940,6 +2909,8 @@ MonoBehaviour:
   isHolster: 0
   playerCamera: {fileID: 0}
   iscanFire: 0
+  isDelay: 0
+  Timedelay: 0
 --- !u!1 &5584213703439915816
 GameObject:
   m_ObjectHideFlags: 0

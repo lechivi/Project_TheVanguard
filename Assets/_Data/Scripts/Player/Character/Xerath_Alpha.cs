@@ -1,5 +1,4 @@
-﻿using Unity.Burst.Intrinsics;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Xerath_Alpha : SaiMonoBehaviour
 {

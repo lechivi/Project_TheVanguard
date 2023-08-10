@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99612866e117983468f046a6cd8e9db9, type: 3}
+  m_Name: No07_Sera
+  m_EditorClassIdentifier: 
+  CharacterName: Sera
+  ClassName: The Enchantress
+  Species: 25
+  CharacterIcon: {fileID: 0}
+  CharacterModel: {fileID: 0}
+  CharacterDescription: Mystical and powerful being with control over arcane energies,
+    using her magic to protect and heal her allies.
+  Power: 5
+  Defence: 5
+  HitPoint: 5
+  CooldownSkillTime: 0
+  SpecialSkillName: "Siren\u2019s Radiance"
+  SpecialSkillIcon: {fileID: 21300000, guid: f222eba8f86b72d4b8c23562147dc328, type: 3}
+  SpecialSkillDescription: Sera summons Siren energy that can target multiple entities.
+  ListSkin: []

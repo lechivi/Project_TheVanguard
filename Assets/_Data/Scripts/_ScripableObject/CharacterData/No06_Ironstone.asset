@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99612866e117983468f046a6cd8e9db9, type: 3}
+  m_Name: No06_Ironstone
+  m_EditorClassIdentifier: 
+  CharacterName: 'Ironstone '
+  ClassName: The Dwarf
+  Species: 20
+  CharacterDescription: Skilled blacksmith and warrior from the depths of the earth,
+    clad in sturdy armor and wielding powerful melee weapons.
+  Power: 5
+  Defence: 5
+  HitPoint: 5
+  CooldownSkillTime: 0
+  SpecialSkillName: Indomitable Presence
+  SpecialSkill_Icon: {fileID: 0}
+  SpecialSkillDescription: "Ironstone becomes more and more powerful\r."
+  ListSkin: []
