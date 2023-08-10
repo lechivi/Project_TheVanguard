@@ -6,13 +6,11 @@ using UnityEngine.UIElements;
 
 public class PlayerCamera : PlayerAbstract
 {
-    public Transform cameraLookat;
+    public Camera cameraMain;
     public CinemachineFreeLook TPSCam;
     public CinemachineVirtualCamera FPSCam;
     public CinemachineCameraOffset CameraOffsetTPS;
     public bool originalTPSCam;
-    public Transform player;
-    public Vector3 currentRotation;
     public int POV;
     protected override void Awake()
     {

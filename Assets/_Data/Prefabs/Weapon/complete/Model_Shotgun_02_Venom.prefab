@@ -29610,4 +29610,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 6641384039b3d9147aba83688897202e, type: 2}
-  weaponSlot: 
+  weaponSlot: 03000000

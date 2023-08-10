@@ -17,14 +17,19 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 5513720291159586698, guid: dcf58a8931f384b4c924cbd6e771a577, type: 3}
   Model: {fileID: 1937876462363981338, guid: ec489a38abaea2f46a3f909b56a37efe, type: 3}
+  Pos: {x: 0, y: 0, z: 0}
+  Ros: {x: 0, y: 0, z: 0}
   WeaponType: 4
+  ShotGunType: 0
+  rangedDamage: 0
+  accuracy: 0
   timePerFireRate: 0
   fireRate: 0
-  bulletSpeed: 100000
+  bulletSpeed: 10000
   timeDelayPerShot: 1
   ammoType: 4
   ammoPerShot: 1
-  ammo: 3
+  ammo: 5
   magazineSize: 5
   range: 0
   spreadAiming: 0

@@ -8,12 +8,8 @@ using UnityEngine.Rendering;
 
 public class PlayerAim : PlayerAbstract
 {
-
-    public float duration;
-    public Transform player;
+    public float test;
     public GameObject scope;
-    public Camera cameraMain;
-    public Animator rigLayer;
     public bool isAim;
     public Rig HandLayer;
 
@@ -56,16 +52,17 @@ public class PlayerAim : PlayerAbstract
 
     public void AimWeapon()
     {
-        RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        //RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (raycastWeapon != null)
         {
-            rigLayer.SetBool("aim_" + raycastWeapon.Weapon.WeaponData.WeaponType, isAim);
+            playerCtrl.Rigcontroller.SetBool("aim_" + raycastWeapon.Weapon.WeaponData.WeaponType, isAim);
             if (raycastWeapon && raycastWeapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
             {
                 AimWeaponSCope();
                 return;
             }
-            if(isAim)
+            if (isAim)
             {
                 playerCtrl.PlayerCamera.ChangePOVFPS(35);
             }
@@ -81,9 +78,12 @@ public class PlayerAim : PlayerAbstract
         }
         if (!isAim)
         {
-            cameraMain.cullingMask |= 1 << 7;
-            cameraMain.cullingMask |= 1 << 6;
-            scope.SetActive(false);
+            playerCtrl.PlayerCamera.cameraMain.cullingMask |= 1 << 7;
+            playerCtrl.PlayerCamera.cameraMain.cullingMask |= 1 << 6;
+            if (scope)
+            {
+                Invoke("SetFalseScope", test);
+            }
         }
     }
     private void HandleBodyAim1D()
@@ -93,14 +93,17 @@ public class PlayerAim : PlayerAbstract
         AimlookMain.position = ball;
     }
 
-
+    public void SetFalseScope()
+    {
+        scope.SetActive(false);
+    }
     public IEnumerator AimDuration(float second)
     {
         yield return new WaitForSeconds(second);
 
-        cameraMain.cullingMask &= ~(1 << 7);
-        cameraMain.cullingMask &= ~(1 << 6);
-        scope.SetActive(true);
+        playerCtrl.PlayerCamera.cameraMain.cullingMask &= ~(1 << 7);
+        playerCtrl.PlayerCamera.cameraMain.cullingMask &= ~(1 << 6);
+        if (scope) { scope.SetActive(true); }
         playerCtrl.PlayerCamera.ChangePOVFPS(10);
     }
 

@@ -14,11 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: 
   ItemValue: 0
-  ItemType: 0
-  Icon: {fileID: 4976755378165979344, guid: ce383daae94ac3c42a100cc1688a9354, type: 3}
+  ItemType: 1
+  Icon: {fileID: 4147139860447680544, guid: b41e5248fe8350c44b23b281deefc8da, type: 3}
   Model: {fileID: 8824270345280385828, guid: 9b1b0f181b8e98c448b95e787d8f0c97, type: 3}
   WeaponType: 3
   ShotGunType: 2
+  rangedDamage: 0
+  accuracy: 0
   timePerFireRate: 0
   fireRate: 4
   bulletSpeed: 10000

@@ -35,17 +35,17 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 
     private void Start()
     {
-        ActiveWeaponIndex = -1;
+        /*ActiveWeaponIndex = -1;
         if (weapon)
         {
             RaycastWeapon weaponraycast = weapon.GetComponent<RaycastWeapon>();
             Equip(weaponraycast);
-        }
+        }*/
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
+        /*if (Input.GetKeyDown(KeyCode.X))
         {
             ToggleActiveWeapon();
         }
@@ -56,16 +56,8 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             SetActiveWeapon(Weaponslot.Secondary);
-        }
+        }*/
         CanfireCondition();
-        /*  if (Input.GetMouseButtonDown(0))
-          {
-              isOneclick = true;
-          }
-          if (Input.GetMouseButtonUp(0))
-          {
-              isOneclick= false;
-          }*/
     }
 
     public void CanfireCondition()
@@ -73,9 +65,11 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         if (!isHolster && !PlayerWeapon.PlayerWeaponReload.isReload && !isDelay)
         {
             iscanFire = true;
+            Debug.Log("CanFire");
         }
         else
         {
+            Debug.Log("CanotFire");
             iscanFire = false;
         }
     }
@@ -95,7 +89,8 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 
     public void HandleFiring()
     {
-        var weaponRaycast = GetWeapon(ActiveWeaponIndex);
+        var weaponRaycast = PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        if (weaponRaycast == null) return;
         if (weaponRaycast &&( weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle || weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Venom))
         {
             DelayPerShot(weaponRaycast.Weapon.WeaponData.TimeDelayPerShot);

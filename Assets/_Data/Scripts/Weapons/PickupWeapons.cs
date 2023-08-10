@@ -15,6 +15,8 @@ public class PickupWeapons : PickupObject
             bool canAdd = weaponManager.AddWeapon(this.weaponPrefab);
             if (canAdd)
             {
+                /*PlayerWeapon playerWeapon = weaponManager.GetComponentInParent<PlayerWeapon>();
+                playerWeapon.PlayerCtrl.Rigcontroller.Play("equip_laser");*/
                 Destroy(gameObject);
             }
         }
@@ -67,3 +69,5 @@ public class PickupWeapons : PickupObject
         }
     }
 }
+
+

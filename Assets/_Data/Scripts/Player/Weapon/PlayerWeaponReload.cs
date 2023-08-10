@@ -45,7 +45,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
 
     public void DetachMagazine()
     {
-        RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         magazineHand = Instantiate(weapon.magazine, leftHand, true);
         weapon.magazine.SetActive(false);
     }
@@ -66,7 +66,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
 
     public void AttachMagazine()
     {
-        RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         weapon.magazine.SetActive(true);
         Destroy(magazineHand);
         weapon.Weapon.WeaponData.Ammo = weapon.Weapon.WeaponData.MagazineSize;

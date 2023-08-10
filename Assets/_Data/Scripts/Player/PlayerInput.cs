@@ -149,7 +149,7 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleReloadInput()
     {
-        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (weapon)
         {
             if (ReloadInput || weapon.Weapon.WeaponData.Ammo <= 0)
@@ -162,7 +162,7 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleAimInput()
     {
-        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
+        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (weapon)
         {
             if (AimInput && !playerCtrl.PlayerWeapon.PlayerWeaponActive.isHolster && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload)
