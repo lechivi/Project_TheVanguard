@@ -10301,7 +10301,7 @@ MonoBehaviour:
   weaponName: laser
   weaponslot: 0
   ForceRaycast: 1
-  weaponData: {fileID: 11400000, guid: 171f0b5ab5015244ea07b199bdf76cb0, type: 2}
+  Weapon: {fileID: 0}
   runtTimeFire: 0
   muzzleflash:
   - {fileID: 5788381358678701115}
@@ -10418,7 +10418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 171f0b5ab5015244ea07b199bdf76cb0, type: 2}
-  weaponSlot: 
+  weaponSlot: 03000000
 --- !u!1 &8626835607532008830
 GameObject:
   m_ObjectHideFlags: 0

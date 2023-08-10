@@ -17,14 +17,19 @@ MonoBehaviour:
   ItemType: 0
   Icon: {fileID: 7288736737000387588, guid: dd38ed6c20cdd0d4e9b4078176d89276, type: 3}
   Model: {fileID: 7619831155923391294, guid: 6ef6a109d1cfe444fa44bb2d8fe4d6a9, type: 3}
+  Pos: {x: 0, y: 0, z: 0}
+  Ros: {x: 0, y: 0, z: 0}
   WeaponType: 2
+  ShotGunType: 0
+  rangedDamage: 0
+  accuracy: 0
   timePerFireRate: 1
   fireRate: 10
   bulletSpeed: 1000
   timeDelayPerShot: 0
   ammoType: 2
   ammoPerShot: 1
-  ammo: 0
+  ammo: 30
   magazineSize: 30
   range: 0
   spreadAiming: 0

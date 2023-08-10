@@ -17,8 +17,12 @@ MonoBehaviour:
   ItemType: 0
   Icon: {fileID: 6565743542417853683, guid: 0d49b1c0889930645971e272fb0ecfae, type: 3}
   Model: {fileID: 8824270345280385828, guid: 70c5dd1609abdde478d4c9bde2200bb9, type: 3}
+  Pos: {x: 0, y: 0, z: 0}
+  Ros: {x: 0, y: 0, z: 0}
   WeaponType: 3
   ShotGunType: 1
+  rangedDamage: 0
+  accuracy: 0
   timePerFireRate: 0
   fireRate: 0
   bulletSpeed: 10000

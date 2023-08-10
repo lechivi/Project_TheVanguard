@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class PlayerLocomotion : PlayerAbstract
 {
-    public PlayerWeaponActiveOld weaponActive;
-    public Animator animatorPlayer;
-    public Animator rigLayer;
     public OnEventAnimator Onanimatormove;
 
     [Header("Movement Flag")]
@@ -93,12 +90,11 @@ public class PlayerLocomotion : PlayerAbstract
     }
     private void HandleSprinting()
     {
-        if (weaponActive == null) return;
-        RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
+        RaycastWeapon weaponRaycast = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
 
-        if (currentweapon != null)
+        if (weaponRaycast != null)
         {
-            rigLayer.SetBool("isSprinting", IsSprinting);
+           // playerCtrl.Rigcontroller.SetBool("isSprinting", IsSprinting);
         }
 
     }
@@ -130,7 +126,6 @@ public class PlayerLocomotion : PlayerAbstract
         {
             if (this.movementDirection != Vector3.zero || this.movementDirection == Vector3.forward)
             {
-                Debug.Log("Hello");
                 Quaternion toRatation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 this.playerCtrl.PlayerTransform.rotation = Quaternion.RotateTowards(this.playerCtrl.PlayerTransform.rotation, toRatation, this.rotationSpeed * Time.deltaTime);
             }
@@ -181,7 +176,7 @@ public class PlayerLocomotion : PlayerAbstract
         playerCtrl.CharacterController.Move(displacement);
         isJumping = !this.playerCtrl.CharacterController.isGrounded;
         rootMotion = Vector3.zero;
-        animatorPlayer.SetBool("IsJumping", isJumping);
+        playerCtrl.Animator.SetBool("IsJumping", isJumping);
     }
     private void UpdateOnGround()
     {
@@ -209,6 +204,6 @@ public class PlayerLocomotion : PlayerAbstract
         isJumping = true;
         velocity = playerCtrl.Animator.velocity * jumpDamp * speed;
         velocity.y = jumpvelocity;
-        animatorPlayer.SetBool("IsJumping", true);
+        playerCtrl.Animator.SetBool("IsJumping", true);
     }
 }

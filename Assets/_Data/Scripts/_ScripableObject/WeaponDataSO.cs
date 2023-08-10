@@ -6,6 +6,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponData", menuName = "SO/WeaponData")]
 public class WeaponDataSO : ItemDataSO
 {
+    [Header("OFFSET HOLSTER")]
+    public Vector3 Pos;
+    public Vector3 Ros;
+
     [Header("WEAPON")]
     public WeaponType WeaponType;
     public ShotGunType ShotGunType;
@@ -69,6 +73,9 @@ public class WeaponDataEditor : Editor
     SerializedProperty icon;
     SerializedProperty model;
 
+    SerializedProperty Pos;
+    SerializedProperty Ros;
+
     SerializedProperty weaponType;
     SerializedProperty shotgunType;
 
@@ -97,6 +104,9 @@ public class WeaponDataEditor : Editor
         this.itemType = serializedObject.FindProperty("ItemType");
         this.icon = serializedObject.FindProperty("Icon");
         this.model = serializedObject.FindProperty("Model");
+
+        this.Pos = serializedObject.FindProperty("Pos");
+        this.Ros = serializedObject.FindProperty("Ros");
 
         this.weaponType = serializedObject.FindProperty("WeaponType");
         this.shotgunType = serializedObject.FindProperty("ShotGunType");
@@ -129,6 +139,9 @@ public class WeaponDataEditor : Editor
         EditorGUILayout.PropertyField(this.itemType);
         EditorGUILayout.PropertyField(this.icon);
         EditorGUILayout.PropertyField(this.model);
+
+        EditorGUILayout.PropertyField(this.Pos);
+        EditorGUILayout.PropertyField(this.Ros);
 
         EditorGUILayout.PropertyField(this.weaponType);
 

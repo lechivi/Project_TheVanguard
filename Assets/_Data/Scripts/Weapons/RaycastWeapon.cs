@@ -53,8 +53,10 @@ public class RaycastWeapon : MonoBehaviour
             float yspread = Random.Range(Weapon.WeaponData.Spreads[2], Weapon.WeaponData.Spreads[3]);
             Vector3 randomSpread = new Vector3(xspread, yspread, 0f);
             Vector3 raycastDirection = ((target - raycastOrigin.position).normalized + randomSpread) * Weapon.WeaponData.BulletSpeed;
+            //Vector3 raycastDirection2 = (Camera.main.transform.forward + randomSpread) * Weapon.WeaponData.BulletSpeed;
             var bullet = ObjectPool.Instance.GetPooledObject();
             bullet.Active(raycastOrigin.position, raycastDirection);
+            // bullet.Active(Camera.main.transform.position, raycastDirection2);
             recoil.GenerateRecoil(weaponName);
         }
     }
