@@ -7,8 +7,7 @@ public class PlayerWeapon : PlayerAbstract
     public PlayerWeaponManager PlayerWeaponManager;
     public PlayerWeaponActiveOld PlayerWeaponActive;
     public PlayerWeaponReload PlayerWeaponReload;
-    public  PlayerRigAnimationEvents animationEvents;
-
+    public PlayerRigAnimationEvents AnimationEvents;
     public Animator RigAnimator;
 
     protected override void LoadComponent()
@@ -17,6 +16,8 @@ public class PlayerWeapon : PlayerAbstract
         this.LoadPlayerWeaponManager();
         this.LoadPlayerWeaponActive();
         this.LoadPlayerWeaponReload();
+        this.LoadRigAnimator();
+        this.LoadPlayerRigAnimationEvents();
     }
 
     protected virtual void LoadPlayerWeaponManager()
@@ -43,6 +44,24 @@ public class PlayerWeapon : PlayerAbstract
         {
             this.PlayerWeaponReload = GetComponentInChildren<PlayerWeaponReload>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerWeaponReload", gameObject);
+        }
+    }
+
+    protected virtual void LoadRigAnimator()
+    {
+        if (this.RigAnimator == null)
+        {
+            this.RigAnimator = this.playerCtrl.RigAnimator;
+            Debug.LogWarning(gameObject.name + ": LoadRigAnimator", gameObject);
+        }
+    }
+
+    protected virtual void LoadPlayerRigAnimationEvents()
+    {
+        if (this.AnimationEvents == null)
+        {
+            this.AnimationEvents = this.playerCtrl.RigAnimator.GetComponent<PlayerRigAnimationEvents>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerRigAnimationEvents", gameObject);
         }
     }
 }

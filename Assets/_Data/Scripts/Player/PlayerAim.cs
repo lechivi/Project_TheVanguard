@@ -1,10 +1,6 @@
-﻿using Cinemachine.Utility;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
-using UnityEngine.Rendering;
 
 public class PlayerAim : PlayerAbstract
 {
@@ -56,7 +52,7 @@ public class PlayerAim : PlayerAbstract
         RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (raycastWeapon != null)
         {
-            playerCtrl.Rigcontroller.SetBool("aim_" + raycastWeapon.Weapon.WeaponData.WeaponType, isAim);
+            playerCtrl.RigAnimator.SetBool("aim_" + raycastWeapon.Weapon.WeaponData.WeaponType, isAim);
             if (raycastWeapon && raycastWeapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
             {
                 AimWeaponSCope();

@@ -9,9 +9,9 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     public bool isReload;
     private void Start()
     {
-        if(PlayerWeapon.animationEvents != null)
+        if(PlayerWeapon.AnimationEvents != null)
         {
-            PlayerWeapon.animationEvents.AnimationEvent.AddListener(OnAnimationEvent);
+            PlayerWeapon.AnimationEvents.AnimationEvent.AddListener(OnAnimationEvent);
         }
     }
     public void SetReloadWeapon()

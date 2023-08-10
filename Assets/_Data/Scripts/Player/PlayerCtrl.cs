@@ -132,7 +132,7 @@ public class PlayerCtrl : SaiMonoBehaviour
 
     protected virtual void LoadPlayerCharacter()
     {
-        if (this.PlayerInteract == null)
+        if (this.PlayerCharacter == null)
         {
             this.PlayerCharacter = GetComponentInChildren<PlayerCharacter>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerCharacter", gameObject);
@@ -175,6 +175,15 @@ public class PlayerCtrl : SaiMonoBehaviour
         }
     }
 
+    protected virtual void LoadRigAnimator()
+    {
+        if (this.Character != null)
+        {
+            this.RigAnimator = this.Character.RigAnimator;
+            Debug.LogWarning(gameObject.name + ": LoadRigAnimator", gameObject);
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
@@ -184,15 +193,6 @@ public class PlayerCtrl : SaiMonoBehaviour
     private void Start()
     {
         this.SetUI();
-    }
-
-    protected virtual void LoadRigAnimator()
-    {
-        if (this.Character != null)
-        {
-            this.RigAnimator = this.Character.RigAnimator;
-            Debug.LogWarning(gameObject.name + ": LoadRigAnimator", gameObject);
-        }
     }
 
     public void SetCharacter(Character character)

@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class PlayerLocomotion : PlayerAbstract
 {
-    public PlayerWeaponActiveOld weaponActive;
     public OnEventAnimator Onanimatormove;
 
     [Header("Movement Flag")]
@@ -95,12 +94,11 @@ public class PlayerLocomotion : PlayerAbstract
     }
     private void HandleSprinting()
     {
-        if (weaponActive == null) return;
-        RaycastWeapon currentweapon = weaponActive.GetActiveWeapon();
+        RaycastWeapon currentweapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
 
         if (currentweapon != null)
         {
-            this.playerCtrl.RigAnimator.SetBool("isSprinting", IsSprinting);
+            //this.playerCtrl.RigAnimator.SetBool("isSprinting", IsSprinting);
         }
 
     }

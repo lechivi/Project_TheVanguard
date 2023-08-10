@@ -144,7 +144,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCam;
             raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCam;
-            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.Rigcontroller;
+            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
         }
 
         this.equippedWeapons.Add(weapon);
@@ -152,7 +152,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (this.currentWeaponIndex == -1)
         {
             this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
-            playerWeapon.PlayerCtrl.Rigcontroller.SetTrigger("equip");
+            playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
         }
     }
 
@@ -163,7 +163,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCam;
             raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCam;
-            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.Rigcontroller;
+            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
         }
         this.backpackWeapons.Add(weapon);
 
@@ -365,7 +365,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         listEquippedWeapon[weaponIndex].gameObject?.SetActive(true);
 
         isHolstering = false;
-        playerWeapon.PlayerCtrl.Rigcontroller.SetTrigger("equip");
+        playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
 
 
         this.currentWeaponIndex = weaponIndex;
@@ -438,10 +438,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
         if (currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] == null || currentWeaponIndex == -1)
         {
-            playerWeapon.PlayerCtrl.Rigcontroller.Rebind();
+            playerWeapon.PlayerCtrl.RigAnimator.Rebind();
             return;
         }
-        playerWeapon.PlayerCtrl.Rigcontroller.SetBool("holster_weapon", isHolstering);
+        playerWeapon.PlayerCtrl.RigAnimator.SetBool("holster_weapon", isHolstering);
     }
 
     public void SetHolster(bool button)
