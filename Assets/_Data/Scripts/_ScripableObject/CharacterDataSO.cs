@@ -13,6 +13,7 @@ public class CharacterDataSO : ScriptableObject
     [TextAreaAttribute(5, 10)] public string CharacterDescription;
 
     [Header("STATS")]
+    [Range(50, 100)] public int Health = 50;
     [Range(0, 10)] public int Power = 5;
     [Range(0, 10)] public int Defence = 5;
     [Range(0, 10)] public int HitPoint = 5;

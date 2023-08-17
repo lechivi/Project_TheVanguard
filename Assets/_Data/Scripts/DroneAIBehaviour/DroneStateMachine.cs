@@ -1,5 +1,4 @@
 using System;
-using System.Diagnostics;
 
 public class DroneStateMachine
 {
@@ -39,6 +38,8 @@ public class DroneStateMachine
 
     public void ChangeState(DroneStateId newState)
     {
+        if (this.CurrentState == newState) return;
+
         this.GetState(this.CurrentState)?.Exit();
         this.CurrentState = newState;
         this.GetState(this.CurrentState).Enter();

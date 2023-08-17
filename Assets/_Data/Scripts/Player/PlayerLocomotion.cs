@@ -130,7 +130,7 @@ public class PlayerLocomotion : PlayerAbstract
         {
             if (this.movementDirection != Vector3.zero || this.movementDirection == Vector3.forward)
             {
-                Debug.Log("Hello");
+                //Debug.Log("Hello");
                 Quaternion toRatation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 this.playerCtrl.PlayerTransform.rotation = Quaternion.RotateTowards(this.playerCtrl.PlayerTransform.rotation, toRatation, this.rotationSpeed * Time.deltaTime);
             }

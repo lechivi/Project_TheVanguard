@@ -4909,6 +4909,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &3636694603588847702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5424431673992408317}
+  m_Layer: 6
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5424431673992408317
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3636694603588847702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7547316967833269050}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5237968447623257277
 GameObject:
   m_ObjectHideFlags: 0
@@ -6825,6 +6856,7 @@ GameObject:
   - component: {fileID: 7547316967833269047}
   - component: {fileID: 7637908738592281165}
   - component: {fileID: 7637908738592281162}
+  - component: {fileID: 712176183199844332}
   m_Layer: 6
   m_Name: Character_Darlene
   m_TagString: Player
@@ -6850,6 +6882,7 @@ Transform:
   - {fileID: 8191895229668067482}
   - {fileID: 8228422855899542108}
   - {fileID: 3213862931090910139}
+  - {fileID: 5424431673992408317}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -6862,7 +6895,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7541689390658526284}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: c8c20564eb982f84a96a0d4d8e357cc5, type: 3}
+  m_Avatar: {fileID: 9000000, guid: 2fbe78bf5f0549f41af6e2fb5138cd12, type: 3}
   m_Controller: {fileID: 9100000, guid: 387dc31a31f91064b88fb2ca3fe1fccf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -6930,13 +6963,10 @@ MonoBehaviour:
   rigAnimator: {fileID: 8191895229668067477}
   tps_LookAt: {fileID: 8191895230804336832}
   fps_Follow: {fileID: 8191895231377847514}
-  cooldownSpecialSkill: 0
-  cooldownBattleSkill: 0
   poolingObject: {fileID: 7637908738592281162}
   droneFollowPoint: {fileID: 8228422855899542108}
   summonFX: {fileID: 3335653915631480991}
-  timeoutFX: {fileID: 0}
-  droneLifeTime: 10
+  droneLifeTime: 600
 --- !u!114 &7637908738592281162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6950,9 +6980,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefab: {fileID: 1236397926932871990, guid: 96aa6457bdbbca2428b047a79e50205d, type: 3}
-  amount: 5
+  amount: 2
   pools: []
   spawnPool: {fileID: 0}
+--- !u!114 &712176183199844332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7541689390658526284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05b2a424122998546bad38e4cfd66492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerPoint: {fileID: 5424431673992408317}
 --- !u!1 &8191895229577517108
 GameObject:
   m_ObjectHideFlags: 0

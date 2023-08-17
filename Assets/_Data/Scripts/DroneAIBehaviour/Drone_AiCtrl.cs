@@ -23,6 +23,7 @@ public class Drone_AiCtrl : SaiMonoBehaviour
         this.DroneSM = new DroneStateMachine(this);
         this.DroneSM.RegisterState(new DroneState_Idle(this));
         this.DroneSM.RegisterState(new DroneState_Follow(this));
+        this.DroneSM.RegisterState(new DroneState_Attack(this));
         this.DroneSM.ChangeState(this.InitState);
     }
 
@@ -33,6 +34,7 @@ public class Drone_AiCtrl : SaiMonoBehaviour
 
     private void FixedUpdate()
     {
+        //Debug.Log("CurState: " + this.DroneSM.CurrentState);
         this.DroneSM.FixedUpdate();
     }
 }

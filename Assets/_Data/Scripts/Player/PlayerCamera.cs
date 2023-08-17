@@ -15,9 +15,9 @@ public class PlayerCamera : PlayerAbstract
     protected override void Awake()
     {
         base.Awake();
-        TPSCam.gameObject.SetActive(true);
+        //TPSCam.gameObject.SetActive(true);
         originalTPSCam = true;
-        FPSCam.gameObject.SetActive(false);
+        //FPSCam.gameObject.SetActive(false);
 
         this.SetCameraTarget();
     }
@@ -48,18 +48,18 @@ public class PlayerCamera : PlayerAbstract
 
     }
 
-
     public void ChangeFPSCam()
     {
         playerCtrl.PlayerLocomotion.Is1D = false;
-        TPSCam.gameObject.SetActive(false);
-        FPSCam.gameObject.SetActive(true);
+        TPSCam.m_Priority = 10;
+        FPSCam.m_Priority = 15;
     }
 
     public void ChangeTPSCam()
     {
-        TPSCam.gameObject.SetActive(true);
-        FPSCam.gameObject.SetActive(false);
+        //FPSCam.OnTransitionFromCamera
+        FPSCam.m_Priority = 10;
+        TPSCam.m_Priority = 15;
     }
 
     public void ChangeSpeedFPSCam(float xAxis, float yAxis)

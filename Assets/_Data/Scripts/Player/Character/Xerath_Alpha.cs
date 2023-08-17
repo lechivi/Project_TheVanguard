@@ -30,6 +30,11 @@ public class Xerath_Alpha : SaiMonoBehaviour
         this.combos[2] = "Unarmed03";
     }
 
+    private void OnEnable()
+    {
+        this.animator.Rebind();
+    }
+
     private void Update()
     {
         //if (Input.GetMouseButtonDown(0))

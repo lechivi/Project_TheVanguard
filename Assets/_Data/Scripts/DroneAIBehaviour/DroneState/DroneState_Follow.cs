@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class DroneState_Follow : IDroneState
 {
@@ -27,8 +24,12 @@ public class DroneState_Follow : IDroneState
 
     public void Enter()
     {
+        this.droneAiCtrl.DroneCtrl.Agent.stoppingDistance = 0f;
+
         if (this.moveFx != null && !this.moveFx.isPlaying)
+        {
             this.moveFx.Play();
+        }
     }
 
     public void Exit()
@@ -53,7 +54,8 @@ public class DroneState_Follow : IDroneState
         {
             droneCtrl.Agent.SetDestination(droneCtrl.TargetFollow.transform.position);
 
-            droneCtrl.transform.LookAt(droneCtrl.TargetFollow.transform.position);
+            Quaternion targetRotation = Quaternion.LookRotation(droneCtrl.TargetFollow.position - droneCtrl.transform.position);
+            droneCtrl.transform.rotation = Quaternion.Slerp(droneCtrl.transform.rotation, targetRotation, Time.fixedDeltaTime * droneCtrl.RotationSpeed);
 
             if (droneCtrl.Agent.remainingDistance > 5)
             {

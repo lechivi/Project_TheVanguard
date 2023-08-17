@@ -65,11 +65,11 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         if (!isHolster && !PlayerWeapon.PlayerWeaponReload.isReload && !isDelay)
         {
             iscanFire = true;
-            Debug.Log("CanFire");
+            //Debug.Log("CanFire");
         }
         else
         {
-            Debug.Log("CanotFire");
+            //Debug.Log("CanotFire");
             iscanFire = false;
         }
     }

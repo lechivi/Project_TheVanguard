@@ -28,7 +28,7 @@ public class PlayerCombatAction : PlayerAbstract
                 break;
 
             default:
-                Debug.LogError("Not set combat action for Mouse-Left");
+                //Debug.LogError("Not set combat action for Mouse-Left");
                 break;
         }
     }
@@ -54,7 +54,7 @@ public class PlayerCombatAction : PlayerAbstract
                 break;
 
             default:
-                Debug.LogError("Not set combat action for Mouse-Right");
+                //Debug.LogError("Not set combat action for Mouse-Right");
                 break;
         }
     }

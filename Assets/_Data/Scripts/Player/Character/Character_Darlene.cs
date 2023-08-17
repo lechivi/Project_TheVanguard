@@ -8,7 +8,6 @@ public class Character_Darlene : Character
     [SerializeField] private PoolingObject poolingObject;
     [SerializeField] private Transform droneFollowPoint;
     [SerializeField] private ParticleSystem summonFX;
-    [SerializeField] private ParticleSystem timeoutFX;
 
     [Space(10)]
     [SerializeField] private float droneLifeTime = 5f;

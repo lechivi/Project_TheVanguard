@@ -72,6 +72,9 @@ public class PlayerInput : PlayerAbstract
         this.HandleSpecialSkillInput();
         this.HandleBattleSkillInput();
         this.HandleMenuOpenCloseInput();
+
+        if (AimInput)
+            Debug.Log("Aim");
     }
 
     private void HandleMovementInput()

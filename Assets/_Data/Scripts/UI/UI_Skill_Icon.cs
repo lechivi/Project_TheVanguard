@@ -55,9 +55,9 @@ public class UI_Skill_Icon : SaiMonoBehaviour
         if (character.IsCoolingDownSpecicalSkill)
         {
             this.SetCooldownFill(true);
-            float time = character.CharacterData.CooldownSkillTime - character.TimerSpecialSkill;
+            float time = character.CooldownSpecialSkill - character.TimerSpecialSkill;
             this.cooldownText.SetText(time.ToString("F1"));
-            this.cooldownFillImage.fillAmount = time / character.CharacterData.CooldownSkillTime;
+            this.cooldownFillImage.fillAmount = time / character.CooldownSpecialSkill;
         }
 
         if (character.IsReadySpecialSkill && this.check)
@@ -92,6 +92,7 @@ public class UI_Skill_Icon : SaiMonoBehaviour
             this.cooldownPanel.alpha = 0;
             this.animator.enabled = true;
             this.animator.SetTrigger("Ready");
+
         }
     }
 

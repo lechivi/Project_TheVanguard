@@ -22,7 +22,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     [SerializeField] private Transform[] weaponSheathSlots = new Transform[4];
 
     [SerializeField] private Transform spawnPoint;
-    [SerializeField] private Transform dropPoint;
     [SerializeField] private float dropForce = 3f;
     [SerializeField] private GameObject pickupObjectPrefab;
 
@@ -54,7 +53,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     private void Update()
     {
-        Debug.Log(currentWeaponIndex);
         if (Input.GetKeyDown(KeyCode.X))
         {
             SetHolster(true);
@@ -239,7 +237,11 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     private void DropWeapon(Weapon weapon)
     {
-        GameObject pickupObject = Instantiate(this.pickupObjectPrefab, this.dropPoint.position, this.dropPoint.rotation, this.spawnPoint);
+        Transform playerTransform = this.playerWeapon.PlayerCtrl.PlayerTransform;
+        Vector3 dropPosition = playerTransform.position + new Vector3(0, 1.35f, 0.67f);
+        Quaternion dropRoation = playerTransform.rotation;
+
+        GameObject pickupObject = Instantiate(this.pickupObjectPrefab, dropPosition, dropRoation, this.spawnPoint);
         PickupWeapons pickupWeapon = pickupObject.GetComponent<PickupWeapons>();
         pickupWeapon.SetWeapon(weapon.gameObject);
 
@@ -248,7 +250,8 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             float randomDropForce = Random.Range(this.dropForce - 1f, this.dropForce + 1f);
             Vector3 randomDropDirection = new Vector3(Random.Range(-0.5f, 0.6f), 0, 0);
-            weaponRigidbody.AddForce((this.dropPoint.forward + randomDropDirection) * randomDropForce, ForceMode.Impulse);
+
+            weaponRigidbody.AddForce((playerTransform.forward + randomDropDirection) * randomDropForce, ForceMode.Impulse);
         }
 
         this.UpdateUI();

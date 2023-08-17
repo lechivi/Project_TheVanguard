@@ -175,7 +175,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Summon Move Layer
+  m_Name: Summon Idle Layer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -1216460168868476383}
@@ -562,7 +562,7 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Summon Idel Layer
+    m_Name: Summon Move Layer
     m_StateMachine: {fileID: 2344778259671580904}
     m_Mask: {fileID: 31900000, guid: 644f1124173fbcc4ea092828209acc4d, type: 2}
     m_Motions: []
@@ -574,9 +574,9 @@ AnimatorController:
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
   - serializedVersion: 5
-    m_Name: Summon Move Layer
+    m_Name: Summon Idle Layer
     m_StateMachine: {fileID: -6083680411915763231}
-    m_Mask: {fileID: 31900000, guid: 04582a0424c105f4293c43e683ee68b9, type: 2}
+    m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
     m_BlendingMode: 0
@@ -619,14 +619,14 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Summon Idel Layer
+  m_Name: Summon Move Layer
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 5270106115572352940}
     m_Position: {x: 290, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6214428102856010824}
-    m_Position: {x: 300, y: 0, z: 0}
+    m_Position: {x: 290, y: -20, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

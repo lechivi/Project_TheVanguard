@@ -3321,7 +3321,7 @@ GameObject:
   - component: {fileID: 6394400531874706721}
   - component: {fileID: 6484972542429369432}
   - component: {fileID: 6484972542429369434}
-  - component: {fileID: 6394400531874706726}
+  - component: {fileID: 2251105675164831048}
   m_Layer: 6
   m_Name: Character_Sera
   m_TagString: Player
@@ -3357,8 +3357,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6479345517504002849}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 22d39044406e71546962353e6566a505, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 5bfe5b574e9d7984fa69e73485686faa, type: 3}
+  m_Controller: {fileID: 9100000, guid: c62953d187acfd64c956d53a03043e0b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -3406,7 +3406,7 @@ MonoBehaviour:
   - m_Rig: {fileID: 4678467808285961077}
     m_Active: 1
   m_Effectors: []
---- !u!114 &6394400531874706726
+--- !u!114 &2251105675164831048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3415,15 +3415,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6479345517504002849}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5da1df9dde934a94aabbc39507744a75, type: 3}
+  m_Script: {fileID: 11500000, guid: 862010e163931dd4799b9de3292fdf64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterData: {fileID: 11400000, guid: 8e130852c69c43f49a8326ec41a20836, type: 2}
-  characterTransform: {fileID: 6484972542429369431}
-  characterController: {fileID: 6484972542429369432}
-  animator: {fileID: 6394400531874706721}
-  rigAnimator: {fileID: 4678467809037381624}
-  tps_LookAt: {fileID: 4678467808019859373}
-  fps_Follow: {fileID: 4678467808524161975}
+  characterData: {fileID: 0}
+  characterTransform: {fileID: 0}
+  characterController: {fileID: 0}
+  animator: {fileID: 0}
+  rigAnimator: {fileID: 0}
+  tps_LookAt: {fileID: 0}
+  fps_Follow: {fileID: 0}
   cooldownSpecialSkill: 0
   cooldownBattleSkill: 0

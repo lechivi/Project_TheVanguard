@@ -22,7 +22,7 @@ MonoBehaviour:
   Power: 5
   Defence: 5
   HitPoint: 5
-  CooldownSkillTime: 0
+  CooldownSkillTime: 2
   SpecialSkillName: "Siren\u2019s Radiance"
   SpecialSkillIcon: {fileID: 21300000, guid: f222eba8f86b72d4b8c23562147dc328, type: 3}
   SpecialSkillDescription: Sera summons Siren energy that can target multiple entities.

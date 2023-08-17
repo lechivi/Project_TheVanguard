@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DroneState_Idle : IDroneState
@@ -26,10 +24,11 @@ public class DroneState_Idle : IDroneState
 
     public void Enter()
     {
+        this.droneAiCtrl.DroneCtrl.Agent.stoppingDistance = 0f;
+
         if (this.moveFx != null/* && !this.moveFx.isPlaying*/)
         {
             this.moveFx.Stop();
-            Debug.Log("EnterState: Idle");
         }
     }
 

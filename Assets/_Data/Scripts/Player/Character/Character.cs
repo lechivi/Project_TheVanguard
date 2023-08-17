@@ -13,17 +13,18 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected Transform tps_LookAt;
     [SerializeField] protected Transform fps_Follow;
 
-    [Space(10)]
-    [SerializeField] protected float cooldownSpecialSkill;
-    [SerializeField] protected float cooldownBattleSkill;
-
     protected bool isReadySpecialSkill = true;
     protected bool isCoolingDownSpecicalSkill;
+    protected float cooldownSpecialSkill;
     protected float timerSpecialSkill;
 
     protected bool isReadyBattleSkill = true;
     protected bool isStartCooldownBattleSkill;
+    protected float cooldownBattleSkill;
     protected float timerBattleSkill;
+
+    protected bool isMiss;
+    protected float missCooldowmTime = 0.75f;
 
     public CharacterDataSO CharacterData { get => this.characterData; }
     public Transform CharacterTransform { get => this.characterTransform; }
@@ -35,6 +36,7 @@ public class Character : SaiMonoBehaviour
 
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
     public bool IsCoolingDownSpecicalSkill { get => this.isCoolingDownSpecicalSkill; }
+    public float CooldownSpecialSkill { get => this.cooldownSpecialSkill; }
     public float TimerSpecialSkill { get => this.timerSpecialSkill; }
 
     protected override void LoadComponent()
@@ -98,18 +100,30 @@ public class Character : SaiMonoBehaviour
 
     private void Start()
     {
-        this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
+        if (this.characterData != null)
+        {
+            this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
+        }
     }
 
     protected virtual void Update()
     {
         if (this.isCoolingDownSpecicalSkill)
         {
-            this.CooldownSpecialSkill();
+            if (this.isMiss)
+            {
+                this.cooldownSpecialSkill = this.missCooldowmTime;
+                this.CoolingdownSpecialSkill_Miss();
+            }
+            else
+            {
+                this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
+                this.CoolingdownSpecialSkill();
+            }
         }
         if (this.isStartCooldownBattleSkill)
         {
-            this.CooldownBattleSkill();
+            this.CoolingdownBattleSkill();
         }
     }
 
@@ -138,7 +152,7 @@ public class Character : SaiMonoBehaviour
         PlayerCtrl.Instance.SetCharacter(this);
     }
 
-    protected virtual void CooldownSpecialSkill()
+    protected virtual void CoolingdownSpecialSkill()
     {
         this.timerSpecialSkill += Time.deltaTime;
         if (this.timerSpecialSkill < this.cooldownSpecialSkill) return;
@@ -148,7 +162,18 @@ public class Character : SaiMonoBehaviour
         this.isCoolingDownSpecicalSkill = false;
     }
 
-    protected virtual void CooldownBattleSkill()
+    protected virtual void CoolingdownSpecialSkill_Miss()
+    {
+        this.timerSpecialSkill += Time.deltaTime;
+        if (this.timerSpecialSkill < this.missCooldowmTime) return;
+
+        this.timerSpecialSkill = 0;
+        this.isReadySpecialSkill = true;
+        this.isCoolingDownSpecicalSkill = false;
+        this.isMiss = true;
+    }
+
+    protected virtual void CoolingdownBattleSkill()
     {
         this.timerBattleSkill += Time.deltaTime;
         if (this.timerBattleSkill < this.cooldownBattleSkill) return;

@@ -5,26 +5,22 @@ using UnityEngine;
 
 public class UI_PlayerInteract : SaiMonoBehaviour
 {
-    [SerializeField] private PlayerInteract playerInteract;
-    [SerializeField] private GameObject container;
+    [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private TMP_Text text;
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        if (this.playerInteract == null)
-            this.playerInteract = PlayerCtrl.Instance.PlayerInteract;
-
-        if (this.container == null)
-            this.container = transform.Find("Container").gameObject;
+        if (this.canvasGroup == null)
+            this.canvasGroup = GetComponent<CanvasGroup>();
 
         if (this.text == null)
-            this.text = transform.Find("Container").Find("Text").GetComponent<TMP_Text>();
+            this.text = transform.Find("Container").Find("Interaction_Text").GetComponent<TMP_Text>();
     }
 
     private void Update()
     {
-        if (this.playerInteract.GetInteractableObjectByRaycast() != null)
+        if (PlayerCtrl.Instance.PlayerInteract.GetInteractableObjectByRaycast() != null)
         {
             this.Show();
         }
@@ -36,12 +32,12 @@ public class UI_PlayerInteract : SaiMonoBehaviour
 
     private void Show()
     {
-        this.container.SetActive(true);
-        this.text.SetText(this.playerInteract.GetInteractableObjectByRaycast().GetInteractableText());
+        this.canvasGroup.alpha = 1;
+        this.text.SetText(PlayerCtrl.Instance.PlayerInteract.GetInteractableObjectByRaycast().GetInteractableText());
     }
 
     private void Hide()
     {
-        this.container.SetActive(false);
+        this.canvasGroup.alpha = 0;
     }
 }
