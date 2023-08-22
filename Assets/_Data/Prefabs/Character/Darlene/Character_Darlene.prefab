@@ -6856,7 +6856,7 @@ GameObject:
   - component: {fileID: 7547316967833269047}
   - component: {fileID: 7637908738592281165}
   - component: {fileID: 7637908738592281162}
-  - component: {fileID: 712176183199844332}
+  - component: {fileID: 3213401403496622296}
   m_Layer: 6
   m_Name: Character_Darlene
   m_TagString: Player
@@ -6983,7 +6983,7 @@ MonoBehaviour:
   amount: 2
   pools: []
   spawnPool: {fileID: 0}
---- !u!114 &712176183199844332
+--- !u!114 &3213401403496622296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -6992,7 +6992,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7541689390658526284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05b2a424122998546bad38e4cfd66492, type: 3}
+  m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   centerPoint: {fileID: 5424431673992408317}

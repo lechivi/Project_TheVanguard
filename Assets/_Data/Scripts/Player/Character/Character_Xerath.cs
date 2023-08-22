@@ -27,7 +27,6 @@ public class Character_Xerath : Character
     [Space(10)]
     [SerializeField] private Vector3 b_CameraOffset;
     [SerializeField] private Vector3 a_CameraOffset = new Vector3(1f, 0.12f, -0.25f);
-    [SerializeField] private float transformTime = 2.5f;
     [SerializeField] private ParticleSystem transformFX;
     [SerializeField] private ParticleSystem timeoutFX;
 
@@ -196,7 +195,7 @@ public class Character_Xerath : Character
         yield return new WaitForSeconds(0.5f);
 
         this.Evolution();
-        yield return new WaitForSeconds(this.transformTime);
+        yield return new WaitForSeconds(this.characterData.ExecutionSkillTime - 1f);
 
         this.PlayTimeoutFX(this.alphaObj.transform);
         yield return new WaitForSeconds(0.5f);

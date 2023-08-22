@@ -34,7 +34,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: 5962824745269620462}
+    m_Motion: {fileID: 7400002, guid: bea3abce5b092224ba71e31715c2e1e8, type: 3}
     m_Threshold: 0
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -42,14 +42,30 @@ BlendTree:
     m_DirectBlendParameter: TypeMove
     m_Mirror: 0
   - serializedVersion: 2
-    m_Motion: {fileID: 8335157672779209314}
+    m_Motion: {fileID: 1695192892109923712, guid: 028af5cfa211cf547b46916b8695a4d5, type: 3}
+    m_Threshold: 0.5
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: TypeMove
+    m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: 7400000, guid: 7edc25220d31dda4fbfcd6a78475aad2, type: 3}
     m_Threshold: 1
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: TypeMove
     m_Mirror: 0
-  m_BlendParameter: TypeMove
+  - serializedVersion: 2
+    m_Motion: {fileID: 7832394241297634407, guid: 6738ac7b3523d5743b17f4649a1f6f5f, type: 3}
+    m_Threshold: 2
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: TypeMove
+    m_Mirror: 0
+  m_BlendParameter: MoveState
   m_BlendParameterY: Blend
   m_MinThreshold: 0
   m_MaxThreshold: 1
@@ -358,12 +374,6 @@ AnimatorController:
   m_Name: Anmt_Enemy
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: TypeMove
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: MoveState
     m_Type: 1
     m_DefaultFloat: 0
@@ -371,18 +381,6 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: MotionSpeed
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: InputX
-    m_Type: 1
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: InputY
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0

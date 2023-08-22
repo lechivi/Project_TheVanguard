@@ -28,7 +28,7 @@ public class PlayerCtrl : SaiMonoBehaviour
     public Animator RigAnimator;
 
     [Header("UI")]
-    public UI_Skill_Icon UI_Skill_Icon;
+    public UI_Skill UI_Skill_Icon;
 
     protected override void LoadComponent()
     {

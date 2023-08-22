@@ -5,4 +5,5 @@ public enum EnemyStateId
     Follow,
     Chase,
     Attack,
+    Death
 }

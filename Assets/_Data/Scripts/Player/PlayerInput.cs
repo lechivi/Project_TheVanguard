@@ -204,19 +204,22 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleMenuOpenCloseInput()
     {
-        if (this.MenuOpenCloseInput)
+        if (UIManager.HasInstance)
         {
-            if (this.IsPlayerActive)
+            if (this.MenuOpenCloseInput)
             {
-                UIManager.Instance.SetPauseMenuCanvasOpen();
-            }
-            else
-            {
-                UIManager.Instance.SetAlwaysOnUICanvasOpen();
-            }
-            this.SetPlayerInput(!this.IsPlayerActive);
+                if (this.IsPlayerActive)
+                {
+                    UIManager.Instance.InGamePanel.ShowPauseMenu(null);
+                }
+                else
+                {
+                    UIManager.Instance.InGamePanel.ShowAlwaysOnUI(null);
+                }
+                this.SetPlayerInput(!this.IsPlayerActive);
 
-            this.MenuOpenCloseInput = false;
+                this.MenuOpenCloseInput = false;
+            }
         }
     }
 

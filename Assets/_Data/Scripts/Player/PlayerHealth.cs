@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealth : PlayerAbstract
+public class PlayerHealth : PlayerAbstract, IHealth
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
 
     private bool isDeath;
-
-    public int MaxHealth { get => this.maxHealth; }
-    public int CurrentHealth { get => this.currentHealth; }
-    public bool IsDeath { get => this.isDeath; }
 
     private void Start()
     {
@@ -20,6 +16,21 @@ public class PlayerHealth : PlayerAbstract
             this.maxHealth = this.playerCtrl.Character.CharacterData.Health;
             this.currentHealth = this.maxHealth;
         }
+    }
+
+    public int GetMaxHealth()
+    {
+        return this.maxHealth;
+    }
+
+    public int GetCurrentHealth() 
+    {
+        return this.currentHealth;
+    }
+
+    public bool IsDeath()
+    {
+        return this.isDeath;
     }
 
     public void TakeDamage(int damage)
@@ -36,5 +47,10 @@ public class PlayerHealth : PlayerAbstract
     public void Die()
     {
         Debug.Log("Player HP = 0");
+    }
+
+    public void TakeDamage(int damage, Vector3 force, Vector3 hitPoint, Rigidbody hitRigidbody)
+    {
+        throw new System.NotImplementedException();
     }
 }

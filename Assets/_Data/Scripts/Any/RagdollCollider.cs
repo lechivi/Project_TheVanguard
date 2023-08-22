@@ -1,10 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 public class RagdollCollider : MonoBehaviour
 {
+    [SerializeField] private PhysicMaterial physicMaterial;
     [SerializeField] private List<Collider> colliders;
 
     [SerializeField] private BoxCollider hand_L;
@@ -54,6 +54,41 @@ public class RagdollCollider : MonoBehaviour
         ankleSideTarget.size = ankleSideDone.size;
     }
 
+    private void AddPhysicMaterial()
+    {
+        foreach(Collider collider in this.colliders)
+        {
+            collider.material = this.physicMaterial;
+        }
+    }
+
+    private void SetCollisionDetection()
+    {
+        Rigidbody[] rigidbodies =  transform.GetComponentsInChildren<Rigidbody>();
+        foreach(Rigidbody rb in rigidbodies)
+        {
+            rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        }
+    }
+
+    private void SetIsKinematicTrue()
+    {
+        Rigidbody[] rigidbodies = transform.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in rigidbodies)
+        {
+            rb.isKinematic = true;
+        }
+    }
+
+    private void SetIsKinematicFalse()
+    {
+        Rigidbody[] rigidbodies = transform.GetComponentsInChildren<Rigidbody>();
+        foreach (Rigidbody rb in rigidbodies)
+        {
+            rb.isKinematic = false;
+        }
+    }
+
     public void ButtonLoadColliders()
     {
         this.LoadColliders();
@@ -62,6 +97,26 @@ public class RagdollCollider : MonoBehaviour
     public void ButtonDulicateLeftSide()
     {
         this.DulicateLeftSide();
+    }
+
+    public void ButtonAddPhysicMaterial()
+    {
+        this.AddPhysicMaterial();
+    }
+
+    public void ButtonSetCollisionDetection()
+    {
+        this.SetCollisionDetection();
+    }
+
+    public void ButtonSetIsKinematicTrue()
+    {
+        this.SetIsKinematicTrue();
+    }
+
+    public void ButtonSetIsKinematicFalse()
+    {
+        this.SetIsKinematicFalse();
     }
 }
 
@@ -79,6 +134,26 @@ public class RagdollChangeSizeCustomInscpector : Editor
         if (GUILayout.Button("Dulicate Left Side"))
         {
             ragdollChangeSize.ButtonDulicateLeftSide();
+        }
+
+        if (GUILayout.Button("Add Physic Material"))
+        {
+            ragdollChangeSize.ButtonAddPhysicMaterial();
+        }
+
+        if (GUILayout.Button("Set Collision Detection"))
+        {
+            ragdollChangeSize.ButtonSetCollisionDetection();
+        }
+        
+        if (GUILayout.Button("Set IsKinematic True"))
+        {
+            ragdollChangeSize.ButtonSetIsKinematicTrue();
+        }
+        
+        if (GUILayout.Button("Set IsKinematic False"))
+        {
+            ragdollChangeSize.ButtonSetIsKinematicFalse();
         }
 
         DrawDefaultInspector();

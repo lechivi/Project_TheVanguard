@@ -6,7 +6,6 @@ public class Character_Sera : Character
 {
     [Header("SERA")]
     [SerializeField] private float timer1 = 0.1f;
-    [SerializeField] private float timer2 = 3f;
     [SerializeField] private int maxScanTimes = 3;
     [SerializeField] private float scanRange = 3f;
     [SerializeField] private PoolingObject poolingObject;
@@ -79,7 +78,7 @@ public class Character_Sera : Character
             fx.Play();
             listFx.Add(fx);
         }
-        yield return new WaitForSeconds(this.timer2);
+        yield return new WaitForSeconds(this.characterData.ExecutionSkillTime - this.timer1);
 
         if (listEnemy.Count > 1)
         {
@@ -102,14 +101,11 @@ public class Character_Sera : Character
 
     private bool IsHitEnemy()
     {
-        Transform targetHit = PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast();
-        if (targetHit)
+        Voidspawn_InfoScanner enemyHit = PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast() as Voidspawn_InfoScanner;
+        if (enemyHit != null)
         {
-            if (targetHit.GetComponent<EnemyCtrl>())
-            {
-                this.enemyHit = targetHit;
-                return true;
-            }
+            this.enemyHit = enemyHit.transform;
+            return true;
         }
 
         this.enemyHit = null;

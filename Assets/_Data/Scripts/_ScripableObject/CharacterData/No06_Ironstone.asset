@@ -15,13 +15,17 @@ MonoBehaviour:
   CharacterName: 'Ironstone '
   ClassName: The Dwarf
   Species: 20
+  CharacterIcon: {fileID: 0}
+  CharacterModel: {fileID: 0}
   CharacterDescription: Skilled blacksmith and warrior from the depths of the earth,
     clad in sturdy armor and wielding powerful melee weapons.
+  Health: 50
   Power: 5
   Defence: 5
   HitPoint: 5
-  CooldownSkillTime: 0
+  ExecutionSkillTime: 15
+  CooldownSkillTime: 30
   SpecialSkillName: Indomitable Presence
-  SpecialSkill_Icon: {fileID: 0}
+  SpecialSkillIcon: {fileID: 0}
   SpecialSkillDescription: "Ironstone becomes more and more powerful\r."
   ListSkin: []

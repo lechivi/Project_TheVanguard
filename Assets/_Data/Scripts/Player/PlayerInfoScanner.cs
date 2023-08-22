@@ -15,13 +15,14 @@ public class PlayerInfoScanner : PlayerAbstract
             this.mainCamera = Camera.main.transform;
     }
 
-    public Transform GetInfoScannerObjectByRaycast()
+    public IInfoScanner GetInfoScannerObjectByRaycast()
     {
         Physics.Raycast(this.mainCamera.transform.position, this.mainCamera.transform.forward, 
             out RaycastHit hitInfo, this.scanDistance, this.scanLayer);
-        if (hitInfo.collider != null && hitInfo.transform.TryGetComponent(out Transform transform))
+        if (hitInfo.collider != null && hitInfo.transform.TryGetComponent(out IInfoScanner inforScanner))
         {
-            return transform;
+            if (inforScanner.CanScan())
+                return inforScanner;
         }
         return null;
     }

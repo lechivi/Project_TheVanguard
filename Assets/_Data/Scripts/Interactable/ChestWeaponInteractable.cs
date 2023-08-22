@@ -39,19 +39,6 @@ public class ChestWeaponInteractable : MonoBehaviour, IInteractable
         return !this.isOpen;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            foreach(var obj in this.gameObjects) 
-            {
-                Destroy(obj);
-            }
-            this.gameObjects.Clear();
-            this.Spawnitem();
-        }
-    }
-
     public void Spawnitem() //Call in animation
     {
         if (this.pickupObjectPrefab == null) return;

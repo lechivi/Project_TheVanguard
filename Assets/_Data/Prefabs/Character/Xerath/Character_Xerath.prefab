@@ -2497,7 +2497,7 @@ GameObject:
   - component: {fileID: 4603704076052237263}
   - component: {fileID: 4603704076052237256}
   - component: {fileID: 4603704076052237259}
-  - component: {fileID: 4603704076915917177}
+  - component: {fileID: 164584929}
   m_Layer: 6
   m_Name: Xerath_Alpha
   m_TagString: Untagged
@@ -2598,7 +2598,7 @@ MonoBehaviour:
   character_Xerath: {fileID: 4603704076898781944}
   animator: {fileID: 4603704076052237262}
   coolDownTime: 0.1
---- !u!114 &4603704076915917177
+--- !u!114 &164584929
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2607,7 +2607,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4603704076052237261}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05b2a424122998546bad38e4cfd66492, type: 3}
+  m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   centerPoint: {fileID: 1126426900}
@@ -4333,7 +4333,7 @@ GameObject:
   - component: {fileID: 4603704076898442077}
   - component: {fileID: 4603704076898442066}
   - component: {fileID: 4603704076898442078}
-  - component: {fileID: 4603704076915917178}
+  - component: {fileID: 558325777}
   m_Layer: 6
   m_Name: Xerath_Beta
   m_TagString: Untagged
@@ -4433,7 +4433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character_Xerath: {fileID: 4603704076898781944}
---- !u!114 &4603704076915917178
+--- !u!114 &558325777
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4442,7 +4442,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4603704076898442067}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05b2a424122998546bad38e4cfd66492, type: 3}
+  m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   centerPoint: {fileID: 1083594613}

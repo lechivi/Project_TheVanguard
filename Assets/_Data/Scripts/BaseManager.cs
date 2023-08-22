@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
-public class BaseManager<T> : MonoBehaviour where T : BaseManager<T>
+public class BaseManager<T> : SaiMonoBehaviour where T : BaseManager<T>
 {
     private static T instance;
 
@@ -33,9 +33,10 @@ public class BaseManager<T> : MonoBehaviour where T : BaseManager<T>
         }
     }
 
-    protected virtual void Awake()
+    protected override void Awake()
     {
         CheckInstance();
+        base.Awake();
     }
 
     protected bool CheckInstance()

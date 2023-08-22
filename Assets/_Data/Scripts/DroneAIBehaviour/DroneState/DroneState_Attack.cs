@@ -36,16 +36,16 @@ public class DroneState_Attack : IDroneState
 
     public void FixedUpdate()
     {
-        this.FollowEnemy();
+        this.ChaseEnemy();
         this.droneAiCtrl.DroneCtrl.ShotLaser();
     }
 
-    private void FollowEnemy()
+    private void ChaseEnemy()
     {
         DroneCtrl droneCtrl = this.droneAiCtrl.DroneCtrl;
         if (droneCtrl.TargetFollow != null)
         {
-            Transform closestEnemy = droneCtrl.DetectEnemy.FindClosestEnemyCtrl().CenterPoint;
+            Transform closestEnemy = droneCtrl.DetectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint();
             if (closestEnemy == null) return;
 
             droneCtrl.Agent.SetDestination(closestEnemy.transform.position);

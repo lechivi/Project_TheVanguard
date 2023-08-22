@@ -35,6 +35,12 @@ public class SaiCustomInscpector : Editor
             saiMono.ButtonLoadComponent();
         }
 
+        this.AddMoreButton();
         DrawDefaultInspector();
+    }
+
+    public virtual void AddMoreButton()
+    {
+        //for ovrride
     }
 }

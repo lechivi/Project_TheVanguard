@@ -17,12 +17,13 @@ public class CharacterDataSO : ScriptableObject
     [Range(0, 10)] public int Power = 5;
     [Range(0, 10)] public int Defence = 5;
     [Range(0, 10)] public int HitPoint = 5;
-    public float CooldownSkillTime;
 
     [Header("SKILL")]
+    public float ExecutionSkillTime;
+    public float CooldownSkillTime;
     public string SpecialSkillName;
     public Sprite SpecialSkillIcon;
-    [TextAreaAttribute(3, 8)] public string SpecialSkillDescription;
+    [TextArea(3, 8)] public string SpecialSkillDescription;
 
     [Header("SKIN")]
     /// <summary>

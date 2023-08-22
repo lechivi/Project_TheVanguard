@@ -1,13 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class NPCShopkeeperInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] private ChatBubble chatBubblePrefab;
-    [SerializeField] private UI_ExchangePanel exchangePanel;
-
     [SerializeField] private string interactText;
     [SerializeField] private List<string> chatQuote = new List<string>();
 
@@ -39,7 +35,12 @@ public class NPCShopkeeperInteractable : MonoBehaviour, IInteractable
         }
 
         this.animator.SetTrigger("Talk");
-        this.npcLookAt.LookAtTarget(interactorTransfrom);
+
+        Transform targetLookAt = this.interactorTransfrom.GetComponent<PlayerInteract>().PlayerCtrl.PlayerTransform;
+        if (targetLookAt != null)
+        {
+            this.npcLookAt.LookAtTarget(targetLookAt);
+        }
 
         Invoke("DisplayShopUI", 2f);
     }
@@ -61,15 +62,18 @@ public class NPCShopkeeperInteractable : MonoBehaviour, IInteractable
 
     private void DisplayShopUI()
     {
-        if (this.exchangePanel == null) return;
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.InGamePanel.ShowOther(null);
+            UI_ExchangePanel exchangePanel = UIManager.Instance.InGamePanel.InGame_Other.UI_ExchangePanel;
+            exchangePanel.Show(null);
+            exchangePanel.ShopList.SetShopList(this);
+            exchangePanel.InventoryList.SetInventoryList();
 
-        UIManager.Instance.SetOtherUICanvasOpen();
-        this.exchangePanel.Show();
-        this.exchangePanel.ShopList.SetShopList(this);
-        this.exchangePanel.InventoryList.SetInventoryList();
+            PlayerInput playerInput = this.interactorTransfrom.GetComponent<PlayerInteract>().PlayerCtrl.PlayerInput;
+            playerInput.SetPlayerInput(false);
 
-        PlayerInput playerInput = this.interactorTransfrom.GetComponent<PlayerInteract>().PlayerCtrl.PlayerInput;
-        playerInput.SetPlayerInput(false);
+        }
 
     }
 }

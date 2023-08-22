@@ -2,24 +2,30 @@ using UnityEngine;
 
 public class Enemy_AiCtrl : EnemyAbstract
 {
-    public EnemyStateId InitState;
-    public EnemyStateMachine EnemySM;
+    [SerializeField] private AiConfig aiConfig;
+    [SerializeField] private EnemyStateId initState;
+    [SerializeField] private EnemyStateMachine enemySM;
+    
+    public AiConfig AiConfig { get => this.aiConfig; }
+    public EnemyStateId InitState { get => this.initState; }
+    public EnemyStateMachine EnemySM { get => this.enemySM; }
 
     private void Start()
     {
-        this.EnemySM = new EnemyStateMachine(this);
-        this.EnemySM.RegisterState(new EnemyState_Idle(this));
-        this.EnemySM.RegisterState(new EnemyState_Chase(this));
+        this.enemySM = new EnemyStateMachine(this);
+        this.enemySM.RegisterState(new EnemyState_Idle(this));
+        this.enemySM.RegisterState(new EnemyState_Chase(this));
+        this.enemySM.RegisterState(new EnemyState_Death(this));
     }
 
     private void Update()
     {
-        this.EnemySM.Update();
+        this.enemySM.Update();
     }
 
     private void FixedUpdate()
     {
-        //Debug.Log("CurState: " + this.EnemySM.CurrentState);
-        this.EnemySM.FixedUpdate();
+        Debug.Log("CurState: " + this.EnemySM.CurrentState);
+        this.enemySM.FixedUpdate();
     }
 }

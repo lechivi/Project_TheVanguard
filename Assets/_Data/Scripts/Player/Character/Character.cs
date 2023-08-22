@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : SaiMonoBehaviour
@@ -15,8 +13,10 @@ public class Character : SaiMonoBehaviour
 
     protected bool isReadySpecialSkill = true;
     protected bool isCoolingDownSpecicalSkill;
+    protected float executionSpecialSkill;
     protected float cooldownSpecialSkill;
-    protected float timerSpecialSkill;
+    protected float timerEX_SpecialSkill;
+    protected float timerCD_SpecialSkill;
 
     protected bool isReadyBattleSkill = true;
     protected bool isStartCooldownBattleSkill;
@@ -36,8 +36,10 @@ public class Character : SaiMonoBehaviour
 
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
     public bool IsCoolingDownSpecicalSkill { get => this.isCoolingDownSpecicalSkill; }
+    public float ExecutionSpecialSkill { get => this.executionSpecialSkill; }
     public float CooldownSpecialSkill { get => this.cooldownSpecialSkill; }
-    public float TimerSpecialSkill { get => this.timerSpecialSkill; }
+    public float TimerEX_SpecialSkill { get => this.timerEX_SpecialSkill; }
+    public float TimerCD_SpecialSkill { get => this.timerCD_SpecialSkill; }
 
     protected override void LoadComponent()
     {
@@ -102,6 +104,7 @@ public class Character : SaiMonoBehaviour
     {
         if (this.characterData != null)
         {
+            this.executionSpecialSkill = this.characterData.ExecutionSkillTime;
             this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
         }
     }
@@ -154,20 +157,20 @@ public class Character : SaiMonoBehaviour
 
     protected virtual void CoolingdownSpecialSkill()
     {
-        this.timerSpecialSkill += Time.deltaTime;
-        if (this.timerSpecialSkill < this.cooldownSpecialSkill) return;
+        this.timerCD_SpecialSkill += Time.deltaTime;
+        if (this.timerCD_SpecialSkill < this.cooldownSpecialSkill) return;
 
-        this.timerSpecialSkill = 0;
+        this.timerCD_SpecialSkill = 0;
         this.isReadySpecialSkill = true;
         this.isCoolingDownSpecicalSkill = false;
     }
 
     protected virtual void CoolingdownSpecialSkill_Miss()
     {
-        this.timerSpecialSkill += Time.deltaTime;
-        if (this.timerSpecialSkill < this.missCooldowmTime) return;
+        this.timerCD_SpecialSkill += Time.deltaTime;
+        if (this.timerCD_SpecialSkill < this.missCooldowmTime) return;
 
-        this.timerSpecialSkill = 0;
+        this.timerCD_SpecialSkill = 0;
         this.isReadySpecialSkill = true;
         this.isCoolingDownSpecicalSkill = false;
         this.isMiss = true;

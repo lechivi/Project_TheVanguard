@@ -13,8 +13,9 @@ public class DroneCtrl : SaiMonoBehaviour
     [SerializeField] private ParticleSystem timeoutFx;
     [SerializeField] private ParticleSystem moveFx;
     [SerializeField] private List<ParticleSystem> listSwingFx;
+    [SerializeField] private DetectTarget detectTarget;
     [SerializeField] private Drone_AiCtrl droneAiCtrl;
-    [SerializeField] private DetectEnemy detectEnemy;
+    [SerializeField] private DroneHealth droneHealth;
 
     [Space(10)]
     [SerializeField] private Transform targetFollow;
@@ -29,7 +30,9 @@ public class DroneCtrl : SaiMonoBehaviour
     public Transform TargetFollow { get => this.targetFollow; }
     public ParticleSystem LaserFx { get => this.laserFx; }
     public ParticleSystem MoveFx { get => this.moveFx; }
-    public DetectEnemy DetectEnemy { get => this.detectEnemy; }
+    public DetectTarget DetectTarget { get => this.detectTarget; }
+    public Drone_AiCtrl DroneAiCtrl { get => this.droneAiCtrl; }
+    public DroneHealth DroneHealth { get => this.droneHealth; }
     public float RotationSpeed { get => this.rotationSpeed; }
     public float DetectionRange { get => this.detectionRange; }
     public float MaxDistanceFromPlayer { get => this.maxDistanceFromPlayer; }
@@ -67,21 +70,24 @@ public class DroneCtrl : SaiMonoBehaviour
         if (this.agent == null)
             this.agent = GetComponent<NavMeshAgent>();
 
+        if (this.detectTarget == null)
+            this.detectTarget = GetComponentInChildren<DetectTarget>();
+
         if (this.droneAiCtrl == null)
             this.droneAiCtrl = GetComponentInChildren<Drone_AiCtrl>();
 
-        if (this.detectEnemy == null)
-            this.detectEnemy = GetComponentInChildren<DetectEnemy>();
+        if (this.droneHealth == null)
+            this.droneHealth = GetComponentInChildren<DroneHealth>();
     }
 
     private void OnEnable()
     {
-        this.detectEnemy.DetectionRange = this.detectionRange;
+        this.detectTarget.DetectionRange = this.detectionRange;
     }
 
     private void Update()
     {
-        if (this.detectEnemy.IsDetectEnemy() && Vector3.Distance(this.targetFollow.position, this.detectEnemy.FindClosestEnemyCtrl().CenterPoint.position) < this.safeRange)
+        if (this.detectTarget.IsDetectTarget() && Vector3.Distance(this.targetFollow.position, this.detectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint().position) < this.safeRange)
         {
             this.droneAiCtrl.DroneSM.ChangeState(DroneStateId.Attack);
         }
@@ -122,7 +128,7 @@ public class DroneCtrl : SaiMonoBehaviour
 
     public void ShotLaser()
     {
-        this.shotPoint.LookAt(this.detectEnemy.FindClosestEnemyCtrl().CenterPoint);
+        this.shotPoint.LookAt(this.detectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint());
         this.laserFx.Play();
     }
 
