@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Gun
   - PickupObject
-  - CharacterSelection
   layers:
   - Default
   - TransparentFX
@@ -19,8 +18,8 @@ TagManager:
   - PickupObject
   - IgnorePlayer
   - TerrainOnly
-  - Enemy
-  - Obstacle
+  - Post Processing
+  - 
   - 
   - 
   - 

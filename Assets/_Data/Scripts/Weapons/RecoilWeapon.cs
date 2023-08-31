@@ -14,21 +14,21 @@ public class RecoilWeapon : MonoBehaviour
     [HideInInspector] public CinemachineVirtualCamera playerFPSCam;
     [HideInInspector] public CinemachineImpulseSource cameraShake;
     [HideInInspector] public Animator rigController;
-    public float verticalRecoil;
-    public float horizontalRecoil;
-    public float duration;
+    private float verticalRecoil;
+    private float horizontalRecoil;
+    private int index;
     private float time;
-    public Vector2[] recoilPattern;
-    public int index;
-    public int recoilFPS;
 
-    public RaycastWeapon raycastWeapon;
+    public float duration;
+    public Vector2[] recoilPattern;
+
+    public WeaponRaycast raycastWeapon;
 
     protected void Awake()
     {
         CinemachineImpulse = GetComponent<CinemachineImpulseSource>();
         cameraShake = GetComponent<CinemachineImpulseSource>();
-        raycastWeapon = GetComponent<RaycastWeapon>();
+        raycastWeapon = GetComponent<WeaponRaycast>();
     }
 
     public void ResetIndex()
@@ -41,14 +41,15 @@ public class RecoilWeapon : MonoBehaviour
     {
         return (index + 1) % recoilPattern.Length;
     }
-    public void GenerateRecoil(string weaponName)
+    public void GenerateRecoil()
     {
         time = duration;
         cameraShake.GenerateImpulse(Camera.main.transform.forward);
         horizontalRecoil = recoilPattern[index].x;
         verticalRecoil = recoilPattern[index].y;
         index = NextIndex(index);
-        rigController.Play("WeaponRecoil_" + weaponName, 1, 0.0f);
+        if (raycastWeapon.Weapon.WeaponData.ShotGunType == ShotGunType.Slowhand) return;
+        rigController.Play("WeaponRecoil_" + raycastWeapon.Weapon.WeaponData.WeaponType, 1, 0.0f);
     }
     private void Update()
     {

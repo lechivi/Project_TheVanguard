@@ -29617,7 +29617,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8824270345280385829}
-  - component: {fileID: 8824270345280385834}
+  - component: {fileID: 550373385204158752}
   - component: {fileID: 4315067331740818143}
   - component: {fileID: 1647444876449109736}
   - component: {fileID: -7625584663639781181}
@@ -29646,7 +29646,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8824270345280385834
+--- !u!114 &550373385204158752
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29655,11 +29655,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8824270345280385828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c475986dd907d44934c546e13fa289, type: 3}
+  m_Script: {fileID: 11500000, guid: 1256db8f307b35644bd92442fe362125, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: laser
-  weaponslot: 0
   ForceRaycast: 1
   Weapon: {fileID: 0}
   runtTimeFire: 0
@@ -29670,6 +29668,7 @@ MonoBehaviour:
   raycastOrigin: {fileID: 2855927918210285996}
   recoil: {fileID: 4315067331740818143}
   magazine: {fileID: 3125739154904472175, guid: 0a33e0b124588e14cbeb9c23aa47baa4, type: 3}
+  isDelay: 0
 --- !u!114 &4315067331740818143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29690,8 +29689,6 @@ MonoBehaviour:
   playerFPSCam: {fileID: 0}
   cameraShake: {fileID: 0}
   rigController: {fileID: 0}
-  verticalRecoil: 10
-  horizontalRecoil: 0
   duration: 0.1
   recoilPattern:
   - {x: 10, y: 10}
@@ -29709,8 +29706,6 @@ MonoBehaviour:
   - {x: -1, y: 10}
   - {x: 2, y: 10}
   - {x: 5, y: 10}
-  index: 0
-  recoilFPS: 0
   raycastWeapon: {fileID: 0}
 --- !u!114 &1647444876449109736
 MonoBehaviour:

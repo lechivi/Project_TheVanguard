@@ -15,15 +15,28 @@ MonoBehaviour:
   ItemName: Knife 04
   ItemValue: 0
   ItemType: 1
-  WeaponType: 5
   Icon: {fileID: 1307541170598548540, guid: 8c8cd2ef27d7c47418c6c385a18139d1, type: 3}
   Model: {fileID: 7262410541620119071, guid: 1d7b6bc806a1bf44dba57b9a513cc21f, type: 3}
+  PosHolster: {x: 0, y: 0, z: 0}
+  RosHolster: {x: -112.395, y: -85.02802, z: -84.64899}
+  PosEquip: {x: 0.01, y: 0.091, z: -0.19}
+  RosEquip: {x: 94.388, y: -116.783, z: -116.091}
+  WeaponType: 5
+  ShotGunType: 0
+  MeleeType: 2
   rangedDamage: 0
-  fireRate: 0
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 0
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

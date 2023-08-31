@@ -7,6 +7,7 @@ public class PlayerWeapon : PlayerAbstract
     public PlayerWeaponManager PlayerWeaponManager;
     public PlayerWeaponActiveOld PlayerWeaponActive;
     public PlayerWeaponReload PlayerWeaponReload;
+    public PlayerWeaponAttack PlayerWeaponAttack;
     public PlayerRigAnimationEvents AnimationEvents;
     public Animator RigAnimator;
 
@@ -16,6 +17,7 @@ public class PlayerWeapon : PlayerAbstract
         this.LoadPlayerWeaponManager();
         this.LoadPlayerWeaponActive();
         this.LoadPlayerWeaponReload();
+        this.LoadPlayerWeaponAttack();
         this.LoadRigAnimator();
         this.LoadPlayerRigAnimationEvents();
     }
@@ -46,22 +48,25 @@ public class PlayerWeapon : PlayerAbstract
             Debug.LogWarning(gameObject.name + ": LoadPlayerWeaponReload", gameObject);
         }
     }
-
+    protected virtual void LoadPlayerWeaponAttack()
+    {
+        if (this.PlayerWeaponAttack == null)
+        {
+            this.PlayerWeaponAttack = GetComponentInChildren<PlayerWeaponAttack>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerWeaponAttack", gameObject);
+        }
+    }
     protected virtual void LoadRigAnimator()
     {
-        if (this.RigAnimator == null)
-        {
-            this.RigAnimator = this.playerCtrl.RigAnimator;
-            Debug.LogWarning(gameObject.name + ": LoadRigAnimator", gameObject);
-        }
+        this.RigAnimator = this.playerCtrl.RigAnimator;
+        Debug.LogWarning(gameObject.name + ": LoadRigAnimator", gameObject);
     }
 
     protected virtual void LoadPlayerRigAnimationEvents()
     {
-        if (this.AnimationEvents == null)
-        {
-            this.AnimationEvents = this.playerCtrl.RigAnimator.GetComponent<PlayerRigAnimationEvents>();
-            Debug.LogWarning(gameObject.name + ": LoadPlayerRigAnimationEvents", gameObject);
-        }
+
+        this.AnimationEvents = this.playerCtrl.RigAnimator.GetComponent<PlayerRigAnimationEvents>();
+        Debug.LogWarning(gameObject.name + ": LoadPlayerRigAnimationEvents", gameObject);
+
     }
 }

@@ -17,17 +17,22 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 4147139860447680544, guid: b41e5248fe8350c44b23b281deefc8da, type: 3}
   Model: {fileID: 8824270345280385828, guid: 9b1b0f181b8e98c448b95e787d8f0c97, type: 3}
+  PosHolster: {x: 0, y: 0, z: 0}
+  RosHolster: {x: 0, y: 0, z: 0}
+  PosEquip: {x: 0, y: 0, z: 0}
+  RosEquip: {x: 0, y: 0, z: 0}
   WeaponType: 3
   ShotGunType: 2
+  MeleeType: 0
   rangedDamage: 0
   accuracy: 0
   timePerFireRate: 0
   fireRate: 4
-  bulletSpeed: 10000
+  bulletSpeed: 1000
   timeDelayPerShot: 1.5
   ammoType: 3
   ammoPerShot: 8
-  ammo: 6
+  ammo: 1
   magazineSize: 6
   range: 0
   spreadAiming: 0

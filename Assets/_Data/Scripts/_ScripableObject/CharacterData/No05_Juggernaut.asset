@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: No05_Juggernaut
   m_EditorClassIdentifier: 
   CharacterName: Juggernaut
-  CharacterClass: The Titan
+  ClassName: The Titan
   Species: 30
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
@@ -24,8 +24,8 @@ MonoBehaviour:
   Defence: 5
   HitPoint: 5
   ExecutionSkillTime: 0
-  CooldownSkillTime: 0
+  CooldownSkillTime: 3
   SpecialSkillName: Badass Laser
-  SpecialSkillIcon: {fileID: 0}
+  SpecialSkillIcon: {fileID: 21300000, guid: 08b8d83f8ce171d4b9942444ab7f8f4e, type: 3}
   SpecialSkillDescription: uggernaut unleashes a barrage of five unique laser beams.
   ListSkin: []

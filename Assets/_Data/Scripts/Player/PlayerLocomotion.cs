@@ -12,6 +12,7 @@ public class PlayerLocomotion : PlayerAbstract
     public bool IsJumping;
     public bool IsSprinting;
     public bool IsGrounded;
+    public bool IsWalking;
     public bool Is1D;
 
     [Header("Movement Speed")]
@@ -26,13 +27,13 @@ public class PlayerLocomotion : PlayerAbstract
     [SerializeField] private float speedDecrease;
     private Vector3 movementDirection;
     [SerializeField] private Vector3 rootMotion;
-    [SerializeField] private Vector3 velocity;
+    [SerializeField] public Vector3 velocity;
 
     /// đoạn code sau chưa phân code 
     protected override void Awake()
     {
         base.Awake();
-        this.Onanimatormove = FindObjectOfType<OnEventAnimator>();
+        this.Onanimatormove = playerCtrl.EvenAnimator;
         this.Is1D = false;
     }
 
@@ -53,7 +54,7 @@ public class PlayerLocomotion : PlayerAbstract
     {
         HandleJump();
         Handle1DMode();
-        HandleSprinting();
+       // HandleSprinting();
     }
 
     public void HanldeAllMovementFix()
@@ -92,15 +93,20 @@ public class PlayerLocomotion : PlayerAbstract
         Vector3 velocity = this.movementDirection;
         this.playerCtrl.CharacterController.Move(this.speed * velocity * Time.deltaTime);
     }
-    private void HandleSprinting()
+
+    public void SetIsSprinting(bool SprintingInput)
     {
-        RaycastWeapon currentweapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-
-        if (currentweapon != null)
+        bool canSprint = (playerCtrl.PlayerInput.MovementInput != Vector2.zero) && 
+            (!playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring) && (!playerCtrl.PlayerAim.isAim) && 
+            (!playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload);
+        if (canSprint && SprintingInput )
         {
-            //this.playerCtrl.RigAnimator.SetBool("isSprinting", IsSprinting);
+            this.IsSprinting = true;
         }
-
+        else
+        {
+            this.IsSprinting= false;
+        }
     }
 
     private void HandleJump()

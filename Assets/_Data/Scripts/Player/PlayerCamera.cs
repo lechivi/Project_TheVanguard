@@ -15,27 +15,21 @@ public class PlayerCamera : PlayerAbstract
     protected override void Awake()
     {
         base.Awake();
-        //TPSCam.gameObject.SetActive(true);
+        TPSCam.gameObject.SetActive(true);
         originalTPSCam = true;
-        //FPSCam.gameObject.SetActive(false);
+        FPSCam.gameObject.SetActive(false);
 
         this.SetCameraTarget();
     }
 
 
-    /*  public void ChangeCamera()
-      {
-          if (TPSCam.gameObject.activeInHierarchy == true)
-          {
-              ChangeFPSCam();
-          }
+    private void Update()
+    {
+        SetOriginalCamera();
+        HandleCamera();
+    }
 
-          else if (FPSCam.gameObject.activeInHierarchy == true)
-          {
-              ChangeTPSCam();
-          }
-      }*/
-    public void HandleCameraOriginal()
+    public void SetOriginalCamera()
     {
         if (TPSCam.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
         {
@@ -45,21 +39,44 @@ public class PlayerCamera : PlayerAbstract
         {
             originalTPSCam = false;
         }
+    }
 
+    public void HandleCamera()
+    {
+        if (playerCtrl.PlayerAim.isAim)
+        {
+            this.playerCtrl.PlayerCamera.ChangeFPSCam();
+        }
+        if (!playerCtrl.PlayerAim.isAim)
+        {
+            if (this.originalTPSCam)
+            {
+                this.ChangeTPSCam();
+            }
+            if (!this.originalTPSCam)
+            {
+                this.ChangeFPSCam();
+            }
+
+        }
+    }
+
+    public void ChangeOriginalCamera()
+    {
+        originalTPSCam =  !originalTPSCam;
     }
 
     public void ChangeFPSCam()
     {
         playerCtrl.PlayerLocomotion.Is1D = false;
-        TPSCam.m_Priority = 10;
-        FPSCam.m_Priority = 15;
+        TPSCam.gameObject.SetActive(false);
+        FPSCam.gameObject.SetActive(true);
     }
 
     public void ChangeTPSCam()
     {
-        //FPSCam.OnTransitionFromCamera
-        FPSCam.m_Priority = 10;
-        TPSCam.m_Priority = 15;
+        TPSCam.gameObject.SetActive(true);
+        FPSCam.gameObject.SetActive(false);
     }
 
     public void ChangeSpeedFPSCam(float xAxis, float yAxis)
@@ -72,7 +89,7 @@ public class PlayerCamera : PlayerAbstract
     {
         TPSCam.m_XAxis.m_MaxSpeed = xAxis;
         TPSCam.m_YAxis.m_MaxSpeed = yAxis;
-        TPSCam.m_Lens.FieldOfView = 40;
+        TPSCam.m_Lens.FieldOfView = 60;
     }
 
     public void ChangePOVFPS(int pov)

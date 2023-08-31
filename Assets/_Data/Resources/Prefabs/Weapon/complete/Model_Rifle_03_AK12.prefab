@@ -10298,8 +10298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4c475986dd907d44934c546e13fa289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: laser
-  weaponslot: 0
   ForceRaycast: 1
   Weapon: {fileID: 0}
   runtTimeFire: 0
@@ -10330,8 +10328,6 @@ MonoBehaviour:
   playerFPSCam: {fileID: 0}
   cameraShake: {fileID: 0}
   rigController: {fileID: 0}
-  verticalRecoil: 10
-  horizontalRecoil: 0
   duration: 0.1
   recoilPattern:
   - {x: 10, y: 10}
@@ -10349,8 +10345,6 @@ MonoBehaviour:
   - {x: -1, y: 10}
   - {x: 2, y: 10}
   - {x: 5, y: 10}
-  index: 0
-  recoilFPS: 0
   raycastWeapon: {fileID: 0}
 --- !u!114 &366455483684271858
 MonoBehaviour:

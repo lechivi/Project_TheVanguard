@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : SaiMonoBehaviour
@@ -10,21 +13,20 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected Animator rigAnimator;
     [SerializeField] protected Transform tps_LookAt;
     [SerializeField] protected Transform fps_Follow;
+    [SerializeField] protected Transform[] weaponSheathSlots;
+
+    [Space(10)]
+    [SerializeField] protected float cooldownSpecialSkill;
+    [SerializeField] protected float cooldownBattleSkill;
 
     protected bool isReadySpecialSkill = true;
     protected bool isCoolingDownSpecicalSkill;
-    protected float executionSpecialSkill;
-    protected float cooldownSpecialSkill;
-    protected float timerEX_SpecialSkill;
-    protected float timerCD_SpecialSkill;
+    protected float timerSpecialSkill;
 
     protected bool isReadyBattleSkill = true;
     protected bool isStartCooldownBattleSkill;
-    protected float cooldownBattleSkill;
     protected float timerBattleSkill;
-
-    protected bool isMiss;
-    protected float missCooldowmTime = 0.75f;
+    protected bool isCharacterForm =false;
 
     public CharacterDataSO CharacterData { get => this.characterData; }
     public Transform CharacterTransform { get => this.characterTransform; }
@@ -33,14 +35,12 @@ public class Character : SaiMonoBehaviour
     public Animator RigAnimator { get => this.rigAnimator; }
     public Transform TPS_LookAt { get => this.tps_LookAt; }
     public Transform FPS_Follow { get => this.fps_Follow; }
+    public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; }
 
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
     public bool IsCoolingDownSpecicalSkill { get => this.isCoolingDownSpecicalSkill; }
-    public float ExecutionSpecialSkill { get => this.executionSpecialSkill; }
-    public float CooldownSpecialSkill { get => this.cooldownSpecialSkill; }
-    public float TimerEX_SpecialSkill { get => this.timerEX_SpecialSkill; }
-    public float TimerCD_SpecialSkill { get => this.timerCD_SpecialSkill; }
-
+    public float TimerSpecialSkill { get => this.timerSpecialSkill; }
+    public bool IsCharacterForm { get => this.isCharacterForm; }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -50,7 +50,21 @@ public class Character : SaiMonoBehaviour
         this.LoadRigAnimator();
         this.LoadTPSLookAt();
         this.LoadFPSFollow();
+        this.LoadWeaponSheathSlots();
     }
+
+    protected virtual void LoadWeaponSheathSlots()
+    {
+        if (this.weaponSheathSlots.Length != 3)
+        {
+            this.weaponSheathSlots = new Transform[3];
+            Transform rigLayer_WeaponAim = this.rigAnimator.transform.Find("RigLayer_WeaponAim");
+            this.weaponSheathSlots[0] = rigLayer_WeaponAim.Find("WeaponSlotLeft_Contains");
+            this.weaponSheathSlots[1] = rigLayer_WeaponAim.Find("WeaponSlotRight_Contains");
+            this.weaponSheathSlots[2] = rigLayer_WeaponAim.Find("WeaponSlotBack_Contains");
+        }
+    }
+
     protected virtual void LoadCharacterTransform()
     {
         if (this.characterTransform == null)
@@ -104,7 +118,6 @@ public class Character : SaiMonoBehaviour
     {
         if (this.characterData != null)
         {
-            this.executionSpecialSkill = this.characterData.ExecutionSkillTime;
             this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
         }
     }
@@ -113,20 +126,11 @@ public class Character : SaiMonoBehaviour
     {
         if (this.isCoolingDownSpecicalSkill)
         {
-            if (this.isMiss)
-            {
-                this.cooldownSpecialSkill = this.missCooldowmTime;
-                this.CoolingdownSpecialSkill_Miss();
-            }
-            else
-            {
-                this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
-                this.CoolingdownSpecialSkill();
-            }
+            this.CooldownSpecialSkill();
         }
         if (this.isStartCooldownBattleSkill)
         {
-            this.CoolingdownBattleSkill();
+            this.CooldownBattleSkill();
         }
     }
 
@@ -135,7 +139,7 @@ public class Character : SaiMonoBehaviour
         //for overrite
     }
 
-    public virtual void ActionMouseR()
+    public virtual void ActionMouseR(bool inputButton)
     {
         //for overrite
     }
@@ -155,28 +159,17 @@ public class Character : SaiMonoBehaviour
         PlayerCtrl.Instance.SetCharacter(this);
     }
 
-    protected virtual void CoolingdownSpecialSkill()
+    protected virtual void CooldownSpecialSkill()
     {
-        this.timerCD_SpecialSkill += Time.deltaTime;
-        if (this.timerCD_SpecialSkill < this.cooldownSpecialSkill) return;
+        this.timerSpecialSkill += Time.deltaTime;
+        if (this.timerSpecialSkill < this.cooldownSpecialSkill) return;
 
-        this.timerCD_SpecialSkill = 0;
+        this.timerSpecialSkill = 0;
         this.isReadySpecialSkill = true;
         this.isCoolingDownSpecicalSkill = false;
     }
 
-    protected virtual void CoolingdownSpecialSkill_Miss()
-    {
-        this.timerCD_SpecialSkill += Time.deltaTime;
-        if (this.timerCD_SpecialSkill < this.missCooldowmTime) return;
-
-        this.timerCD_SpecialSkill = 0;
-        this.isReadySpecialSkill = true;
-        this.isCoolingDownSpecicalSkill = false;
-        this.isMiss = true;
-    }
-
-    protected virtual void CoolingdownBattleSkill()
+    protected virtual void CooldownBattleSkill()
     {
         this.timerBattleSkill += Time.deltaTime;
         if (this.timerBattleSkill < this.cooldownBattleSkill) return;

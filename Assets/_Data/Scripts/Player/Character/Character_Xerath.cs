@@ -162,7 +162,7 @@ public class Character_Xerath : Character
     public override void ActionMouseL()
     {
         base.ActionMouseL();
-        this.xerath_Alpha.Acttak();
+        this.xerath_Alpha.Acttack();
     }
 
     public override void SpecialSkill()
@@ -177,15 +177,15 @@ public class Character_Xerath : Character
     public override void SetActiveCharacter()
     {
         base.SetActiveCharacter();
-        if (this.isBeta)
+        if (!this.isBeta)
         {
-            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(false);
+            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
         }
-        else
+/*        else
         {
             //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
             PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
-        }
+        }*/
     }
 
     private IEnumerator TransformationCoroutine()

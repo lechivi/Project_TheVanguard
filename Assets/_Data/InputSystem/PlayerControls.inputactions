@@ -162,6 +162,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Walk",
+                    "type": "Button",
+                    "id": "551ca3c4-a5d0-4c24-bccc-1a16eec4dfd1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "2ce82c41-04bb-4a4d-8fef-dd1daf778c2e",
@@ -237,6 +246,15 @@
                     "name": "BattleSkill",
                     "type": "Button",
                     "id": "a7470da3-fa34-4686-b1b1-dd012ec25d94",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Holster",
+                    "type": "Button",
+                    "id": "185e83a5-8b27-4942-a214-da4564c99998",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -461,6 +479,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ChangeCamera",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61313ee5-3014-4324-af4f-295ae60dd1b8",
+                    "path": "<Keyboard>/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Holster",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d06aacc1-ad18-401e-8a42-5620c23415d0",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walk",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

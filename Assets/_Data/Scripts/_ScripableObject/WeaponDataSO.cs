@@ -7,12 +7,18 @@ using UnityEngine;
 public class WeaponDataSO : ItemDataSO
 {
     [Header("OFFSET HOLSTER")]
-    public Vector3 Pos;
-    public Vector3 Ros;
+    public Vector3 PosHolster;
+    public Vector3 RosHolster;
+
+    [Header("OFFSET EQUIP")]
+    public Vector3 PosEquip;
+    public Vector3 RosEquip;
 
     [Header("WEAPON")]
+
     public WeaponType WeaponType;
     public ShotGunType ShotGunType;
+    public MeleeType MeleeType;
 
     [Header("RANGED WEAPON")]
     [SerializeField] private float rangedDamage;
@@ -73,10 +79,13 @@ public class WeaponDataEditor : Editor
     SerializedProperty icon;
     SerializedProperty model;
 
-    SerializedProperty Pos;
-    SerializedProperty Ros;
+    SerializedProperty PosHolster;
+    SerializedProperty RosHolster;
+    SerializedProperty PosEquip;
+    SerializedProperty RosEquip;
 
     SerializedProperty weaponType;
+    SerializedProperty meleeType;
     SerializedProperty shotgunType;
 
     SerializedProperty rangedDamage;
@@ -105,11 +114,14 @@ public class WeaponDataEditor : Editor
         this.icon = serializedObject.FindProperty("Icon");
         this.model = serializedObject.FindProperty("Model");
 
-        this.Pos = serializedObject.FindProperty("Pos");
-        this.Ros = serializedObject.FindProperty("Ros");
+        this.PosHolster = serializedObject.FindProperty("PosHolster");
+        this.RosHolster = serializedObject.FindProperty("RosHolster");
+        this.PosEquip = serializedObject.FindProperty("PosEquip");
+        this.RosEquip = serializedObject.FindProperty("RosEquip");
 
         this.weaponType = serializedObject.FindProperty("WeaponType");
         this.shotgunType = serializedObject.FindProperty("ShotGunType");
+        this.meleeType = serializedObject.FindProperty("MeleeType");
 
         this.rangedDamage = serializedObject.FindProperty("rangedDamage");
         this.accuracy = serializedObject.FindProperty("accuracy");
@@ -140,8 +152,10 @@ public class WeaponDataEditor : Editor
         EditorGUILayout.PropertyField(this.icon);
         EditorGUILayout.PropertyField(this.model);
 
-        EditorGUILayout.PropertyField(this.Pos);
-        EditorGUILayout.PropertyField(this.Ros);
+        EditorGUILayout.PropertyField(this.PosHolster);
+        EditorGUILayout.PropertyField(this.RosHolster);
+        EditorGUILayout.PropertyField(this.PosEquip);
+        EditorGUILayout.PropertyField(this.RosEquip);
 
         EditorGUILayout.PropertyField(this.weaponType);
 
@@ -163,9 +177,12 @@ public class WeaponDataEditor : Editor
             EditorGUILayout.PropertyField(this.spreadNotAim);
             EditorGUILayout.PropertyField(this.spreads);
         }
-        else if (selectedWeaponType == WeaponType.Shotgun)
+        else if (selectedWeaponType == WeaponType.Shotgun || selectedWeaponType == WeaponType.Pistol)
         {
-            EditorGUILayout.PropertyField(this.shotgunType);
+            if (selectedWeaponType == WeaponType.Shotgun)
+            {
+                EditorGUILayout.PropertyField(this.shotgunType);
+            }
             EditorGUILayout.PropertyField(this.bulletSpeed);
             EditorGUILayout.PropertyField(this.timeDelayPerShot);
             EditorGUILayout.PropertyField(this.ammoType);
@@ -193,6 +210,7 @@ public class WeaponDataEditor : Editor
         }
         else
         {
+            EditorGUILayout.PropertyField(meleeType);
             EditorGUILayout.PropertyField(meleeDamage);
             EditorGUILayout.PropertyField(swingSpeed);
         }

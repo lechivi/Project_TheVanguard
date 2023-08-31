@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-
 public enum WeaponList
 {
     EquippedWeapons,
@@ -19,27 +18,23 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     [SerializeField] private int maxBackpackWeapon = 3;
     [SerializeField] private NullAwareList<Weapon> equippedWeapons = new NullAwareList<Weapon>();
     [SerializeField] private NullAwareList<Weapon> backpackWeapons = new NullAwareList<Weapon>();
-    [SerializeField] private Transform[] weaponSheathSlots = new Transform[4];
+    [SerializeField] private Transform[] weaponSheathSlots = new Transform[3];
 
     [SerializeField] private Transform spawnPoint;
     [SerializeField] private float dropForce = 3f;
     [SerializeField] private GameObject pickupObjectPrefab;
 
-    [Header("Offset Weapon Holder Slot")]
-    [SerializeField] private Vector3 offsetPosMeleeHolderBack = new Vector3(0, 0.11f, -0.27f);
-    [SerializeField] private Vector3 offsetRotMeleeHolderBack = new Vector3(90, 0, 0);
-    [SerializeField] private Vector3 offsetPosMeleeHolderLeft = new Vector3(0, 0, 0.08f);
-    [SerializeField] private Vector3 offsetRotMeleeHolderLeft = new Vector3(-90, -90, -90);
-
     private int currentWeaponIndex = -1;
     private bool isReadySwap = true;
 
     private bool isHolstering;
+    private bool originalHolster = false;
     public bool IsHolstering { get => this.isHolstering; }
     [SerializeField] private float swapCooldown = 0.2f;
 
     public NullAwareList<Weapon> EquippedWeapons { get => this.equippedWeapons; }
     public NullAwareList<Weapon> BackpackWeapons { get => this.backpackWeapons; }
+    public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; set => this.weaponSheathSlots = value; }
 
     protected override void Awake()
     {
@@ -53,14 +48,11 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            SetHolster(true);
-        }
+        setOffset();
         SetHolster(false);
         SetDefaultCurrentindex();
         CharacterState();
-        
+
         if (this.isReadySwap)
         {
             if (Input.GetKeyDown(KeyCode.Tab))
@@ -137,7 +129,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     private void AddWeaponToEquipped(Weapon weapon)
     {
-        RaycastWeapon raycastWeapon = weapon.GetComponent<RaycastWeapon>();
+        WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
         if (raycastWeapon != null)
         {
             raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCam;
@@ -150,13 +142,14 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (this.currentWeaponIndex == -1)
         {
             this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
-            playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
+            // playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
+            SetAnimationEquip(weapon);
         }
     }
 
     private void AddWeaponToBackpack(Weapon weapon)
     {
-        RaycastWeapon raycastWeapon = weapon.GetComponent<RaycastWeapon>();
+        WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
         if (raycastWeapon != null)
         {
             raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCam;
@@ -172,27 +165,27 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     {
         weapon.transform.SetParent(this.weaponSheathSlots[(int)weapon.WeaponSlot[0] - 1]); //TODO: Change to RigLayer
 
-        if (weapon.WeaponData.WeaponType == WeaponType.Melee)
-        {
-            if (weapon.WeaponSlot[0] == WeaponSlot.Back)
-            {
-                weapon.transform.localPosition = this.offsetPosMeleeHolderBack;
-                weapon.transform.localRotation = Quaternion.Euler(this.offsetRotMeleeHolderBack);
-                weapon.transform.localScale = Vector3.one;
-            }
-            else if (weapon.WeaponSlot[0] == WeaponSlot.LeftHip)
-            {
-                weapon.transform.localPosition = this.offsetPosMeleeHolderLeft;
-                weapon.transform.localRotation = Quaternion.Euler(this.offsetRotMeleeHolderLeft);
-                weapon.transform.localScale = Vector3.one;
-            }
-        }
-        else
-        {
-            weapon.transform.localPosition = weapon.WeaponData.Pos;
-            weapon.transform.localRotation = Quaternion.Euler(weapon.WeaponData.Ros);
-            weapon.transform.localScale = Vector3.one;
-        }
+        /* if (weapon.WeaponData.WeaponType == WeaponType.Melee)
+         {
+             if (weapon.WeaponSlot[0] == WeaponSlot.Back)
+             {
+                 weapon.transform.localPosition = this.offsetPosMeleeHolderBack;
+                 weapon.transform.localRotation = Quaternion.Euler(this.offsetRotMeleeHolderBack);
+                 weapon.transform.localScale = Vector3.one;
+             }
+             else if (weapon.WeaponSlot[0] == WeaponSlot.LeftHip)
+             {
+                 weapon.transform.localPosition = this.offsetPosMeleeHolderLeft;
+                 weapon.transform.localRotation = Quaternion.Euler(this.offsetRotMeleeHolderLeft);
+                 weapon.transform.localScale = Vector3.one;
+             }
+         }
+         else
+         {
+             weapon.transform.localPosition = Vector3.zero;
+             weapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
+             weapon.transform.localScale = Vector3.one;
+         }*/
 
         weapon.gameObject.SetActive(false);
     }
@@ -328,9 +321,9 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             backpackList[weaponIndexB] = temp;
         }
 
-        if (isTheCurrentWeaponA)
+        if (isTheCurrentWeaponA && weaponB != null)
             weaponB.gameObject.SetActive(true);
-        if (isTheCurrentWeaponB)
+        if (isTheCurrentWeaponB && weaponA != null)
             weaponA.gameObject.SetActive(true);
     }
 
@@ -368,7 +361,8 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         listEquippedWeapon[weaponIndex].gameObject?.SetActive(true);
 
         isHolstering = false;
-        playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
+        SetAnimationEquip(listEquippedWeapon[weaponIndex]);
+        // playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
 
 
         this.currentWeaponIndex = weaponIndex;
@@ -427,11 +421,11 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         return this.equippedWeapons.GetList()[this.currentWeaponIndex];
     }
 
-    public RaycastWeapon GetActiveRaycastWeapon()
+    public WeaponRaycast GetActiveRaycastWeapon()
     {
         Weapon weapon = GetActiveWeapon();
         if (weapon == null) return null;
-        RaycastWeapon activeRaycastWeapon = weapon.GetComponent<RaycastWeapon>();
+        WeaponRaycast activeRaycastWeapon = weapon.GetComponent<WeaponRaycast>();
         return activeRaycastWeapon;
     }
 
@@ -441,7 +435,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
         if (currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] == null || currentWeaponIndex == -1)
         {
-            playerWeapon.PlayerCtrl.RigAnimator.Rebind();
+            playerWeapon.PlayerCtrl.RigAnimator.SetBool("holster_weapon", true);
             return;
         }
         playerWeapon.PlayerCtrl.RigAnimator.SetBool("holster_weapon", isHolstering);
@@ -450,13 +444,40 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     public void SetHolster(bool button)
     {
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
-        if(button && currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] != null)
+
+        if (button && currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] != null)
         {
             isHolstering = !isHolstering;
         }
-        if(!button && playerWeapon.PlayerCtrl.PlayerLocomotion.IsSprinting == true)
+        if (!button)
         {
-            isHolstering = true;
+            if (Input.GetKeyDown(KeyCode.LeftShift) && !isHolstering ||
+                PlayerCtrl.Instance.Character.IsCharacterForm && Input.GetKeyDown(KeyCode.C) && !isHolstering)
+            {
+                originalHolster = false;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift) && isHolstering ||
+                 PlayerCtrl.Instance.Character.IsCharacterForm && Input.GetKeyDown(KeyCode.C) && isHolstering)
+
+            {
+                originalHolster = true;
+            }
+
+            if (playerWeapon.PlayerCtrl.PlayerLocomotion.IsSprinting == true && currentWeaponIndex > -1 ||
+                playerWeapon.PlayerCtrl.Character.IsCharacterForm && currentWeaponIndex > -1)
+            {
+                isHolstering = true;
+            }
+/*            if (playerWeapon.PlayerCtrl.Character.IsCharacterForm && currentWeaponIndex > -1)
+            {
+                isHolstering = true;
+            }*/
+            if (Input.GetKeyUp(KeyCode.LeftShift) && currentWeaponIndex > -1 ||
+                PlayerCtrl.Instance.Character.TimerSpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
+            {
+                isHolstering = originalHolster;
+            }
+
         }
     }
     public void SetDefaultCurrentindex()
@@ -470,5 +491,42 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             }
         }
 
+    }
+    public void SetAnimationEquip(Weapon weapon)
+    {
+        if (PlayerCtrl.Instance.Character.IsCharacterForm) return;
+        if (weapon.WeaponData.WeaponType == WeaponType.Melee && weapon.WeaponData.WeaponType != WeaponType.None)
+        {
+            playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip_melee");
+        }
+        if (weapon.WeaponData.WeaponType == WeaponType.Pistol && weapon.WeaponData.WeaponType != WeaponType.None)
+        {
+            playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip_pistol");
+        }
+        else
+        {
+            playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
+        }
+    }
+
+    public void setOffset()
+    {
+        Weapon weapon = GetActiveWeapon();
+        if (weapon != null /*&& weapon.WeaponData.WeaponType == WeaponType.Melee*/)
+        {
+            if (isHolstering)
+            {
+                if (weapon.gameObject.transform.localPosition == weapon.WeaponData.PosHolster) return;
+                weapon.gameObject.transform.localPosition = weapon.WeaponData.PosHolster;
+                weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.RosHolster);
+            }
+            if (!isHolstering)
+            {
+                if (weapon.gameObject.transform.localPosition == weapon.WeaponData.PosEquip) return;
+                Debug.Log("run333");
+                weapon.gameObject.transform.localPosition = weapon.WeaponData.PosEquip;
+                weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.RosEquip);
+            }
+        }
     }
 }

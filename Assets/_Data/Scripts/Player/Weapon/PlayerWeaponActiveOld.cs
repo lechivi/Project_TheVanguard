@@ -6,216 +6,67 @@ using UnityEngine.Rendering.VirtualTexturing;
 
 public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 {
-    public enum Weaponslot
-    {
-        Primary = 0,
-        Secondary = 1,
-
-    }
 
     public Transform crossHairTarget;
-    public GameObject weapon;
-    public RaycastWeapon[] equipped_weapon = new RaycastWeapon[2];
-    public int ActiveWeaponIndex;
+    private WeaponRaycast weaponRaycast;
     public bool isFiring = false;
-    public Transform[] weaponSlots;
-    public Animator rigController;
-    public bool isHolster;
-    public PlayerCamera playerCamera;
     public bool iscanFire;
-    public bool isDelay = false;
     private float timedelta = 0;
-    public float Timedelay;
 
     protected override void Awake()
     {
         base.Awake();
-        weapon = GameObject.FindGameObjectWithTag("Gun");
     }
 
-    private void Start()
-    {
-        /*ActiveWeaponIndex = -1;
-        if (weapon)
-        {
-            RaycastWeapon weaponraycast = weapon.GetComponent<RaycastWeapon>();
-            Equip(weaponraycast);
-        }*/
-    }
 
     private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.X))
-        {
-            ToggleActiveWeapon();
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SetActiveWeapon(Weaponslot.Primary);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            SetActiveWeapon(Weaponslot.Secondary);
-        }*/
-        CanfireCondition();
+        weaponRaycast = PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        SetIsCanFire();
     }
 
-    public void CanfireCondition()
+    private void FixedUpdate()
     {
-        if (!isHolster && !PlayerWeapon.PlayerWeaponReload.isReload && !isDelay)
+        if (weaponRaycast != null)
         {
-            iscanFire = true;
-            //Debug.Log("CanFire");
+
         }
-        else
-        {
-            //Debug.Log("CanotFire");
-            iscanFire = false;
-        }
-    }
-    public RaycastWeapon GetActiveWeapon()
-    {
-        return GetWeapon(ActiveWeaponIndex);
     }
 
-    private RaycastWeapon GetWeapon(int index)
-    {
-        if (index < 0 || index >= equipped_weapon.Length)
-        {
-            return null;
-        }
-        return equipped_weapon[index];
-    }
 
     public void HandleFiring()
     {
-        var weaponRaycast = PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (weaponRaycast == null) return;
-        if (weaponRaycast &&( weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle || weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Venom))
+        if (weaponRaycast.Weapon.WeaponData.ShotGunType != ShotGunType.Slowhand)
         {
-            DelayPerShot(weaponRaycast.Weapon.WeaponData.TimeDelayPerShot);
+            weaponRaycast.DelayPerShot();
         }
-        if (weaponRaycast && iscanFire)
+        if (iscanFire)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle)
             {
+                PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
                 weaponRaycast.FireBullet(crossHairTarget.position);
                 if (weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Slowhand)
                 {
                     DelayShotgun();
                 }
-                if (weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle || weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Venom)
-                {
-                    SetisDelay(true);
-                }
-            }
-            if (weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.Shotgun || weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
-            {
-                weaponRaycast.UpdateBullets();
-                return;
             }
 
-            //
-
-            if (isFiring)
+            if (isFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
             {
                 weaponRaycast.UpdateFiring(crossHairTarget.position);
-
+                PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
             }
-            weaponRaycast.UpdateBullets();
-            if (!isFiring)
+
+            if (!isFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
             {
                 weaponRaycast.runtTimeFire = 0;
                 weaponRaycast.recoil.ResetIndex();
             }
         }
+        weaponRaycast.UpdateBullets();
 
-    }
-
-    private void ToggleActiveWeapon()
-    {
-        bool isHolster = rigController.GetBool("holster_weapon");
-        if (isHolster)
-        {
-            StartCoroutine(ActivateWeapon(ActiveWeaponIndex));
-        }
-        else
-        {
-            StartCoroutine(HolsterWeapon(ActiveWeaponIndex));
-        }
-    }
-
-    public void Equip(RaycastWeapon newWeapon)
-    {
-        int index = (int)newWeapon.weaponslot;
-        var originalweaponRaycast = GetWeapon(ActiveWeaponIndex);
-        var weaponRaycast = GetWeapon(index);
-
-        if (index == ActiveWeaponIndex)
-        {
-            originalweaponRaycast.Weapon.WeaponData.Ammo = weaponRaycast.Weapon.WeaponData.MagazineSize;
-            return;
-        }
-        Debug.Log("newWeapon");
-        weaponRaycast = newWeapon;
-        weaponRaycast.transform.SetParent(weaponSlots[index], false);
-        weaponRaycast.recoil.playerTPSCam = playerCamera.TPSCam;
-        weaponRaycast.recoil.playerFPSCam = playerCamera.FPSCam;
-        weaponRaycast.recoil.rigController = rigController;
-
-        equipped_weapon[index] = weaponRaycast;
-        ActiveWeaponIndex = index;
-        SetActiveWeapon(newWeapon.weaponslot);
-    }
-
-    private void SetActiveWeapon(Weaponslot weaponSlotIndex)
-    {
-        int holsterIndex = ActiveWeaponIndex;
-        int activateIndex = (int)weaponSlotIndex;
-        if (holsterIndex == activateIndex)
-        {
-            holsterIndex = -1;
-        }
-        StartCoroutine(SwitchWeapon(holsterIndex, activateIndex));
-    }
-
-    private IEnumerator SwitchWeapon(int holsterIndex, int activateIndex)
-    {
-        yield return StartCoroutine(HolsterWeapon(holsterIndex));
-        yield return StartCoroutine(ActivateWeapon(activateIndex));
-        ActiveWeaponIndex = activateIndex;
-    }
-
-    IEnumerator HolsterWeapon(int index)
-    {
-        isHolster = true;
-        var weaponRaycast = GetWeapon(index);
-        if (weaponRaycast)
-        {
-            rigController.SetBool("holster_weapon", true);
-            do
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            while (rigController.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
-
-        }
-    }
-
-    IEnumerator ActivateWeapon(int index)
-    {
-        var weaponRaycast = GetWeapon(index);
-        if (weaponRaycast)
-        {
-            rigController.SetBool("holster_weapon", false);
-            rigController.Play("equip_" + weaponRaycast.weaponName);
-            do
-            {
-                yield return new WaitForEndOfFrame();
-            }
-            while (rigController.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
-            isHolster = false;
-        }
     }
 
     public void DelayPerShot(float timedelay)
@@ -233,8 +84,23 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
         SetisDelay(true);
     }
 
+    public void SetIsCanFire()
+    {
+        if(weaponRaycast == null) return;
+        if (!PlayerWeapon.PlayerWeaponManager.IsHolstering && !PlayerWeapon.PlayerWeaponReload.isReload && !weaponRaycast.isDelay)
+        {
+            iscanFire = true;
+        }
+        else
+        {
+            iscanFire = false;
+        }
+    }
     public void SetisDelay(bool isDelay)
     {
-        this.isDelay = isDelay;
+        if (weaponRaycast)
+        {
+            weaponRaycast.isDelay = isDelay;
+        }
     }
 }

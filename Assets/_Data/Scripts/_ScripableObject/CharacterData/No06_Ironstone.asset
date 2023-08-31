@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: No06_Ironstone
   m_EditorClassIdentifier: 
   CharacterName: 'Ironstone '
-  CharacterClass: The Dwarf
+  ClassName: The Dwarf
   Species: 20
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
@@ -23,9 +23,9 @@ MonoBehaviour:
   Power: 5
   Defence: 5
   HitPoint: 5
-  ExecutionSkillTime: 15
-  CooldownSkillTime: 30
-  SpecialSkillName: Indomitable Presence
-  SpecialSkillIcon: {fileID: 0}
+  ExecutionSkillTime: 0
+  CooldownSkillTime: 5
+  SpecialSkillName: Hammer Impact
+  SpecialSkillIcon: {fileID: 21300000, guid: 03cada70f1f86134dabd594f85c12618, type: 3}
   SpecialSkillDescription: "Ironstone becomes more and more powerful\r."
   ListSkin: []

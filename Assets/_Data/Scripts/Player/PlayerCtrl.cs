@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerCtrl : SaiMonoBehaviour
 {
     public static PlayerCtrl Instance;
 
+    public OnEventAnimator EvenAnimator;
     public PlayerAim PlayerAim;
     public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
@@ -14,9 +16,7 @@ public class PlayerCtrl : SaiMonoBehaviour
     public PlayerAnimation PlayerAnimation;
     public PlayerWeapon PlayerWeapon;
     public PlayerInteract PlayerInteract;
-    public PlayerInfoScanner PlayerInfoScanner;
     public PlayerCombatAction PlayerCombatAction;
-    public PlayerHealth PlayerHealth;
     public PlayerCharacter PlayerCharacter;
     public Transform MainCamera;
 
@@ -28,11 +28,12 @@ public class PlayerCtrl : SaiMonoBehaviour
     public Animator RigAnimator;
 
     [Header("UI")]
-    public UI_Skill UI_Skill_Icon;
+    public UI_Skill_Icon UI_Skill_Icon;
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
+        this.LoadEventAnimator();
         this.LoadPlayerAim();
         this.LoadPlayerManager();
         this.LoadPlayerInput();
@@ -41,9 +42,7 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerAnimation();
         this.LoadPlayerWeapon();
         this.LoadPlayerInteract();
-        this.LoadPlayerInfoScanner();
         this.LoadPlayerCombat();
-        this.LoadPlayerHealth();
         this.LoadPlayerCharacter();
         this.LoadMainCamera();
 
@@ -52,9 +51,28 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadAnimator();
         this.LoadRigAnimator();
 
-        this.PlayerCamera.SetCameraTarget();
+        if (this.Character != null)
+        {
+            this.PlayerWeapon.PlayerWeaponManager.WeaponSheathSlots = this.Character.WeaponSheathSlots;
+        }
     }
 
+    private void Update()
+    {
+        /*if(Input.GetMouseButtonDown(0))
+        {
+            Animator.SetTrigger("Attack");
+        }*/
+
+    }
+
+    protected virtual void LoadEventAnimator ()
+    {
+        if(Character != null)
+        {
+            EvenAnimator = Character.GetComponent<OnEventAnimator>();
+        }
+    }
     protected virtual void LoadPlayerAim()
     {
         if (this.PlayerAim == null)
@@ -127,30 +145,12 @@ public class PlayerCtrl : SaiMonoBehaviour
         }
     }
 
-    protected virtual void LoadPlayerInfoScanner()
-    {
-        if (this.PlayerInfoScanner == null)
-        {
-            this.PlayerInfoScanner = GetComponentInChildren<PlayerInfoScanner>();
-            Debug.LogWarning(gameObject.name + ": LoadPlayerInfoScanner", gameObject);
-        }
-    }
-
     protected virtual void LoadPlayerCombat()
     {
         if (this.PlayerCombatAction == null)
         {
             this.PlayerCombatAction = GetComponentInChildren<PlayerCombatAction>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerCombat", gameObject);
-        }
-    }
-
-    protected virtual void LoadPlayerHealth()
-    {
-        if (this.PlayerHealth == null)
-        {
-            this.PlayerHealth = GetComponentInChildren<PlayerHealth>();
-            Debug.LogWarning(gameObject.name + ": LoadPlayerHealth", gameObject);
         }
     }
 
@@ -229,6 +229,7 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadRigAnimator();
 
         this.PlayerCamera.SetCameraTarget();
+        this.PlayerWeapon.PlayerWeaponManager.WeaponSheathSlots = character.WeaponSheathSlots;
     }
 
     public void SetUI()

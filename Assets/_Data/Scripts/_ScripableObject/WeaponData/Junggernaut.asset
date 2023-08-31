@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Junggernaut
+  m_EditorClassIdentifier: 
+  ItemName: 
+  ItemValue: 0
+  ItemType: 1
+  Icon: {fileID: 5513720291159586698, guid: dcf58a8931f384b4c924cbd6e771a577, type: 3}
+  Model: {fileID: 1937876462363981338, guid: ec489a38abaea2f46a3f909b56a37efe, type: 3}
+  PosHolster: {x: 0, y: 0, z: 0}
+  RosHolster: {x: 0, y: 0, z: 0}
+  PosEquip: {x: 0, y: 0, z: 0}
+  RosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 4
+  ShotGunType: 0
+  MeleeType: 0
+  rangedDamage: 0
+  accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 1000
+  timeDelayPerShot: 1
+  ammoType: 4
+  ammoPerShot: 1
+  ammo: 3
+  magazineSize: 15
+  range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads:
+  - -0.001
+  - 0.001
+  - -0.001
+  - 0.001
+  meleeDamage: 0
+  swingSpeed: 0

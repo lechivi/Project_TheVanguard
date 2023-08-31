@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class Parent : MonoBehaviour
 {
-    protected virtual void Awake()
+   /* private void Update()
     {
-        Debug.Log("Parent");
+        if(Input.GetMouseButtonDown(0))
+        {
+            Attack();
+        }
     }
-
-    protected virtual void ParentFunction()
+    public void Attack()
     {
-        Debug.Log("Parent Function");
-    }
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 7f);
+        foreach (Collider collider in colliders)
+        {
+            if(collider.GetComponent<ColliderHit>())
+            {
+                collider.GetComponent<ColliderHit>().Hit();
+            }
+        }
+    }*/
 }

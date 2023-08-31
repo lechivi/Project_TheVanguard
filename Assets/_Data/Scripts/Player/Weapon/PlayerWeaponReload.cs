@@ -9,16 +9,46 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     public bool isReload;
     private void Start()
     {
-        if(PlayerWeapon.AnimationEvents != null)
+        if (PlayerWeapon.AnimationEvents != null)
         {
             PlayerWeapon.AnimationEvents.AnimationEvent.AddListener(OnAnimationEvent);
         }
     }
-    public void SetReloadWeapon()
-    {
 
-        this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
-        isReload = true;
+    private void Update()
+    {
+        SetReloadWeapon(false);
+    }
+    public void SetReloadWeapon(bool button)
+    {
+        WeaponRaycast weapon = PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        if (weapon)
+        {
+            if (!button && weapon.currentAmmo <= 0)
+            {
+                if(weapon.Weapon.WeaponData.WeaponType == WeaponType.Pistol)
+                {
+                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_Pistol");
+                }
+                else
+                {
+                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
+                }
+                isReload = true;
+            }
+            if (button)
+            {
+                if (weapon.Weapon.WeaponData.WeaponType == WeaponType.Pistol)
+                {
+                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_Pistol");
+                }
+                else
+                {
+                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
+                }
+                isReload = true;
+            }
+        }
     }
 
     public void OnAnimationEvent(string eventName)
@@ -45,7 +75,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
 
     public void DetachMagazine()
     {
-        RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        WeaponRaycast weapon = this.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         magazineHand = Instantiate(weapon.magazine, leftHand, true);
         weapon.magazine.SetActive(false);
     }
@@ -66,11 +96,18 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
 
     public void AttachMagazine()
     {
-        RaycastWeapon weapon = this.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        WeaponRaycast weapon = this.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         weapon.magazine.SetActive(true);
         Destroy(magazineHand);
-        weapon.Weapon.WeaponData.Ammo = weapon.Weapon.WeaponData.MagazineSize;
-        this.PlayerWeapon.RigAnimator.ResetTrigger("reload_weapon");
+        weapon.currentAmmo = weapon.maxAmmo;
+        if (weapon.Weapon.WeaponData.WeaponType == WeaponType.Pistol)
+        {
+            this.PlayerWeapon.RigAnimator.ResetTrigger("reload_Pistol");
+        }
+        else 
+        {
+            this.PlayerWeapon.RigAnimator.ResetTrigger("reload_weapon");
+        }
         Invoke("ChangeIsReload", 0.15f);
     }
 
