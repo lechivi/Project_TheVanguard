@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimation : PlayerAbstract
 {
+    public float snappedValue;
     public void UpdateValuesAnimation(string name, float value)
     {
         float snappedValue;
@@ -33,10 +34,9 @@ public class PlayerAnimation : PlayerAbstract
 
     }
 
-    public void UpdateAnimatorValuesMoveState(float value, bool isSprinting)
+    public void UpdateAnimatorValuesMoveState(float value, bool isSprinting, bool isWalking)
     {
-        float snappedValue;
-
+        // snappedValue;
         if (value > 0 && value < 0.55f)
         {
             snappedValue = 0.5f;
@@ -62,9 +62,12 @@ public class PlayerAnimation : PlayerAbstract
         {
             snappedValue = 2;
         }
-
+        if (isWalking)
+        {
+            snappedValue = 0.5f;
+        }
         this.playerCtrl.Animator.SetFloat("MoveState", snappedValue, 0.1f, Time.deltaTime);
     }
 
-  
+
 }

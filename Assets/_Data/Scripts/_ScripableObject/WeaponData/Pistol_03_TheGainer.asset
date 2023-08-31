@@ -17,13 +17,27 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 4683345266131705801, guid: 54e962fff0c8e4e409a8574ae7d61705, type: 3}
   Model: {fileID: 838931215727257835, guid: 3892ee2083f1b1744a5127a0f1c41d1e, type: 3}
+  Pos: {x: 0, y: 0, z: 0}
+  Ros: {x: 0, y: 0, z: 0}
   WeaponType: 1
-  rangedDamage: 35
+  ShotGunType: 0
+  rangedDamage: 0
+  accuracy: 0
+  timePerFireRate: 0
   fireRate: 6
-  accuracy: 74
+  bulletSpeed: 10000
+  timeDelayPerShot: 0.4
   ammoType: 1
-  magazineSize: 6
-  reloadTime: 0
-  range: 119
+  ammoPerShot: 1
+  ammo: 9161
+  magazineSize: 16
+  range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads:
+  - -0.01
+  - 0.01
+  - -0.01
+  - 0.01
   meleeDamage: 0
   swingSpeed: 0

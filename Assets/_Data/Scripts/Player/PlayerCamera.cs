@@ -23,19 +23,13 @@ public class PlayerCamera : PlayerAbstract
     }
 
 
-    /*  public void ChangeCamera()
-      {
-          if (TPSCam.gameObject.activeInHierarchy == true)
-          {
-              ChangeFPSCam();
-          }
+    private void Update()
+    {
+        SetOriginalCamera();
+        HandleCamera();
+    }
 
-          else if (FPSCam.gameObject.activeInHierarchy == true)
-          {
-              ChangeTPSCam();
-          }
-      }*/
-    public void HandleCameraOriginal()
+    public void SetOriginalCamera()
     {
         if (TPSCam.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
         {
@@ -45,9 +39,32 @@ public class PlayerCamera : PlayerAbstract
         {
             originalTPSCam = false;
         }
-
     }
 
+    public void HandleCamera()
+    {
+        if (playerCtrl.PlayerAim.isAim)
+        {
+            this.playerCtrl.PlayerCamera.ChangeFPSCam();
+        }
+        if (!playerCtrl.PlayerAim.isAim)
+        {
+            if (this.originalTPSCam)
+            {
+                this.ChangeTPSCam();
+            }
+            if (!this.originalTPSCam)
+            {
+                this.ChangeFPSCam();
+            }
+
+        }
+    }
+
+    public void ChangeOriginalCamera()
+    {
+        originalTPSCam =  !originalTPSCam;
+    }
 
     public void ChangeFPSCam()
     {
@@ -72,7 +89,7 @@ public class PlayerCamera : PlayerAbstract
     {
         TPSCam.m_XAxis.m_MaxSpeed = xAxis;
         TPSCam.m_YAxis.m_MaxSpeed = yAxis;
-        TPSCam.m_Lens.FieldOfView = 40;
+        TPSCam.m_Lens.FieldOfView = 60;
     }
 
     public void ChangePOVFPS(int pov)

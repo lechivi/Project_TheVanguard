@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected Animator rigAnimator;
     [SerializeField] protected Transform tps_LookAt;
     [SerializeField] protected Transform fps_Follow;
+    [SerializeField] protected Transform[] weaponSheathSlots;
 
     [Space(10)]
     [SerializeField] protected float cooldownSpecialSkill;
@@ -24,6 +26,7 @@ public class Character : SaiMonoBehaviour
     protected bool isReadyBattleSkill = true;
     protected bool isStartCooldownBattleSkill;
     protected float timerBattleSkill;
+    protected bool isCharacterForm =false;
 
     public CharacterDataSO CharacterData { get => this.characterData; }
     public Transform CharacterTransform { get => this.characterTransform; }
@@ -32,11 +35,12 @@ public class Character : SaiMonoBehaviour
     public Animator RigAnimator { get => this.rigAnimator; }
     public Transform TPS_LookAt { get => this.tps_LookAt; }
     public Transform FPS_Follow { get => this.fps_Follow; }
+    public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; }
 
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
     public bool IsCoolingDownSpecicalSkill { get => this.isCoolingDownSpecicalSkill; }
     public float TimerSpecialSkill { get => this.timerSpecialSkill; }
-
+    public bool IsCharacterForm { get => this.isCharacterForm; }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -46,7 +50,21 @@ public class Character : SaiMonoBehaviour
         this.LoadRigAnimator();
         this.LoadTPSLookAt();
         this.LoadFPSFollow();
+        this.LoadWeaponSheathSlots();
     }
+
+    protected virtual void LoadWeaponSheathSlots()
+    {
+        if (this.weaponSheathSlots.Length != 3)
+        {
+            this.weaponSheathSlots = new Transform[3];
+            Transform rigLayer_WeaponAim = this.rigAnimator.transform.Find("RigLayer_WeaponAim");
+            this.weaponSheathSlots[0] = rigLayer_WeaponAim.Find("WeaponSlotLeft_Contains");
+            this.weaponSheathSlots[1] = rigLayer_WeaponAim.Find("WeaponSlotRight_Contains");
+            this.weaponSheathSlots[2] = rigLayer_WeaponAim.Find("WeaponSlotBack_Contains");
+        }
+    }
+
     protected virtual void LoadCharacterTransform()
     {
         if (this.characterTransform == null)
@@ -98,7 +116,10 @@ public class Character : SaiMonoBehaviour
 
     private void Start()
     {
-        this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
+        if (this.characterData != null)
+        {
+            this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
+        }
     }
 
     protected virtual void Update()
@@ -118,7 +139,7 @@ public class Character : SaiMonoBehaviour
         //for overrite
     }
 
-    public virtual void ActionMouseR()
+    public virtual void ActionMouseR(bool inputButton)
     {
         //for overrite
     }

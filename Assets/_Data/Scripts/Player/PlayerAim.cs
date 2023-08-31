@@ -7,7 +7,6 @@ public class PlayerAim : PlayerAbstract
     public float test;
     public GameObject scope;
     public bool isAim;
-    public Rig HandLayer;
 
     public Transform AimlookMain;
     public Transform AimLookatCam;
@@ -33,7 +32,7 @@ public class PlayerAim : PlayerAbstract
 
         if (!isAim)
         {
-            playerCtrl.PlayerCamera.ChangePOVFPS(40);
+            playerCtrl.PlayerCamera.ChangePOVFPS(60);
             if (playerCtrl.PlayerCamera.FPSCam.enabled)
             {
                 playerCtrl.PlayerCamera.ChangeSpeedFPSCam(300f, 300f);
@@ -46,21 +45,36 @@ public class PlayerAim : PlayerAbstract
 
     }
 
+    public void SetIsAim(bool isAimInput)
+    {
+        WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        if(weapon)
+        {
+            if(isAimInput && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload)
+            {
+                isAim = true;
+            }
+            else
+            {
+                isAim = false;
+            }
+        }
+    }
     public void AimWeapon()
     {
-        //RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponActive.GetActiveWeapon();
-        RaycastWeapon raycastWeapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (raycastWeapon != null)
+        WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        if (weapon)
         {
-            playerCtrl.RigAnimator.SetBool("aim_" + raycastWeapon.Weapon.WeaponData.WeaponType, isAim);
-            if (raycastWeapon && raycastWeapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
+            playerCtrl.RigAnimator.SetBool("aim_"  + weapon.Weapon.WeaponData.WeaponType, isAim);
+            if (weapon && weapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
             {
                 AimWeaponSCope();
                 return;
             }
             if (isAim)
             {
-                playerCtrl.PlayerCamera.ChangePOVFPS(35);
+                playerCtrl.PlayerLocomotion.IsWalking = true;
+                playerCtrl.PlayerCamera.ChangePOVFPS(55);
             }
         }
     }
@@ -78,7 +92,7 @@ public class PlayerAim : PlayerAbstract
             playerCtrl.PlayerCamera.cameraMain.cullingMask |= 1 << 6;
             if (scope)
             {
-                Invoke("SetFalseScope", test);
+                scope.SetActive(false);
             }
         }
     }
@@ -89,10 +103,6 @@ public class PlayerAim : PlayerAbstract
         AimlookMain.position = ball;
     }
 
-    public void SetFalseScope()
-    {
-        scope.SetActive(false);
-    }
     public IEnumerator AimDuration(float second)
     {
         yield return new WaitForSeconds(second);

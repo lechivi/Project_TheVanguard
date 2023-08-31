@@ -17,13 +17,26 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 7346433223657001357, guid: bd64a8f99b1e5d5438194e23c454d8b2, type: 3}
   Model: {fileID: 636997839080171924, guid: 561af882ceb7e1548af328ac0e53e2b9, type: 3}
+  PosHolster: {x: 0.143, y: -0.176, z: 0.237}
+  RosHolster: {x: 28.654, y: -10.424, z: -1.126}
+  PosEquip: {x: 0.007, y: 0.062, z: -0.232}
+  RosEquip: {x: 71.804, y: 5.445, z: 5.171}
   WeaponType: 5
+  ShotGunType: 0
+  MeleeType: 1
   rangedDamage: 0
-  fireRate: 0
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 0
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

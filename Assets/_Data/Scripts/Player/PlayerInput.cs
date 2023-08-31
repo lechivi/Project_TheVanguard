@@ -4,6 +4,7 @@ public class PlayerInput : PlayerAbstract
 {
     public Vector2 MovementInput;
     public bool SprintInput;
+    public bool WalkInput;
     public bool JumpInput;
     public bool CrounchInput;
     public bool ReloadInput;
@@ -13,6 +14,7 @@ public class PlayerInput : PlayerAbstract
     public bool AimInput;
     public bool SpecialSkillInput;
     public bool BattleSkillInput;
+    public bool HolsterInput;
 
     public bool MenuOpenCloseInput;
 
@@ -29,6 +31,8 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.PlayerAction.Sprint.performed += i => this.SprintInput = true;
             this.playerControls.PlayerAction.Sprint.canceled += i => this.SprintInput = false;
+            this.playerControls.PlayerAction.Walk.performed += i => this.WalkInput = true;
+            this.playerControls.PlayerAction.Walk.canceled += i => this.WalkInput = false;
 
             this.playerControls.PlayerAction.Jump.performed += i => this.JumpInput = true;
 
@@ -47,6 +51,8 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.UI.MenuOpenClose.performed += i => this.MenuOpenCloseInput = true;
 
+            this.playerControls.PlayerAction.Holster.performed += i => this.HolsterInput = true;
+
             this.IsPlayerActive = true;
             this.SetPlayerInput(true);
         }
@@ -62,8 +68,10 @@ public class PlayerInput : PlayerAbstract
 
     public void HandleAllInput()
     {
+        this.HandleHolsterInput();
         this.HandleMovementInput();
         this.HandleSprintInput();
+        this.HandleWalkInput();
         this.HandleCameraInput();
         this.HandleAttackInput();
         this.HandleReloadInput();
@@ -74,102 +82,79 @@ public class PlayerInput : PlayerAbstract
         this.HandleMenuOpenCloseInput();
     }
 
+    private void HandleHolsterInput()
+    {
+        if (HolsterInput)
+        {
+            playerCtrl.PlayerWeapon.PlayerWeaponManager.SetHolster(HolsterInput);
+            HolsterInput = false;
+        }
+    }
     private void HandleMovementInput()
     {
         float horizontalInput = this.MovementInput.x;
         float verticalInput = this.MovementInput.y;
         float moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
 
-        this.playerCtrl.PlayerAnimation.UpdateAnimatorValuesMoveState(moveAmount, this.playerCtrl.PlayerLocomotion.IsSprinting);
+        this.playerCtrl.PlayerAnimation.UpdateAnimatorValuesMoveState(moveAmount, this.playerCtrl.PlayerLocomotion.IsSprinting, this.playerCtrl.PlayerLocomotion.IsWalking);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputX", horizontalInput);
         this.playerCtrl.PlayerAnimation.UpdateValuesAnimation("InputY", verticalInput);
     }
 
     private void HandleSprintInput()
     {
-        bool canSprint = this.SprintInput && this.MovementInput != Vector2.zero && !AttackInput && !playerCtrl.PlayerAim.isAim && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload;
-        if (canSprint)
+        playerCtrl.PlayerLocomotion.SetIsSprinting(SprintInput);
+    }
+
+    private void HandleWalkInput()
+    {
+        if(this.WalkInput)
         {
-            this.playerCtrl.PlayerLocomotion.IsSprinting = true;
+            playerCtrl.PlayerLocomotion.IsWalking = true;
         }
         else
         {
-            this.playerCtrl.PlayerLocomotion.IsSprinting = false;
+            playerCtrl.PlayerLocomotion.IsWalking = false;
         }
     }
 
     private void HandleAttackInput()
     {
-        //if (playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
-        //if (this.AttackInput)
-        //{
-        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
-        //}
-        //else if (!this.AttackInput)
-        //{
-        //    playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
-        //}
-
         if (this.AttackInput)
         {
             this.playerCtrl.PlayerCombatAction.ActionMouseL();
-            this.AttackInput = false;
+        }
+        else
+        {
+            WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+            if (gun != null)
+            this.playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
         }
     }
 
     private void HandleCameraInput()
     {
-        playerCtrl.PlayerCamera.HandleCameraOriginal();
+
         if (ChangeCameraInput)
         {
             ChangeCameraInput = false;
-            playerCtrl.PlayerCamera.originalTPSCam = !playerCtrl.PlayerCamera.originalTPSCam;
-        }
-        if (playerCtrl.PlayerAim.isAim)
-        {
-            this.playerCtrl.PlayerCamera.ChangeFPSCam();
-        }
-        if (!playerCtrl.PlayerAim.isAim)
-        {
-            if (this.playerCtrl.PlayerCamera.originalTPSCam)
-            {
-                this.playerCtrl.PlayerCamera.ChangeTPSCam();
-            }
-            if (!this.playerCtrl.PlayerCamera.originalTPSCam)
-            {
-                this.playerCtrl.PlayerCamera.ChangeFPSCam();
-            }
-
+            playerCtrl.PlayerCamera.ChangeOriginalCamera();
         }
     }
 
     private void HandleReloadInput()
     {
-        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (weapon)
+        if (ReloadInput)
         {
-            if (ReloadInput || weapon.Weapon.WeaponData.Ammo <= 0)
-            {
-                playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon();
-                ReloadInput = false;
-            }
+            playerCtrl.PlayerWeapon.PlayerWeaponReload.SetReloadWeapon(true);
+            ReloadInput = false;
         }
     }
 
     private void HandleAimInput()
     {
-        RaycastWeapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (weapon)
-        {
-            if (AimInput && !playerCtrl.PlayerWeapon.PlayerWeaponActive.isHolster && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload)
-            {
-                playerCtrl.PlayerAim.isAim = true;
-            }
-            else
-            {
-                playerCtrl.PlayerAim.isAim = false;
-            }
-        }
+        this.playerCtrl.PlayerCombatAction.ActionMouseR(true, AimInput);
+       // playerCtrl.PlayerAim.SetIsAim(AimInput);
     }
 
     private void HandleInteractInput()

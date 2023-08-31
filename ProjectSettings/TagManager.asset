@@ -18,7 +18,7 @@ TagManager:
   - PickupObject
   - IgnorePlayer
   - TerrainOnly
-  - 
+  - Post Processing
   - 
   - 
   - 

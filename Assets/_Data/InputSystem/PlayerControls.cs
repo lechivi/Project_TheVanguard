@@ -184,6 +184,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Walk"",
+                    ""type"": ""Button"",
+                    ""id"": ""551ca3c4-a5d0-4c24-bccc-1a16eec4dfd1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""2ce82c41-04bb-4a4d-8fef-dd1daf778c2e"",
@@ -243,7 +252,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""id"": ""d47f51bc-70c2-428d-a5e7-c86b40965a50"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 },
                 {
@@ -259,6 +268,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""BattleSkill"",
                     ""type"": ""Button"",
                     ""id"": ""a7470da3-fa34-4686-b1b1-dd012ec25d94"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Holster"",
+                    ""type"": ""Button"",
+                    ""id"": ""185e83a5-8b27-4942-a214-da4564c99998"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -485,6 +503,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""ChangeCamera"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""61313ee5-3014-4324-af4f-295ae60dd1b8"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Holster"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d06aacc1-ad18-401e-8a42-5620c23415d0"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -560,6 +600,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         // PlayerAction
         m_PlayerAction = asset.FindActionMap("PlayerAction", throwIfNotFound: true);
         m_PlayerAction_Sprint = m_PlayerAction.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerAction_Walk = m_PlayerAction.FindAction("Walk", throwIfNotFound: true);
         m_PlayerAction_Jump = m_PlayerAction.FindAction("Jump", throwIfNotFound: true);
         m_PlayerAction_Crounch = m_PlayerAction.FindAction("Crounch", throwIfNotFound: true);
         m_PlayerAction_Reload = m_PlayerAction.FindAction("Reload", throwIfNotFound: true);
@@ -569,6 +610,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerAction_Aim = m_PlayerAction.FindAction("Aim", throwIfNotFound: true);
         m_PlayerAction_SpecialSkill = m_PlayerAction.FindAction("SpecialSkill", throwIfNotFound: true);
         m_PlayerAction_BattleSkill = m_PlayerAction.FindAction("BattleSkill", throwIfNotFound: true);
+        m_PlayerAction_Holster = m_PlayerAction.FindAction("Holster", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_MenuOpenClose = m_UI.FindAction("MenuOpenClose", throwIfNotFound: true);
@@ -673,6 +715,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerAction;
     private IPlayerActionActions m_PlayerActionActionsCallbackInterface;
     private readonly InputAction m_PlayerAction_Sprint;
+    private readonly InputAction m_PlayerAction_Walk;
     private readonly InputAction m_PlayerAction_Jump;
     private readonly InputAction m_PlayerAction_Crounch;
     private readonly InputAction m_PlayerAction_Reload;
@@ -682,11 +725,13 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerAction_Aim;
     private readonly InputAction m_PlayerAction_SpecialSkill;
     private readonly InputAction m_PlayerAction_BattleSkill;
+    private readonly InputAction m_PlayerAction_Holster;
     public struct PlayerActionActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Sprint => m_Wrapper.m_PlayerAction_Sprint;
+        public InputAction @Walk => m_Wrapper.m_PlayerAction_Walk;
         public InputAction @Jump => m_Wrapper.m_PlayerAction_Jump;
         public InputAction @Crounch => m_Wrapper.m_PlayerAction_Crounch;
         public InputAction @Reload => m_Wrapper.m_PlayerAction_Reload;
@@ -696,6 +741,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Aim => m_Wrapper.m_PlayerAction_Aim;
         public InputAction @SpecialSkill => m_Wrapper.m_PlayerAction_SpecialSkill;
         public InputAction @BattleSkill => m_Wrapper.m_PlayerAction_BattleSkill;
+        public InputAction @Holster => m_Wrapper.m_PlayerAction_Holster;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -708,6 +754,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnSprint;
+                @Walk.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnWalk;
+                @Walk.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnWalk;
+                @Walk.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnWalk;
                 @Jump.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnJump;
@@ -735,6 +784,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @BattleSkill.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnBattleSkill;
                 @BattleSkill.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnBattleSkill;
                 @BattleSkill.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnBattleSkill;
+                @Holster.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnHolster;
+                @Holster.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnHolster;
+                @Holster.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnHolster;
             }
             m_Wrapper.m_PlayerActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -742,6 +794,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Walk.started += instance.OnWalk;
+                @Walk.performed += instance.OnWalk;
+                @Walk.canceled += instance.OnWalk;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -769,6 +824,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @BattleSkill.started += instance.OnBattleSkill;
                 @BattleSkill.performed += instance.OnBattleSkill;
                 @BattleSkill.canceled += instance.OnBattleSkill;
+                @Holster.started += instance.OnHolster;
+                @Holster.performed += instance.OnHolster;
+                @Holster.canceled += instance.OnHolster;
             }
         }
     }
@@ -832,6 +890,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     public interface IPlayerActionActions
     {
         void OnSprint(InputAction.CallbackContext context);
+        void OnWalk(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnCrounch(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
@@ -841,6 +900,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnSpecialSkill(InputAction.CallbackContext context);
         void OnBattleSkill(InputAction.CallbackContext context);
+        void OnHolster(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

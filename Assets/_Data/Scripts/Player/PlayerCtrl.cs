@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 public class PlayerCtrl : SaiMonoBehaviour
 {
     public static PlayerCtrl Instance;
 
+    public OnEventAnimator EvenAnimator;
     public PlayerAim PlayerAim;
     public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
@@ -31,6 +33,7 @@ public class PlayerCtrl : SaiMonoBehaviour
     protected override void LoadComponent()
     {
         base.LoadComponent();
+        this.LoadEventAnimator();
         this.LoadPlayerAim();
         this.LoadPlayerManager();
         this.LoadPlayerInput();
@@ -47,8 +50,29 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadCharacterController();
         this.LoadAnimator();
         this.LoadRigAnimator();
+
+        if (this.Character != null)
+        {
+            this.PlayerWeapon.PlayerWeaponManager.WeaponSheathSlots = this.Character.WeaponSheathSlots;
+        }
     }
 
+    private void Update()
+    {
+        /*if(Input.GetMouseButtonDown(0))
+        {
+            Animator.SetTrigger("Attack");
+        }*/
+
+    }
+
+    protected virtual void LoadEventAnimator ()
+    {
+        if(Character != null)
+        {
+            EvenAnimator = Character.GetComponent<OnEventAnimator>();
+        }
+    }
     protected virtual void LoadPlayerAim()
     {
         if (this.PlayerAim == null)
@@ -205,11 +229,12 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadRigAnimator();
 
         this.PlayerCamera.SetCameraTarget();
+        this.PlayerWeapon.PlayerWeaponManager.WeaponSheathSlots = character.WeaponSheathSlots;
     }
 
     public void SetUI()
     {
-        if (this.Character == null) return;
+        if (this.Character.CharacterData == null) return;
 
         this.UI_Skill_Icon.SetSkill(this.Character.CharacterData.SpecialSkillIcon);
     }

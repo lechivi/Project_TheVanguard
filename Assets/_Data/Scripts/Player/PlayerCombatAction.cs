@@ -7,16 +7,24 @@ public class PlayerCombatAction : PlayerAbstract
     private CombatAction combatActionMouseL;
     private CombatAction combatActionMouseR;
 
+    private void Update()
+    {
+        SetConditionMouseL();
+        SetConditionMouseR();
+    }
     public void ActionMouseL()
     {
         switch (this.combatActionMouseL)
         {
+            case CombatAction.None:
+                break;
             case CombatAction.RangedWeapon:
-
+                this.playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
                 break;
 
             case CombatAction.MeleeWeapon:
-
+                this.playerCtrl.PlayerWeapon.PlayerWeaponAttack.Attack();
+                this.playerCtrl.PlayerInput.AttackInput = false;
                 break;
 
             case CombatAction.CharacterSpecific:
@@ -24,39 +32,50 @@ public class PlayerCombatAction : PlayerAbstract
                 if (character)
                 {
                     character.ActionMouseL();
+                    this.playerCtrl.PlayerInput.AttackInput = false;
                 }
                 break;
 
             default:
-                Debug.LogError("Not set combat action for Mouse-Left");
+                //Debug.LogError("Not set combat action for Mouse-Left");
                 break;
         }
     }
 
-    public void ActionMouseR()
+    public void ActionMouseR(bool useButton, bool InputButton)
     {
-        switch (this.combatActionMouseR)
+        if(useButton)
         {
-            case CombatAction.RangedWeapon:
+            switch (this.combatActionMouseR)
+            {
+                case CombatAction.None:
+                    break;
+                case CombatAction.RangedWeapon:
+                    playerCtrl.PlayerAim.SetIsAim(InputButton);
+                    break;
 
-                break;
+                case CombatAction.MeleeWeapon:
 
-            case CombatAction.MeleeWeapon:
+                    break;
 
-                break;
+                case CombatAction.CharacterSpecific:
+                    Character character = this.playerCtrl.Character;
+                    if (character)
+                    {
+                        character.ActionMouseR(InputButton);
+                    }
+                    break;
 
-            case CombatAction.CharacterSpecific:
-                Character character = this.playerCtrl.Character;
-                if (character)
-                {
-                    character.ActionMouseL();
-                }
-                break;
-
-            default:
-                Debug.LogError("Not set combat action for Mouse-Right");
-                break;
+                default:
+                    //Debug.LogError("Not set combat action for Mouse-Right");
+                    break;
+            }
         }
+        else
+        {
+
+        }
+
     }
 
     public void SpecialSkill()
@@ -77,36 +96,42 @@ public class PlayerCombatAction : PlayerAbstract
         }
     }
 
-    public void SetActionMouseLeft(bool isCharacter)
+    public void SetActionMouseLeft(CombatAction combatAction)
     {
-        if (isCharacter)
+        this.combatActionMouseL = combatAction;
+    }
+
+    public void SetActionMouseRight(CombatAction combatAction)
+    {
+        this.combatActionMouseR = combatAction;
+    }
+
+    public void SetConditionMouseL()
+    {
+        if (combatActionMouseL == CombatAction.CharacterSpecific) return;
+        Weapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveWeapon();
+        WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        if (gun && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
-            this.combatActionMouseL = CombatAction.CharacterSpecific;
+            this.combatActionMouseL = CombatAction.RangedWeapon;
+            this.combatActionMouseR = CombatAction.RangedWeapon;
         }
-        else
+        if (gun == null || gun !=null && playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
-            Debug.Log("Set it back to weapon");
-            //if (this.playerCtrl.PlayerWeapon.PlayerWeaponActive == null) return;
-            //if (this.AttackInput)
-            //{
-            //    this.playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
-            //}
-            //else if (!this.AttackInput)
-            //{
-            //    this.playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
-            //}
+            this.combatActionMouseL = CombatAction.MeleeWeapon;
+            this.combatActionMouseR = CombatAction.MeleeWeapon;
         }
     }
 
-    public void SetActionMouseRight(bool isCharacter)
+    public void SetConditionMouseR()
     {
-        if (isCharacter)
+        if (combatActionMouseL == CombatAction.CharacterSpecific) return;
+        WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+        if (gun && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
-            this.combatActionMouseR = CombatAction.CharacterSpecific;
+            this.combatActionMouseL = CombatAction.RangedWeapon;
+            this.combatActionMouseR = CombatAction.RangedWeapon;
         }
-        else
-        {
-            Debug.Log("Set it back to weapon");
-        }
+
     }
 }

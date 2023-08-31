@@ -11,7 +11,6 @@ public class Xerath_Alpha : SaiMonoBehaviour
     private float lastClicked;
     private float lastComboEnd = 0;
     private string[] combos = new string[3];
-
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -30,27 +29,25 @@ public class Xerath_Alpha : SaiMonoBehaviour
         this.combos[2] = "Unarmed03";
     }
 
+    private void OnEnable()
+    {
+        this.currentComboIndex = 0;
+    }
     private void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    this.Attack();
-        //}
 
         this.ResetComboState();
     }
 
-    public void Acttak()
+    public void Acttack()
     {
         if (this.combos == null || Time.time - this.lastComboEnd <= this.coolDownTime) return;
 
         if (this.comboCounter == this.combos.Length && Time.time - this.lastClicked > this.coolDownTime)
             this.comboCounter = 0;
-
         this.comboCounter++;
         this.comboCounter = Mathf.Clamp(this.comboCounter, 0, this.combos.Length);
         this.lastClicked = Time.time;
-
         string comboName = this.combos[this.currentComboIndex];
         for (int i = 0; i < this.comboCounter; i++)
         {
@@ -83,14 +80,17 @@ public class Xerath_Alpha : SaiMonoBehaviour
         {
             if (state.IsName(comboName + "_" + (i + 1)))
             {
-                if (state.normalizedTime >= 0.7)
+                if (state.normalizedTime >= 0.9)
                 {
+                    Debug.Log("run");
                     this.comboCounter = 0;
                     this.lastComboEnd = Time.time;
                     this.animator.SetBool("Attack", false);
                     for (int j = i + 1; j > 0; j--)
                     {
                         this.animator.SetBool(comboName + "_" + j, false);
+                        Debug.Log(j + "run");
+                        Debug.Log("RunAttackFalse");
                     }
                 }
             }
