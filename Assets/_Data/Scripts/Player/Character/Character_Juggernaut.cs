@@ -6,7 +6,7 @@ public class Character_Juggernaut : Character
 {
     [Header("JUGGERNAUT")]
     public int TitanID;
-    public float transformTime;
+    //public float transformTime;
     public GameObject Gun_JuggernautModel;
     public WeaponRaycast Juggernaut_Raycast;
     public Transform raycastOriginHand;
@@ -263,7 +263,7 @@ public class Character_Juggernaut : Character
     {
         this.Transform();
         Debug.Log("StartCRT");
-        yield return new WaitForSeconds(this.transformTime);
+        yield return new WaitForSeconds(this.characterData.ExecutionSkillTime);
 
         this.RevertoForm();
     }

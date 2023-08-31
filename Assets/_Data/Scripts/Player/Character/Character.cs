@@ -16,17 +16,22 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected Transform[] weaponSheathSlots;
 
     [Space(10)]
-    [SerializeField] protected float cooldownSpecialSkill;
-    [SerializeField] protected float cooldownBattleSkill;
-
     protected bool isReadySpecialSkill = true;
     protected bool isCoolingDownSpecicalSkill;
-    protected float timerSpecialSkill;
+    protected float executionSpecialSkill;
+    protected float cooldownSpecialSkill;
+    protected float timerEX_SpecialSkill;
+    protected float timerCD_SpecialSkill;
+
 
     protected bool isReadyBattleSkill = true;
     protected bool isStartCooldownBattleSkill;
+    protected float cooldownBattleSkill;
     protected float timerBattleSkill;
+
     protected bool isCharacterForm =false;
+    protected bool isMiss;
+    protected float missCooldownTime = 0.75f;
 
     public CharacterDataSO CharacterData { get => this.characterData; }
     public Transform CharacterTransform { get => this.characterTransform; }
@@ -37,10 +42,15 @@ public class Character : SaiMonoBehaviour
     public Transform FPS_Follow { get => this.fps_Follow; }
     public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; }
 
+    public bool IsCharacterForm { get => this.isCharacterForm; }
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
     public bool IsCoolingDownSpecicalSkill { get => this.isCoolingDownSpecicalSkill; }
-    public float TimerSpecialSkill { get => this.timerSpecialSkill; }
-    public bool IsCharacterForm { get => this.isCharacterForm; }
+    public float ExecutionSpecialSkill { get => this.executionSpecialSkill; }
+    public float CooldownSpecialSkill { get => this.cooldownSpecialSkill; }
+    public float TimerEX_SpecialSkill { get => this.timerCD_SpecialSkill; }
+    public float TimerCD_SpecialSkill { get => this.timerCD_SpecialSkill; }
+
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -126,11 +136,11 @@ public class Character : SaiMonoBehaviour
     {
         if (this.isCoolingDownSpecicalSkill)
         {
-            this.CooldownSpecialSkill();
+            this.CoolingdownSpecialSkill();
         }
         if (this.isStartCooldownBattleSkill)
         {
-            this.CooldownBattleSkill();
+            this.CoolingdownBattleSkill();
         }
     }
 
@@ -159,17 +169,18 @@ public class Character : SaiMonoBehaviour
         PlayerCtrl.Instance.SetCharacter(this);
     }
 
-    protected virtual void CooldownSpecialSkill()
+    protected virtual void CoolingdownSpecialSkill()
     {
-        this.timerSpecialSkill += Time.deltaTime;
-        if (this.timerSpecialSkill < this.cooldownSpecialSkill) return;
+        this.timerCD_SpecialSkill += Time.deltaTime;
+        if (this.timerCD_SpecialSkill < this.cooldownSpecialSkill) return;
 
-        this.timerSpecialSkill = 0;
+        this.timerCD_SpecialSkill = 0;
         this.isReadySpecialSkill = true;
         this.isCoolingDownSpecicalSkill = false;
+        this.isMiss = true;
     }
 
-    protected virtual void CooldownBattleSkill()
+    protected virtual void CoolingdownBattleSkill()
     {
         this.timerBattleSkill += Time.deltaTime;
         if (this.timerBattleSkill < this.cooldownBattleSkill) return;

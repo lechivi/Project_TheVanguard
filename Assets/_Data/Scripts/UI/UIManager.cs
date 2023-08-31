@@ -32,8 +32,9 @@ public class UIManager : BaseManager<UIManager>
     private void OnEnable()
     {
         //TODO: Change it
-        this.Enable_UI_MainMenuPanel();
+        //this.Enable_UI_MainMenuPanel();
         //this.Enable_UI_ChrSelPanel();
+        this.Enable_UI_InGamePanel();
     }
 
     public void Disable_UI_All()

@@ -83,7 +83,7 @@ public class UI_Skill : SaiMonoBehaviour
         if (this.currentPhase == SkillPhase.Execution)
         {
             this.timerExecution -= Time.deltaTime;
-            this.timerText.SetText(this.timerExecution.ToString("F1"));
+            this.timerText.SetText((character.CharacterData.ExecutionSkillTime + this.timerExecution).ToString("F1"));
             this.executionFillIconImage.fillAmount = this.timerExecution / character.ExecutionSpecialSkill;
         }
         else if (this.currentPhase == SkillPhase.Cooldown)

@@ -12,6 +12,7 @@ public class InGame_AlwaysOnUI : BaseUIElement
     public Image Crosshair_Image { get => this.crosshair_Image; }
     public UI_PlayerInteract UI_PlayerInteract { get => this.ui_PlayerInteract; }
     public UI_PlayerInfoScanner UI_PlayerInfoScanner { get => this.ui_PlayerInfoScanner; }
+    public UI_Skill UI_Skill { get => this.ui_Skill; }
 
     protected override void LoadComponent()
     {

@@ -16,7 +16,9 @@ public class PlayerCtrl : SaiMonoBehaviour
     public PlayerAnimation PlayerAnimation;
     public PlayerWeapon PlayerWeapon;
     public PlayerInteract PlayerInteract;
+    public PlayerInfoScanner PlayerInfoScanner;
     public PlayerCombatAction PlayerCombatAction;
+    public PlayerHealth PlayerHealth;
     public PlayerCharacter PlayerCharacter;
     public Transform MainCamera;
 
@@ -26,9 +28,6 @@ public class PlayerCtrl : SaiMonoBehaviour
     public CharacterController CharacterController;
     public Animator Animator;
     public Animator RigAnimator;
-
-    [Header("UI")]
-    public UI_Skill_Icon UI_Skill_Icon;
 
     protected override void LoadComponent()
     {
@@ -42,7 +41,9 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadPlayerAnimation();
         this.LoadPlayerWeapon();
         this.LoadPlayerInteract();
+        this.LoadPlayerInfoScanner();
         this.LoadPlayerCombat();
+        this.LoadPlayerHealth();
         this.LoadPlayerCharacter();
         this.LoadMainCamera();
 
@@ -51,6 +52,7 @@ public class PlayerCtrl : SaiMonoBehaviour
         this.LoadAnimator();
         this.LoadRigAnimator();
 
+        this.PlayerCamera.SetCameraTarget();
         if (this.Character != null)
         {
             this.PlayerWeapon.PlayerWeaponManager.WeaponSheathSlots = this.Character.WeaponSheathSlots;
@@ -64,6 +66,24 @@ public class PlayerCtrl : SaiMonoBehaviour
             Animator.SetTrigger("Attack");
         }*/
 
+    }
+
+    protected virtual void LoadPlayerInfoScanner()
+    {
+        if (this.PlayerInfoScanner == null)
+        {
+            this.PlayerInfoScanner = GetComponentInChildren<PlayerInfoScanner>();
+            Debug.LogWarning(gameObject.name + "LoadPlayerInfoScanner", gameObject);
+        }
+    }
+
+    protected virtual void LoadPlayerHealth()
+    {
+        if (this.PlayerHealth == null)
+        {
+            this.PlayerHealth = GetComponentInChildren<PlayerHealth>();
+            Debug.LogWarning(gameObject.name + "LoadPlayerHealth", gameObject);
+        }
     }
 
     protected virtual void LoadEventAnimator ()
@@ -236,6 +256,9 @@ public class PlayerCtrl : SaiMonoBehaviour
     {
         if (this.Character.CharacterData == null) return;
 
-        this.UI_Skill_Icon.SetSkill(this.Character.CharacterData.SpecialSkillIcon);
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.InGamePanel.InGame_AlwaysOnUI.UI_Skill.SetSkill(this.Character.CharacterData.SpecialSkillIcon);
+        }
     }
 }

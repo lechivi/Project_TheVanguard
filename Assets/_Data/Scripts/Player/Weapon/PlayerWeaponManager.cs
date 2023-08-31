@@ -473,7 +473,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
                 isHolstering = true;
             }*/
             if (Input.GetKeyUp(KeyCode.LeftShift) && currentWeaponIndex > -1 ||
-                PlayerCtrl.Instance.Character.TimerSpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
+                PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
             {
                 isHolstering = originalHolster;
             }
