@@ -13,15 +13,17 @@ MonoBehaviour:
   m_Name: No04_Darlene
   m_EditorClassIdentifier: 
   CharacterName: Darlene
-  ClassName: The Survivor
+  CharacterClass: The Survivor
   Species: 5
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Resourceful scavenger and tinkerer surviving in a post-apocalyptic
     wasteland, using her engineering skills to create robotic allies.
+  Health: 50
   Power: 5
   Defence: 5
   HitPoint: 5
+  ExecutionSkillTime: 0
   CooldownSkillTime: 5
   SpecialSkillName: Say Hi To My Friend
   SpecialSkillIcon: {fileID: 21300000, guid: 8be535bf0e0c1364593df4df6a12f503, type: 3}

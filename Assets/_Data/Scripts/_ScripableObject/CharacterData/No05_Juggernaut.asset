@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: No05_Juggernaut
   m_EditorClassIdentifier: 
   CharacterName: Juggernaut
-  ClassName: The Titan
+  CharacterClass: The Titan
   Species: 30
+  CharacterIcon: {fileID: 0}
+  CharacterModel: {fileID: 0}
   CharacterDescription: Ancient and colossal being, awakened to protect the world
     from a looming threat, possessing immense strength and resilience.
+  Health: 50
   Power: 5
   Defence: 5
   HitPoint: 5
+  ExecutionSkillTime: 0
   CooldownSkillTime: 0
   SpecialSkillName: Badass Laser
-  SpecialSkill_Icon: {fileID: 0}
+  SpecialSkillIcon: {fileID: 0}
   SpecialSkillDescription: uggernaut unleashes a barrage of five unique laser beams.
   ListSkin: []

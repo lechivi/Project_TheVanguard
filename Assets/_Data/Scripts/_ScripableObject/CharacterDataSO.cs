@@ -6,7 +6,7 @@ public class CharacterDataSO : ScriptableObject
 {
     [Header("OVERVIEW")]
     public string CharacterName;
-    public string ClassName;
+    public string CharacterClass;
     public Species Species;
     public Sprite CharacterIcon;
     public GameObject CharacterModel;

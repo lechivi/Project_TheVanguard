@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: a7e98d51bd73b0348b47acf6a9f02766
 ModelImporter:
-  serializedVersion: 19301
+  serializedVersion: 21300
   internalIDToNameTable:
   - first:
       1: 100000
@@ -713,6 +713,7 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: Motion
     rigImportErrors: 
     rigImportWarnings: 
@@ -724,11 +725,11 @@ ModelImporter:
     animationRetargetingWarnings: "\nRetargeting quality report for clip 'Take 001':\n\tLeftUpperArm
       average position error 5.8 mm and maximum position error 20.1 mm at time 0:21
       (87.5%) Frame 21\n\tLeftLowerArm average position error 5.8 mm and maximum
-      position error 20.3 mm at time 0:21 (87.5%) Frame 21\n\tLeftHand average position
+      position error 20.1 mm at time 0: 9 (37.5%) Frame 9\n\tLeftHand average position
       error 5.8 mm and maximum position error 20.1 mm at time 0:21 (87.5%) Frame
       21\n\tRightUpperArm average position error 5.8 mm and maximum position error
       20.1 mm at time 0:21 (87.5%) Frame 21\n\tRightLowerArm average position error
-      5.8 mm and maximum position error 20.1 mm at time 0: 9 (37.5%) Frame 9\n\tRightHand
+      5.8 mm and maximum position error 20.3 mm at time 0:21 (87.5%) Frame 21\n\tRightHand
       average position error 5.8 mm and maximum position error 20.1 mm at time 0:21
       (87.5%) Frame 21\n\tHead average position error 5.8 mm and maximum position
       error 20.1 mm at time 0:21 (87.5%) Frame 21\n"
@@ -798,21 +799,27 @@ ModelImporter:
     importBlendShapes: 0
     importCameras: 0
     importLights: 0
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 0
+    bakeAxisConversion: 0
     preserveHierarchy: 0
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
-    meshOptimizationFlags: 0
+    optimizeBones: 1
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 0
   tangentSpace:
@@ -1524,12 +1531,13 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 0
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6825cd5362ce80a4e9da414c684b6aeb,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 6825cd5362ce80a4e9da414c684b6aeb, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
   avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class SaiMonoBehaviour : MonoBehaviour
 {
+    [ContextMenu("Load Component")]
+    public void ContextMenuLoadComponent()
+    {
+        this.LoadComponent();
+    }
+
     protected virtual void Awake()
     {
         this.LoadComponent();
@@ -18,29 +24,26 @@ public class SaiMonoBehaviour : MonoBehaviour
         //For overrite
     }
 
-    public void ButtonLoadComponent()
-    {
-        this.LoadComponent();
-    }
 }
 
-[CustomEditor(typeof(SaiMonoBehaviour), true)]
-public class SaiCustomInscpector : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        SaiMonoBehaviour saiMono = (SaiMonoBehaviour)target;
-        if (GUILayout.Button("Load Component"))
-        {
-            saiMono.ButtonLoadComponent();
-        }
+//[CustomEditor(typeof(SaiMonoBehaviour), true)]
+//public class SaiCustomInscpector : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        //base.OnInspectorGUI();
+//        SaiMonoBehaviour saiMono = (SaiMonoBehaviour)target;
+//        if (GUILayout.Button("Load Component"))
+//        {
+//            saiMono.ContextMenuLoadComponent();
+//        }
 
-        this.AddMoreButton();
-        DrawDefaultInspector();
-    }
+//        this.AddMoreButton();
+//        DrawDefaultInspector();
+//    }
 
-    public virtual void AddMoreButton()
-    {
-        //for ovrride
-    }
-}
+//    public virtual void AddMoreButton()
+//    {
+//        //for ovrride
+//    }
+//}

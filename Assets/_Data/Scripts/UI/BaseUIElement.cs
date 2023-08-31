@@ -1,17 +1,13 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class BaseUIElement : SaiMonoBehaviour
 {
     [Header("BASE UI")]
     [SerializeField] protected CanvasGroup canvasGroup;
     [SerializeField] protected bool isSetActiveGameObjec;
 
-    protected bool isHide;
-    protected bool isInited;
-
     public CanvasGroup CanvasGroup { get => this.canvasGroup; }
-    public bool IsHide { get => this.isHide; }
-    public bool IsInited { get => this.isInited; }
 
     protected override void LoadComponent()
     {
@@ -20,24 +16,11 @@ public class BaseUIElement : SaiMonoBehaviour
             this.canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    public virtual void Init()
-    {
-        this.isInited = true;
-        if (!this.gameObject.GetComponent<CanvasGroup>())
-        {
-            this.gameObject.AddComponent<CanvasGroup>();
-        }
-
-        this.canvasGroup = this.gameObject.GetComponent<CanvasGroup>();
-        this.gameObject.SetActive(true);
-    }
-
     public virtual void Show(object data)
     {
-        if (this.isSetActiveGameObjec)
+        if (this.isSetActiveGameObjec || this.gameObject.activeSelf == false)
             this.gameObject.SetActive(true);
 
-        this.isHide = false;
         this.SetActiveCanvasGroup(true);
     }
 
@@ -46,7 +29,6 @@ public class BaseUIElement : SaiMonoBehaviour
         if (this.isSetActiveGameObjec)
             this.gameObject.SetActive(false);
 
-        this.isHide = true;
         this.SetActiveCanvasGroup(false);
     }
 
@@ -57,5 +39,10 @@ public class BaseUIElement : SaiMonoBehaviour
             this.canvasGroup.alpha = isActive ? 1 : 0;
             this.canvasGroup.blocksRaycasts = isActive;
         }
+    }
+
+    public bool IsShow()
+    {
+        return (this.canvasGroup.alpha == 1 && !this.isSetActiveGameObjec) || (this.gameObject.activeSelf && this.isSetActiveGameObjec);
     }
 }

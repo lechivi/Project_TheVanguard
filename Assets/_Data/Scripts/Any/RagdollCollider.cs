@@ -120,42 +120,42 @@ public class RagdollCollider : MonoBehaviour
     }
 }
 
-[CustomEditor(typeof(RagdollCollider), true)]
-public class RagdollChangeSizeCustomInscpector : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        RagdollCollider ragdollChangeSize = (RagdollCollider)target;
-        if (GUILayout.Button("Load Colliders"))
-        {
-            ragdollChangeSize.ButtonLoadColliders();
-        }
+//[CustomEditor(typeof(RagdollCollider), true)]
+//public class RagdollChangeSizeCustomInscpector : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        RagdollCollider ragdollChangeSize = (RagdollCollider)target;
+//        if (GUILayout.Button("Load Colliders"))
+//        {
+//            ragdollChangeSize.ButtonLoadColliders();
+//        }
 
-        if (GUILayout.Button("Dulicate Left Side"))
-        {
-            ragdollChangeSize.ButtonDulicateLeftSide();
-        }
+//        if (GUILayout.Button("Dulicate Left Side"))
+//        {
+//            ragdollChangeSize.ButtonDulicateLeftSide();
+//        }
 
-        if (GUILayout.Button("Add Physic Material"))
-        {
-            ragdollChangeSize.ButtonAddPhysicMaterial();
-        }
+//        if (GUILayout.Button("Add Physic Material"))
+//        {
+//            ragdollChangeSize.ButtonAddPhysicMaterial();
+//        }
 
-        if (GUILayout.Button("Set Collision Detection"))
-        {
-            ragdollChangeSize.ButtonSetCollisionDetection();
-        }
+//        if (GUILayout.Button("Set Collision Detection"))
+//        {
+//            ragdollChangeSize.ButtonSetCollisionDetection();
+//        }
         
-        if (GUILayout.Button("Set IsKinematic True"))
-        {
-            ragdollChangeSize.ButtonSetIsKinematicTrue();
-        }
+//        if (GUILayout.Button("Set IsKinematic True"))
+//        {
+//            ragdollChangeSize.ButtonSetIsKinematicTrue();
+//        }
         
-        if (GUILayout.Button("Set IsKinematic False"))
-        {
-            ragdollChangeSize.ButtonSetIsKinematicFalse();
-        }
+//        if (GUILayout.Button("Set IsKinematic False"))
+//        {
+//            ragdollChangeSize.ButtonSetIsKinematicFalse();
+//        }
 
-        DrawDefaultInspector();
-    }
-}
+//        DrawDefaultInspector();
+//    }
+//}

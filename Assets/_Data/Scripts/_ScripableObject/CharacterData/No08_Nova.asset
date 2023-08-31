@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: No08_Nova
   m_EditorClassIdentifier: 
   CharacterName: Nova
-  ClassName: The Deadshot
+  CharacterClass: The Deadshot
   Species: 10
+  CharacterIcon: {fileID: 0}
+  CharacterModel: {fileID: 0}
   CharacterDescription: Elite sharpshooter enhanced with cybernetic implants, skilled
     in long-range combat and precision marksmanship.
+  Health: 50
   Power: 5
   Defence: 5
   HitPoint: 5
+  ExecutionSkillTime: 0
   CooldownSkillTime: 0
   SpecialSkillName: Deadly Precision
-  SpecialSkill_Icon: {fileID: 0}
+  SpecialSkillIcon: {fileID: 0}
   SpecialSkillDescription: Nova entering a state of heightened focus and precision.
   ListSkin: []

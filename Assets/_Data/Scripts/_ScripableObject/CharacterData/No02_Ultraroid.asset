@@ -13,16 +13,20 @@ MonoBehaviour:
   m_Name: No02_Ultraroid
   m_EditorClassIdentifier: 
   CharacterName: Ultraroid
-  ClassName: The Robot
+  CharacterClass: The Robot
   Species: 15
+  CharacterIcon: {fileID: 0}
+  CharacterModel: {fileID: 0}
   CharacterDescription: Experimental robotic creation with powerful energy capabilities,
     seeking to understand human emotions and experiences.
+  Health: 50
   Power: 5
   Defence: 5
   HitPoint: 5
+  ExecutionSkillTime: 0
   CooldownSkillTime: 0
   SpecialSkillName: Ultra Beam
-  SpecialSkill_Icon: {fileID: 0}
+  SpecialSkillIcon: {fileID: 0}
   SpecialSkillDescription: "Ultrabot charges a powerful Ultra Beam using his shield
     and HP.\r"
   ListSkin: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: No07_Sera
   m_EditorClassIdentifier: 
   CharacterName: Sera
-  ClassName: The Enchantress
+  CharacterClass: The Enchantress
   Species: 25
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}

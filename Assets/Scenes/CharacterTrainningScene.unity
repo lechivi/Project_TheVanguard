@@ -2618,9 +2618,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170652431}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &170652437
 MonoBehaviour:
@@ -4403,9 +4403,9 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 317242149}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!114 &317242155
 MonoBehaviour:
@@ -15645,9 +15645,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 915797647}
   isSetActiveGameObjec: 0
+  canvas: {fileID: 915797650}
   inGame_AlwaysOnUI: {fileID: 221995806}
   inGame_PauseMenu: {fileID: 317242155}
   inGame_Other: {fileID: 170652437}
+  canvasCamera: {fileID: 1432061142}
 --- !u!1 &921665412
 GameObject:
   m_ObjectHideFlags: 0
@@ -34080,7 +34082,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: -0.0008239746}
   m_SizeDelta: {x: 450, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1896205383
@@ -34715,7 +34717,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb10336720ceaa4083f923db643d656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: {fileID: 1319213918}
+  prefab: {fileID: 0}
+  mats: {fileID: 0}
 --- !u!4 &1918115905
 Transform:
   m_ObjectHideFlags: 0
@@ -46505,6 +46508,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1287189565776230258, guid: 498af19fbcea284418fcb0641ba2be31, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2751502577557217185, guid: 498af19fbcea284418fcb0641ba2be31, type: 3}
+      propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8518951120798510876, guid: 498af19fbcea284418fcb0641ba2be31, type: 3}

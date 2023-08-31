@@ -13,15 +13,19 @@ MonoBehaviour:
   m_Name: No01_Vanessa
   m_EditorClassIdentifier: 
   CharacterName: Vanessa
-  ClassName: The Rose Of Western
+  CharacterClass: The Rose Of Western
   Species: 5
+  CharacterIcon: {fileID: 0}
+  CharacterModel: {fileID: 0}
   CharacterDescription: Skilled gunslinger and cowgirl from the Western territories,
     known for her quick draw and precision shooting.
+  Health: 50
   Power: 5
   Defence: 5
   HitPoint: 5
+  ExecutionSkillTime: 0
   CooldownSkillTime: 0
   SpecialSkillName: Dual Gunslinger
-  SpecialSkill_Icon: {fileID: 0}
+  SpecialSkillIcon: {fileID: 0}
   SpecialSkillDescription: "Vanessa wields a gun in each handIncreasing her gun damage.\r"
   ListSkin: []
