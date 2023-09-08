@@ -4,6 +4,21 @@ public class PlayerInteract : PlayerAbstract
 {
     [SerializeField] private float interactDistance = 7.5f;
     [SerializeField] private LayerMask pickupLayer;
+    [SerializeField] private Transform raycastOriginal;
+
+    public Transform InteractableRaycastObject;
+
+    private void Update()
+    {
+        if(playerCtrl.PlayerCamera.TPSCamera.gameObject.activeInHierarchy == true)
+        {
+            this.raycastOriginal = InteractableRaycastObject.transform;
+        }
+        else
+        {
+            this.raycastOriginal = Camera.main.transform;
+        }
+    }
 
     public void Interact()
     {
@@ -12,6 +27,21 @@ public class PlayerInteract : PlayerAbstract
         {
             interactable.Interact(transform);
         }
+    }
+
+
+    public IInteractable GetInteractableObjectByRaycast()
+    {
+        Physics.Raycast(this.raycastOriginal.transform.position, this.raycastOriginal.transform.forward, 
+            out RaycastHit hitInfo, this.interactDistance, this.pickupLayer);
+        if (hitInfo.collider != null && hitInfo.transform.TryGetComponent(out IInteractable interactable))
+        {
+            if (interactable.CanInteract())
+                return interactable;
+            else
+                return null;
+        }
+        return null;
     }
 
     //[SerializeField] private float interactRange = 2f;
@@ -47,28 +77,13 @@ public class PlayerInteract : PlayerAbstract
 
     //    return closestInteractable;
     //}
+    //private void OnDrawGizmos()
+    //{
+    //    Camera mainCamera = this.playerCtrl.PlayerCamera.MainCamera;
+    //    if (mainCamera == null) return;
 
-    public IInteractable GetInteractableObjectByRaycast()
-    {
-        Physics.Raycast(this.playerCtrl.PlayerCamera.MainCamera.transform.position, this.playerCtrl.PlayerCamera.MainCamera.transform.forward, 
-            out RaycastHit hitInfo, this.interactDistance, this.pickupLayer);
-        if (hitInfo.collider != null && hitInfo.transform.TryGetComponent(out IInteractable interactable))
-        {
-            if (interactable.CanInteract())
-                return interactable;
-            else
-                return null;
-        }
-        return null;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Camera mainCamera = this.playerCtrl.PlayerCamera.MainCamera;
-        if (mainCamera == null) return;
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(mainCamera.transform.position, mainCamera.transform.position + 
-            (mainCamera.transform.forward * this.interactDistance));
-    }
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawLine(mainCamera.transform.position, mainCamera.transform.position + 
+    //        (mainCamera.transform.forward * this.interactDistance));
+    //}
 }

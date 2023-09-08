@@ -17,6 +17,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
     {
         this.SetTyleStringMelee();
         this.ResetComboState();
+        Debug.Log(MeleeCombatType);
     }
 
     public void Attack()
@@ -86,7 +87,9 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
 
                     for (int j = i + 1; j > 0; j--)
                     {
-                        this.PlayerWeapon.PlayerCtrl.Animator.SetBool("Attack" + MeleeCombatType + j, false);
+                        this.PlayerWeapon.PlayerCtrl.Animator.SetBool("Attack" + "Unarmed_" + j, false);
+                        this.PlayerWeapon.PlayerCtrl.Animator.SetBool("Attack" + "LongMelee_" + j, false);
+                        this.PlayerWeapon.PlayerCtrl.Animator.SetBool("Attack" + "Knife_" + j, false);
                     }
                 }
             }
@@ -107,4 +110,5 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
             MeleeCombatType = weapon.WeaponData.MeleeType.ToString() + "_";
         }
     }
+
 }

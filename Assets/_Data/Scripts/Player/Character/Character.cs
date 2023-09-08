@@ -11,6 +11,7 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected Animator rigAnimator;
     [SerializeField] protected Transform tps_LookAt;
     [SerializeField] protected Transform fps_Follow;
+    [SerializeField] protected OnEventAnimator eventAnimator;
     [SerializeField] protected Transform[] weaponSheathSlots;
 
     [Space(10)]
@@ -26,7 +27,7 @@ public class Character : SaiMonoBehaviour
     protected float cooldownBattleSkill;
     protected float timerCD_BattleSkill;
 
-    protected bool isCharacterForm = false;
+    protected bool isSpecialSkill = false;
     protected bool isMiss;
     protected float missCooldownTime = 0.75f;
 
@@ -38,9 +39,10 @@ public class Character : SaiMonoBehaviour
     public Animator RigAnimator { get => this.rigAnimator; }
     public Transform TPS_LookAt { get => this.tps_LookAt; }
     public Transform FPS_Follow { get => this.fps_Follow; }
+    public OnEventAnimator EventAnimator { get => this.eventAnimator; }
     public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; }
 
-    public bool IsCharacterForm { get => this.isCharacterForm; }
+    public bool IsSpecialSkill { get => this.isSpecialSkill; }
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
     public bool IsCoolingDownSpecicalSkill { get => this.isCoolingDownSpecicalSkill; }
     public float ExecutionSpecialSkill { get => this.executionSpecialSkill; }
@@ -54,25 +56,14 @@ public class Character : SaiMonoBehaviour
         base.LoadComponent();
         this.LoadCharacterTransform();
         this.LoadCharacterController();
-        this.LoadOnEventAnimator();
         this.LoadAnimator();
         this.LoadRigAnimator();
         this.LoadTPSLookAt();
         this.LoadFPSFollow();
+        this.LoadOnEventAnimator();
         this.LoadWeaponSheathSlots();
     }
 
-    protected virtual void LoadWeaponSheathSlots()
-    {
-        if (this.weaponSheathSlots.Length != 3)
-        {
-            this.weaponSheathSlots = new Transform[3];
-            Transform rigLayer_WeaponAim = this.rigAnimator.transform.Find("RigLayer_WeaponAim");
-            this.weaponSheathSlots[0] = rigLayer_WeaponAim.Find("WeaponSlotLeft_Contains");
-            this.weaponSheathSlots[1] = rigLayer_WeaponAim.Find("WeaponSlotRight_Contains");
-            this.weaponSheathSlots[2] = rigLayer_WeaponAim.Find("WeaponSlotBack_Contains");
-        }
-    }
     protected virtual void LoadCharacterTransform()
     {
         if (this.characterTransform == null)
@@ -89,14 +80,6 @@ public class Character : SaiMonoBehaviour
             Debug.LogWarning(gameObject.name + ": LoadCharacterController", gameObject);
         }
     } 
-    protected virtual void LoadOnEventAnimator()
-    {
-        if (this.onEventAnimator == null)
-        {
-            this.onEventAnimator = GetComponent<OnEventAnimator>();
-            Debug.LogWarning(gameObject.name + ": LoadOnEventAnimator", gameObject);
-        }
-    }
     protected virtual void LoadAnimator()
     {
         if (this.animator == null)
@@ -127,6 +110,25 @@ public class Character : SaiMonoBehaviour
         {
             this.fps_Follow = transform.Find("------RigLayers-----").Find("WeaponHolder").Find("FPS_Follow");
             Debug.LogWarning(gameObject.name + ": LoadFPSFollow", gameObject);
+        }
+    }
+    protected virtual void LoadOnEventAnimator()
+    {
+        if (this.eventAnimator == null)
+        {
+            this.eventAnimator = GetComponent<OnEventAnimator>();
+            Debug.LogWarning(gameObject.name + ": LoadOnEventAnimator", gameObject);
+        }
+    }
+    protected virtual void LoadWeaponSheathSlots()
+    {
+        if (this.weaponSheathSlots.Length != 3)
+        {
+            this.weaponSheathSlots = new Transform[3];
+            Transform rigLayer_WeaponAim = this.rigAnimator.transform.Find("RigLayer_WeaponAim");
+            this.weaponSheathSlots[0] = rigLayer_WeaponAim.Find("WeaponSlotLeft_Contains");
+            this.weaponSheathSlots[1] = rigLayer_WeaponAim.Find("WeaponSlotRight_Contains");
+            this.weaponSheathSlots[2] = rigLayer_WeaponAim.Find("WeaponSlotBack_Contains");
         }
     }
 

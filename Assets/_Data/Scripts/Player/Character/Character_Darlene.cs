@@ -32,10 +32,12 @@ public class Character_Darlene : Character
 
     private IEnumerator SummonDrone()
     {
+        this.isSpecialSkill = true;
         this.isReadySpecialSkill = false;
         this.isCoolingDownSpecicalSkill = true;
         this.animator.SetTrigger("SpecialSkill");
         yield return new WaitForSeconds(0.8f);
+        this.isSpecialSkill = false;
 
         GameObject droneObj = this.poolingObject.GetObject(this.summonPoint, Quaternion.identity);
         droneObj.GetComponent<DroneCtrl>().SetupDrone(this.droneFollowPoint, this.droneLifeTime);

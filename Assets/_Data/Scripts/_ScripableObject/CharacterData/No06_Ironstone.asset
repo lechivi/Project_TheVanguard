@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: No06_Ironstone
   m_EditorClassIdentifier: 
   CharacterName: 'Ironstone '
-  ClassName: The Dwarf
-  Species: 20
+  CharacterClass: 
+  Species: 4
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Skilled blacksmith and warrior from the depths of the earth,

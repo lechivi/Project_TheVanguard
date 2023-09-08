@@ -26,6 +26,7 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
     protected override void LoadComponent()
     {
         base.LoadComponent();
+
         this.LoadPlayerManager();
         this.LoadPlayerInput();
         this.LoadPlayerLocomotion();
@@ -41,7 +42,6 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
 
         this.LoadPlayerTransform();
         this.LoadCharacterController();
-        this.LoadEventAnimator();
         this.LoadAnimator();
         this.LoadRigAnimator();
 
@@ -165,16 +165,6 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
             Debug.LogWarning(gameObject.name + ": LoadCharacterController", gameObject);
         }
     }
-    protected virtual void LoadEventAnimator()
-    {
-        if (this.Character != null)
-        {
-            this.OnEventAnimator = this.Character.OnEventAnimator;
-            Debug.LogWarning(gameObject.name + ": LoadEventAnimator", gameObject);
-
-            //this.PlayerLocomotion.SetOnEventAnimator(this.OnEventAnimator);
-        }
-    }
     protected virtual void LoadAnimator()
     {
         if (this.Character != null)
@@ -203,7 +193,6 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
 
         this.LoadPlayerTransform();
         this.LoadCharacterController();
-        this.LoadEventAnimator();
         this.LoadAnimator();
         this.LoadRigAnimator();
 

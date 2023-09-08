@@ -20,7 +20,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     private bool isReadySwap = true;
 
     private bool isHolstering;
-    private bool originalHolster = false;
+    public bool originalHolster = false;
     public bool IsHolstering { get => this.isHolstering; }
     [SerializeField] private float swapCooldown = 0.2f;
 
@@ -47,10 +47,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     private void Update()
     {
-        setOffset();
-        SetHolster(false);
-        SetDefaultCurrentindex();
-        CharacterState();
+        this.SetOffset();
+        this.SetHolster(false);
+        this.SetDefaultCurrentindex();
+        this.HosterAnimation();
 
         if (this.isReadySwap)
         {
@@ -104,6 +104,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public bool AddWeapon(Weapon weapon)
     {
+        /*        if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
+                {
+                    weapon.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+                }*/
         if (this.equippedWeapons.GetList().Count < this.maxEquippedWeapon || (this.equippedWeapons.IsContainsNull() && this.equippedWeapons.GetList().Count <= this.maxEquippedWeapon))
         {
             this.AddWeaponToEquipped(this.GetNewWeapon(weapon));
@@ -141,8 +145,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (this.currentWeaponIndex == -1)
         {
             this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
-            // playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
-            SetAnimationEquip(weapon);
+            //SetAnimationEquip(weapon);
         }
     }
 
@@ -164,27 +167,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     {
         weapon.transform.SetParent(this.weaponSheathSlots[(int)weapon.WeaponSlot[0] - 1]); //TODO: Change to RigLayer
 
-        /* if (weapon.WeaponData.WeaponType == WeaponType.Melee)
-         {
-             if (weapon.WeaponSlot[0] == WeaponSlot.Back)
-             {
-                 weapon.transform.localPosition = this.offsetPosMeleeHolderBack;
-                 weapon.transform.localRotation = Quaternion.Euler(this.offsetRotMeleeHolderBack);
-                 weapon.transform.localScale = Vector3.one;
-             }
-             else if (weapon.WeaponSlot[0] == WeaponSlot.LeftHip)
-             {
-                 weapon.transform.localPosition = this.offsetPosMeleeHolderLeft;
-                 weapon.transform.localRotation = Quaternion.Euler(this.offsetRotMeleeHolderLeft);
-                 weapon.transform.localScale = Vector3.one;
-             }
-         }
-         else
-         {
-             weapon.transform.localPosition = Vector3.zero;
-             weapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
-             weapon.transform.localScale = Vector3.one;
-         }*/
+        if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
+        {
+            weapon.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        }
 
         weapon.gameObject.SetActive(false);
     }
@@ -360,7 +346,15 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         listEquippedWeapon[weaponIndex].gameObject?.SetActive(true);
 
         isHolstering = false;
-        SetAnimationEquip(listEquippedWeapon[weaponIndex]);
+        if (PlayerCtrl.Instance.Character.IsSpecialSkill)
+        {
+            SetAnimationHolsterSpecial(listEquippedWeapon[weaponIndex]);
+        }
+        else
+        {
+            SetAnimationEquip(listEquippedWeapon[weaponIndex]);
+        }
+
         // playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
 
 
@@ -431,7 +425,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     }
 
 
-    public void CharacterState()
+    public void HosterAnimation()
     {
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
         if (currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] == null || currentWeaponIndex == -1)
@@ -453,30 +447,32 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (!button)
         {
             if (Input.GetKeyDown(KeyCode.LeftShift) && !isHolstering ||
-                PlayerCtrl.Instance.Character.IsCharacterForm && Input.GetKeyDown(KeyCode.C) && !isHolstering)
+                PlayerCtrl.Instance.Character.IsSpecialSkill && Input.GetKeyDown(KeyCode.C) && !isHolstering)
             {
                 originalHolster = false;
             }
             if (Input.GetKeyDown(KeyCode.LeftShift) && isHolstering ||
-                 PlayerCtrl.Instance.Character.IsCharacterForm && Input.GetKeyDown(KeyCode.C) && isHolstering)
+                 PlayerCtrl.Instance.Character.IsSpecialSkill && Input.GetKeyDown(KeyCode.C) && isHolstering)
 
             {
                 originalHolster = true;
             }
 
             if (playerWeapon.PlayerCtrl.PlayerLocomotion.IsSprinting == true && currentWeaponIndex > -1 ||
-                playerWeapon.PlayerCtrl.Character.IsCharacterForm && currentWeaponIndex > -1)
+                playerWeapon.PlayerCtrl.Character.IsSpecialSkill && currentWeaponIndex > -1)
             {
                 isHolstering = true;
             }
-/*            if (playerWeapon.PlayerCtrl.Character.IsCharacterForm && currentWeaponIndex > -1)
-            {
-                isHolstering = true;
-            }*/
-            if (Input.GetKeyUp(KeyCode.LeftShift) && currentWeaponIndex > -1 ||
-                PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
+            if (Input.GetKeyUp(KeyCode.LeftShift) && currentWeaponIndex > -1 || PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
             {
                 isHolstering = originalHolster;
+            }
+            if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Siren)
+            {
+                if (PlayerCtrl.Instance.Character.TimerCD_SpecialSkill > 1 && PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 1.2 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
+                {
+                    isHolstering = originalHolster;
+                }
             }
 
         }
@@ -495,7 +491,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     }
     public void SetAnimationEquip(Weapon weapon)
     {
-        if (PlayerCtrl.Instance.Character.IsCharacterForm) return;
+        if (PlayerCtrl.Instance.Character.IsSpecialSkill) return;
         if (weapon.WeaponData.WeaponType == WeaponType.Melee && weapon.WeaponData.WeaponType != WeaponType.None)
         {
             playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip_melee");
@@ -504,29 +500,105 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip_pistol");
         }
-        else
+        else if (weapon.WeaponData.WeaponType != WeaponType.Pistol && weapon.WeaponData.WeaponType != WeaponType.None
+            && weapon.WeaponData.WeaponType != WeaponType.Melee)
         {
             playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
         }
     }
 
-    public void setOffset()
+    public void SetAnimationHolsterSpecial(Weapon weapon) // for character form when current index = -1; (when IsSpecialSkill)
+    {
+        if (PlayerCtrl.Instance.Character.IsSpecialSkill)
+        {
+            if (weapon.WeaponData.WeaponType == WeaponType.Melee && weapon.WeaponData.WeaponType != WeaponType.None)
+            {
+                playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("holster_melee");
+            }
+            if (weapon.WeaponData.WeaponType == WeaponType.Pistol && weapon.WeaponData.WeaponType != WeaponType.None)
+            {
+                playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("holster_pistol");
+            }
+            else if (weapon.WeaponData.WeaponType != WeaponType.Pistol && weapon.WeaponData.WeaponType != WeaponType.None
+                        && weapon.WeaponData.WeaponType != WeaponType.Melee)
+            {
+                playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("holster");
+            }
+
+        }
+    }
+
+    public void SetAnimationHolsterIsnotSpecial(Weapon weapon) // Only Xerath when devolution
+    {
+        if (!PlayerCtrl.Instance.Character.IsSpecialSkill)
+        {
+            if (weapon.WeaponData.WeaponType == WeaponType.Melee && weapon.WeaponData.WeaponType != WeaponType.None)
+            {
+                playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("holster_melee");
+            }
+            if (weapon.WeaponData.WeaponType == WeaponType.Pistol && weapon.WeaponData.WeaponType != WeaponType.None)
+            {
+                playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("holster_pistol");
+            }
+            else if (weapon.WeaponData.WeaponType != WeaponType.Pistol && weapon.WeaponData.WeaponType != WeaponType.None
+                        && weapon.WeaponData.WeaponType != WeaponType.Melee)
+            {
+                playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("holster");
+            }
+
+        }
+    }
+
+    public void SetOffset()
     {
         Weapon weapon = GetActiveWeapon();
-        if (weapon != null /*&& weapon.WeaponData.WeaponType == WeaponType.Melee*/)
+        if (weapon != null)
         {
             if (isHolstering)
             {
-                if (weapon.gameObject.transform.localPosition == weapon.WeaponData.PosHolster) return;
-                weapon.gameObject.transform.localPosition = weapon.WeaponData.PosHolster;
-                weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.RosHolster);
+                Debug.Log("HaveWeapon");
+                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
+                {
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.TitanPosHolster) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.TitanPosHolster;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.TitanRosHolster);
+                }
+                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
+                {
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.DwarfPosHolster) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.DwarfPosHolster;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.DwarfRosHolster);
+                }
+                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Human ||
+                    PlayerCtrl.Instance.Character.CharacterData.Species == Species.Siren)
+                {
+                    Debug.Log("Siren");
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.HumanPosHolster) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.HumanPosHolster;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.HumanRosHolster);
+                }
             }
             if (!isHolstering)
             {
-                if (weapon.gameObject.transform.localPosition == weapon.WeaponData.PosEquip) return;
-                Debug.Log("run333");
-                weapon.gameObject.transform.localPosition = weapon.WeaponData.PosEquip;
-                weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.RosEquip);
+                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
+                {
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.TitanPosEquip) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.TitanPosEquip;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.TitanRosEquip);
+                }
+                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
+                {
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.DwarfPosEquip) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.DwarfPosEquip;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.DwarfRosEquip);
+                }
+                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Human ||
+                    PlayerCtrl.Instance.Character.CharacterData.Species == Species.Siren)
+                {
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.HumanPosEquip) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.HumanPosEquip;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.HumanRosEquip);
+                }
             }
         }
     }

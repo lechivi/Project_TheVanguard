@@ -41,6 +41,7 @@ public class PlayerInput : PlayerAbstract
             this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
             this.playerControls.PlayerAction.Attack.canceled += i => this.AttackInput = false;
 
+            this.playerControls.PlayerAction.Aim.started += i => this.playerCtrl.PlayerCamera.Check = true;
             this.playerControls.PlayerAction.Aim.performed += i => this.AimInput = true;
             this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
 

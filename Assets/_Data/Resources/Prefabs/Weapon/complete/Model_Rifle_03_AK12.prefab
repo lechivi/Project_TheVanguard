@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 173709198189208917}
   - component: {fileID: 152802401390216221}
   - component: {fileID: 159299378478453819}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Rifle_Assault_Mag_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 173620293463867699}
   - component: {fileID: 149046192120613315}
   - component: {fileID: 158854311921636883}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Rifle_Assault_Flash_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 177453855315644751}
   - component: {fileID: 148933529534801631}
   - component: {fileID: 158939300345194171}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Rifle_Assault_Slide_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 173768974390179135}
   - component: {fileID: 148942111611213399}
   - component: {fileID: 158842343195885027}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Rifle_Assault_Trigger_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 177653810667655075}
   - component: {fileID: 148717422367151179}
   - component: {fileID: 158862993974813159}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: AK12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10308,6 +10308,9 @@ MonoBehaviour:
   raycastOrigin: {fileID: 3777188027822793142}
   recoil: {fileID: 2894475151619537605}
   magazine: {fileID: 171268599001126845}
+  isDelay: 0
+  currentAmmo: 0
+  maxAmmo: 0
 --- !u!114 &2894475151619537605
 MonoBehaviour:
   m_ObjectHideFlags: 0

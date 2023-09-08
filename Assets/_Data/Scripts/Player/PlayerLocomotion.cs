@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class PlayerLocomotion : PlayerAbstract
 {
-    //public OnEventAnimator OnAnimatorMove;
-
     [Header("Movement Flag")]
     public bool IsJumping;
     public bool IsSprinting;
@@ -26,28 +24,17 @@ public class PlayerLocomotion : PlayerAbstract
     [SerializeField] private Vector3 rootMotion;
     [SerializeField] public Vector3 velocity;
 
-    /// đoạn code sau chưa phân code 
-    //protected override void Awake()
-    //{
-    //    base.Awake();
-    //    this.OnAnimatorMove = playerCtrl.Character.OnEventAnimator;
-    //    this.Is1D = false;
-    //}
+    private void Start()
+    {
+        if (this.playerCtrl.Character.EventAnimator)
+        {
+            playerCtrl.Character.EventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+        }
+    }
 
-    //private void Start()
-    //{
-    //    if (OnAnimatorMove != null)
-    //    {
-    //        OnAnimatorMove.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
-    //    }
-    //}
-
-    //public void SetOnEventAnimator(OnEventAnimator onEventAnimator)
-    //{
-    //    this.rootMotion = Vector3.zero;
-    //    onEventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
-    //}
-
+    private void Update()
+    {
+    }
     private void OnDisable()
     {
         this.ResetLocomotion();
@@ -57,7 +44,7 @@ public class PlayerLocomotion : PlayerAbstract
     {
         HandleJump();
         Handle1DMode();
-       // HandleSprinting();
+        // HandleSprinting();
     }
 
     public void HanldeAllMovementFix()
@@ -109,7 +96,7 @@ public class PlayerLocomotion : PlayerAbstract
         }
         else
         {
-            this.IsSprinting= false;
+            this.IsSprinting = false;
         }
     }
 
@@ -178,10 +165,10 @@ public class PlayerLocomotion : PlayerAbstract
         return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
     }
 
-    //private void HandleAnimatorMoveEvent()
-    //{
-    //    rootMotion += playerCtrl.Animator.deltaPosition;
-    //}
+    public void HandleAnimatorMoveEvent()
+    {
+        rootMotion += playerCtrl.Animator.deltaPosition;
+    }
 
     private void UpdateInAir()
     {

@@ -3,31 +3,42 @@ using Cinemachine;
 
 public class PlayerCamera : PlayerAbstract
 {
+    private bool check = false;
+    private bool isTPSCamera = true;
+
+    public int POV;
     public Camera MainCamera;
     public CinemachineFreeLook TPSCamera;
     public CinemachineVirtualCamera FPSCamera;
+    public GameObject IgnoreRaycast;
+   // public CinemachineCameraOffset CameraOffsetTPS;
 
-    private bool isTPSCamera = true;
-
+    public bool Check { get => this.check; set => this.check = value; }
     public bool IsTPSCamera { get => this.isTPSCamera; }
 
     public void HandleUpdateCamera()
     {
         SetOriginalCamera();
         HandleCamera();
+
+        if (this.check)
+        {
+            this.check = false;
+        }
     }
 
     private void SetOriginalCamera()
     {
-        if (TPSCamera.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
+        if (TPSCamera.gameObject.activeInHierarchy == true && this.check)
         {
             isTPSCamera = true;
         }
-        else if (FPSCamera.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
+        else if (FPSCamera.gameObject.activeInHierarchy == true && this.check)
         {
             isTPSCamera = false;
         }
     }
+
     private void HandleCamera()
     {
         if (playerCtrl.PlayerAim.IsAim)
@@ -51,14 +62,17 @@ public class PlayerCamera : PlayerAbstract
     {
         if (this.TPSCamera == null || this.FPSCamera == null) return;
 
+        this.IgnoreRaycast.SetActive(false);
         playerCtrl.PlayerLocomotion.Is1D = false;
         TPSCamera.gameObject.SetActive(false);
         FPSCamera.gameObject.SetActive(true);
     }
+
     private void ChangeTPSCam()
     {
         if (this.TPSCamera == null || this.FPSCamera == null) return;
 
+        this.IgnoreRaycast.SetActive(true);
         TPSCamera.gameObject.SetActive(true);
         FPSCamera.gameObject.SetActive(false);
     }

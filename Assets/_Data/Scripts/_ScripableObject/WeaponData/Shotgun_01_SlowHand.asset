@@ -17,10 +17,19 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 4147139860447680544, guid: b41e5248fe8350c44b23b281deefc8da, type: 3}
   Model: {fileID: 8824270345280385828, guid: 9b1b0f181b8e98c448b95e787d8f0c97, type: 3}
-  PosHolster: {x: 0, y: 0, z: 0}
-  RosHolster: {x: 0, y: 0, z: 0}
-  PosEquip: {x: 0, y: 0, z: 0}
-  RosEquip: {x: 0, y: 0, z: 0}
+  Species: 1
+  TitanPosHolster: {x: -0.348, y: 0.529, z: 0.416}
+  TitanRosHolster: {x: 7.097, y: 130.71, z: -92.098}
+  DwarfPosHolster: {x: -0.285, y: 0.222, z: 0.348}
+  DwarfRosHolster: {x: 14.515, y: 121.01, z: 112.288}
+  HumanPosHolster: {x: -0.323, y: 0.176, z: 0.274}
+  HumanRosHolster: {x: -10.522, y: 118.153, z: -77.878}
+  TitanPosEquip: {x: 0, y: 0, z: 0}
+  TitanRosEquip: {x: 0, y: 0, z: 0}
+  DwarfPosEquip: {x: 0, y: 0, z: 0}
+  DwarfRosEquip: {x: 0, y: 0, z: 0}
+  HumanPosEquip: {x: 0, y: 0, z: 0}
+  HumanRosEquip: {x: 0, y: 0, z: 0}
   WeaponType: 3
   ShotGunType: 2
   MeleeType: 0

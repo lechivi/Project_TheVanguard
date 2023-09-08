@@ -55,7 +55,7 @@ public class Character_Juggernaut : Character
             }
         }
 
-        if (!IsCharacterForm) return;
+        if (!IsSpecialSkill) return;
         if (Input.GetMouseButtonDown(0))
         {
             if (PlayerCtrl.Instance.PlayerCamera.FPSCamera.gameObject.activeInHierarchy == true)
@@ -270,7 +270,7 @@ public class Character_Juggernaut : Character
 
     public void Transform()
     {
-        this.isCharacterForm = true;
+        this.isSpecialSkill = true;
         this.isReadySpecialSkill = false;
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseRight(CombatAction.CharacterSpecific);
@@ -280,10 +280,11 @@ public class Character_Juggernaut : Character
     public void RevertoForm()
     {
         this.Juggernaut_Raycast.currentAmmo = this.Juggernaut_Raycast.maxAmmo;
-        this.isCharacterForm = false;
+        this.isSpecialSkill = false;
         this.isCoolingDownSpecicalSkill = true;
         this.SetOriginalScaleParticle();
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
+        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseRight(CombatAction.None);
         this.RigAnimator.SetBool("transform", false);
         PlayerCtrl.Instance.PlayerCamera.MainCamera.cullingMask |= 1 << 6;
         this.Gun_JuggernautModel.gameObject.SetActive(false);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Juggernaut
   CharacterClass: 
-  Species: 30
+  Species: 6
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Ancient and colossal being, awakened to protect the world
@@ -23,7 +23,7 @@ MonoBehaviour:
   Power: 5
   Defence: 5
   HitPoint: 5
-  ExecutionSkillTime: 3
+  ExecutionSkillTime: 1000
   CooldownSkillTime: 3
   SpecialSkillName: Badass Laser
   SpecialSkillIcon: {fileID: 21300000, guid: 19bbea7fac4bc664b9fd22b99b58a4a2, type: 3}

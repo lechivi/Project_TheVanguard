@@ -126,7 +126,7 @@ public class PlayerCombatAction : PlayerAbstract
 
     public void SetConditionMouseR()
     {
-        if (combatActionMouseL == CombatAction.CharacterSpecific) return;
+        if (combatActionMouseR == CombatAction.CharacterSpecific) return;
         WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (gun && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
