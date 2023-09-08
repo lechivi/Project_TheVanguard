@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InGame_AlwaysOnUi : BaseUIElement
+public class InGame_AlwaysOnUI : BaseUIElement
 {
     [Header("ALWAYS ON UI")]
     [SerializeField] private Scope scope;

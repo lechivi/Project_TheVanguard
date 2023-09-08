@@ -4,7 +4,7 @@ public class InGamePanel : BaseUIElement
 {
     [Header("IN GAME PANEL")]
     [SerializeField] private Canvas canvas;
-    [SerializeField] private InGame_AlwaysOnUi alwaysOnUI;
+    [SerializeField] private InGame_AlwaysOnUI alwaysOnUI;
     [SerializeField] private InGame_PauseMenu pauseMenu;
     [SerializeField] private InGame_Other other;
 
@@ -12,7 +12,7 @@ public class InGamePanel : BaseUIElement
     [SerializeField] private Camera canvasCamera;
 
     public Camera CanvasCamera { get => this.canvasCamera; set => this.canvasCamera = value; }
-    public InGame_AlwaysOnUi AlwaysOnUI { get => this.alwaysOnUI; }
+    public InGame_AlwaysOnUI AlwaysOnUI { get => this.alwaysOnUI; }
     public InGame_PauseMenu PauseMenu { get => this.pauseMenu; }
     public InGame_Other Other { get  => this.other; }
 
@@ -23,7 +23,7 @@ public class InGamePanel : BaseUIElement
             this.canvas = GetComponent<Canvas>();
 
         if (this.alwaysOnUI == null)
-            this.alwaysOnUI = GetComponentInChildren<InGame_AlwaysOnUi>();
+            this.alwaysOnUI = GetComponentInChildren<InGame_AlwaysOnUI>();
 
         if (this.pauseMenu == null)
             this.pauseMenu = GetComponentInChildren<InGame_PauseMenu>();

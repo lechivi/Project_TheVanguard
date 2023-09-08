@@ -5,7 +5,7 @@ using TMPro;
 public class UI_PlayerInfoScanner : BaseUIElement
 {
     [Header("UI_PLAYER INFO SCANNER")]
-    [SerializeField] private InGame_AlwaysOnUi alwaysOnUi;
+    [SerializeField] private InGame_AlwaysOnUI alwaysOnUi;
     [SerializeField] private TMP_Text text;
     [SerializeField] private Slider slider;
     [SerializeField] private Image fillImage;
@@ -17,7 +17,7 @@ public class UI_PlayerInfoScanner : BaseUIElement
     {
         base.LoadComponent();
         if (this.alwaysOnUi == null)
-            this.alwaysOnUi = GetComponentInParent<InGame_AlwaysOnUi>();
+            this.alwaysOnUi = GetComponentInParent<InGame_AlwaysOnUI>();
 
         if (this.text == null)
             this.text = transform.Find("Container/TargetName_Text").GetComponent<TMP_Text>();
