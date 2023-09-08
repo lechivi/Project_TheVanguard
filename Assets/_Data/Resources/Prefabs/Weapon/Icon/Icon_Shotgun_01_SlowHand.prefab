@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 4147139860447680542}
   - component: {fileID: 4147139860447680543}
   - component: {fileID: 7595446204674590374}
+  - component: {fileID: 4742597384862275421}
   m_Layer: 5
   m_Name: Icon_Shotgun_01_SlowHand
   m_TagString: Untagged
@@ -111,9 +112,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4147139860447680544}
   m_LocalRotation: {x: 0.0000000074505797, y: -0.7071068, z: -0.0000000037252899, w: 0.7071068}
-  m_LocalPosition: {x: 69, y: 0, z: -10}
-  m_LocalScale: {x: 270, y: 270.00003, z: 269.99997}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 103.4, y: 0, z: -10}
+  m_LocalScale: {x: 260, y: 260, z: 260}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4147139861924165990}
   - {fileID: 4147139860775744689}
@@ -202,6 +203,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 2821f0b6e33d84445a78d67d0e9f6c15, type: 2}
   weaponSlot: 03000000
+--- !u!114 &4742597384862275421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4147139860447680544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 4147139860447680542}
+  - {fileID: 4147139860775744688}
+  - {fileID: 4147139860358388647}
+  - {fileID: 7634393639724060821}
+  - {fileID: 4147139862416044782}
+  - {fileID: 8832688277061301994}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &4147139860775744690
 GameObject:
   m_ObjectHideFlags: 0

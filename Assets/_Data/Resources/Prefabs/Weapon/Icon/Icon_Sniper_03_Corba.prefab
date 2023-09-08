@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6474831540086111494}
   - component: {fileID: 6483201586272361764}
   - component: {fileID: 4254353438884079132}
+  - component: {fileID: 1185981208327094345}
   m_Layer: 5
   m_Name: Icon_Sniper_03_Corba
   m_TagString: Untagged
@@ -99,6 +100,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 75662efce835f61479c75427f43c084f, type: 2}
   weaponSlot: 03000000
+--- !u!114 &1185981208327094345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461373962698908772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 6483201586272361764}
+  - {fileID: 6484992599827465876}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &6462138012431288568
 GameObject:
   m_ObjectHideFlags: 0

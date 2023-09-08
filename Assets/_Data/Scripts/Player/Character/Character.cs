@@ -17,8 +17,8 @@ public class Character : SaiMonoBehaviour
     [Space(10)]
     protected bool isReadySpecialSkill = true;
     protected bool isCoolingDownSpecicalSkill;
-    protected float executionSpecialSkill = 5f;
-    protected float cooldownSpecialSkill = 5f;
+    protected float executionSpecialSkill;
+    protected float cooldownSpecialSkill;
     protected float timerEX_SpecialSkill;
     protected float timerCD_SpecialSkill;
 

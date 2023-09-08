@@ -20,10 +20,12 @@ public class UI_PlayerInteract : BaseUIElement
             this.text = transform.Find("Container/Interaction_Text").GetComponent<TMP_Text>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (PlayerCtrl.HasInstance)
         {
+            if (PlayerCtrl.Instance.gameObject.activeSelf == false || PlayerCtrl.Instance.Character == null) return;
+
             IInteractable interactable = PlayerCtrl.Instance.PlayerInteract.GetInteractableObjectByRaycast();
             if (interactable != null)
             {

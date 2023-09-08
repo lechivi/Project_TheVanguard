@@ -262,6 +262,7 @@ GameObject:
   - component: {fileID: 1555278945472810080}
   - component: {fileID: 1523564239095409766}
   - component: {fileID: 1497012228242967785}
+  - component: {fileID: 3810224102193571442}
   m_Layer: 5
   m_Name: Icon_Rifle_01_ShadowScar
   m_TagString: Untagged
@@ -369,6 +370,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 5187a5bbfe675ea4dafed881dd25b047, type: 2}
   weaponSlot: 03000000
+--- !u!114 &3810224102193571442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568828997337837238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 1555278945472810080}
+  - {fileID: 1554365784909844636}
+  - {fileID: 1554863214432311142}
+  - {fileID: 1553976767954070150}
+  - {fileID: 1554752116565872362}
+  - {fileID: 1554664222456136142}
+  - {fileID: 1554869071827251212}
+  - {fileID: 1555266219536911340}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &1568949876592217406
 GameObject:
   m_ObjectHideFlags: 0

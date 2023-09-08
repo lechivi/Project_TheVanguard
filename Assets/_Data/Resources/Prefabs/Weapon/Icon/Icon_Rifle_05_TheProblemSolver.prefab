@@ -513,6 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8490962205568362644}
   - component: {fileID: 6426800244198982248}
+  - component: {fileID: 328061286898495249}
   m_Layer: 5
   m_Name: Icon_Rifle_05_TheProblemSolver
   m_TagString: Untagged
@@ -550,3 +551,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 1c99adcc1b6e9a446b664b246f84d8b5, type: 2}
   weaponSlot: 03000000
+--- !u!114 &328061286898495249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6750130843343251948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 5833748456982317675}
+  - {fileID: 5833320153788487719}
+  - {fileID: 5833020023433143379}
+  - {fileID: 5833044584465943611}
+  - {fileID: 5833062932821899853}
+  - {fileID: 5833162351982449993}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}

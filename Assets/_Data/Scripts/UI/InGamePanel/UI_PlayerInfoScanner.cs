@@ -29,10 +29,12 @@ public class UI_PlayerInfoScanner : BaseUIElement
             this.fillImage = transform.Find("Container/TargetHP_Slider/Fill Area/Fill").GetComponent<Image>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (PlayerCtrl.HasInstance)
         {
+            if (PlayerCtrl.Instance.gameObject.activeSelf == false || PlayerCtrl.Instance.Character == null) return;
+
             if (PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast() != null)
             {
                 this.Show(null);

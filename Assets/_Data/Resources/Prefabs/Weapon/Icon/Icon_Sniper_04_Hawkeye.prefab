@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 5545689463305618500}
   - component: {fileID: 5536004895934943242}
   - component: {fileID: 4869997279687719687}
+  - component: {fileID: -7309843413579496209}
   m_Layer: 5
   m_Name: Icon_Sniper_04_Hawkeye
   m_TagString: Untagged
@@ -186,6 +187,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: a4ce5ccb6fd9e8e489edaa7e4f8ecce3, type: 2}
   weaponSlot: 03000000
+--- !u!114 &-7309843413579496209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513720291159586698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 5536004895934943242}
+  - {fileID: 5535494755473528796}
+  - {fileID: 5536327675835675024}
+  - {fileID: 5536181724940297040}
+  - {fileID: 5535667533012444390}
+  - {fileID: 5535727177197534942}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &5513756964225608164
 GameObject:
   m_ObjectHideFlags: 0

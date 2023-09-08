@@ -32,6 +32,7 @@ public class InGame_PauseMenu : BaseUIElement
     {
         this.HideAllPanel();
         this.ShowInventoryPanel();
+        this.inventoryPanel.UiAppear.Appear();
     }
 
     public void HideAllPanel()
