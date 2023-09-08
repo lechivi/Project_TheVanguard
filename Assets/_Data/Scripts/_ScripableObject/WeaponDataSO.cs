@@ -7,7 +7,7 @@ using UnityEngine;
 public class WeaponDataSO : ItemDataSO
 {
     [Header("OFFSET SPECIES")]
-    public Species Species;
+    public BodyType BodyType;
 
     [Header("OFFSET HOLSTER")]
     public Vector3 TitanPosHolster;
