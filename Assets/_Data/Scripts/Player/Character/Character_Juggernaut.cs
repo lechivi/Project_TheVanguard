@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Character_Juggernaut : Character
 {
@@ -21,7 +22,7 @@ public class Character_Juggernaut : Character
     public LineRenderer line;
     public LineRenderer lineHand;
     private LineRenderer lineMain;
-    public GameObject Volume;
+    public Volume Volume;
     public float timesetExplosion;
     float timecharging;
     RaycastHit Hit;
@@ -30,15 +31,21 @@ public class Character_Juggernaut : Character
     bool isCharging;
     public float damageRangeExplosion;
 
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        if (this.Volume == null)
+            this.Volume = GetComponentInChildren<Volume>();
+    }
 
     protected override void Awake()
     {
         base.Awake();
         line.enabled = false;
         lineHand.enabled = false;
+        Volume.enabled = false;
         Juggernaut_Raycast = Gun_JuggernautModel.GetComponentInParent<WeaponRaycast>();
         Gun_JuggernautModel.SetActive(false);
-        Volume.gameObject.SetActive(false);
     }
 
     protected override void Update()
@@ -93,7 +100,7 @@ public class Character_Juggernaut : Character
         Juggernaut_Raycast.FireBullet(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.CrosshairTarget.position);
         lineMain.enabled = true;
         isCharging = false;
-        Volume.gameObject.SetActive(true);
+        Volume.enabled = true;
     }
 
     public override void SpecialSkill()
@@ -245,7 +252,7 @@ public class Character_Juggernaut : Character
     public void DeactiveLine()
     {
         lineMain.enabled = false;
-        Volume.gameObject.SetActive(false);
+        Volume.enabled = false;
     }
     public override void ActionMouseL()
     {

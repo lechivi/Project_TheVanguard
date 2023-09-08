@@ -1,5 +1,6 @@
 ﻿
 using UnityEngine;
+using UnityStandardAssets.Characters.ThirdPerson.PunDemos;
 
 public class PlayerLocomotion : PlayerAbstract
 {
@@ -24,10 +25,18 @@ public class PlayerLocomotion : PlayerAbstract
     [SerializeField] private Vector3 rootMotion;
     [SerializeField] public Vector3 velocity;
 
+    private bool check = true;
+
     private void Start()
     {
-        if (this.playerCtrl.Character.EventAnimator)
+        this.check = true;
+    }
+
+    public void SetOnEventAnimator()
+    {
+        if (this.playerCtrl.Character.EventAnimator && this.check == true)
         {
+            this.check = false;
             playerCtrl.Character.EventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
         }
     }

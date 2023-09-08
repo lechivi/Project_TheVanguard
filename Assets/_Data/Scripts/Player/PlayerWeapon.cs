@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerWeapon : PlayerAbstract
 {
     public PlayerWeaponManager PlayerWeaponManager;
-    public PlayerWeaponActiveOld PlayerWeaponActive;
+    public PlayerWeaponActive PlayerWeaponActive;
     public PlayerWeaponReload PlayerWeaponReload;
     public PlayerWeaponAttack PlayerWeaponAttack;
 
@@ -28,7 +28,7 @@ public class PlayerWeapon : PlayerAbstract
     {
         if (this.PlayerWeaponActive == null)
         {
-            this.PlayerWeaponActive = GetComponentInChildren<PlayerWeaponActiveOld>();
+            this.PlayerWeaponActive = GetComponentInChildren<PlayerWeaponActive>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerWeaponActive", gameObject);
         }
     }

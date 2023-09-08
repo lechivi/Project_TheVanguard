@@ -24,6 +24,36 @@ public class PlayerInput : PlayerAbstract
 
     private void OnEnable()
     {
+        this.SetInput();
+    }
+
+    private void OnDisable()
+    {
+        this.playerControls?.Disable();
+        this.ResetInput();
+    }
+
+    public void HandleUpdateAllInput()
+    {
+        this.HandleHolsterInput();
+        this.HandleMovementInput();
+        this.HandleSprintInput();
+        this.HandleWalkInput();
+        this.HandleCameraInput();
+        this.HandleAttackInput();
+        this.HandleReloadInput();
+        this.HandleAimInput();
+        this.HandleInteractInput();
+        this.HandleSpecialSkillInput();
+        this.HandleBattleSkillInput();
+        this.HandleMenuOpenCloseInput();
+
+        if (AimInput)
+            Debug.Log("Aim");
+    }
+
+    public void SetInput()
+    {
         if (this.playerCtrl.Character == null) return;
 
         if (this.playerControls == null)
@@ -61,31 +91,6 @@ public class PlayerInput : PlayerAbstract
         }
 
         this.playerControls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        this.playerControls?.Disable();
-        this.ResetInput();
-    }
-
-    public void HandleUpdateAllInput()
-    {
-        this.HandleHolsterInput();
-        this.HandleMovementInput();
-        this.HandleSprintInput();
-        this.HandleWalkInput();
-        this.HandleCameraInput();
-        this.HandleAttackInput();
-        this.HandleReloadInput();
-        this.HandleAimInput();
-        this.HandleInteractInput();
-        this.HandleSpecialSkillInput();
-        this.HandleBattleSkillInput();
-        this.HandleMenuOpenCloseInput();
-
-        if (AimInput)
-            Debug.Log("Aim");
     }
 
     private void HandleHolsterInput()

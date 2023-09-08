@@ -14056,6 +14056,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   dropForce: 3
   pickupObjectPrefab: {fileID: 1351851723991012624, guid: 416d59da41474ad40a03d773659977e7, type: 3}
+  originalHolster: 0
   swapCooldown: 0.2
 --- !u!4 &520982260
 Transform:
@@ -15413,6 +15414,8 @@ MonoBehaviour:
   pickupLayer:
     serializedVersion: 2
     m_Bits: 2147483647
+  raycastOriginal: {fileID: 0}
+  InteractableRaycastObject: {fileID: 0}
 --- !u!4 &542065236
 Transform:
   m_ObjectHideFlags: 0
@@ -33764,11 +33767,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 1993574175}
   listCharacter:
-  - {fileID: 8534262186955247349, guid: 23d9970943afe0547ad7934cf58f225a, type: 3}
-  - {fileID: 4603704076898781944, guid: 411e452f3637c7445b785ab91687620d, type: 3}
-  - {fileID: 4923506865265992159, guid: 96491b0c674ae92429d5f56e80d700ac, type: 3}
-  - {fileID: 2161855503817897018, guid: 5b7b86bae67cf80448150b1158a45a61, type: 3}
-  - {fileID: 3583058944898717554, guid: 498af19fbcea284418fcb0641ba2be31, type: 3}
+  - {fileID: 6424896598924351203, guid: 23d9970943afe0547ad7934cf58f225a, type: 3}
+  - {fileID: 5386867315472512344, guid: 411e452f3637c7445b785ab91687620d, type: 3}
+  - {fileID: 6215933684733925387, guid: 498af19fbcea284418fcb0641ba2be31, type: 3}
+  - {fileID: 9211289214715742091, guid: 5b7b86bae67cf80448150b1158a45a61, type: 3}
+  - {fileID: 80532432555244324, guid: 96491b0c674ae92429d5f56e80d700ac, type: 3}
   characterData: {fileID: 0}
 --- !u!4 &1015905469
 Transform:
@@ -51950,9 +51953,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 1993574175}
+  POV: 0
   MainCamera: {fileID: 0}
   TPSCamera: {fileID: 0}
   FPSCamera: {fileID: 0}
+  IgnoreRaycast: {fileID: 0}
 --- !u!4 &1657193884
 Transform:
   m_ObjectHideFlags: 0

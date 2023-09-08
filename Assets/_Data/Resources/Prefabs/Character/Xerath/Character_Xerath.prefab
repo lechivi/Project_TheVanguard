@@ -2429,6 +2429,37 @@ MonoBehaviour:
       z: 1
     m_MaintainPositionOffset: 0
     m_MaintainRotationOffset: 0
+--- !u!1 &5164895134294462893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7547457291522240678}
+  m_Layer: 6
+  m_Name: AimLookMainFake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7547457291522240678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5164895134294462893}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5386867315472512347}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5386867314045833377
 GameObject:
   m_ObjectHideFlags: 0
@@ -3006,7 +3037,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -3193,7 +3224,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -4386,7 +4417,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5402,7 +5433,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5849,7 +5880,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5895,6 +5926,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5386867315472512347}
   - component: {fileID: 5386867315472512344}
+  - component: {fileID: 1657019458994474340}
   m_Layer: 0
   m_Name: Character_Xerath
   m_TagString: Untagged
@@ -5918,6 +5950,7 @@ Transform:
   - {fileID: 5390671850501017391}
   - {fileID: 5386867315473900799}
   - {fileID: 5386867314088735849}
+  - {fileID: 7547457291522240678}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5936,11 +5969,11 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: ed008e670fbb1724ab4da0451de29622, type: 2}
   characterTransform: {fileID: 5386867315473900799}
   characterController: {fileID: 5386867315473900797}
+  eventAnimator: {fileID: 8440408978276491198}
   animator: {fileID: 5386867315473900796}
   rigAnimator: {fileID: 5386867316057813811}
   tps_LookAt: {fileID: 5386867315012996274}
   fps_Follow: {fileID: 5386867315567725822}
-  eventAnimator: {fileID: 8440408978276491198}
   weaponSheathSlots:
   - {fileID: 2107672601058963431}
   - {fileID: 2107672600767235947}
@@ -5953,19 +5986,37 @@ MonoBehaviour:
   b_RigAnimator: {fileID: 5386867316057813811}
   b_TPS_LookAt: {fileID: 5386867315012996274}
   b_FPS_Follow: {fileID: 5386867315567725822}
-  b_EventAnimator: {fileID: 8440408978276491198}
+  b_OnEventAnimator: {fileID: 0}
   alphaObj: {fileID: 5386867314088735853}
   a_CharacterController: {fileID: 5386867314088735855}
   a_Animator: {fileID: 5386867314088735854}
   a_RigAnimator: {fileID: 5386867314908672589}
   a_TPS_LookAt: {fileID: 5386867314310063167}
   a_FPS_Follow: {fileID: 5386867314355308767}
-  a_EventAnimator: {fileID: 8440408978688057934}
+  a_OnEventAnimator: {fileID: 0}
   b_CameraOffset: {x: 0, y: 0, z: 0}
   a_CameraOffset: {x: 0.75, y: 0.25, z: -0.25}
   transformFX: {fileID: 5223663622719997032}
   timeoutFX: {fileID: 5188217738377283131}
   isBeta: 1
+--- !u!114 &1657019458994474340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5386867315472512345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46fecf71f8832a4a80109a324bcf42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimLookMainFake: {fileID: 7547457291522240678}
+  leftHand: {fileID: 5386867315517701074}
+  aimSpine1: {fileID: 0}
+  aimSpine2: {fileID: 0}
+  aimHead: {fileID: 0}
+  weaponPose: {fileID: 0}
 --- !u!1 &5386867315473900787
 GameObject:
   m_ObjectHideFlags: 0
@@ -5987,7 +6038,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5386867315473900799
 Transform:
   m_ObjectHideFlags: 0
@@ -6155,7 +6206,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -6726,7 +6777,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -7076,7 +7127,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 7547457291522240678}
         weight: 1
       m_Item1:
         transform: {fileID: 0}

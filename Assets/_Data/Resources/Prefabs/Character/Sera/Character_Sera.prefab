@@ -328,7 +328,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 9160897593898429569}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -555,7 +555,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 9160897593898429569}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -905,7 +905,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 9160897593898429569}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -1262,7 +1262,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 9160897593898429569}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -1460,6 +1460,7 @@ GameObject:
   - component: {fileID: 1280041577625313380}
   - component: {fileID: 1280041577625313389}
   - component: {fileID: 1280041577625313388}
+  - component: {fileID: 1624803942257636277}
   m_Layer: 6
   m_Name: Character_Sera
   m_TagString: Player
@@ -1487,6 +1488,7 @@ Transform:
   - {fileID: 8514055059467262798}
   - {fileID: 8514055059213995767}
   - {fileID: 8514055060121221131}
+  - {fileID: 9160897593898429569}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -1545,11 +1547,11 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: 8e130852c69c43f49a8326ec41a20836, type: 2}
   characterTransform: {fileID: 1189414591084986644}
   characterController: {fileID: 1280041577625313388}
+  eventAnimator: {fileID: 0}
   animator: {fileID: 1280041577625313378}
   rigAnimator: {fileID: 690079614133238459}
   tps_LookAt: {fileID: 690079615288103662}
   fps_Follow: {fileID: 690079614714595060}
-  eventAnimator: {fileID: 0}
   weaponSheathSlots:
   - {fileID: 8225758204600283681}
   - {fileID: 8225758204513067016}
@@ -1620,6 +1622,24 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.8, z: 0}
+--- !u!114 &1624803942257636277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195041616348048994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46fecf71f8832a4a80109a324bcf42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimLookMainFake: {fileID: 9160897593898429569}
+  leftHand: {fileID: 4746361868341197584}
+  aimSpine1: {fileID: 690079615202404936}
+  aimSpine2: {fileID: 690079614308995882}
+  aimHead: {fileID: 690079614045595888}
+  weaponPose: {fileID: 690079613626468956}
 --- !u!1 &4743276914600087102
 GameObject:
   m_ObjectHideFlags: 0
@@ -3405,6 +3425,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7463424383063456396
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9160897593898429569}
+  m_Layer: 6
+  m_Name: AimLookMainFake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9160897593898429569
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463424383063456396}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1189414591084986644}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8225758203505661156
 GameObject:
   m_ObjectHideFlags: 0

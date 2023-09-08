@@ -45,7 +45,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         isHolstering = false;
     }
 
-    private void Update()
+    public void HandleUpdateWeaponManager()
     {
         this.SetOffset();
         this.SetHolster(false);
@@ -82,32 +82,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
                 this.SetActiveWeapon(2, true);
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            int index = this.equippedWeapons.GetList().FindIndex(item => item != null);
-            if (index == -1) return;
-            this.RemoveWeaponFromEquipped(this.equippedWeapons.GetList()[index], true);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            int index = this.backpackWeapons.GetList().FindIndex(item => item != null);
-            if (index == -1) return;
-            this.RemoveWeaponFromBackpack(this.backpackWeapons.GetList()[index], true);
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            this.PlayerWeapon.PlayerCtrl.PlayerInput.gameObject.SetActive(false);
-        }
     }
 
     public bool AddWeapon(Weapon weapon)
     {
-        /*        if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
-                {
-                    weapon.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-                }*/
         if (this.equippedWeapons.GetList().Count < this.maxEquippedWeapon || (this.equippedWeapons.IsContainsNull() && this.equippedWeapons.GetList().Count <= this.maxEquippedWeapon))
         {
             this.AddWeaponToEquipped(this.GetNewWeapon(weapon));

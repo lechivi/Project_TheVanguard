@@ -158,13 +158,13 @@ public class Character_Xerath : Character
     }
     protected override void LoadOnEventAnimator()
     {
-        if (this.isBeta && this.onEventAnimator != this.b_OnEventAnimator)
+        if (this.isBeta && this.eventAnimator != this.b_OnEventAnimator)
         {
-            this.onEventAnimator = this.b_OnEventAnimator;
+            this.eventAnimator = this.b_OnEventAnimator;
         }
-        else if (!this.isBeta && this.onEventAnimator != this.a_OnEventAnimator)
+        else if (!this.isBeta && this.eventAnimator != this.a_OnEventAnimator)
         {
-            this.onEventAnimator = this.a_OnEventAnimator;
+            this.eventAnimator = this.a_OnEventAnimator;
         }
     }
 
@@ -204,11 +204,11 @@ public class Character_Xerath : Character
         {
             PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
         }
-        //else
-        //{
-        //    //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
-        //    PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
-        //}
+        else
+        {
+            //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
+            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
+        }
     }
 
     private IEnumerator TransformationCoroutine()

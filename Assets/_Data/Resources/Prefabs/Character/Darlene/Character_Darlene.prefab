@@ -5177,7 +5177,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3731077922272341368}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5263,7 +5263,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3731077922272341368}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5518,7 +5518,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3731077922272341368}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -6147,7 +6147,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 3731077922272341368}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -6795,6 +6795,7 @@ GameObject:
   - component: {fileID: 6424896598924351204}
   - component: {fileID: 2039804490022726774}
   - component: {fileID: 2039804490022726775}
+  - component: {fileID: 8101376817576082277}
   m_Layer: 6
   m_Name: Character_Darlene
   m_TagString: Player
@@ -6821,6 +6822,7 @@ Transform:
   - {fileID: 4821004516000118514}
   - {fileID: 2039976302611361557}
   - {fileID: 8904160942012803155}
+  - {fileID: 3731077922272341368}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -6897,11 +6899,11 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: d2fe1d951d5e13342a0aae678f53487e, type: 2}
   characterTransform: {fileID: 6371441348655953812}
   characterController: {fileID: 6371441348655953819}
+  eventAnimator: {fileID: 0}
   animator: {fileID: 6424896598924351202}
   rigAnimator: {fileID: 4718058968229891131}
   tps_LookAt: {fileID: 4718058967084459118}
   fps_Follow: {fileID: 4718058967586795636}
-  eventAnimator: {fileID: 0}
   weaponSheathSlots:
   - {fileID: 4933383701520420345}
   - {fileID: 4933383702730341256}
@@ -6951,6 +6953,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b7720d61da5e854db16435c87c851fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &8101376817576082277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377073322792704226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46fecf71f8832a4a80109a324bcf42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimLookMainFake: {fileID: 3731077922272341368}
+  leftHand: {fileID: 8679795843653808139}
+  aimSpine1: {fileID: 4718058967169146056}
+  aimSpine2: {fileID: 4718058967181714858}
+  aimHead: {fileID: 4718058967991524976}
+  weaponPose: {fileID: 4718058968678137052}
+--- !u!1 &7000723458189833350
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3731077922272341368}
+  m_Layer: 6
+  m_Name: AimLookMainFake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3731077922272341368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000723458189833350}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6371441348655953812}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8673953466593008335
 GameObject:
   m_ObjectHideFlags: 0

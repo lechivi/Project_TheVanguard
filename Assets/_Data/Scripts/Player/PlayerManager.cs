@@ -12,6 +12,7 @@ public class PlayerManager : PlayerAbstract
         this.playerCtrl.PlayerAim.HandleUpdateAim();
         this.playerCtrl.PlayerCombatAction.HandleUpdateCombarAction();
 
+        this.playerCtrl.PlayerWeapon.PlayerWeaponManager.HandleUpdateWeaponManager();
         this.playerCtrl.PlayerWeapon.PlayerWeaponReload.HanldeUpdateWeaponReload();
         this.playerCtrl.PlayerWeapon.PlayerWeaponAttack.HandleUpdateWeaponAttack();
 

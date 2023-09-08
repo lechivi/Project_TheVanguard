@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 80532432555244344}
   - component: {fileID: 80532432555244345}
   - component: {fileID: 80532432555244324}
+  - component: {fileID: 2750972752277469840}
   m_Layer: 6
   m_Name: Character_Ironstone
   m_TagString: Untagged
@@ -398,6 +399,7 @@ Transform:
   - {fileID: 8255000646289233774}
   - {fileID: 8254914934890291018}
   - {fileID: 80532433733458119}
+  - {fileID: 8694396179140256034}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -73.407, z: 0}
@@ -486,11 +488,11 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: ac7b4cba075d8c64da14edb930c755a9, type: 2}
   characterTransform: {fileID: 80532432555244325}
   characterController: {fileID: 80532432555244327}
+  eventAnimator: {fileID: 0}
   animator: {fileID: 80532432555244326}
   rigAnimator: {fileID: 80532433733458117}
   tps_LookAt: {fileID: 80532433862512822}
   fps_Follow: {fileID: 80532433377022013}
-  eventAnimator: {fileID: 0}
   weaponSheathSlots:
   - {fileID: 80532432715511002}
   - {fileID: 80532432654032311}
@@ -500,6 +502,24 @@ MonoBehaviour:
   delayAttack: 2
   transformTime: 10
   damageRange: 0
+--- !u!114 &2750972752277469840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 80532432555244347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a46fecf71f8832a4a80109a324bcf42e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aimLookMainFake: {fileID: 8694396179140256034}
+  leftHand: {fileID: 8254573743599233794}
+  aimSpine1: {fileID: 80532434195106031}
+  aimSpine2: {fileID: 80532433083449953}
+  aimHead: {fileID: 80532432805401091}
+  weaponPose: {fileID: 80532433443921920}
 --- !u!1 &80532432629440682
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +882,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 8694396179140256034}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -1086,7 +1106,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 8694396179140256034}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -1475,7 +1495,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 8694396179140256034}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -1778,7 +1798,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 0}
+        transform: {fileID: 8694396179140256034}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -36276,6 +36296,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &2129762947067250743
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8694396179140256034}
+  m_Layer: 6
+  m_Name: AimLookMainFake
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8694396179140256034
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129762947067250743}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 80532432555244325}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4439998377721354721
 GameObject:
   m_ObjectHideFlags: 0

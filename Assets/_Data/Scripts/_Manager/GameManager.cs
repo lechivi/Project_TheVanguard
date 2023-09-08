@@ -23,10 +23,10 @@ public class GameManager : BaseManager<GameManager>
             this.playerCtrl = GetComponentInChildren<PlayerCtrl>();
     }
 
-    private void Start()
-    {
-        this.characterData = null;
-    }
+    //private void Start()
+    //{
+    //    this.characterData = null;
+    //}
 
     public void StartGame()
     {
@@ -95,6 +95,8 @@ public class GameManager : BaseManager<GameManager>
         if (character == null) return;
 
         this.playerCtrl.SetCharacter(character);
+        character.CharacterRigAttach.SetRig();
+
         this.playerCtrl.gameObject.SetActive(true);
     }
 }

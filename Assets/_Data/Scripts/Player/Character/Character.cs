@@ -4,14 +4,14 @@ public class Character : SaiMonoBehaviour
 {
     [Header("CHARACTER")]
     [SerializeField] protected CharacterDataSO characterData;
+    [SerializeField] protected CharacterRigAttach characterRigAttach;
     [SerializeField] protected Transform characterTransform;
     [SerializeField] protected CharacterController characterController;
-    [SerializeField] protected OnEventAnimator onEventAnimator;
+    [SerializeField] protected OnEventAnimator eventAnimator;
     [SerializeField] protected Animator animator;
     [SerializeField] protected Animator rigAnimator;
     [SerializeField] protected Transform tps_LookAt;
     [SerializeField] protected Transform fps_Follow;
-    [SerializeField] protected OnEventAnimator eventAnimator;
     [SerializeField] protected Transform[] weaponSheathSlots;
 
     [Space(10)]
@@ -32,9 +32,9 @@ public class Character : SaiMonoBehaviour
     protected float missCooldownTime = 0.75f;
 
     public CharacterDataSO CharacterData { get => this.characterData; }
+    public CharacterRigAttach CharacterRigAttach { get => this.characterRigAttach; }
     public Transform CharacterTransform { get => this.characterTransform; }
     public CharacterController CharacterController { get => this.characterController; }
-    public OnEventAnimator OnEventAnimator { get => this.onEventAnimator; }
     public Animator Animator { get => this.animator; }
     public Animator RigAnimator { get => this.rigAnimator; }
     public Transform TPS_LookAt { get => this.tps_LookAt; }
@@ -55,6 +55,7 @@ public class Character : SaiMonoBehaviour
     {
         base.LoadComponent();
         this.LoadCharacterTransform();
+        this.LoadCharacterRigAttach();
         this.LoadCharacterController();
         this.LoadAnimator();
         this.LoadRigAnimator();
@@ -70,6 +71,14 @@ public class Character : SaiMonoBehaviour
         {
             this.characterTransform = transform;
             Debug.LogWarning(gameObject.name + ": LoadCharacterTransform", gameObject);
+        }
+    }
+    protected virtual void LoadCharacterRigAttach()
+    {
+        if (this.characterRigAttach == null)
+        {
+            this.characterRigAttach = GetComponent<CharacterRigAttach>();
+            Debug.LogWarning(gameObject.name + ": LoadcharacterRigAttach", gameObject);
         }
     }
     protected virtual void LoadCharacterController()
@@ -178,6 +187,7 @@ public class Character : SaiMonoBehaviour
         if (PlayerCtrl.HasInstance)
         {
             PlayerCtrl.Instance.SetCharacter(this);
+
         }
     }
 

@@ -19,7 +19,6 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
     public Character Character;
     public Transform PlayerTransform;
     public CharacterController CharacterController;
-    public OnEventAnimator OnEventAnimator;
     public Animator Animator;
     public Animator RigAnimator;
 
@@ -182,11 +181,6 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         }
     }
 
-    private void Start()
-    {
-        this.SetUI();
-    }
-
     public void SetCharacter(Character character)
     {
         this.Character = character;
@@ -195,7 +189,10 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         this.LoadCharacterController();
         this.LoadAnimator();
         this.LoadRigAnimator();
+        this.SetUI();
 
+        this.PlayerInput.SetInput();
+        this.PlayerLocomotion.SetOnEventAnimator();
         this.PlayerCamera.SetCameraTarget();
         this.PlayerWeapon.PlayerWeaponManager.WeaponSheathSlots = character.WeaponSheathSlots;
     }
@@ -216,7 +213,6 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         this.Character = null;
         this.PlayerTransform = null;
         this.CharacterController = null;
-        this.OnEventAnimator = null;
         this.Animator = null;
         this.RigAnimator = null;
     }

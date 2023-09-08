@@ -17,7 +17,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
     {
         this.SetTyleStringMelee();
         this.ResetComboState();
-        Debug.Log(MeleeCombatType);
+        //Debug.Log(MeleeCombatType);
     }
 
     public void Attack()

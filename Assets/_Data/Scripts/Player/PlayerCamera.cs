@@ -10,7 +10,7 @@ public class PlayerCamera : PlayerAbstract
     public Camera MainCamera;
     public CinemachineFreeLook TPSCamera;
     public CinemachineVirtualCamera FPSCamera;
-    public GameObject IgnoreRaycast;
+    public GameObject IgnoreRaycastZone;
    // public CinemachineCameraOffset CameraOffsetTPS;
 
     public bool Check { get => this.check; set => this.check = value; }
@@ -62,7 +62,7 @@ public class PlayerCamera : PlayerAbstract
     {
         if (this.TPSCamera == null || this.FPSCamera == null) return;
 
-        this.IgnoreRaycast.SetActive(false);
+        this.IgnoreRaycastZone.SetActive(false);
         playerCtrl.PlayerLocomotion.Is1D = false;
         TPSCamera.gameObject.SetActive(false);
         FPSCamera.gameObject.SetActive(true);
@@ -72,7 +72,7 @@ public class PlayerCamera : PlayerAbstract
     {
         if (this.TPSCamera == null || this.FPSCamera == null) return;
 
-        this.IgnoreRaycast.SetActive(true);
+        this.IgnoreRaycastZone.SetActive(true);
         TPSCamera.gameObject.SetActive(true);
         FPSCamera.gameObject.SetActive(false);
     }

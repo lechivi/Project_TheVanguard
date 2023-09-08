@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PlayerWeaponReload : PlayerWeaponAbstract
 {
-    private Transform leftHand;
-    private GameObject magazineHand;
+    [SerializeField] private Transform leftHand;
+    [SerializeField] private GameObject magazineHand;
 
     private bool isReload;
 
     public bool IsReload { get => this.isReload; }
+    public Transform LeftHand { get => this.leftHand; set => this.leftHand = value; }
 
     private void Start()
     {

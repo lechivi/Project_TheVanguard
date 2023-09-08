@@ -5,21 +5,24 @@ public class PlayerAim : PlayerAbstract
 {
     public bool IsAim;
 
-    //[SerializeField] private Transform aimLookMain;
-    //[SerializeField] private Transform aimLookAtCam;
-    //private float distanceLook1D;
+    [SerializeField] private float distanceLook1D = 8;
+    [SerializeField] private Transform aimLookMain;
+    [SerializeField] private Transform aimLookAt;
+
+    public Transform AimLookMain { get => this.aimLookMain; set => this.aimLookMain = value; }
+    public Transform AimLookAt { get => this.aimLookAt; set => this.aimLookAt = value; }
 
     public void HandleUpdateAim()
     {
-        //if (!playerCtrl.PlayerLocomotion.Is1D)
-        //{
-        //    aimLookMain.position = aimLookAtCam.position;
-        //    AimWeapon();
-        //}
-        //else
-        //{
-        //    HandleBodyAim1D();
-        //}
+        if (!playerCtrl.PlayerLocomotion.Is1D)
+        {
+            aimLookMain.position = aimLookAt.position;
+            AimWeapon();
+        }
+        else
+        {
+            HandleBodyAim1D();
+        }
 
         if (!IsAim)
         {
@@ -34,6 +37,13 @@ public class PlayerAim : PlayerAbstract
             }
         }
 
+    }
+
+    private void HandleBodyAim1D()
+    {
+        Vector3 ball = this.playerCtrl.PlayerTransform.position + this.playerCtrl.PlayerTransform.forward * distanceLook1D;
+        ball.y = aimLookAt.position.y;
+        aimLookMain.position = ball;
     }
 
     public void SetIsAim(bool isAimInput)
@@ -59,7 +69,7 @@ public class PlayerAim : PlayerAbstract
             playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.WeaponType, IsAim);
             if (weapon && weapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
             {
-                AimWeaponSCope();
+                AimWeaponScope();
                 return;
             }
             if (IsAim)
@@ -70,7 +80,7 @@ public class PlayerAim : PlayerAbstract
         }
     }
 
-    private void AimWeaponSCope()
+    private void AimWeaponScope()
     {
         if (Input.GetMouseButtonDown(1))
         {
@@ -88,13 +98,6 @@ public class PlayerAim : PlayerAbstract
             }
         }
     }
-
-    //private void HandleBodyAim1D()
-    //{
-    //    Vector3 ball = this.playerCtrl.PlayerTransform.position + this.playerCtrl.PlayerTransform.forward * distanceLook1D;
-    //    ball.y = aimLookAtCam.position.y;
-    //    aimLookMain.position = ball;
-    //}
 
     public IEnumerator AimDuration(float second)
     {
