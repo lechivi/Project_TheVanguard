@@ -33,11 +33,19 @@ public class AlliancePlayer_InfoScanner : SaiMonoBehaviour, IInfoScanner
 
     public IHealth GetHealth()
     {
-        return PlayerCtrl.Instance.PlayerHealth;
+        if (PlayerCtrl.HasInstance)
+        {
+            return PlayerCtrl.Instance.PlayerHealth;
+        }
+        return null;
     }
 
     public bool CanScan()
     {
-        return !PlayerCtrl.Instance.PlayerHealth.IsDeath();
+        if (PlayerCtrl.HasInstance)
+        {
+            return !PlayerCtrl.Instance.PlayerHealth.IsDeath();
+        }
+        return false;
     }
 }

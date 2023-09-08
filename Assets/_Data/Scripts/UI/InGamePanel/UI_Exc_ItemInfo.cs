@@ -21,7 +21,7 @@ public class UI_Exc_ItemInfo : BaseUIElement
             this.exchangePanel = transform.parent.GetComponent<UI_ExchangePanel>();
 
         if (this.itemValueText == null)
-            this.itemValueText = transform.Find("ValuePanel").Find("ValueText").GetComponent<TMP_Text>();
+            this.itemValueText = transform.Find("ValuePanel/Value_Text").GetComponent<TMP_Text>();
 
         if (this.iconContainer == null)
             this.iconContainer = transform.Find("IconContainer");

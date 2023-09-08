@@ -25,25 +25,43 @@ public class TestUpdate : SaiMonoBehaviour
     //        this.mats = Instantiate(Resources.Load<Material>(@"Materials/OutlineMask"));
     //
 
-    [SerializeField] private SwitchCamera switchCamera;
+    //[SerializeField] private SwitchCamera switchCamera;
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.W)) 
+    //    {
+    //        this.switchCamera.SwitchPriority(0);
+    //    }     
+    //    if (Input.GetKeyDown(KeyCode.A)) 
+    //    {
+    //        this.switchCamera.SwitchPriority(1);
+    //    }     
+    //    if (Input.GetKeyDown(KeyCode.D)) 
+    //    {
+    //        this.switchCamera.SwitchPriority(2);
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.S))
+    //    {
+    //        this.switchCamera.SwitchPriority(-1);
+    //    }
+    //}
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.W)) 
+        if (UIManager.HasInstance)
         {
-            this.switchCamera.SwitchPriority(0);
-        }     
-        if (Input.GetKeyDown(KeyCode.A)) 
-        {
-            this.switchCamera.SwitchPriority(1);
-        }     
-        if (Input.GetKeyDown(KeyCode.D)) 
-        {
-            this.switchCamera.SwitchPriority(2);
+            UIManager.Instance.InGamePanel.Show(null);
+            UIManager.Instance.InGamePanel.ShowPauseMenu(null);
+            UIManager.Instance.LoadingPanel.Hide();
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (InputManager.HasInstance)
         {
-            this.switchCamera.SwitchPriority(-1);
+            InputManager.Instance.Enable_Input_MainMenuScene();
+        }
+
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlayBgm(AUDIO.BGM_MAINMENU_ZANFONAOFDOOM);
         }
     }
 }

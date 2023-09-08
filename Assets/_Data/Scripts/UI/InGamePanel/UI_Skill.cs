@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UI_Skill : SaiMonoBehaviour
+public class UI_Skill : BaseUIElement
 {
     [Header("REFERENCE")]
     [SerializeField] private Animator animator;
@@ -40,16 +40,16 @@ public class UI_Skill : SaiMonoBehaviour
             this.cooldownPanel = transform.Find("CooldownPanel").GetComponent<CanvasGroup>();
 
         if (this.readyIconImage == null)
-            this.readyIconImage = this.readyPanel.transform.Find("IconContainer").Find("Icon").GetComponent<Image>();
+            this.readyIconImage = this.readyPanel.transform.Find("IconContainer/Icon").GetComponent<Image>();
 
         if (this.executionFillIconImage == null)
-            this.executionFillIconImage = this.executionPanel.transform.Find("IconContainer").Find("Fill_Icon").GetComponent<Image>();
+            this.executionFillIconImage = this.executionPanel.transform.Find("IconContainer/Fill_Icon").GetComponent<Image>();
 
         if (this.cooldownIconImage == null)
-            this.cooldownIconImage = this.cooldownPanel.transform.Find("IconContainer").Find("Icon").GetComponent<Image>();
+            this.cooldownIconImage = this.cooldownPanel.transform.Find("IconContainer/Icon").GetComponent<Image>();
 
         if (this.cooldownFillImage == null)
-            this.cooldownFillImage = this.cooldownPanel.transform.Find("IconContainer").Find("Fill_Image").GetComponent<Image>();
+            this.cooldownFillImage = this.cooldownPanel.transform.Find("IconContainer/Fill_Image").GetComponent<Image>();
 
         if (this.timerText == null)
             this.timerText = transform.Find("Timer_Text").GetComponent<TMP_Text>();
@@ -62,39 +62,58 @@ public class UI_Skill : SaiMonoBehaviour
 
     private void Update()
     {
-        Character character = PlayerCtrl.Instance.Character;
+        this.SetPhase();
+        this.DisplayFillImage();
+    }
 
-        if (character.IsReadySpecialSkill && this.check1)
+    private void SetPhase()
+    {
+        if (PlayerCtrl.HasInstance)
         {
-            this.check1 = false;
-            this.SetPhase(SkillPhase.Ready);
-        }
-        if (!character.IsReadySpecialSkill && !character.IsCoolingDownSpecicalSkill && this.check2)
-        {
-            this.check2 = false;
-            this.SetPhase(SkillPhase.Execution);
-        }
-        if (character.IsCoolingDownSpecicalSkill && this.check3)
-        {
-            this.check3 = false;
-            this.SetPhase(SkillPhase.Cooldown);
-        }
+            if (PlayerCtrl.Instance.gameObject.activeSelf == false) return;
 
-        if (this.currentPhase == SkillPhase.Execution)
-        {
-            this.timerExecution -= Time.deltaTime;
-            this.timerText.SetText(this.timerExecution.ToString("F1"));
-            this.executionFillIconImage.fillAmount = this.timerExecution / character.ExecutionSpecialSkill;
-        }
-        else if (this.currentPhase == SkillPhase.Cooldown)
-        {
-            float time = character.CooldownSpecialSkill - character.TimerCD_SpecialSkill;
-            this.timerText.SetText(time.ToString("F1"));
-            this.cooldownFillImage.fillAmount = time / character.CooldownSpecialSkill;
-            if (time <= 0.01f)
+            Character character = PlayerCtrl.Instance.Character;
+
+            if (character.IsReadySpecialSkill && this.check1)
             {
-                this.animator.enabled = true;
-                this.animator.SetTrigger("Ready");
+                this.check1 = false;
+                this.SetPhase(SkillPhase.Ready);
+            }
+            if (!character.IsReadySpecialSkill && !character.IsCoolingDownSpecicalSkill && this.check2)
+            {
+                this.check2 = false;
+                this.SetPhase(SkillPhase.Execution);
+            }
+            if (character.IsCoolingDownSpecicalSkill && this.check3)
+            {
+                this.check3 = false;
+                this.SetPhase(SkillPhase.Cooldown);
+            }
+        }
+    }
+
+    private void DisplayFillImage()
+    {
+        if (PlayerCtrl.HasInstance)
+        {
+            Character character = PlayerCtrl.Instance.Character;
+
+            if (this.currentPhase == SkillPhase.Execution)
+            {
+                this.timerExecution += Time.deltaTime;
+                this.timerText.SetText((character.ExecutionSpecialSkill - this.timerExecution).ToString("F1"));
+                this.executionFillIconImage.fillAmount = this.timerExecution / character.ExecutionSpecialSkill;
+            }
+            else if (this.currentPhase == SkillPhase.Cooldown)
+            {
+                float time = character.CooldownSpecialSkill - character.TimerCD_SpecialSkill;
+                this.timerText.SetText(time.ToString("F1"));
+                this.cooldownFillImage.fillAmount = time / character.CooldownSpecialSkill;
+                if (time <= 0.01f)
+                {
+                    this.animator.enabled = true;
+                    this.animator.SetTrigger("Ready");
+                }
             }
         }
     }

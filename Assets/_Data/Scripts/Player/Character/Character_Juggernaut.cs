@@ -58,7 +58,7 @@ public class Character_Juggernaut : Character
         if (!IsCharacterForm) return;
         if (Input.GetMouseButtonDown(0))
         {
-            if (PlayerCtrl.Instance.PlayerCamera.FPSCam.gameObject.activeInHierarchy == true)
+            if (PlayerCtrl.Instance.PlayerCamera.FPSCamera.gameObject.activeInHierarchy == true)
             {
                 EnergyGlobe.Play();
             }
@@ -90,7 +90,7 @@ public class Character_Juggernaut : Character
 
     public void Fire()
     {
-        Juggernaut_Raycast.FireBullet(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.crossHairTarget.position);
+        Juggernaut_Raycast.FireBullet(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.CrosshairTarget.position);
         lineMain.enabled = true;
         isCharging = false;
         Volume.gameObject.SetActive(true);
@@ -185,7 +185,7 @@ public class Character_Juggernaut : Character
     }
     private void HandleAfterFire()
     {
-        Vector3 crossHair = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.crossHairTarget.position;
+        Vector3 crossHair = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.CrosshairTarget.position;
         Vector3 ifNotHitpoint = crossHair - Juggernaut_Raycast.raycastOrigin.position;
         Vector3 direction = crossHair - Juggernaut_Raycast.raycastOrigin.position;
         Ray ray = new Ray(Juggernaut_Raycast.raycastOrigin.position, direction);
@@ -215,9 +215,9 @@ public class Character_Juggernaut : Character
 
     private void HandleRender()
     {
-        if (PlayerCtrl.Instance.PlayerCamera.FPSCam.gameObject.activeInHierarchy == true)
+        if (PlayerCtrl.Instance.PlayerCamera.FPSCamera.gameObject.activeInHierarchy == true)
         {
-            PlayerCtrl.Instance.PlayerCamera.cameraMain.cullingMask &= ~(1 << 6);
+            PlayerCtrl.Instance.PlayerCamera.MainCamera.cullingMask &= ~(1 << 6);
             this.lineMain = this.line;
             Gun_JuggernautModel.gameObject.SetActive(true);
             this.RigAnimator.SetBool("aim_character", true);
@@ -229,7 +229,7 @@ public class Character_Juggernaut : Character
         }
         else
         {
-            PlayerCtrl.Instance.PlayerCamera.cameraMain.cullingMask |= 1 << 6;
+            PlayerCtrl.Instance.PlayerCamera.MainCamera.cullingMask |= 1 << 6;
             this.lineMain = this.lineHand;
             Gun_JuggernautModel.gameObject.SetActive(false);
             this.RigAnimator.SetBool("aim_character", false);
@@ -256,7 +256,7 @@ public class Character_Juggernaut : Character
     public override void ActionMouseR(bool inputButton)
     {
         // if (isCharging) return;
-        PlayerCtrl.Instance.PlayerAim.isAim = inputButton;
+        PlayerCtrl.Instance.PlayerAim.IsAim = inputButton;
     }
 
     private IEnumerator TransformationCoroutine()
@@ -285,7 +285,7 @@ public class Character_Juggernaut : Character
         this.SetOriginalScaleParticle();
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
         this.RigAnimator.SetBool("transform", false);
-        PlayerCtrl.Instance.PlayerCamera.cameraMain.cullingMask |= 1 << 6;
+        PlayerCtrl.Instance.PlayerCamera.MainCamera.cullingMask |= 1 << 6;
         this.Gun_JuggernautModel.gameObject.SetActive(false);
     }
 }

@@ -51,7 +51,11 @@ public class SwitchCamera_ChrSel : SwitchCamera
                     this.chrSelSceneCtrl.CheckUI_ChrInfoPanel(this.currentIndex);
 
                     chrSelPanel.Show(null);
-                    chrSelPanel.DisplayChrInfo(this.currentIndex);
+
+                    if (this.currentIndex == this.IndexMain)
+                        chrSelPanel.DisplayChrInfo(null);
+                    else
+                        chrSelPanel.DisplayChrInfo(this.chrSelSceneCtrl.ListCharacterData[this.currentIndex]);
                 }
             }
         }

@@ -36,7 +36,11 @@ public class UI_DroppableSlot : SaiMonoBehaviour, IDropHandler
             item.ResetSlot();
         }
 
-        UI_InventoryPanel.Instance.SetSelectEquippedSlot(this.childDraggable.UI_WeaponSlotParent);
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.InGamePanel.PauseMenu.InventoryPanel.SetSelectEquippedSlot(this.childDraggable.UI_WeaponSlotParent);
+        }
+
         PlayerWeaponManager.Instance.SwitchWeapon(item.WeaponList, item.WeaponSlotIndex, this.childDraggable.WeaponList, this.childDraggable.WeaponSlotIndex);
     }
 }

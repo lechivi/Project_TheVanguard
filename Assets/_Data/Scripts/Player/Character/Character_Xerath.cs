@@ -12,6 +12,7 @@ public class Character_Xerath : Character
     [Space(10)]
     [SerializeField] private GameObject betaObj;
     [SerializeField] private CharacterController b_CharacterController;
+    [SerializeField] private OnEventAnimator b_OnEventAnimator;
     [SerializeField] private Animator b_Animator;
     [SerializeField] private Animator b_RigAnimator;
     [SerializeField] private Transform b_TPS_LookAt;
@@ -19,13 +20,14 @@ public class Character_Xerath : Character
 
     [SerializeField] private GameObject alphaObj;
     [SerializeField] private CharacterController a_CharacterController;
+    [SerializeField] private OnEventAnimator a_OnEventAnimator;
     [SerializeField] private Animator a_Animator;
     [SerializeField] private Animator a_RigAnimator;
     [SerializeField] private Transform a_TPS_LookAt;
     [SerializeField] private Transform a_FPS_Follow;
 
     [Space(10)]
-    [SerializeField] private Vector3 b_CameraOffset;
+    [SerializeField] private Vector3 b_CameraOffset= new Vector3(0.75f,0.12f,0);
     [SerializeField] private Vector3 a_CameraOffset = new Vector3(1f, 0.12f, -0.25f);
     [SerializeField] private ParticleSystem transformFX;
     [SerializeField] private ParticleSystem timeoutFX;
@@ -51,6 +53,9 @@ public class Character_Xerath : Character
         if (this.betaObj != null && this.b_CharacterController == null)
             this.b_CharacterController = this.betaObj.GetComponent<CharacterController>();
 
+        if (this.betaObj != null && this.b_OnEventAnimator == null)
+            this.b_OnEventAnimator = this.betaObj.GetComponent<OnEventAnimator>();
+
         if (this.betaObj != null && this.b_Animator == null)
             this.b_Animator = this.betaObj.GetComponent<Animator>();
 
@@ -68,6 +73,9 @@ public class Character_Xerath : Character
 
         if (this.alphaObj != null && this.a_CharacterController == null)
             this.a_CharacterController = this.alphaObj.GetComponent<CharacterController>();
+
+        if (this.alphaObj != null && this.a_OnEventAnimator == null)
+            this.a_OnEventAnimator = this.alphaObj.GetComponent<OnEventAnimator>();
 
         if (this.alphaObj != null && this.a_Animator == null)
             this.a_Animator = this.alphaObj.GetComponent<Animator>();
@@ -101,6 +109,17 @@ public class Character_Xerath : Character
         else if (!this.isBeta && this.characterController != this.a_CharacterController)
         {
             this.characterController = this.a_CharacterController;
+        }
+    }
+    protected override void LoadOnEventAnimator()
+    {
+        if (this.isBeta && this.onEventAnimator != this.b_OnEventAnimator)
+        {
+            this.onEventAnimator = this.b_OnEventAnimator;
+        }
+        else if (!this.isBeta && this.onEventAnimator != this.a_OnEventAnimator)
+        {
+            this.onEventAnimator = this.a_OnEventAnimator;
         }
     }
     protected override void LoadAnimator()
@@ -148,10 +167,12 @@ public class Character_Xerath : Character
         }
     }
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
-        this.b_CameraOffset = PlayerCtrl.Instance.PlayerCamera.TPSCam.GetComponent<CinemachineCameraOffset>().m_Offset;
+        if (PlayerCtrl.HasInstance)
+        {
+            this.b_CameraOffset = PlayerCtrl.Instance.PlayerCamera.TPSCamera.GetComponent<CinemachineCameraOffset>().m_Offset;
+        }
     }
 
     private void OnEnable()
@@ -181,11 +202,11 @@ public class Character_Xerath : Character
         {
             PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
         }
-/*        else
-        {
-            //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
-            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
-        }*/
+        /*        else
+                {
+                    //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
+                    PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
+                }*/
     }
 
     private IEnumerator TransformationCoroutine()
@@ -255,6 +276,7 @@ public class Character_Xerath : Character
 
         this.LoadCharacterTransform();
         this.LoadCharacterController();
+        this.LoadOnEventAnimator();
         this.LoadAnimator();
         this.LoadRigAnimator();
         this.LoadTPSLookAt();
@@ -263,7 +285,7 @@ public class Character_Xerath : Character
 
     private void ChangerCameraOffset(bool isBeta)
     {
-        CinemachineCameraOffset cinemachineCameraOffset = PlayerCtrl.Instance.PlayerCamera.TPSCam.GetComponent<CinemachineCameraOffset>();
+        CinemachineCameraOffset cinemachineCameraOffset = PlayerCtrl.Instance.PlayerCamera.TPSCamera.GetComponent<CinemachineCameraOffset>();
         if (cinemachineCameraOffset == null) return;
         cinemachineCameraOffset.m_Offset = isBeta ? this.b_CameraOffset : this.a_CameraOffset;
     }

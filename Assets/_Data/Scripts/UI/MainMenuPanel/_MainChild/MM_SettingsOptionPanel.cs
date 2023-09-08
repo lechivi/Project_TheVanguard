@@ -4,47 +4,73 @@ public class MM_SettingsOptionPanel : BaseUIElement
 {
     [Header("SETTINGS OPTION")]
     [SerializeField] private MainMenuWpPanel mainMenuWpPanel;
+    [SerializeField] private OptionSelection optionSelection;
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        if (this.mainMenuWpPanel == null ) 
+        if (this.mainMenuWpPanel == null)
             this.mainMenuWpPanel = GetComponentInParent<MainMenuWpPanel>();
+
+        if (this.optionSelection == null)
+            this.optionSelection = GetComponent<OptionSelection>();
     }
+
+    private void OnEnable()
+    {
+        this.mainMenuWpPanel.ShowAudioTab();
+        this.optionSelection.SetSelectOption(0);
+    }
+
 
 
     public void OnClickAudioButton()
     {
-        this.mainMenuWpPanel.GraphicTab.Hide();
-        this.mainMenuWpPanel.ControlTab.Hide();
-        this.mainMenuWpPanel.AudioTab.Show(null);
-    }  
-    
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_BTN_BOOK_01_PAGE_TURN_14);
+        }
+
+        this.mainMenuWpPanel.ShowAudioTab();
+        this.optionSelection.SetSelectOption(0);
+    }
+
     public void OnClickGraphicButton()
     {
-        this.mainMenuWpPanel.AudioTab.Hide();
-        this.mainMenuWpPanel.ControlTab.Hide();
-        this.mainMenuWpPanel.GraphicTab.Show(null);
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_BTN_BOOK_01_PAGE_TURN_14);
+        }
+
+        this.mainMenuWpPanel.ShowGraphicTab();
+        this.optionSelection.SetSelectOption(1);
     }
-    
+
     public void OnClickControlButton()
     {
-        this.mainMenuWpPanel.AudioTab.Hide();
-        this.mainMenuWpPanel.GraphicTab.Hide();
-        this.mainMenuWpPanel.ControlTab.Show(null);
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_BTN_GUIDEOPEN_SCROLLOPEN);
+        }
+
+        this.mainMenuWpPanel.ShowControlTab();
+        this.optionSelection.SetSelectOption(2);
 
         if (UIManager.HasInstance)
         {
             UIManager.Instance.MainMenuPanel.ControlGuidePanel.Show(null);
         }
-    }   
-    
+    }
+
     public void OnClickBackButton()
     {
-        this.mainMenuWpPanel.AudioTab.Hide();
-        this.mainMenuWpPanel.GraphicTab.Hide();
-        this.mainMenuWpPanel.ControlTab.Hide();
-        this.mainMenuWpPanel.SettingsOptionPanel.Hide();
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_BTN_CLICKS);
+        }
+
+        this.mainMenuWpPanel.HideAllTab();
+        this.Hide();
         this.mainMenuWpPanel.MenuOptionsPanel.Show(null);
-    }   
+    }
 }

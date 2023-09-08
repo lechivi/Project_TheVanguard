@@ -77,6 +77,11 @@ public class ChrSel_ChrInfoPanel : BaseUIElement
 
     public void OnClickNextButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_BTN_CLICKS);
+        }
+
         CharacterSelectionSceneCtrl chrSelSceneCtrl = this.chrSelPanel.ChrSelSceneCtrl;
         if (chrSelSceneCtrl == null) return;
 
@@ -85,6 +90,11 @@ public class ChrSel_ChrInfoPanel : BaseUIElement
 
     public void OnClickPrevButton()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_BTN_CLICKS);
+        }
+
         CharacterSelectionSceneCtrl chrSelSceneCtrl = this.chrSelPanel.ChrSelSceneCtrl;
         if (chrSelSceneCtrl == null) return;
 

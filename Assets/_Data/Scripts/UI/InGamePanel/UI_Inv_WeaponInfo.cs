@@ -17,7 +17,7 @@ public class UI_Inv_WeaponInfo : BaseUIElement
     {
         base.LoadComponent();
         if (this.weaponNameText == null)
-            this.weaponNameText = transform.Find("NameText").GetComponent<TMP_Text>();
+            this.weaponNameText = transform.Find("WeaponName_Text").GetComponent<TMP_Text>();
 
         if (this.valueText == null)
             this.valueText = transform.Find("ValuePanel").GetComponentInChildren<TMP_Text>();

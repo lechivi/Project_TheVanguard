@@ -61,9 +61,9 @@ public class Input_MainMenuScene : InputControls
         if (UIManager.HasInstance)
         {
             MainMenuPanel mainMenuPanel = UIManager.Instance.MainMenuPanel;
-            if (mainMenuPanel.PopoutContainer.IsShow())
+            if (UIManager.Instance.PopoutContainer.IsShow())
             {
-                mainMenuPanel.PopoutContainer.OnClickNoButton();
+                UIManager.Instance.PopoutContainer.OnClickNoButton();
                 return;
             }
 
@@ -84,11 +84,11 @@ public class Input_MainMenuScene : InputControls
             }
         }
 
-        if (this.mainMenuSceneCtrl)
-        {
-            SwitchCamera switchCamera = this.mainMenuSceneCtrl.SwitchCamera;
-            //if (switchCamera.CurrentIndex =)
-        }
+        //if (this.mainMenuSceneCtrl)
+        //{
+        //    SwitchCamera switchCamera = this.mainMenuSceneCtrl.SwitchCamera;
+        //    //if (switchCamera.CurrentIndex =)
+        //}
     }
     
     private void OnInputUp()

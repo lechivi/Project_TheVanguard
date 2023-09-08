@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class CharacterSelectionSceneCtrl : SaiMonoBehaviour
 {
+    [SerializeField] private List<CharacterDataSO> listCharacterData = new List<CharacterDataSO>();
     [SerializeField] private SwitchCamera_ChrSel switchCamera;
     [SerializeField] private List<CharacterSelectable> listCharacterSelectable;
 
     [SerializeField] private int indexSelected = -1;
 
+    public List<CharacterDataSO> ListCharacterData { get => this.listCharacterData; }
     public SwitchCamera_ChrSel SwitchCamera { get => this.switchCamera; }
     public int IndexSelected { get => this.indexSelected; }
 
@@ -18,8 +20,22 @@ public class CharacterSelectionSceneCtrl : SaiMonoBehaviour
             this.switchCamera = GameObject.Find("SwitchCamera").GetComponent<SwitchCamera_ChrSel>();
     }
 
-    private void OnEnable()
+    private void Start()
     {
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.Enable_UI_ChrSelPanel();
+        }
+        if (InputManager.HasInstance)
+        {
+            InputManager.Instance.Enable_Input_ChrSelScene();
+        }
+
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlayBgm(AUDIO.BGM_CHRSEL_FORESTINSTRUMENTALAMB_DAY);
+        }
+
         this.CheckUI_ChrInfoPanel(this.switchCamera.CurrentIndex);
     }
 
@@ -29,14 +45,12 @@ public class CharacterSelectionSceneCtrl : SaiMonoBehaviour
         {
             this.listCharacterSelectable[this.indexSelected].SelectedFx.gameObject.SetActive(false);
             this.indexSelected = -1;
-            //Remove CharacterDataSO from GameManager
         }
         else
         {
             if (this.indexSelected != -1)
             {
                 this.listCharacterSelectable[this.indexSelected].SelectedFx.gameObject.SetActive(false);
-                //Remove CharacterDataSO from GameManager
             }
 
             this.indexSelected = index;
@@ -45,12 +59,17 @@ public class CharacterSelectionSceneCtrl : SaiMonoBehaviour
             {
                 this.listCharacterSelectable[this.indexSelected].SelectedFx.gameObject.SetActive(true);
                 this.listCharacterSelectable[this.indexSelected].SelectedFx.Play();
-                //Add CharacterDataSO to GameManager -> PlayerCtrl
             }
 
         }
 
         this.CheckUI_ChrInfoPanel(index);
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.CharacterData = this.indexSelected == -1 ? null : this.listCharacterData[this.indexSelected];
+        }
+
     }
 
     public void CheckUI_ChrInfoPanel(int index)

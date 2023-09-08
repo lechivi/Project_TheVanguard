@@ -32161,7 +32161,6 @@ GameObject:
   - component: {fileID: 2161855503817897012}
   - component: {fileID: 2161855503817897015}
   - component: {fileID: 2161855503817897014}
-  - component: {fileID: 2161855503817897009}
   - component: {fileID: 2161855503817897018}
   m_Layer: 6
   m_Name: Character_Juggernaut
@@ -32248,18 +32247,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 2161855503131015485}
     m_Active: 1
   m_Effectors: []
---- !u!114 &2161855503817897009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2161855503817897011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7720d61da5e854db16435c87c851fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2161855503817897018
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32275,6 +32262,7 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: ba03b5ccd6bd6da49a2d9290a00bcdde, type: 2}
   characterTransform: {fileID: 2161855503817897013}
   characterController: {fileID: 2161855503817897015}
+  onEventAnimator: {fileID: 0}
   animator: {fileID: 2161855503817897012}
   rigAnimator: {fileID: 2161855502896357135}
   tps_LookAt: {fileID: 2161855502030555570}
@@ -32283,8 +32271,6 @@ MonoBehaviour:
   - {fileID: 2161855503691453114}
   - {fileID: 2161855503060475393}
   - {fileID: 2161855503827912445}
-  cooldownSpecialSkill: 0
-  cooldownBattleSkill: 0
   TitanID: 0
   transformTime: 10000
   Gun_JuggernautModel: {fileID: 2161855502016372929}

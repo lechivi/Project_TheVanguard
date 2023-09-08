@@ -65,8 +65,9 @@ public class NPCShopkeeperInteractable : MonoBehaviour, IInteractable
         if (UIManager.HasInstance)
         {
             UIManager.Instance.InGamePanel.ShowOther(null);
-            UI_ExchangePanel exchangePanel = UIManager.Instance.InGamePanel.InGame_Other.UI_ExchangePanel;
-            exchangePanel.Show(null);
+            UIManager.Instance.InGamePanel.Other.ShowExchangePanel();
+
+            UI_ExchangePanel exchangePanel = UIManager.Instance.InGamePanel.Other.ExchangePanel;
             exchangePanel.ShopList.SetShopList(this);
             exchangePanel.InventoryList.SetInventoryList();
 

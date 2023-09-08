@@ -1,19 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-public enum WeaponList
-{
-    EquippedWeapons,
-    BackpackWeapons
-}
 
 public class PlayerWeaponManager : PlayerWeaponAbstract
 {
     public static PlayerWeaponManager Instance;
-    private PlayerWeapon playerWeapon;
-    [SerializeField] private UI_InventoryPanel ui_InventoryPanel;
-
+    [SerializeField] private PlayerWeapon playerWeapon;
     [SerializeField] private int maxEquippedWeapon = 3;
     [SerializeField] private int maxBackpackWeapon = 3;
     [SerializeField] private NullAwareList<Weapon> equippedWeapons = new NullAwareList<Weapon>();
@@ -36,11 +28,18 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     public NullAwareList<Weapon> BackpackWeapons { get => this.backpackWeapons; }
     public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; set => this.weaponSheathSlots = value; }
 
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        if (this.playerWeapon == null)
+            playerWeapon = transform.GetComponentInParent<PlayerWeapon>();
+    }
+
     protected override void Awake()
     {
         base.Awake();
         PlayerWeaponManager.Instance = this;
-        playerWeapon = transform.GetComponentInParent<PlayerWeapon>();
+
         this.equippedWeapons.GenerateList(this.maxEquippedWeapon);
         this.backpackWeapons.GenerateList(this.maxBackpackWeapon);
         isHolstering = false;
@@ -132,8 +131,8 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
         if (raycastWeapon != null)
         {
-            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCam;
-            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCam;
+            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCamera;
+            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCamera;
             raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
         }
 
@@ -152,8 +151,8 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
         if (raycastWeapon != null)
         {
-            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCam;
-            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCam;
+            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCamera;
+            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCamera;
             raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
         }
         this.backpackWeapons.Add(weapon);
@@ -379,10 +378,12 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public void UpdateUI()
     {
-        if (this.ui_InventoryPanel == null) return;
-        this.ui_InventoryPanel.ResetSlot();
-        List<UI_DraggableItem> equippedList = this.ui_InventoryPanel.DraggablesEquippedList;
-        List<UI_DraggableItem> backpackList = this.ui_InventoryPanel.DraggablesBackpackList;
+        if (UIManager.HasInstance == false) return;
+
+        UI_InventoryPanel inventoryPanel = UIManager.Instance.InGamePanel.PauseMenu.InventoryPanel;
+        inventoryPanel.ResetSlot();
+        List<UI_DraggableItem> equippedList = inventoryPanel.DraggablesEquippedList;
+        List<UI_DraggableItem> backpackList = inventoryPanel.DraggablesBackpackList;
 
         for (int i = 0; i < this.equippedWeapons.GetList().Count; i++)
         {
@@ -408,7 +409,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         }
 
         if (this.currentWeaponIndex == -1) return;
-        this.ui_InventoryPanel.EquippedList.SetEquipSlot(this.currentWeaponIndex);
+        inventoryPanel.EquippedList.SetEquipSlot(this.currentWeaponIndex);
     }
 
     public int GetCurrentWeaponIndex()
@@ -473,7 +474,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
                 isHolstering = true;
             }*/
             if (Input.GetKeyUp(KeyCode.LeftShift) && currentWeaponIndex > -1 ||
-                PlayerCtrl.Instance.Character.TimerSpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
+                PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
             {
                 isHolstering = originalHolster;
             }

@@ -7,11 +7,12 @@ public class PlayerCombatAction : PlayerAbstract
     private CombatAction combatActionMouseL;
     private CombatAction combatActionMouseR;
 
-    private void Update()
+    public  void HandleUpdateCombarAction()
     {
         SetConditionMouseL();
         SetConditionMouseR();
     }
+
     public void ActionMouseL()
     {
         switch (this.combatActionMouseL)
@@ -19,7 +20,7 @@ public class PlayerCombatAction : PlayerAbstract
             case CombatAction.None:
                 break;
             case CombatAction.RangedWeapon:
-                this.playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = true;
+                this.playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring = true;
                 break;
 
             case CombatAction.MeleeWeapon:

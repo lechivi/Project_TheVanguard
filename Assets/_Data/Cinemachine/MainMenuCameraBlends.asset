@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MainMenuCameraBlends
   m_EditorClassIdentifier: 
   m_CustomBlends:
-  - m_From: VCamMain
+  - m_From: '**ANY CAMERA**'
     m_To: VCamBook
     m_Blend:
       m_Style: 7
@@ -64,8 +64,30 @@ MonoBehaviour:
         m_PreInfinity: 0
         m_PostInfinity: 0
         m_RotationOrder: 0
-  - m_From: '**ANY CAMERA**'
+  - m_From: VCam_Left
+    m_To: VCam_Right
+    m_Blend:
+      m_Style: 1
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: VCam_Right
     m_To: VCam_Left
+    m_Blend:
+      m_Style: 1
+      m_Time: 1
+      m_CustomCurve:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 0
+        m_PostInfinity: 0
+        m_RotationOrder: 0
+  - m_From: '**ANY CAMERA**'
+    m_To: VCam_Right
     m_Blend:
       m_Style: 1
       m_Time: 0.75
@@ -76,7 +98,7 @@ MonoBehaviour:
         m_PostInfinity: 0
         m_RotationOrder: 0
   - m_From: '**ANY CAMERA**'
-    m_To: VCam_Right
+    m_To: VCam_Left
     m_Blend:
       m_Style: 1
       m_Time: 0.75

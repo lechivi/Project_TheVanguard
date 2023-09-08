@@ -101,11 +101,18 @@ public class Character_Sera : Character
 
     private bool IsHitEnemy()
     {
-        Voidspawn_InfoScanner enemyHit = PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast() as Voidspawn_InfoScanner;
-        if (enemyHit != null)
+        if (PlayerCtrl.HasInstance)
         {
-            this.enemyHit = enemyHit.transform;
-            return true;
+            Voidspawn_InfoScanner enemyHit = PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast() as Voidspawn_InfoScanner;
+            if (enemyHit != null)
+            {
+                this.enemyHit = enemyHit.transform;
+                return true;
+            }
+
+            this.enemyHit = null;
+            return false;
+
         }
 
         this.enemyHit = null;

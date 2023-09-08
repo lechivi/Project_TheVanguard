@@ -4497,27 +4497,33 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: ed008e670fbb1724ab4da0451de29622, type: 2}
   characterTransform: {fileID: 4603704076898442079}
   characterController: {fileID: 4603704076898442077}
+  onEventAnimator: {fileID: 0}
   animator: {fileID: 4603704076898442076}
   rigAnimator: {fileID: 4603704076280974483}
   tps_LookAt: {fileID: 4603704075244303122}
   fps_Follow: {fileID: 4603704076736459614}
+  weaponSheathSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   xerath_Beta: {fileID: 4603704076898442078}
   xerath_Alpha: {fileID: 4603704076052237259}
   betaObj: {fileID: 4603704076898442067}
   b_CharacterController: {fileID: 4603704076898442077}
+  b_OnEventAnimator: {fileID: 0}
   b_Animator: {fileID: 4603704076898442076}
   b_RigAnimator: {fileID: 4603704076280974483}
   b_TPS_LookAt: {fileID: 4603704075244303122}
   b_FPS_Follow: {fileID: 4603704076736459614}
   alphaObj: {fileID: 4603704076052237261}
   a_CharacterController: {fileID: 4603704076052237263}
+  a_OnEventAnimator: {fileID: 0}
   a_Animator: {fileID: 4603704076052237262}
   a_RigAnimator: {fileID: 4603704075265789421}
   a_TPS_LookAt: {fileID: 4603704075881175967}
   a_FPS_Follow: {fileID: 4603704075785664383}
-  b_CameraOffset: {x: 0, y: 0, z: 0}
-  a_CameraOffset: {x: 0.75, y: 0.25, z: -0.25}
-  transformTime: 15
+  b_CameraOffset: {x: 0.75, y: 0.12, z: -0.25}
+  a_CameraOffset: {x: 1, y: 0.12, z: -0.25}
   transformFX: {fileID: 4421537975359011784}
   timeoutFX: {fileID: 4405113846724606363}
   isBeta: 1

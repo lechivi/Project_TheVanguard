@@ -1,39 +1,30 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
 
 public class PlayerAim : PlayerAbstract
 {
-    public float test;
-    public GameObject scope;
-    public bool isAim;
+    public bool IsAim;
 
-    public Transform AimlookMain;
-    public Transform AimLookatCam;
-    public float distanceLook1D;
+    //[SerializeField] private Transform aimLookMain;
+    //[SerializeField] private Transform aimLookAtCam;
+    //private float distanceLook1D;
 
-    protected override void Awake()
+    public void HandleUpdateAim()
     {
-        base.Awake();
-    }
+        //if (!playerCtrl.PlayerLocomotion.Is1D)
+        //{
+        //    aimLookMain.position = aimLookAtCam.position;
+        //    AimWeapon();
+        //}
+        //else
+        //{
+        //    HandleBodyAim1D();
+        //}
 
-
-    private void Update()
-    {
-        if (!playerCtrl.PlayerLocomotion.Is1D)
-        {
-            AimlookMain.position = AimLookatCam.position;
-            AimWeapon();
-        }
-        else
-        {
-            HandleBodyAim1D();
-        }
-
-        if (!isAim)
+        if (!IsAim)
         {
             playerCtrl.PlayerCamera.ChangePOVFPS(60);
-            if (playerCtrl.PlayerCamera.FPSCam.enabled)
+            if (playerCtrl.PlayerCamera.FPSCamera.enabled)
             {
                 playerCtrl.PlayerCamera.ChangeSpeedFPSCam(300f, 300f);
             }
@@ -48,15 +39,15 @@ public class PlayerAim : PlayerAbstract
     public void SetIsAim(bool isAimInput)
     {
         WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if(weapon)
+        if (weapon)
         {
-            if(isAimInput && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && !playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload)
+            if (isAimInput && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && !playerCtrl.PlayerWeapon.PlayerWeaponReload.IsReload)
             {
-                isAim = true;
+                IsAim = true;
             }
             else
             {
-                isAim = false;
+                IsAim = false;
             }
         }
     }
@@ -65,13 +56,13 @@ public class PlayerAim : PlayerAbstract
         WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (weapon)
         {
-            playerCtrl.RigAnimator.SetBool("aim_"  + weapon.Weapon.WeaponData.WeaponType, isAim);
+            playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.WeaponType, IsAim);
             if (weapon && weapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
             {
                 AimWeaponSCope();
                 return;
             }
-            if (isAim)
+            if (IsAim)
             {
                 playerCtrl.PlayerLocomotion.IsWalking = true;
                 playerCtrl.PlayerCamera.ChangePOVFPS(55);
@@ -86,31 +77,37 @@ public class PlayerAim : PlayerAbstract
             StartCoroutine(AimDuration(0.2f));
 
         }
-        if (!isAim)
+        if (!IsAim)
         {
-            playerCtrl.PlayerCamera.cameraMain.cullingMask |= 1 << 7;
-            playerCtrl.PlayerCamera.cameraMain.cullingMask |= 1 << 6;
-            if (scope)
+            playerCtrl.PlayerCamera.MainCamera.cullingMask |= 1 << 7;
+            playerCtrl.PlayerCamera.MainCamera.cullingMask |= 1 << 6;
+
+            if (UIManager.HasInstance)
             {
-                scope.SetActive(false);
+                UIManager.Instance.InGamePanel.AlwaysOnUI.Scope.Hide();
             }
         }
     }
-    private void HandleBodyAim1D()
-    {
-        Vector3 ball = this.playerCtrl.PlayerTransform.position + this.playerCtrl.PlayerTransform.forward * distanceLook1D;
-        ball.y = AimLookatCam.position.y;
-        AimlookMain.position = ball;
-    }
+
+    //private void HandleBodyAim1D()
+    //{
+    //    Vector3 ball = this.playerCtrl.PlayerTransform.position + this.playerCtrl.PlayerTransform.forward * distanceLook1D;
+    //    ball.y = aimLookAtCam.position.y;
+    //    aimLookMain.position = ball;
+    //}
 
     public IEnumerator AimDuration(float second)
     {
         yield return new WaitForSeconds(second);
 
-        playerCtrl.PlayerCamera.cameraMain.cullingMask &= ~(1 << 7);
-        playerCtrl.PlayerCamera.cameraMain.cullingMask &= ~(1 << 6);
-        if (scope) { scope.SetActive(true); }
+        playerCtrl.PlayerCamera.MainCamera.cullingMask &= ~(1 << 7);
+        playerCtrl.PlayerCamera.MainCamera.cullingMask &= ~(1 << 6);
         playerCtrl.PlayerCamera.ChangePOVFPS(10);
+
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.InGamePanel.AlwaysOnUI.Scope.Show(null);
+        }
     }
 
 }

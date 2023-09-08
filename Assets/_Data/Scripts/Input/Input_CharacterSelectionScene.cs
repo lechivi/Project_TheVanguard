@@ -53,8 +53,11 @@ public class Input_CharacterSelectionScene : InputControls
             {
                 if (this.canStart)
                 {
-                    Debug.Log("Start Game");
-                    //Start Game
+                    if (UIManager.HasInstance)
+                    {
+                        UIManager.Instance.PopoutContainer.ShowCS_StartPopout();
+                        this.canSelect = false;
+                    }
                 }
             };
         }

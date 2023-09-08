@@ -1,24 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerWeaponReload : PlayerWeaponAbstract
 {
-    public Transform leftHand;
-    GameObject magazineHand;
-    public bool isReload;
+    private Transform leftHand;
+    private GameObject magazineHand;
+
+    private bool isReload;
+
+    public bool IsReload { get => this.isReload; }
+
     private void Start()
     {
-        if (PlayerWeapon.AnimationEvents != null)
+       this.AddAnimationEvenReload();
+    }
+
+    public void AddAnimationEvenReload()
+    {
+        if (this.PlayerWeapon.PlayerCtrl.Character == null) return;
+
+        PlayerRigAnimationEvents animationEvents = this.PlayerWeapon.PlayerCtrl.RigAnimator.GetComponent<PlayerRigAnimationEvents>();
+        if (animationEvents != null)
         {
-            PlayerWeapon.AnimationEvents.AnimationEvent.AddListener(OnAnimationEvent);
+            animationEvents.AnimationEvent.AddListener(OnAnimationEvent);
         }
     }
 
-    private void Update()
+    public void HanldeUpdateWeaponReload()
     {
         SetReloadWeapon(false);
     }
+
     public void SetReloadWeapon(bool button)
     {
         WeaponRaycast weapon = PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
@@ -28,11 +39,11 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
             {
                 if(weapon.Weapon.WeaponData.WeaponType == WeaponType.Pistol)
                 {
-                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_Pistol");
+                    this.PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_Pistol");
                 }
                 else
                 {
-                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
+                    this.PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_weapon");
                 }
                 isReload = true;
             }
@@ -40,11 +51,11 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
             {
                 if (weapon.Weapon.WeaponData.WeaponType == WeaponType.Pistol)
                 {
-                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_Pistol");
+                    this.PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_Pistol");
                 }
                 else
                 {
-                    this.PlayerWeapon.RigAnimator.SetTrigger("reload_weapon");
+                    this.PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_weapon");
                 }
                 isReload = true;
             }
@@ -102,11 +113,11 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
         weapon.currentAmmo = weapon.maxAmmo;
         if (weapon.Weapon.WeaponData.WeaponType == WeaponType.Pistol)
         {
-            this.PlayerWeapon.RigAnimator.ResetTrigger("reload_Pistol");
+            this.PlayerWeapon.PlayerCtrl.RigAnimator.ResetTrigger("reload_Pistol");
         }
         else 
         {
-            this.PlayerWeapon.RigAnimator.ResetTrigger("reload_weapon");
+            this.PlayerWeapon.PlayerCtrl.RigAnimator.ResetTrigger("reload_weapon");
         }
         Invoke("ChangeIsReload", 0.15f);
     }

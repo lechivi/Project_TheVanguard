@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class UI_InventoryPanel : BaseUIElement
 {
-    public static UI_InventoryPanel Instance;
-
     [Header("INVENTORY PANEL")]
     [SerializeField] private UI_Inv_EquippedList equippedList;
     [SerializeField] private List<UI_DraggableItem> draggablesEquippedList = new List<UI_DraggableItem>();
@@ -39,7 +37,6 @@ public class UI_InventoryPanel : BaseUIElement
     protected override void Awake()
     {
         base.Awake();
-        UI_InventoryPanel.Instance = this;
     }
 
     public void ResetSlot()

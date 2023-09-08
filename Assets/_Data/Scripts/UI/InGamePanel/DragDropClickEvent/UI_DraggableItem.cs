@@ -79,7 +79,10 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
             UI_Inv_WeaponInfo.Instance.Show(null);
             UI_Inv_WeaponInfo.Instance.SetInformation(this.weaponData);
 
-            UI_InventoryPanel.Instance.SetSelectEquippedSlot(this.ui_WeaponSlotParent);
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.InGamePanel.PauseMenu.InventoryPanel.SetSelectEquippedSlot(this.ui_WeaponSlotParent);
+            }
         }
     }
 

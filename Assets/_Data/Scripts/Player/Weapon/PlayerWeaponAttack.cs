@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class PlayerWeaponAttack : PlayerWeaponAbstract
 {
-    [SerializeField] private float coolDownTime = 0.2f;
-
     private int comboCounter;
     private float lastClicked;
     private string MeleeCombatType;
@@ -15,7 +13,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
         base.Awake();
     }
 
-    private void Update()
+    public void HandleUpdateWeaponAttack()
     {
         this.SetTyleStringMelee();
         this.ResetComboState();

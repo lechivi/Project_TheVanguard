@@ -4,17 +4,17 @@ public class InGamePanel : BaseUIElement
 {
     [Header("IN GAME PANEL")]
     [SerializeField] private Canvas canvas;
-    [SerializeField] private InGame_AlwaysOnUI inGame_AlwaysOnUI;
-    [SerializeField] private InGame_PauseMenu inGame_PauseMenu;
-    [SerializeField] private InGame_Other inGame_Other;
+    [SerializeField] private InGame_AlwaysOnUi alwaysOnUI;
+    [SerializeField] private InGame_PauseMenu pauseMenu;
+    [SerializeField] private InGame_Other other;
 
     [Space(10)]
     [SerializeField] private Camera canvasCamera;
 
     public Camera CanvasCamera { get => this.canvasCamera; set => this.canvasCamera = value; }
-    public InGame_AlwaysOnUI InGame_AlwaysOnUI { get => this.inGame_AlwaysOnUI; }
-    public InGame_PauseMenu InGame_PauseMenu { get => this.inGame_PauseMenu; }
-    public InGame_Other InGame_Other { get  => this.inGame_Other; }
+    public InGame_AlwaysOnUi AlwaysOnUI { get => this.alwaysOnUI; }
+    public InGame_PauseMenu PauseMenu { get => this.pauseMenu; }
+    public InGame_Other Other { get  => this.other; }
 
     protected override void LoadComponent()
     {
@@ -22,34 +22,28 @@ public class InGamePanel : BaseUIElement
         if (this.canvas == null)
             this.canvas = GetComponent<Canvas>();
 
-        if (this.inGame_AlwaysOnUI == null)
-            this.inGame_AlwaysOnUI = GetComponentInChildren<InGame_AlwaysOnUI>();
+        if (this.alwaysOnUI == null)
+            this.alwaysOnUI = GetComponentInChildren<InGame_AlwaysOnUi>();
 
-        if (this.inGame_PauseMenu == null)
-            this.inGame_PauseMenu = GetComponentInChildren<InGame_PauseMenu>();
+        if (this.pauseMenu == null)
+            this.pauseMenu = GetComponentInChildren<InGame_PauseMenu>();
 
-        if (this.inGame_Other == null)
-            this.inGame_Other = GetComponentInChildren<InGame_Other>();
+        if (this.other == null)
+            this.other = GetComponentInChildren<InGame_Other>();
     }
 
     public override void Show(object data)
     {
         base.Show(data);
-        if (data is Camera)
-        {
-            Camera newData = data as Camera;
-            this.SetCanvasCamera(newData);
-        }
-
         this.ShowAlwaysOnUI(null);
     }
 
     public override void Hide()
     {
         base.Hide();
-        this.inGame_AlwaysOnUI.Hide();
-        this.inGame_PauseMenu.Hide();
-        this.inGame_Other.Hide();
+        this.alwaysOnUI.Hide();
+        this.pauseMenu.Hide();
+        this.other.Hide();
     }
 
     private void OnEnable()
@@ -57,7 +51,7 @@ public class InGamePanel : BaseUIElement
         this.ShowAlwaysOnUI(null);
     }
 
-    private void SetCanvasCamera(Camera canvasCamera)
+    public void SetCanvasCamera(Camera canvasCamera)
     {
         this.canvasCamera = canvasCamera;
         this.canvas.worldCamera = this.canvasCamera;
@@ -65,22 +59,22 @@ public class InGamePanel : BaseUIElement
 
     public void ShowAlwaysOnUI(object data)
     {
-        this.inGame_AlwaysOnUI.Show(data);
-        this.inGame_PauseMenu.Hide();
-        this.inGame_Other.Hide();
+        this.alwaysOnUI.Show(data);
+        this.pauseMenu.Hide();
+        this.other.Hide();
     }
 
     public void ShowPauseMenu(object data)
     {
-        this.inGame_AlwaysOnUI.Hide();
-        this.inGame_PauseMenu.Show(data);
-        this.inGame_Other.Hide();
+        this.alwaysOnUI.Hide();
+        this.pauseMenu.Show(data);
+        this.other.Hide();
     }
 
     public void ShowOther(object data)
     {
-        this.inGame_AlwaysOnUI.Hide();
-        this.inGame_PauseMenu.Hide();
-        this.inGame_Other.Show(data);
+        this.alwaysOnUI.Hide();
+        this.pauseMenu.Hide();
+        this.other.Show(data);
     }
 }

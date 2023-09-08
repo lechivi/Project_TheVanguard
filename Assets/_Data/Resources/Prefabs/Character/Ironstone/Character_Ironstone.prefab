@@ -3931,7 +3931,6 @@ GameObject:
   - component: {fileID: 4923506865265992157}
   - component: {fileID: 4923506865265992156}
   - component: {fileID: 4923506865265992131}
-  - component: {fileID: 4923506865265992130}
   - component: {fileID: 4923506865265992159}
   m_Layer: 6
   m_Name: Character_Ironstone
@@ -4018,18 +4017,6 @@ MonoBehaviour:
   - m_Rig: {fileID: 4923506863868338686}
     m_Active: 1
   m_Effectors: []
---- !u!114 &4923506865265992130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4923506865265992128}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7720d61da5e854db16435c87c851fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4923506865265992159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4045,6 +4032,7 @@ MonoBehaviour:
   characterData: {fileID: 11400000, guid: ac7b4cba075d8c64da14edb930c755a9, type: 2}
   characterTransform: {fileID: 4923506865265992158}
   characterController: {fileID: 4923506865265992156}
+  onEventAnimator: {fileID: 0}
   animator: {fileID: 4923506865265992157}
   rigAnimator: {fileID: 4923506863291400766}
   tps_LookAt: {fileID: 4923506863422556749}
@@ -4053,8 +4041,6 @@ MonoBehaviour:
   - {fileID: 4923506864418582049}
   - {fileID: 4923506864354215756}
   - {fileID: 4923506864939835285}
-  cooldownSpecialSkill: 3
-  cooldownBattleSkill: 0
   Particle: {fileID: 5929705458208297161}
   Hammer: {fileID: 3549618277702370904}
   delayAttack: 2

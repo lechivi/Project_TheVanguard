@@ -1,8 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CrossHairTarget : MonoBehaviour
+public class CrosshairTarget : MonoBehaviour
 {
     private Camera mainCamera;
     private Ray ray;

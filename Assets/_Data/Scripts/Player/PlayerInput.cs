@@ -24,6 +24,8 @@ public class PlayerInput : PlayerAbstract
 
     private void OnEnable()
     {
+        if (this.playerCtrl.Character == null) return;
+
         if (this.playerControls == null)
         {
             this.playerControls = new PlayerControls();
@@ -66,7 +68,7 @@ public class PlayerInput : PlayerAbstract
         this.ResetInput();
     }
 
-    public void HandleAllInput()
+    public void HandleUpdateAllInput()
     {
         this.HandleHolsterInput();
         this.HandleMovementInput();
@@ -131,7 +133,7 @@ public class PlayerInput : PlayerAbstract
         {
             WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
             if (gun != null)
-            this.playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring = false;
+            this.playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring = false;
         }
     }
 
@@ -219,8 +221,7 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.PlayerMovement.Enable();
             this.playerControls.PlayerAction.Enable();
-            this.playerCtrl.PlayerCamera.TPSCam.enabled = true;
-            this.playerCtrl.PlayerCamera.FPSCam.enabled = true;
+            this.playerCtrl.PlayerCamera.SetActiveCineCamera(true);
         }
         else
         {
@@ -230,8 +231,8 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.PlayerMovement.Disable();
             this.playerControls.PlayerAction.Disable();
-            this.playerCtrl.PlayerCamera.TPSCam.enabled = false;
-            this.playerCtrl.PlayerCamera.FPSCam.enabled = false;
+            this.playerCtrl.PlayerCamera.SetActiveCineCamera(false);
+
 
             this.ResetInput();
         }

@@ -1,107 +1,111 @@
 using UnityEngine;
 using Cinemachine;
-using Newtonsoft.Json.Bson;
-using Unity.VisualScripting;
-using UnityEngine.UIElements;
 
 public class PlayerCamera : PlayerAbstract
 {
-    public Camera cameraMain;
-    public CinemachineFreeLook TPSCam;
-    public CinemachineVirtualCamera FPSCam;
-    public CinemachineCameraOffset CameraOffsetTPS;
-    public bool originalTPSCam;
-    public int POV;
-    protected override void Awake()
-    {
-        base.Awake();
-        TPSCam.gameObject.SetActive(true);
-        originalTPSCam = true;
-        FPSCam.gameObject.SetActive(false);
+    public Camera MainCamera;
+    public CinemachineFreeLook TPSCamera;
+    public CinemachineVirtualCamera FPSCamera;
 
-        this.SetCameraTarget();
-    }
+    private bool isTPSCamera = true;
 
+    public bool IsTPSCamera { get => this.isTPSCamera; }
 
-    private void Update()
+    public void HandleUpdateCamera()
     {
         SetOriginalCamera();
         HandleCamera();
     }
 
-    public void SetOriginalCamera()
+    private void SetOriginalCamera()
     {
-        if (TPSCam.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
+        if (TPSCamera.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
         {
-            originalTPSCam = true;
+            isTPSCamera = true;
         }
-        else if (FPSCam.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
+        else if (FPSCamera.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
         {
-            originalTPSCam = false;
+            isTPSCamera = false;
         }
     }
-
-    public void HandleCamera()
+    private void HandleCamera()
     {
-        if (playerCtrl.PlayerAim.isAim)
+        if (playerCtrl.PlayerAim.IsAim)
         {
             this.playerCtrl.PlayerCamera.ChangeFPSCam();
         }
-        if (!playerCtrl.PlayerAim.isAim)
+        if (!playerCtrl.PlayerAim.IsAim)
         {
-            if (this.originalTPSCam)
+            if (this.isTPSCamera)
             {
                 this.ChangeTPSCam();
             }
-            if (!this.originalTPSCam)
+            if (!this.isTPSCamera)
             {
                 this.ChangeFPSCam();
             }
-
         }
     }
 
-    public void ChangeOriginalCamera()
+    private void ChangeFPSCam()
     {
-        originalTPSCam =  !originalTPSCam;
-    }
+        if (this.TPSCamera == null || this.FPSCamera == null) return;
 
-    public void ChangeFPSCam()
-    {
         playerCtrl.PlayerLocomotion.Is1D = false;
-        TPSCam.gameObject.SetActive(false);
-        FPSCam.gameObject.SetActive(true);
+        TPSCamera.gameObject.SetActive(false);
+        FPSCamera.gameObject.SetActive(true);
     }
-
-    public void ChangeTPSCam()
+    private void ChangeTPSCam()
     {
-        TPSCam.gameObject.SetActive(true);
-        FPSCam.gameObject.SetActive(false);
-    }
+        if (this.TPSCamera == null || this.FPSCamera == null) return;
 
-    public void ChangeSpeedFPSCam(float xAxis, float yAxis)
-    {
-        FPSCam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = xAxis;
-        FPSCam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = yAxis;
-    }
-
-    public void ChangeSpeedTPSCam(float xAxis, float yAxis)
-    {
-        TPSCam.m_XAxis.m_MaxSpeed = xAxis;
-        TPSCam.m_YAxis.m_MaxSpeed = yAxis;
-        TPSCam.m_Lens.FieldOfView = 60;
-    }
-
-    public void ChangePOVFPS(int pov)
-    {
-        FPSCam.m_Lens.FieldOfView = pov;
+        TPSCamera.gameObject.SetActive(true);
+        FPSCamera.gameObject.SetActive(false);
     }
 
     public void SetCameraTarget()
     {
-        if (this.playerCtrl.Character == null) return;
-        this.TPSCam.Follow = this.PlayerCtrl.PlayerTransform;
-        this.TPSCam.LookAt = this.PlayerCtrl.Character.TPS_LookAt;
-        this.FPSCam.Follow = this.PlayerCtrl.Character.FPS_Follow;
+        if (this.playerCtrl.Character == null || this.TPSCamera == null || this.FPSCamera == null) return;
+        this.TPSCamera.Follow = this.PlayerCtrl.PlayerTransform;
+        this.TPSCamera.LookAt = this.PlayerCtrl.Character.TPS_LookAt;
+        this.FPSCamera.Follow = this.PlayerCtrl.Character.FPS_Follow;
     }
+
+    public void SetActiveCineCamera(bool isActive)
+    {
+        if (this.TPSCamera == null || this.FPSCamera == null) return;
+
+        this.TPSCamera.enabled = isActive;
+        this.FPSCamera.enabled = isActive;
+    }
+
+    public void ChangeOriginalCamera()
+    {
+        isTPSCamera = !isTPSCamera;
+    }
+
+    public void ChangeSpeedFPSCam(float xAxis, float yAxis)
+    {
+        if (this.TPSCamera == null || this.FPSCamera == null) return;
+
+        FPSCamera.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = xAxis;
+        FPSCamera.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = yAxis;
+    }
+
+    public void ChangeSpeedTPSCam(float xAxis, float yAxis)
+    {
+        if (this.TPSCamera == null || this.FPSCamera == null) return;
+
+        TPSCamera.m_XAxis.m_MaxSpeed = xAxis;
+        TPSCamera.m_YAxis.m_MaxSpeed = yAxis;
+        TPSCamera.m_Lens.FieldOfView = 60;
+    }
+
+    public void ChangePOVFPS(int pov)
+    {
+        if (this.TPSCamera == null || this.FPSCamera == null) return;
+
+        FPSCamera.m_Lens.FieldOfView = pov;
+    }
+
 }

@@ -45,4 +45,9 @@ public class BaseUIElement : SaiMonoBehaviour
     {
         return (this.canvasGroup.alpha == 1 && !this.isSetActiveGameObjec) || (this.gameObject.activeSelf && this.isSetActiveGameObjec);
     }
+
+    public void SetInteract(bool isInteract)
+    {
+        this.canvasGroup.interactable = isInteract;
+    }
 }

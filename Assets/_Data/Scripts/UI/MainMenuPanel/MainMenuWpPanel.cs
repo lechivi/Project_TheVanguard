@@ -58,4 +58,32 @@ public class MainMenuWpPanel : BaseUIElement
         this.graphicTab.Hide();
         this.controlTab.Hide();
     }
+
+    public void HideAllTab()
+    {
+        this.audioTab.Hide();
+        this.graphicTab.Hide();
+        this.controlTab.Hide();
+    }
+
+    public void ShowAudioTab()
+    {
+        this.audioTab.Show(null);
+        this.graphicTab.Hide();
+        this.controlTab.Hide();
+    }
+
+    public void ShowGraphicTab()
+    {
+        this.audioTab.Hide();
+        this.graphicTab.Show(null);
+        this.controlTab.Hide();
+    }
+
+    public void ShowControlTab()
+    {
+        this.audioTab.Hide();
+        this.graphicTab.Hide();
+        this.controlTab.Show(null);
+    }
 }

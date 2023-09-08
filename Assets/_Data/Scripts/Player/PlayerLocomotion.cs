@@ -1,19 +1,16 @@
-﻿using Cinemachine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
 
 public class PlayerLocomotion : PlayerAbstract
 {
-    public OnEventAnimator Onanimatormove;
+    //public OnEventAnimator OnAnimatorMove;
 
     [Header("Movement Flag")]
     public bool IsJumping;
     public bool IsSprinting;
     public bool IsGrounded;
     public bool IsWalking;
-    public bool Is1D;
+    public bool Is1D = false;
 
     [Header("Movement Speed")]
     [SerializeField] private float rotationSpeed = 360f;
@@ -30,27 +27,33 @@ public class PlayerLocomotion : PlayerAbstract
     [SerializeField] public Vector3 velocity;
 
     /// đoạn code sau chưa phân code 
-    protected override void Awake()
-    {
-        base.Awake();
-        this.Onanimatormove = playerCtrl.EvenAnimator;
-        this.Is1D = false;
-    }
+    //protected override void Awake()
+    //{
+    //    base.Awake();
+    //    this.OnAnimatorMove = playerCtrl.Character.OnEventAnimator;
+    //    this.Is1D = false;
+    //}
 
-    private void Start()
-    {
-        if (Onanimatormove != null)
-        {
-            Onanimatormove.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
-        }
-    }
+    //private void Start()
+    //{
+    //    if (OnAnimatorMove != null)
+    //    {
+    //        OnAnimatorMove.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+    //    }
+    //}
+
+    //public void SetOnEventAnimator(OnEventAnimator onEventAnimator)
+    //{
+    //    this.rootMotion = Vector3.zero;
+    //    onEventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+    //}
 
     private void OnDisable()
     {
         this.ResetLocomotion();
     }
 
-    public void HanldeAllMovementUpdate()
+    public void HanldeUpdateAllMovement()
     {
         HandleJump();
         Handle1DMode();
@@ -67,7 +70,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     public void SetSpeed()
     {
-        if (playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring)
+        if (playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring)
         {
             speed /= speedDecrease;
         }
@@ -75,7 +78,7 @@ public class PlayerLocomotion : PlayerAbstract
     private void Handle1DMode()
     {
         this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
-        if (Input.GetKeyDown(KeyCode.Q) && !playerCtrl.PlayerCamera.FPSCam.gameObject.activeInHierarchy)
+        if (Input.GetKeyDown(KeyCode.Q) && playerCtrl.PlayerCamera.IsTPSCamera)
         {
             this.Is1D = !this.Is1D;
         }
@@ -84,10 +87,11 @@ public class PlayerLocomotion : PlayerAbstract
             HandleMovement1D();
         }
     }
+
     private void HandleMovement1D()
     {
         this.movementDirection = new Vector3(this.playerCtrl.PlayerInput.MovementInput.x, 0f, this.playerCtrl.PlayerInput.MovementInput.y);
-        this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.MainCamera.rotation.eulerAngles.y, Vector3.up) * movementDirection;
+        this.movementDirection = Quaternion.AngleAxis(this.playerCtrl.PlayerCamera.MainCamera.transform.rotation.eulerAngles.y, Vector3.up) * movementDirection;
         this.movementDirection.Normalize();
 
         Vector3 velocity = this.movementDirection;
@@ -97,8 +101,8 @@ public class PlayerLocomotion : PlayerAbstract
     public void SetIsSprinting(bool SprintingInput)
     {
         bool canSprint = (playerCtrl.PlayerInput.MovementInput != Vector2.zero) && 
-            (!playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring) && (!playerCtrl.PlayerAim.isAim) && 
-            (!playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload);
+            (!playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring) && (!playerCtrl.PlayerAim.IsAim) && 
+            (!playerCtrl.PlayerWeapon.PlayerWeaponReload.IsReload);
         if (canSprint && SprintingInput )
         {
             this.IsSprinting = true;
@@ -143,7 +147,7 @@ public class PlayerLocomotion : PlayerAbstract
         }
         else
         {
-            float yawCamera = this.playerCtrl.MainCamera.transform.eulerAngles.y;
+            float yawCamera = this.playerCtrl.PlayerCamera.MainCamera.transform.eulerAngles.y;
             this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
 
         }
@@ -174,10 +178,10 @@ public class PlayerLocomotion : PlayerAbstract
         return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
     }
 
-    private void HandleAnimatorMoveEvent()
-    {
-        rootMotion += playerCtrl.Animator.deltaPosition;
-    }
+    //private void HandleAnimatorMoveEvent()
+    //{
+    //    rootMotion += playerCtrl.Animator.deltaPosition;
+    //}
 
     private void UpdateInAir()
     {

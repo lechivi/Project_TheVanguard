@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MM_PopoutContainer : BaseUIElement
+public class MM_PopoutContainer : PopoutContainer
 {
     [Header("POPOUT CONTAINER")]
     [SerializeField] private CanvasGroup startPopout;
@@ -16,17 +16,6 @@ public class MM_PopoutContainer : BaseUIElement
             this.quitPopout = transform.Find("Quit_Popout").GetComponent<CanvasGroup>();
     }
 
-    private void OnEnable()
-    {
-        this.Hide();
-    }
-
-    private void SetActiveCanvasGroup(CanvasGroup canvasGroup, bool isActive)
-    {
-        canvasGroup.alpha = isActive ? 1 : 0;
-        canvasGroup.blocksRaycasts = isActive;
-    }
-
     public void ShowStartPopout()
     {
         this.Show(null);
@@ -39,20 +28,5 @@ public class MM_PopoutContainer : BaseUIElement
         this.Show(null);
         this.SetActiveCanvasGroup(this.startPopout, false);
         this.SetActiveCanvasGroup(this.quitPopout, true);
-    }
-
-    public void OnClickNoButton()
-    {
-        this.Hide();
-    }
-
-    public void OnClickStartPopout_YesButton()
-    {
-        Debug.Log("Click Yes Start button");
-    }
-
-    public void OnClickQuitPopout_YesButton()
-    {
-        Debug.Log("Click Yes Quit button");
     }
 }

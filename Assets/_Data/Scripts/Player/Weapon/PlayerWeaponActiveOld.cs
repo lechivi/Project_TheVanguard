@@ -1,65 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations.Rigging;
-using UnityEngine.Rendering.VirtualTexturing;
 
 public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 {
-
-    public Transform crossHairTarget;
+    private Transform crosshairTarget;
     private WeaponRaycast weaponRaycast;
-    public bool isFiring = false;
-    public bool iscanFire;
-    private float timedelta = 0;
 
-    protected override void Awake()
+    public bool IsFiring = false;
+    public bool IscanFire;
+    private float timedelta = 0;
+    public Transform CrosshairTarget { get => this.crosshairTarget; set => this.crosshairTarget = value; }
+
+    protected override void LoadComponent()
     {
-        base.Awake();
+        base.LoadComponent();
+        if (this.crosshairTarget == null)
+            this.crosshairTarget = this.PlayerWeapon.PlayerCtrl.PlayerCamera.MainCamera.GetComponentInChildren<CrosshairTarget>().transform;
     }
 
-
-    private void Update()
+    public void HandleUpdateFiring()
     {
         weaponRaycast = PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         SetIsCanFire();
-    }
 
-    private void FixedUpdate()
-    {
-        if (weaponRaycast != null)
-        {
-
-        }
-    }
-
-
-    public void HandleFiring()
-    {
         if (weaponRaycast == null) return;
         if (weaponRaycast.Weapon.WeaponData.ShotGunType != ShotGunType.Slowhand)
         {
             weaponRaycast.DelayPerShot();
         }
-        if (iscanFire)
+        if (IscanFire)
         {
             if (Input.GetMouseButtonDown(0) && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle)
             {
                 PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
-                weaponRaycast.FireBullet(crossHairTarget.position);
+                weaponRaycast.FireBullet(crosshairTarget.position);
                 if (weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Slowhand)
                 {
                     DelayShotgun();
                 }
             }
 
-            if (isFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
+            if (IsFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
             {
-                weaponRaycast.UpdateFiring(crossHairTarget.position);
+                weaponRaycast.UpdateFiring(crosshairTarget.position);
                 PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
             }
 
-            if (!isFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
+            if (!IsFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
             {
                 weaponRaycast.runtTimeFire = 0;
                 weaponRaycast.recoil.ResetIndex();
@@ -79,7 +65,7 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
 
     public void DelayShotgun()
     {
-        PlayerWeapon.RigAnimator.SetTrigger("reload_pershot");
+        PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_pershot");
         timedelta = 0;
         SetisDelay(true);
     }
@@ -87,13 +73,13 @@ public class PlayerWeaponActiveOld : PlayerWeaponAbstract
     public void SetIsCanFire()
     {
         if(weaponRaycast == null) return;
-        if (!PlayerWeapon.PlayerWeaponManager.IsHolstering && !PlayerWeapon.PlayerWeaponReload.isReload && !weaponRaycast.isDelay)
+        if (!PlayerWeapon.PlayerWeaponManager.IsHolstering && !PlayerWeapon.PlayerWeaponReload.IsReload && !weaponRaycast.isDelay)
         {
-            iscanFire = true;
+            IscanFire = true;
         }
         else
         {
-            iscanFire = false;
+            IscanFire = false;
         }
     }
     public void SetisDelay(bool isDelay)

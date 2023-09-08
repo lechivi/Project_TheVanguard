@@ -25,16 +25,16 @@ public class UI_Exc_InventoryList : SaiMonoBehaviour
             this.exchangePanel = transform.parent.GetComponent<UI_ExchangePanel>();
 
         if (this.currencyText == null)
-            this.currencyText = transform.Find("CurrencyPanel").Find("CurrencyText").GetComponent<TMP_Text>();
+            this.currencyText = transform.Find("CurrencyPanel/Currency_Text").GetComponent<TMP_Text>();
 
         if (this.transactionText == null)
-            this.transactionText = transform.Find("CurrencyPanel").Find("TransactionText").GetComponent<TMP_Text>();
+            this.transactionText = transform.Find("CurrencyPanel/Transaction_Text").GetComponent<TMP_Text>();
 
         if (this.equippedListPanel == null)
-            this.equippedListPanel = transform.Find("Scroll").Find("ListPanel").Find("EquippedListPanel");
+            this.equippedListPanel = transform.Find("Scroll/ListPanel/EquippedListPanel");
 
         if (this.backpackListPanel == null)
-            this.backpackListPanel = transform.Find("Scroll").Find("ListPanel").Find("BackpackListPanel");
+            this.backpackListPanel = transform.Find("Scroll/ListPanel/BackpackListPanel");
 
         if (this.equippedListPanel != null && this.equippedSlotList.Count != this.equippedListPanel.transform.GetComponentsInChildren<UI_Exc_ItemSlot>().Length)
             foreach (UI_Exc_ItemSlot slot in this.equippedListPanel.transform.GetComponentsInChildren<UI_Exc_ItemSlot>())
