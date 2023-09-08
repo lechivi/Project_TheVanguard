@@ -41,7 +41,7 @@ public class CharacterRigAttach : SaiMonoBehaviour
             GameManager.Instance.PlayerCtrl.PlayerWeapon.PlayerWeaponReload.LeftHand = this.leftHand;
         }
 
-        this.aimLookMainFake.SetParent(null);
+       /* this.aimLookMainFake.SetParent(null);*/
     }
 
     private void FixedUpdate()
