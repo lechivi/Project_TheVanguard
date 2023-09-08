@@ -52,19 +52,19 @@ public class DroneState_Follow : IDroneState
         DroneCtrl droneCtrl = this.droneAiCtrl.DroneCtrl;
         if (droneCtrl.TargetFollow != null)
         {
-            droneCtrl.Agent.SetDestination(droneCtrl.TargetFollow.transform.position);
+                droneCtrl.Agent.SetDestination(droneCtrl.TargetFollow.transform.position);
 
-            Quaternion targetRotation = Quaternion.LookRotation(droneCtrl.TargetFollow.position - droneCtrl.transform.position);
-            droneCtrl.transform.rotation = Quaternion.Slerp(droneCtrl.transform.rotation, targetRotation, Time.fixedDeltaTime * droneCtrl.RotationSpeed);
+                Quaternion targetRotation = Quaternion.LookRotation(droneCtrl.TargetFollow.position - droneCtrl.transform.position);
+                droneCtrl.transform.rotation = Quaternion.Slerp(droneCtrl.transform.rotation, targetRotation, Time.fixedDeltaTime * droneCtrl.RotationSpeed);
 
-            if (droneCtrl.Agent.remainingDistance > 5)
-            {
-                droneCtrl.Agent.speed = 7;
-            }
-            else
-            {
-                droneCtrl.Agent.speed = 3;
-            }
+                if (droneCtrl.Agent.remainingDistance > 5)
+                {
+                    droneCtrl.Agent.speed = 7;
+                }
+                else
+                {
+                    droneCtrl.Agent.speed = 3;
+                }          
         }
     }
 }

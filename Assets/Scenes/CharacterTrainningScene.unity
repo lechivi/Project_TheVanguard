@@ -1192,6 +1192,7 @@ MonoBehaviour:
   IsJumping: 0
   IsSprinting: 0
   IsGrounded: 0
+  IsWalking: 0
   Is1D: 1
   rotationSpeed: 360
   rotationSpeedTPS: 15
@@ -1690,6 +1691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCtrl: {fileID: 1993574175}
+  snappedValue: 0
 --- !u!4 &109707452
 Transform:
   m_ObjectHideFlags: 0
@@ -4008,19 +4010,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerWeapon: {fileID: 1166676628}
   crossHairTarget: {fileID: 0}
-  weapon: {fileID: 0}
-  equipped_weapon:
-  - {fileID: 0}
-  ActiveWeaponIndex: 0
   isFiring: 0
-  weaponSlots:
-  - {fileID: 0}
-  rigController: {fileID: 0}
-  isHolster: 0
-  playerCamera: {fileID: 0}
   iscanFire: 0
-  isDelay: 0
-  Timedelay: 0
 --- !u!4 &290434352
 Transform:
   m_ObjectHideFlags: 0
@@ -5989,17 +5980,6 @@ Transform:
   m_Father: {fileID: 1570216689}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &388311330 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4603704077202909271, guid: 411e452f3637c7445b785ab91687620d, type: 3}
-  m_PrefabInstance: {fileID: 4603704076915917173}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &391052646
 GameObject:
   m_ObjectHideFlags: 0
@@ -8372,10 +8352,6 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   dropForce: 3
   pickupObjectPrefab: {fileID: 1351851723991012624, guid: 416d59da41474ad40a03d773659977e7, type: 3}
-  offsetPosMeleeHolderBack: {x: 0, y: 0.11, z: -0.27}
-  offsetRotMeleeHolderBack: {x: 90, y: 0, z: 0}
-  offsetPosMeleeHolderLeft: {x: 0, y: 0, z: 0.08}
-  offsetRotMeleeHolderLeft: {x: -90, y: -90, z: -90}
   swapCooldown: 0.2
 --- !u!4 &520982260
 Transform:
@@ -10350,7 +10326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 225, y: 0}
   m_SizeDelta: {x: 450, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &644498196
@@ -13235,7 +13211,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 225, y: 0}
   m_SizeDelta: {x: 450, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &815935867
@@ -19431,6 +19407,7 @@ MonoBehaviour:
   PlayerWeaponManager: {fileID: 0}
   PlayerWeaponActive: {fileID: 0}
   PlayerWeaponReload: {fileID: 0}
+  PlayerWeaponAttack: {fileID: 0}
   AnimationEvents: {fileID: 0}
   RigAnimator: {fileID: 0}
 --- !u!4 &1166676629
@@ -19867,9 +19844,9 @@ RectTransform:
   m_Father: {fileID: 644498195}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 450, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1188590064
@@ -24638,6 +24615,7 @@ MonoBehaviour:
   playerCtrl: {fileID: 1993574175}
   MovementInput: {x: 0, y: 0}
   SprintInput: 0
+  WalkInput: 0
   JumpInput: 0
   CrounchInput: 0
   ReloadInput: 0
@@ -24647,6 +24625,7 @@ MonoBehaviour:
   AimInput: 0
   SpecialSkillInput: 0
   BattleSkillInput: 0
+  HolsterInput: 0
   MenuOpenCloseInput: 0
 --- !u!4 &1386046718
 Transform:
@@ -30522,6 +30501,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04297e9fb19b4f241bca621a31d52c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainMenuPanel: {fileID: 0}
+  loadingPanel: {fileID: 0}
+  chrSelPanel: {fileID: 0}
   inGamePanel: {fileID: 0}
 --- !u!1 &1669770940
 GameObject:
@@ -32642,7 +32624,6 @@ MonoBehaviour:
   test: 0
   scope: {fileID: 0}
   isAim: 0
-  HandLayer: {fileID: 388311330}
   AimlookMain: {fileID: 0}
   AimLookatCam: {fileID: 0}
   distanceLook1D: 8
@@ -34082,7 +34063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.0008239746}
+  m_AnchoredPosition: {x: 0, y: -0.00033569336}
   m_SizeDelta: {x: 450, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1896205383
@@ -34717,8 +34698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efb10336720ceaa4083f923db643d656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
-  mats: {fileID: 0}
+  switchCamera: {fileID: 0}
 --- !u!4 &1918115905
 Transform:
   m_ObjectHideFlags: 0
@@ -36372,6 +36352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b66e6d792fdf1849a4843375689fc20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  EvenAnimator: {fileID: 0}
   PlayerAim: {fileID: 1793681944}
   PlayerManager: {fileID: 102990113}
   PlayerInput: {fileID: 1386046717}
@@ -36390,7 +36371,6 @@ MonoBehaviour:
   CharacterController: {fileID: 7486215131584154895}
   Animator: {fileID: 7486215131584154891}
   RigAnimator: {fileID: 9202076933096626130}
-  UI_Skill_Icon: {fileID: 1837642395}
 --- !u!114 &1994360938 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3605037348608805285, guid: 3ab771bedc05cd04ab5ed82ba1593342, type: 3}

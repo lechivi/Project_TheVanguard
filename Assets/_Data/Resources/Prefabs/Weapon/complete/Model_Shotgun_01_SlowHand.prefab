@@ -29669,6 +29669,8 @@ MonoBehaviour:
   recoil: {fileID: 4315067331740818143}
   magazine: {fileID: 3125739154904472175, guid: 0a33e0b124588e14cbeb9c23aa47baa4, type: 3}
   isDelay: 0
+  currentAmmo: 0
+  maxAmmo: 0
 --- !u!114 &4315067331740818143
 MonoBehaviour:
   m_ObjectHideFlags: 0

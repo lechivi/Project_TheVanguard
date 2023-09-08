@@ -6,13 +6,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WeaponData", menuName = "SO/WeaponData")]
 public class WeaponDataSO : ItemDataSO
 {
+    [Header("OFFSET SPECIES")]
+    public Species Species;
+
     [Header("OFFSET HOLSTER")]
-    public Vector3 PosHolster;
-    public Vector3 RosHolster;
+    public Vector3 TitanPosHolster;
+    public Vector3 TitanRosHolster;
+
+    public Vector3 DwarfPosHolster;
+    public Vector3 DwarfRosHolster;
+
+    public Vector3 HumanPosHolster;
+    public Vector3 HumanRosHolster;
 
     [Header("OFFSET EQUIP")]
-    public Vector3 PosEquip;
-    public Vector3 RosEquip;
+    public Vector3 TitanPosEquip;
+    public Vector3 TitanRosEquip;
+
+    public Vector3 DwarfPosEquip;
+    public Vector3 DwarfRosEquip;
+
+    public Vector3 HumanPosEquip;
+    public Vector3 HumanRosEquip;
+
 
     [Header("WEAPON")]
 
@@ -79,10 +95,25 @@ public class WeaponDataEditor : Editor
     SerializedProperty icon;
     SerializedProperty model;
 
-    SerializedProperty PosHolster;
-    SerializedProperty RosHolster;
-    SerializedProperty PosEquip;
-    SerializedProperty RosEquip;
+    SerializedProperty species;
+
+    SerializedProperty TitanPosHolster;
+    SerializedProperty TitanRosHolster;
+
+    SerializedProperty DwarfPosHolster;
+    SerializedProperty DwarfRosHolster;
+
+    SerializedProperty HumanPosHolster;
+    SerializedProperty HumanRosHolster;
+
+    SerializedProperty TitanPosEquip;
+    SerializedProperty TitanRosEquip;
+
+    SerializedProperty DwarfPosEquip;
+    SerializedProperty DwarfRosEquip;
+
+    SerializedProperty HumanPosEquip;
+    SerializedProperty HumanRosEquip;
 
     SerializedProperty weaponType;
     SerializedProperty meleeType;
@@ -114,10 +145,30 @@ public class WeaponDataEditor : Editor
         this.icon = serializedObject.FindProperty("Icon");
         this.model = serializedObject.FindProperty("Model");
 
-        this.PosHolster = serializedObject.FindProperty("PosHolster");
-        this.RosHolster = serializedObject.FindProperty("RosHolster");
-        this.PosEquip = serializedObject.FindProperty("PosEquip");
-        this.RosEquip = serializedObject.FindProperty("RosEquip");
+        /*        this.PosHolster = serializedObject.FindProperty("PosHolster");
+                this.RosHolster = serializedObject.FindProperty("RosHolster");
+                this.PosEquip = serializedObject.FindProperty("PosEquip");
+                this.RosEquip = serializedObject.FindProperty("RosEquip");*/
+
+        this.species = serializedObject.FindProperty("Species");
+
+        this.TitanPosHolster = serializedObject.FindProperty("TitanPosHolster");
+        this.TitanRosHolster = serializedObject.FindProperty("TitanRosHolster");
+
+        this.DwarfPosHolster = serializedObject.FindProperty("DwarfPosHolster");
+        this.DwarfRosHolster = serializedObject.FindProperty("DwarfRosHolster");
+
+        this.HumanPosHolster = serializedObject.FindProperty("HumanPosHolster");
+        this.HumanRosHolster = serializedObject.FindProperty("HumanRosHolster");
+
+        this.TitanPosEquip = serializedObject.FindProperty("TitanPosEquip");
+        this.TitanRosEquip = serializedObject.FindProperty("TitanRosEquip");
+
+        this.DwarfPosEquip = serializedObject.FindProperty("DwarfPosEquip");
+        this.DwarfRosEquip = serializedObject.FindProperty("DwarfRosEquip");
+
+        this.HumanPosEquip = serializedObject.FindProperty("HumanPosEquip");
+        this.HumanRosEquip = serializedObject.FindProperty("HumanRosEquip");
 
         this.weaponType = serializedObject.FindProperty("WeaponType");
         this.shotgunType = serializedObject.FindProperty("ShotGunType");
@@ -146,22 +197,53 @@ public class WeaponDataEditor : Editor
     {
         serializedObject.Update();
 
+
         EditorGUILayout.PropertyField(this.itemName);
         EditorGUILayout.PropertyField(this.itemValue);
         EditorGUILayout.PropertyField(this.itemType);
         EditorGUILayout.PropertyField(this.icon);
         EditorGUILayout.PropertyField(this.model);
 
-        EditorGUILayout.PropertyField(this.PosHolster);
-        EditorGUILayout.PropertyField(this.RosHolster);
-        EditorGUILayout.PropertyField(this.PosEquip);
-        EditorGUILayout.PropertyField(this.RosEquip);
+        EditorGUILayout.PropertyField(this.species);
+        Species selectedSpecies = (Species)species.enumValueIndex;
+
+        if (selectedSpecies == Species.Titan)
+        {
+            EditorGUILayout.PropertyField(this.TitanPosHolster);
+            EditorGUILayout.PropertyField(this.TitanRosHolster);
+
+            EditorGUILayout.PropertyField(this.TitanPosEquip);
+            EditorGUILayout.PropertyField(this.TitanRosEquip);
+        }
+
+        else if (selectedSpecies == Species.Dwarf)
+        {
+            EditorGUILayout.PropertyField(this.DwarfPosHolster);
+            EditorGUILayout.PropertyField(this.DwarfRosHolster);
+
+            EditorGUILayout.PropertyField(this.DwarfPosEquip);
+            EditorGUILayout.PropertyField(this.DwarfRosEquip);
+        }
+
+        if (selectedSpecies == Species.Human)
+        {
+            EditorGUILayout.PropertyField(this.HumanPosHolster);
+            EditorGUILayout.PropertyField(this.HumanRosHolster);
+
+            EditorGUILayout.PropertyField(this.HumanPosEquip);
+            EditorGUILayout.PropertyField(this.HumanRosEquip);
+        }
+        else
+        {
+            //nothing
+        }
 
         EditorGUILayout.PropertyField(this.weaponType);
 
         WeaponType selectedWeaponType = (WeaponType)weaponType.enumValueIndex;
         EditorGUILayout.PropertyField(this.rangedDamage);
         EditorGUILayout.PropertyField(this.accuracy);
+
 
         if (selectedWeaponType == WeaponType.AssaultRifle)
         {

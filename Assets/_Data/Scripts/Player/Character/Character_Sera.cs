@@ -47,10 +47,16 @@ public class Character_Sera : Character
 
             this.isReadySpecialSkill = false;
             this.isCoolingDownSpecicalSkill = true;
+            this.isSpecialSkill = true;
             this.animator.SetTrigger("SpecialSkill");
+            this.Invoke("EndSpecialSkill", 0.5f);
         }
     }
 
+    public void EndSpecialSkill() // only Sera
+    {
+        this.isSpecialSkill = false;
+    }
     public IEnumerator CastSpell()
     {
         if (this.enemyHit == null)

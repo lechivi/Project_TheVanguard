@@ -63,7 +63,7 @@ public class PlayerAim : PlayerAbstract
     public void AimWeapon()
     {
         WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (weapon)
+        if (weapon && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
             playerCtrl.RigAnimator.SetBool("aim_"  + weapon.Weapon.WeaponData.WeaponType, isAim);
             if (weapon && weapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)

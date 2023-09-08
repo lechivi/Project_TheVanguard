@@ -19367,10 +19367,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1937876462363981339}
-  - component: {fileID: 1937876462363981332}
   - component: {fileID: 6588926371424444385}
   - component: {fileID: 8524827160185246678}
   - component: {fileID: -4356778807835698815}
+  - component: {fileID: -916838728669198405}
   m_Layer: 0
   m_Name: Model_Sniper_04_Hawkeye
   m_TagString: Gun
@@ -19396,30 +19396,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1937876462363981332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937876462363981338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c475986dd907d44934c546e13fa289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponName: laser
-  weaponslot: 0
-  ForceRaycast: 1
-  weaponData: {fileID: 11400000, guid: a4ce5ccb6fd9e8e489edaa7e4f8ecce3, type: 2}
-  runtTimeFire: 0
-  muzzleflash:
-  - {fileID: 2526478012837679391}
-  - {fileID: 2526197831487771065}
-  hitEffect: {fileID: 443462228926695670}
-  raycastOrigin: {fileID: 5129855127312876690}
-  recoil: {fileID: 6588926371424444385}
-  magazine: {fileID: 7494527432246246921}
 --- !u!114 &6588926371424444385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19440,13 +19416,9 @@ MonoBehaviour:
   playerFPSCam: {fileID: 0}
   cameraShake: {fileID: 0}
   rigController: {fileID: 0}
-  verticalRecoil: 10
-  horizontalRecoil: 0
   duration: 0.1
   recoilPattern:
   - {x: 0, y: 0}
-  index: 0
-  recoilFPS: 0
   raycastWeapon: {fileID: 0}
 --- !u!114 &8524827160185246678
 MonoBehaviour:
@@ -19515,6 +19487,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: a4ce5ccb6fd9e8e489edaa7e4f8ecce3, type: 2}
   weaponSlot: 03000000
+--- !u!114 &-916838728669198405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1937876462363981338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1256db8f307b35644bd92442fe362125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ForceRaycast: 0
+  Weapon: {fileID: 0}
+  runtTimeFire: 0
+  muzzleflash:
+  - {fileID: 2526478012837679391}
+  - {fileID: 2526197831487771065}
+  hitEffect: {fileID: 443462228926695670}
+  raycastOrigin: {fileID: 5129855127312876690}
+  recoil: {fileID: 6588926371424444385}
+  magazine: {fileID: 7494527432246246921}
+  isDelay: 0
+  currentAmmo: 0
+  maxAmmo: 0
 --- !u!1 &2429105720491655083
 GameObject:
   m_ObjectHideFlags: 0
@@ -19609,7 +19606,7 @@ GameObject:
   - component: {fileID: 2432248200773974013}
   - component: {fileID: 2526197831487771065}
   - component: {fileID: 2525303594813124885}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: FlashHeadon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24491,7 +24488,7 @@ GameObject:
   - component: {fileID: 2432181313600151633}
   - component: {fileID: 2526478012837679391}
   - component: {fileID: 2525374524986831757}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: MuzzleFlash01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

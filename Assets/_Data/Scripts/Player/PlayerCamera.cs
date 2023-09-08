@@ -9,7 +9,8 @@ public class PlayerCamera : PlayerAbstract
     public Camera cameraMain;
     public CinemachineFreeLook TPSCam;
     public CinemachineVirtualCamera FPSCam;
-    public CinemachineCameraOffset CameraOffsetTPS;
+   // public CinemachineCameraOffset CameraOffsetTPS;
+    public GameObject IgnoreRaycast;
     public bool originalTPSCam;
     public int POV;
     protected override void Awake()
@@ -25,19 +26,25 @@ public class PlayerCamera : PlayerAbstract
 
     private void Update()
     {
-        SetOriginalCamera();
+        Handle2ModeCamera();
         HandleCamera();
     }
 
-    public void SetOriginalCamera()
+    public void Handle2ModeCamera()
     {
-        if (TPSCam.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
+        if (TPSCam.gameObject.activeInHierarchy == true)
         {
-            originalTPSCam = true;
+            if (Input.GetMouseButtonDown(1))
+            {
+                originalTPSCam = true;
+            }
         }
-        else if (FPSCam.gameObject.activeInHierarchy == true && Input.GetMouseButtonDown(1))
+        else if (FPSCam.gameObject.activeInHierarchy == true)
         {
-            originalTPSCam = false;
+            if (Input.GetMouseButtonDown(1))
+            {
+                originalTPSCam = false;
+            }
         }
     }
 
@@ -63,18 +70,20 @@ public class PlayerCamera : PlayerAbstract
 
     public void ChangeOriginalCamera()
     {
-        originalTPSCam =  !originalTPSCam;
+        originalTPSCam = !originalTPSCam;
     }
 
     public void ChangeFPSCam()
     {
+        this.IgnoreRaycast.SetActive(false);
         playerCtrl.PlayerLocomotion.Is1D = false;
         TPSCam.gameObject.SetActive(false);
         FPSCam.gameObject.SetActive(true);
     }
 
     public void ChangeTPSCam()
-    {
+    {;
+        this.IgnoreRaycast.SetActive(true);
         TPSCam.gameObject.SetActive(true);
         FPSCam.gameObject.SetActive(false);
     }

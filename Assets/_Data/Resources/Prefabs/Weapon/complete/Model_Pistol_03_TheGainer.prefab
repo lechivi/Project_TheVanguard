@@ -9942,8 +9942,8 @@ GameObject:
   - component: {fileID: 852830827521311583}
   - component: {fileID: 860728104645532463}
   - component: {fileID: 811929901988647513}
+  - component: {fileID: -6543767671955736483}
   - component: {fileID: -2103877707425704042}
-  - component: {fileID: -3660477222936571162}
   - component: {fileID: -1346391180470338657}
   - component: {fileID: -582566534928111479}
   m_Layer: 0
@@ -10038,6 +10038,31 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43184924740132580, guid: 6b0023035a38d764e8176997fe862e4f, type: 2}
+--- !u!114 &-6543767671955736483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 838931215727257835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1256db8f307b35644bd92442fe362125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ForceRaycast: 0
+  Weapon: {fileID: 0}
+  runtTimeFire: 0
+  muzzleflash:
+  - {fileID: 648415343301130913}
+  - {fileID: 648135197918165511}
+  hitEffect: {fileID: 3303116000238281544}
+  raycastOrigin: {fileID: 7836421696077000492}
+  recoil: {fileID: -1346391180470338657}
+  magazine: {fileID: 9190927889419437419}
+  isDelay: 0
+  currentAmmo: 0
+  maxAmmo: 0
 --- !u!114 &-2103877707425704042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10052,28 +10077,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: f61fda46c8dd8d949bd661a0b7850511, type: 2}
   weaponSlot: 02000000
---- !u!114 &-3660477222936571162
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 838931215727257835}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c475986dd907d44934c546e13fa289, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ForceRaycast: 0
-  Weapon: {fileID: -2103877707425704042}
-  runtTimeFire: 0
-  muzzleflash:
-  - {fileID: 648415343301130913}
-  - {fileID: 648135197918165511}
-  hitEffect: {fileID: 3303116000238281544}
-  raycastOrigin: {fileID: 7836421696077000492}
-  recoil: {fileID: -1346391180470338657}
-  magazine: {fileID: 9190927889419437419}
 --- !u!114 &-1346391180470338657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10097,7 +10100,7 @@ MonoBehaviour:
   duration: 0.1
   recoilPattern:
   - {x: 1, y: 1}
-  raycastWeapon: {fileID: -3660477222936571162}
+  raycastWeapon: {fileID: 0}
 --- !u!114 &-582566534928111479
 MonoBehaviour:
   m_ObjectHideFlags: 0

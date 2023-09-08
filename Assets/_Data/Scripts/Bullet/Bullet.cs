@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public float time;
     public Vector3 intitialPosition;
     public Vector3 intitialVelocity;
-    public TrailRenderer tracer;
+/*    public TrailRenderer tracer;*/
     protected bool isActive = false;
     public bool IsActive => isActive;
 
@@ -19,8 +19,8 @@ public class Bullet : MonoBehaviour
         isActive = false;
         intitialPosition = Vector3.zero;
         intitialVelocity = Vector3.zero;
-        tracer.emitting = false;
-        tracer.Clear();
+/*        tracer.emitting = false;
+        tracer.Clear();*/
 
     }
 
@@ -31,7 +31,7 @@ public class Bullet : MonoBehaviour
         time = 0f;
         intitialPosition = position;
         intitialVelocity = velocity;
-        tracer.emitting = true;
-        tracer.AddPosition(position);
+/*        tracer.emitting = true;
+        tracer.AddPosition(position);*/
     }
 }

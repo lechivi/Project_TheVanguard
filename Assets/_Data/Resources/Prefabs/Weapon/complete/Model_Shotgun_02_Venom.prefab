@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1062771649183824593}
   - component: {fileID: 1065032749115587047}
   - component: {fileID: 1072421873755754839}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Mod_B_Handguard_Lower_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,8 +25,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059566046751332419}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.029, y: 0.021, z: 0.286}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.015, z: 0.295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1236878519694369274}
   - component: {fileID: 1244093977845021886}
   - component: {fileID: 1254328779979493428}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Shotgun_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 1239956421262435634}
   - component: {fileID: 1246680268034493008}
   - component: {fileID: 1254512734164361604}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Shotgun_Slide_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   - component: {fileID: 1236892436228647378}
   - component: {fileID: 1246401981518170522}
   - component: {fileID: 1256227237913822808}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Shotgun_Trigger_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10176,7 +10176,7 @@ GameObject:
   - component: {fileID: 6083134240551788873}
   - component: {fileID: 6057786596705641643}
   - component: {fileID: 6067923716739250881}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: SM_Wep_Mod_A_Mag_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29501,6 +29501,8 @@ MonoBehaviour:
   recoil: {fileID: 4315067331740818143}
   magazine: {fileID: 3125739154904472175, guid: 0a33e0b124588e14cbeb9c23aa47baa4, type: 3}
   isDelay: 0
+  currentAmmo: 0
+  maxAmmo: 0
 --- !u!114 &4315067331740818143
 MonoBehaviour:
   m_ObjectHideFlags: 0

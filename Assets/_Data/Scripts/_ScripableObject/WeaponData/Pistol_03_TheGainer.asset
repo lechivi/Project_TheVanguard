@@ -17,10 +17,22 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 4683345266131705801, guid: 54e962fff0c8e4e409a8574ae7d61705, type: 3}
   Model: {fileID: 838931215727257835, guid: 3892ee2083f1b1744a5127a0f1c41d1e, type: 3}
-  Pos: {x: 0, y: 0, z: 0}
-  Ros: {x: 0, y: 0, z: 0}
+  Species: 1
+  TitanPosHolster: {x: 0.276, y: 0, z: -0.001}
+  TitanRosHolster: {x: 82.068, y: 172.674, z: 207.803}
+  DwarfPosHolster: {x: 0.377, y: 0.001, z: 0.03}
+  DwarfRosHolster: {x: 79.933, y: -118.967, z: -114.09}
+  HumanPosHolster: {x: -0.087, y: -0.058, z: -0.182}
+  HumanRosHolster: {x: -0.724, y: 100.808, z: -4.639}
+  TitanPosEquip: {x: 0, y: 0, z: 0}
+  TitanRosEquip: {x: 0, y: 0, z: 0}
+  DwarfPosEquip: {x: 0, y: 0, z: 0}
+  DwarfRosEquip: {x: 0, y: 0, z: 0}
+  HumanPosEquip: {x: 0, y: 0, z: 0}
+  HumanRosEquip: {x: 0, y: 0, z: 0}
   WeaponType: 1
   ShotGunType: 0
+  MeleeType: 0
   rangedDamage: 0
   accuracy: 0
   timePerFireRate: 0
@@ -29,7 +41,7 @@ MonoBehaviour:
   timeDelayPerShot: 0.4
   ammoType: 1
   ammoPerShot: 1
-  ammo: 9161
+  ammo: 16
   magazineSize: 16
   range: 0
   spreadAiming: 0

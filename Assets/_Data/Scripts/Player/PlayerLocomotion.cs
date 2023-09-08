@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PlayerLocomotion : PlayerAbstract
 {
-    public OnEventAnimator Onanimatormove;
+    // public OnEventAnimator Onanimatormove;
 
     [Header("Movement Flag")]
     public bool IsJumping;
@@ -33,18 +33,25 @@ public class PlayerLocomotion : PlayerAbstract
     protected override void Awake()
     {
         base.Awake();
-        this.Onanimatormove = playerCtrl.EvenAnimator;
+        // this.Onanimatormove = playerCtrl.Character.EventAnimator;
         this.Is1D = false;
     }
 
     private void Start()
     {
-        if (Onanimatormove != null)
+        /* if (Onanimatormove != null)
+         {
+             Onanimatormove.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+         }*/
+        if (this.playerCtrl.Character.EventAnimator)
         {
-            Onanimatormove.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+            playerCtrl.Character.EventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
         }
     }
 
+    private void Update()
+    {
+    }
     private void OnDisable()
     {
         this.ResetLocomotion();
@@ -54,7 +61,7 @@ public class PlayerLocomotion : PlayerAbstract
     {
         HandleJump();
         Handle1DMode();
-       // HandleSprinting();
+        // HandleSprinting();
     }
 
     public void HanldeAllMovementFix()
@@ -96,16 +103,16 @@ public class PlayerLocomotion : PlayerAbstract
 
     public void SetIsSprinting(bool SprintingInput)
     {
-        bool canSprint = (playerCtrl.PlayerInput.MovementInput != Vector2.zero) && 
-            (!playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring) && (!playerCtrl.PlayerAim.isAim) && 
+        bool canSprint = (playerCtrl.PlayerInput.MovementInput != Vector2.zero) &&
+            (!playerCtrl.PlayerWeapon.PlayerWeaponActive.isFiring) && (!playerCtrl.PlayerAim.isAim) &&
             (!playerCtrl.PlayerWeapon.PlayerWeaponReload.isReload);
-        if (canSprint && SprintingInput )
+        if (canSprint && SprintingInput)
         {
             this.IsSprinting = true;
         }
         else
         {
-            this.IsSprinting= false;
+            this.IsSprinting = false;
         }
     }
 
@@ -174,7 +181,7 @@ public class PlayerLocomotion : PlayerAbstract
         return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
     }
 
-    private void HandleAnimatorMoveEvent()
+    public void HandleAnimatorMoveEvent()
     {
         rootMotion += playerCtrl.Animator.deltaPosition;
     }

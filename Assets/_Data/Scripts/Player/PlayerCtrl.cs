@@ -7,7 +7,6 @@ public class PlayerCtrl : SaiMonoBehaviour
 {
     public static PlayerCtrl Instance;
 
-    public OnEventAnimator EvenAnimator;
     public PlayerAim PlayerAim;
     public PlayerManager PlayerManager;
     public PlayerInput PlayerInput;
@@ -32,7 +31,6 @@ public class PlayerCtrl : SaiMonoBehaviour
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        this.LoadEventAnimator();
         this.LoadPlayerAim();
         this.LoadPlayerManager();
         this.LoadPlayerInput();
@@ -59,14 +57,6 @@ public class PlayerCtrl : SaiMonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        /*if(Input.GetMouseButtonDown(0))
-        {
-            Animator.SetTrigger("Attack");
-        }*/
-
-    }
 
     protected virtual void LoadPlayerInfoScanner()
     {
@@ -86,13 +76,6 @@ public class PlayerCtrl : SaiMonoBehaviour
         }
     }
 
-    protected virtual void LoadEventAnimator ()
-    {
-        if(Character != null)
-        {
-            EvenAnimator = Character.GetComponent<OnEventAnimator>();
-        }
-    }
     protected virtual void LoadPlayerAim()
     {
         if (this.PlayerAim == null)

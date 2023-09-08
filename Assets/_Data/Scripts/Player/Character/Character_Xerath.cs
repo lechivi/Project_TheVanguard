@@ -16,6 +16,7 @@ public class Character_Xerath : Character
     [SerializeField] private Animator b_RigAnimator;
     [SerializeField] private Transform b_TPS_LookAt;
     [SerializeField] private Transform b_FPS_Follow;
+    [SerializeField] private OnEventAnimator b_EventAnimator;
 
     [SerializeField] private GameObject alphaObj;
     [SerializeField] private CharacterController a_CharacterController;
@@ -23,6 +24,7 @@ public class Character_Xerath : Character
     [SerializeField] private Animator a_RigAnimator;
     [SerializeField] private Transform a_TPS_LookAt;
     [SerializeField] private Transform a_FPS_Follow;
+    [SerializeField] private OnEventAnimator a_EventAnimator;
 
     [Space(10)]
     [SerializeField] private Vector3 b_CameraOffset;
@@ -62,6 +64,8 @@ public class Character_Xerath : Character
 
         if (this.betaObj != null && this.b_FPS_Follow == null)
             this.b_FPS_Follow = this.betaObj.transform.Find("RigLayer").Find("WeaponHolder").Find("FPS_Follow");
+        if (this.betaObj != null && this.b_EventAnimator == null)
+            this.b_EventAnimator = this.betaObj.GetComponent<OnEventAnimator>();
 
         if (this.alphaObj == null)
             this.alphaObj = transform.Find("Xerath_Alpha").gameObject;
@@ -80,7 +84,10 @@ public class Character_Xerath : Character
 
         if (this.alphaObj != null && this.a_FPS_Follow == null)
             this.a_FPS_Follow = this.alphaObj.transform.Find("RigLayer").Find("WeaponHolder").Find("FPS_Follow");
+        if (this.alphaObj != null && this.a_EventAnimator == null)
+            this.a_EventAnimator = this.alphaObj.GetComponent<OnEventAnimator>();
     }
+
     protected override void LoadCharacterTransform()
     {
         if (this.isBeta && this.characterTransform != this.betaObj.transform)
@@ -148,10 +155,23 @@ public class Character_Xerath : Character
         }
     }
 
+    protected override void LoadOnEventAnimator()
+    {
+        if (this.isBeta && this.eventAnimator != this.b_EventAnimator)
+        {
+            this.eventAnimator = this.b_EventAnimator;
+        }
+        else if (!this.isBeta && this.eventAnimator != this.a_EventAnimator)
+        {
+            this.eventAnimator = this.a_EventAnimator;
+        }
+    }
+
     protected override void Awake()
     {
         base.Awake();
         this.b_CameraOffset = PlayerCtrl.Instance.PlayerCamera.TPSCam.GetComponent<CinemachineCameraOffset>().m_Offset;
+        this.a_EventAnimator.OnAnimatorMoveEvent += PlayerCtrl.Instance.PlayerLocomotion.HandleAnimatorMoveEvent;
     }
 
     private void OnEnable()
@@ -181,17 +201,18 @@ public class Character_Xerath : Character
         {
             PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
         }
-/*        else
-        {
-            //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
-            PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
-        }*/
+        /*        else
+                {
+                    //if transform to Xerath_Alpha, change action mouse left to Alpha's unarmed attack
+                    PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(true);
+                }*/
     }
 
     private IEnumerator TransformationCoroutine()
     {
         this.isReadySpecialSkill = false;
         this.b_Animator.SetTrigger("Transformation");
+        this.isSpecialSkill = true;
         yield return new WaitForSeconds(0.5f);
 
         this.Evolution();
@@ -215,10 +236,23 @@ public class Character_Xerath : Character
 
     private void Devolution()
     {
+        this.isSpecialSkill = false;
         this.isCoolingDownSpecicalSkill = true;
         this.ChangerCameraOffset(true);
         this.SetForm(true);
         this.SetActiveCharacter();
+        if (!PlayerWeaponManager.Instance.originalHolster)
+        {
+            Weapon weapon = PlayerWeaponManager.Instance.GetActiveWeapon();
+            if (weapon == null) return;
+            PlayerWeaponManager.Instance.SetAnimationEquip(weapon);
+        }
+        else if (PlayerWeaponManager.Instance.originalHolster)
+        {
+            Weapon weapon = PlayerWeaponManager.Instance.GetActiveWeapon();
+            if (weapon == null) return;
+            PlayerWeaponManager.Instance.SetAnimationHolsterIsnotSpecial(weapon);
+        }
     }
 
     private void PlayTransformFX(Vector3 position)
@@ -259,6 +293,7 @@ public class Character_Xerath : Character
         this.LoadRigAnimator();
         this.LoadTPSLookAt();
         this.LoadFPSFollow();
+        this.LoadOnEventAnimator();
     }
 
     private void ChangerCameraOffset(bool isBeta)

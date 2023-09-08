@@ -4,15 +4,28 @@ using UnityEngine;
 
 public class PlayerInteract : PlayerAbstract
 {
-    [SerializeField] private Transform mainCamera;
+    [SerializeField] private Transform raycastOriginal;
     [SerializeField] private float interactDistance = 7.5f;
     [SerializeField] private LayerMask pickupLayer;
 
+    public Transform InteractableRaycastObject;
+
+    private void Update()
+    {
+        if(playerCtrl.PlayerCamera.TPSCam.gameObject.activeInHierarchy == true)
+        {
+            this.raycastOriginal = InteractableRaycastObject.transform;
+        }
+        else
+        {
+            this.raycastOriginal = Camera.main.transform;
+        }
+    }
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        if (this.mainCamera == null)
-            this.mainCamera = Camera.main.transform;
+        if (this.raycastOriginal == null)
+            this.raycastOriginal = /*Camera.main.transform;*/InteractableRaycastObject.transform;
     }
     public void Interact()
     {
@@ -59,7 +72,7 @@ public class PlayerInteract : PlayerAbstract
 
     public IInteractable GetInteractableObjectByRaycast()
     {
-        Physics.Raycast(this.mainCamera.transform.position, this.mainCamera.transform.forward, 
+        Physics.Raycast(this.raycastOriginal.transform.position, this.raycastOriginal.transform.forward, 
             out RaycastHit hitInfo, this.interactDistance, this.pickupLayer);
         if (hitInfo.collider != null && hitInfo.transform.TryGetComponent(out IInteractable interactable))
         {
@@ -71,10 +84,4 @@ public class PlayerInteract : PlayerAbstract
         return null;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawLine(this.mainCamera.transform.position, this.mainCamera.transform.position + 
-            (this.mainCamera.transform.forward * this.interactDistance));
-    }
 }

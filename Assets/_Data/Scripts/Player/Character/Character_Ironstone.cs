@@ -121,14 +121,14 @@ public class Character_Ironstone : Character
 
     public void Transform()
     {
-        this.isCharacterForm = true;
+        this.isSpecialSkill = true;
         this.isReadySpecialSkill = false;
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
         this.Animator.SetTrigger("HammerTransfer");
     }
     public void RevertoForm()
     {
-        this.isCharacterForm = false;
+        this.isSpecialSkill = false;
         isCoolingDownSpecicalSkill = true;
         this.Animator.SetBool("RevertoForm", true);
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
