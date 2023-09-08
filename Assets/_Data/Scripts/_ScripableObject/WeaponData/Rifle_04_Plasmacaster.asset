@@ -15,15 +15,41 @@ MonoBehaviour:
   ItemName: Plasmacaster
   ItemValue: 0
   ItemType: 1
-  WeaponType: 2
   Icon: {fileID: 3798249422001739287, guid: 68cab0b9ffde00f49af965eb84b3481b, type: 3}
   Model: {fileID: 8547770153876791363, guid: 5fdcfbc2b144054489de75645201d981, type: 3}
+  Species: 0
+  TitanPosHolster: {x: 0, y: 0, z: 0}
+  TitanRosHolster: {x: 0, y: 0, z: 0}
+  DwarfPosHolster: {x: 0, y: 0, z: 0}
+  DwarfRosHolster: {x: 0, y: 0, z: 0}
+  HumanPosHolster: {x: 0, y: 0, z: 0}
+  HumanRosHolster: {x: 0, y: 0, z: 0}
+  TitanPosEquip: {x: 0, y: 0, z: 0}
+  TitanRosEquip: {x: 0, y: 0, z: 0}
+  DwarfPosEquip: {x: 0, y: 0, z: 0}
+  DwarfRosEquip: {x: 0, y: 0, z: 0}
+  HumanPosEquip: {x: 0, y: 0, z: 0}
+  HumanRosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 2
+  ShotGunType: 0
+  MeleeType: 0
   rangedDamage: 0
-  fireRate: 0
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 2
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads:
+  - -0.01
+  - 0.01
+  - -0.01
+  - 0.01
   meleeDamage: 0
   swingSpeed: 0

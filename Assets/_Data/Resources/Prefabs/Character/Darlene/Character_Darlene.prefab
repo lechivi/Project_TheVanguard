@@ -6897,6 +6897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: d2fe1d951d5e13342a0aae678f53487e, type: 2}
+  characterRigAttach: {fileID: 0}
   characterTransform: {fileID: 6371441348655953812}
   characterController: {fileID: 6371441348655953819}
   eventAnimator: {fileID: 0}
@@ -6967,10 +6968,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimLookMainFake: {fileID: 3731077922272341368}
   leftHand: {fileID: 8679795843653808139}
-  aimSpine1: {fileID: 4718058967169146056}
-  aimSpine2: {fileID: 4718058967181714858}
-  aimHead: {fileID: 4718058967991524976}
-  weaponPose: {fileID: 4718058968678137052}
 --- !u!1 &7000723458189833350
 GameObject:
   m_ObjectHideFlags: 0
