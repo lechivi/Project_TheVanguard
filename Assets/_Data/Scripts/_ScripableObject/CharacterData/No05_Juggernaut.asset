@@ -23,7 +23,7 @@ MonoBehaviour:
   Power: 5
   Defence: 5
   HitPoint: 5
-  ExecutionSkillTime: 0
+  ExecutionSkillTime: 3
   CooldownSkillTime: 3
   SpecialSkillName: Badass Laser
   SpecialSkillIcon: {fileID: 21300000, guid: 19bbea7fac4bc664b9fd22b99b58a4a2, type: 3}
