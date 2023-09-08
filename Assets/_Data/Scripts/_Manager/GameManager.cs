@@ -99,4 +99,24 @@ public class GameManager : BaseManager<GameManager>
 
         this.playerCtrl.gameObject.SetActive(true);
     }
+
+    public void GenerateCharacter(Character character)
+    {
+        if (this.characterData == null) return;
+
+        //Character character = null;
+        //foreach (Character chr in this.listCharacter)
+        //{
+        //    if (chr.CharacterData == this.characterData)
+        //    {
+        //        character = Instantiate(chr, position, rotation);
+        //        break;
+        //    }
+        //}
+        //if (character == null) return;
+
+        this.playerCtrl.SetCharacter(character);
+        character.CharacterRigAttach.SetRig();
+        this.playerCtrl.gameObject.SetActive(true);
+    }
 }

@@ -12,7 +12,7 @@ public class IgnoreZone : MonoBehaviour
         }
     }
 
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer.Equals(LayerMask.NameToLayer("Default")))

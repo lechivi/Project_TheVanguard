@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Ultraroid
   CharacterClass: The Robot
-  Species: 15
+  Species: 1
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Experimental robotic creation with powerful energy capabilities,

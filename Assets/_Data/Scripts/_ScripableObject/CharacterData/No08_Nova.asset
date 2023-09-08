@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Nova
   CharacterClass: The Deadshot
-  Species: 10
+  Species: 1
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Elite sharpshooter enhanced with cybernetic implants, skilled

@@ -7,10 +7,10 @@ public class CharacterRigAttach : SaiMonoBehaviour
 {
     [SerializeField] private Transform aimLookMainFake;
     [SerializeField] private Transform leftHand;
-    //[SerializeField] private MultiAimConstraint aimSpine1;
-    //[SerializeField] private MultiAimConstraint aimSpine2;
-    //[SerializeField] private MultiAimConstraint aimHead;
-    //[SerializeField] private MultiAimConstraint weaponPose;
+    [SerializeField] private MultiAimConstraint aimSpine1;
+    [SerializeField] private MultiAimConstraint aimSpine2;
+    [SerializeField] private MultiAimConstraint aimHead;
+    [SerializeField] private MultiAimConstraint weaponPose;
 
     protected override void LoadComponent()
     {
@@ -41,7 +41,7 @@ public class CharacterRigAttach : SaiMonoBehaviour
             GameManager.Instance.PlayerCtrl.PlayerWeapon.PlayerWeaponReload.LeftHand = this.leftHand;
         }
 
-        this.aimLookMainFake.SetParent(null);
+        //this.aimLookMainFake.parent = null;
     }
 
     private void FixedUpdate()
@@ -50,7 +50,7 @@ public class CharacterRigAttach : SaiMonoBehaviour
         {
             if (GameManager.Instance.PlayerCtrl.Character != null)
             {
-                this.aimLookMainFake.transform.position = GameManager.Instance.PlayerCtrl.PlayerAim.AimLookMain.transform.position;
+                this.aimLookMainFake.transform.localPosition = GameManager.Instance.PlayerCtrl.PlayerAim.AimLookMain.transform.position;
             }
         }
     }

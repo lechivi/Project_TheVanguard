@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Sera
   CharacterClass: The Enchantress
-  Species: 5
+  Species: 1
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Mystical and powerful being with control over arcane energies,

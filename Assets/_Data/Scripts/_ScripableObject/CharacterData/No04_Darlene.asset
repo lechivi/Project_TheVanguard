@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Darlene
   CharacterClass: The Survivor
-  Species: 5
+  Species: 1
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Resourceful scavenger and tinkerer surviving in a post-apocalyptic

@@ -5177,7 +5177,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 3731077922272341368}
+        transform: {fileID: 0}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5263,7 +5263,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 3731077922272341368}
+        transform: {fileID: 0}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5518,7 +5518,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 3731077922272341368}
+        transform: {fileID: 0}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -5771,7 +5771,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4718058968229891125}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6147,7 +6147,7 @@ MonoBehaviour:
     m_SourceObjects:
       m_Length: 1
       m_Item0:
-        transform: {fileID: 3731077922272341368}
+        transform: {fileID: 0}
         weight: 1
       m_Item1:
         transform: {fileID: 0}
@@ -6789,12 +6789,12 @@ GameObject:
   m_Component:
   - component: {fileID: 6371441348655953812}
   - component: {fileID: 6424896598924351202}
-  - component: {fileID: 6371441348655953819}
   - component: {fileID: 6371441348655953817}
-  - component: {fileID: 6424896598924351203}
-  - component: {fileID: 6424896598924351204}
-  - component: {fileID: 2039804490022726774}
+  - component: {fileID: 6371441348655953819}
   - component: {fileID: 2039804490022726775}
+  - component: {fileID: 6424896598924351203}
+  - component: {fileID: 2039804490022726774}
+  - component: {fileID: 6424896598924351204}
   - component: {fileID: 8101376817576082277}
   m_Layer: 6
   m_Name: Character_Darlene
@@ -6846,24 +6846,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!143 &6371441348655953819
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6377073322792704226}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Height: 1.8
-  m_Radius: 0.2
-  m_SlopeLimit: 70
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.0001
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!114 &6371441348655953817
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6884,6 +6866,36 @@ MonoBehaviour:
   - m_Rig: {fileID: 4718058966801287350}
     m_Active: 1
   m_Effectors: []
+--- !u!143 &6371441348655953819
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377073322792704226}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 1.8
+  m_Radius: 0.2
+  m_SlopeLimit: 70
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &2039804490022726775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377073322792704226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b7720d61da5e854db16435c87c851fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &6424896598924351203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6897,6 +6909,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: d2fe1d951d5e13342a0aae678f53487e, type: 2}
+  characterRigAttach: {fileID: 0}
   characterTransform: {fileID: 6371441348655953812}
   characterController: {fileID: 6371441348655953819}
   eventAnimator: {fileID: 0}
@@ -6912,6 +6925,19 @@ MonoBehaviour:
   droneFollowPoint: {fileID: 4821004516000118514}
   summonFX: {fileID: 2205641754554643505}
   droneLifeTime: 600
+--- !u!114 &2039804490022726774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6377073322792704226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerPoint: {fileID: 8904160942012803155}
 --- !u!114 &6424896598924351204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6928,31 +6954,6 @@ MonoBehaviour:
   amount: 2
   pools: []
   spawnPool: {fileID: 0}
---- !u!114 &2039804490022726774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6377073322792704226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  centerPoint: {fileID: 8904160942012803155}
---- !u!114 &2039804490022726775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6377073322792704226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b7720d61da5e854db16435c87c851fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &8101376817576082277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6967,10 +6968,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aimLookMainFake: {fileID: 3731077922272341368}
   leftHand: {fileID: 8679795843653808139}
-  aimSpine1: {fileID: 4718058967169146056}
-  aimSpine2: {fileID: 4718058967181714858}
-  aimHead: {fileID: 4718058967991524976}
-  weaponPose: {fileID: 4718058968678137052}
+  aimSpine1: {fileID: 0}
+  aimSpine2: {fileID: 0}
+  aimHead: {fileID: 0}
+  weaponPose: {fileID: 0}
 --- !u!1 &7000723458189833350
 GameObject:
   m_ObjectHideFlags: 0
@@ -6986,7 +6987,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3731077922272341368
 Transform:
   m_ObjectHideFlags: 0

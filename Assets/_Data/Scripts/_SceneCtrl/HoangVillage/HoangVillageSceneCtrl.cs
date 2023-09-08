@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-using UnityEngine.Rendering;
 
 public class HoangVillageSceneCtrl : SaiMonoBehaviour
 {
@@ -12,6 +12,7 @@ public class HoangVillageSceneCtrl : SaiMonoBehaviour
     [SerializeField] private Transform aimLookMain;
     [SerializeField] private CinemachineVirtualCamera fpsCamera;
     [SerializeField] private CinemachineFreeLook tpsCamera;
+    [SerializeField] private List<Character> listCharacter = new List<Character>();
 
     public Camera MainCamer { get => this.mainCamera; }
     public GameObject IgnoreRaycastZone { get => this.ignoreRaycastZone; }
@@ -50,6 +51,15 @@ public class HoangVillageSceneCtrl : SaiMonoBehaviour
             this.tpsCamera = GameObject.Find("TPSCamera").GetComponent<CinemachineFreeLook>();
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        foreach (Character chr in this.listCharacter)
+        {
+            chr.gameObject.SetActive(false);
+        }
+    }
+
     private void Start()
     {
         if (AudioManager.HasInstance)
@@ -79,7 +89,19 @@ public class HoangVillageSceneCtrl : SaiMonoBehaviour
 
             playerCtrl.PlayerWeapon.PlayerWeaponActive.CrosshairTarget = this.crosshairTarget;
 
-            GameManager.Instance.GenerateCharacter(transform.position, transform.rotation);
+            //GameManager.Instance.GenerateCharacter(transform.position, transform.rotation);
+            foreach (Character chr in this.listCharacter)
+            {
+                if (chr.CharacterData == GameManager.Instance.CharacterData)
+                {
+                    chr.gameObject.SetActive(true);
+                    chr.transform.position = transform.position;
+                    chr.transform.rotation = transform.rotation;
+
+                    GameManager.Instance.GenerateCharacter(chr);
+                    break;
+                }
+            }
         }
 
         if (UIManager.HasInstance)

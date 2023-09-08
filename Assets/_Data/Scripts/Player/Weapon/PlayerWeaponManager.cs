@@ -541,14 +541,13 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
                     weapon.gameObject.transform.localPosition = weapon.WeaponData.TitanPosHolster;
                     weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.TitanRosHolster);
                 }
-                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
+                else if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
                 {
                     if (weapon.gameObject.transform.localPosition == weapon.WeaponData.DwarfPosHolster) return;
                     weapon.gameObject.transform.localPosition = weapon.WeaponData.DwarfPosHolster;
                     weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.DwarfRosHolster);
                 }
-                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Human ||
-                    PlayerCtrl.Instance.Character.CharacterData.Species == Species.Siren)
+                else
                 {
                     Debug.Log("Siren");
                     if (weapon.gameObject.transform.localPosition == weapon.WeaponData.HumanPosHolster) return;
@@ -564,14 +563,13 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
                     weapon.gameObject.transform.localPosition = weapon.WeaponData.TitanPosEquip;
                     weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.TitanRosEquip);
                 }
-                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
+                else if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
                 {
                     if (weapon.gameObject.transform.localPosition == weapon.WeaponData.DwarfPosEquip) return;
                     weapon.gameObject.transform.localPosition = weapon.WeaponData.DwarfPosEquip;
                     weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.DwarfRosEquip);
                 }
-                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Human ||
-                    PlayerCtrl.Instance.Character.CharacterData.Species == Species.Siren)
+                else
                 {
                     if (weapon.gameObject.transform.localPosition == weapon.WeaponData.HumanPosEquip) return;
                     weapon.gameObject.transform.localPosition = weapon.WeaponData.HumanPosEquip;

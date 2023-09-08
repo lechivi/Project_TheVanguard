@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Vanessa
   CharacterClass: The Rose Of Western
-  Species: 5
+  Species: 1
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Skilled gunslinger and cowgirl from the Western territories,

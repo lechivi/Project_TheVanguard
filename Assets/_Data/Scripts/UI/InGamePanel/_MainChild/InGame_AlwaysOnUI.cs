@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,12 @@ public class InGame_AlwaysOnUI : BaseUIElement
     [SerializeField] private UI_PlayerInteract ui_PlayerInteract;
     [SerializeField] private UI_PlayerInfoScanner ui_PlayerInfoScanner;
     [SerializeField] private UI_Skill ui_Skill;
+
+    [SerializeField] private Slider healthSlider;
+    [SerializeField] private Slider chargeSlider;
+    [SerializeField] private TMP_Text curAmmoText;
+    [SerializeField] private TMP_Text maxAmmoText;
+    [SerializeField] private Image weaponIconImage;
 
     public Scope Scope { get => this.scope; }
     public Crosshair Crosshair { get => this.crosshair; }
