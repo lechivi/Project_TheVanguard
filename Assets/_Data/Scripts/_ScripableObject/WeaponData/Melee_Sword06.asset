@@ -15,15 +15,37 @@ MonoBehaviour:
   ItemName: Sword 06
   ItemValue: 0
   ItemType: 1
-  WeaponType: 5
   Icon: {fileID: 5792169234966480384, guid: b0b952c4840fddb44924f07f83623e02, type: 3}
   Model: {fileID: 8439997101661726800, guid: 84b131b45a2149a42a04dd748b368d45, type: 3}
+  BodyType: 1
+  BigsizePosHolster: {x: -0.051, y: 0.379, z: 0.24}
+  BigsizeRosHolster: {x: 14.559, y: 26.585, z: -114.038}
+  ShortPosHolster: {x: -0.119, y: 0.331, z: 0.308}
+  ShortRosHolster: {x: 6.56, y: 43.593, z: -107.512}
+  NormalPosHolster: {x: -0.1, y: 0.172, z: 0.151}
+  NormalRosHolster: {x: 0.123, y: 24.787, z: -99.847}
+  BigsizePosEquip: {x: 0.277, y: -0.016, z: -0.003}
+  BigsizeRosEquip: {x: -0.027, y: 40.955, z: -101.881}
+  ShortPosEquip: {x: 0.223, y: -0.123, z: 0.007}
+  ShortRosEquip: {x: -12.34, y: 51.389, z: -122.946}
+  NormalPosEquip: {x: 0.086, y: 0.005, z: -0.136}
+  NormalRosEquip: {x: -10.868, y: -269.927, z: 256.553}
+  WeaponType: 5
+  ShotGunType: 0
+  MeleeType: 1
   rangedDamage: 0
-  fireRate: 0
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 0
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

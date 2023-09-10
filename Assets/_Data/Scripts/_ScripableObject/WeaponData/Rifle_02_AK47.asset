@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
+  m_Name: Rifle_02_AK47
+  m_EditorClassIdentifier: 
+  ItemName: AK47
+  ItemValue: 0
+  ItemType: 0
+  Icon: {fileID: 8093344953519539871, guid: e40b27f116e0d804bba21c2432cf87da, type: 3}
+  Model: {fileID: 3506023523011908283, guid: 0a14240c16aa4a14db532c62c3537cc8, type: 3}
+  BodyType: 0
+  BigsizePosHolster: {x: -0.217, y: 0.508, z: 0.304}
+  BigsizeRosHolster: {x: 7.097, y: 130.71, z: -92.098}
+  ShortPosHolster: {x: -0.161, y: 0.207, z: 0.223}
+  ShortRosHolster: {x: 16.912, y: 113.621, z: 106.936}
+  NormalPosHolster: {x: -0.388, y: 0.306, z: 0.17}
+  NormalRosHolster: {x: 4.517, y: 111.944, z: -104.795}
+  BigsizePosEquip: {x: 0, y: 0, z: 0}
+  BigsizeRosEquip: {x: 0, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0, z: 0}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0, z: 0}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 2
+  ShotGunType: 0
+  MeleeType: 0
+  rangedDamage: 30
+  accuracy: 0
+  timePerFireRate: 1
+  fireRate: 7
+  bulletSpeed: 1000
+  timeDelayPerShot: 0
+  ammoType: 2
+  ammoPerShot: 1
+  ammo: 28
+  magazineSize: 28
+  range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads:
+  - -0.01
+  - 0.01
+  - -0.01
+  - 0.01
+  meleeDamage: 0
+  swingSpeed: 0

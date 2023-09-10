@@ -49,7 +49,7 @@ public class PlayerAim : PlayerAbstract
     public void SetIsAim(bool isAimInput)
     {
         WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (weapon)
+        if (weapon /*&& weapon.Weapon.WeaponData.WeaponType != WeaponType.Shotgun*/)
         {
             if (isAimInput && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && !playerCtrl.PlayerWeapon.PlayerWeaponReload.IsReload)
             {
@@ -64,9 +64,11 @@ public class PlayerAim : PlayerAbstract
     public void AimWeapon()
     {
         WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (weapon && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
+        if (weapon && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && weapon.Weapon.WeaponData.WeaponType != WeaponType.Shotgun)
         {
-            playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.WeaponType, IsAim);
+            
+            //playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.WeaponType, IsAim);
+            playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.ItemName, IsAim);
             if (weapon && weapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
             {
                 AimWeaponScope();
@@ -105,7 +107,7 @@ public class PlayerAim : PlayerAbstract
 
         playerCtrl.PlayerCamera.MainCamera.cullingMask &= ~(1 << 7);
         playerCtrl.PlayerCamera.MainCamera.cullingMask &= ~(1 << 6);
-        playerCtrl.PlayerCamera.ChangePOVFPS(10);
+        playerCtrl.PlayerCamera.ChangePOVFPS(25);
 
         if (UIManager.HasInstance)
         {

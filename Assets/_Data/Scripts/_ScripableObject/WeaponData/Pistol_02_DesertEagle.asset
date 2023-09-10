@@ -12,23 +12,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Pistol_02_DesertEagle
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: DesertEagle
   ItemValue: 0
   ItemType: 0
   Icon: {fileID: 8995714266567274199, guid: 374c5f6f250aa044f8195ca3e1ffc072, type: 3}
   Model: {fileID: 6779385427265435993, guid: bb688cb57c689e8438861879580e7ce6, type: 3}
-  WeaponType: 2
+  BodyType: 2
+  BigsizePosHolster: {x: 0.252, y: 0.001, z: -0.011}
+  BigsizeRosHolster: {x: 97.93201, y: -7.325989, z: 14.877}
+  ShortPosHolster: {x: 0.377, y: 0.001, z: 0.03}
+  ShortRosHolster: {x: 79.933, y: -118.967, z: -114.09}
+  NormalPosHolster: {x: -0.087, y: -0.058, z: -0.182}
+  NormalRosHolster: {x: -0.724, y: 100.808, z: -4.639}
+  BigsizePosEquip: {x: 0, y: 0.01, z: 0.073}
+  BigsizeRosEquip: {x: -2.937, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0, z: 0.143}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0.015, z: 0.073}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 1
+  ShotGunType: 0
+  MeleeType: 0
+  rangedDamage: 0
+  accuracy: 0
   timePerFireRate: 0
   fireRate: 8
-  bulletSpeed: 0
-  timeDelayPerShot: 0
+  bulletSpeed: 1000
+  timeDelayPerShot: 0.3
   ammoType: 1
-  ammoPerShot: 0
-  ammo: 0
-  magazineSize: 8
-  range: 119
+  ammoPerShot: 1
+  ammo: 16
+  magazineSize: 16
+  range: 0
   spreadAiming: 0
   spreadNotAim: 0
-  spreads: []
+  spreads:
+  - -0.01
+  - 0.01
+  - -0.01
+  - 0.01
   meleeDamage: 0
   swingSpeed: 0

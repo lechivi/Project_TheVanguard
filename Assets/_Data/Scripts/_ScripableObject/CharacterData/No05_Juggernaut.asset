@@ -15,6 +15,7 @@ MonoBehaviour:
   CharacterName: Juggernaut
   CharacterClass: 
   Species: 1
+  BodyType: 2
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Ancient and colossal being, awakened to protect the world

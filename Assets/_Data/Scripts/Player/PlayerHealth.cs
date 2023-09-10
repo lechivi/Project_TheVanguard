@@ -6,15 +6,19 @@ public class PlayerHealth : PlayerAbstract, IHealth
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
-
+    private int defence;
+    private int agility;
     private bool isDeath;
+    [SerializeField] private int x = 5;
 
     private void Start()
     {
         if (this.playerCtrl.Character)
         {
-            this.maxHealth = this.playerCtrl.Character.CharacterData.Health;
+            this.maxHealth = this.playerCtrl.Character.CharacterData.Health + this.playerCtrl.Character.CharacterData.HitPoint * x;
             this.currentHealth = this.maxHealth;
+            this.defence = playerCtrl.Character.CharacterData.Defence;
+            this.agility = playerCtrl.Character.CharacterData.Agility;
         }
     }
 
@@ -23,7 +27,7 @@ public class PlayerHealth : PlayerAbstract, IHealth
         return this.maxHealth;
     }
 
-    public int GetCurrentHealth() 
+    public int GetCurrentHealth()
     {
         return this.currentHealth;
     }
@@ -35,7 +39,9 @@ public class PlayerHealth : PlayerAbstract, IHealth
 
     public void TakeDamage(int damage)
     {
-        this.currentHealth -= damage;
+        int Agility = Mathf.RoundToInt(this.agility / 2);
+        int damageTaken = damage * (10 / (10 + defence + Agility));
+        this.currentHealth -= damageTaken;
         if (this.currentHealth <= 0)
         {
             this.currentHealth = 0;

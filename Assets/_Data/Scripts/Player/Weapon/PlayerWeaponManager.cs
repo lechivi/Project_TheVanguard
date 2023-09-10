@@ -145,7 +145,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     {
         weapon.transform.SetParent(this.weaponSheathSlots[(int)weapon.WeaponSlot[0] - 1]); //TODO: Change to RigLayer
 
-        if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
+        if (PlayerCtrl.Instance.Character.CharacterData.BodyType == BodyType.BigSize)
         {
             weapon.gameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
         }
@@ -445,7 +445,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             {
                 isHolstering = originalHolster;
             }
-            if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Siren)
+            if (PlayerCtrl.Instance.Character.CharacterData.CharacterName == "Sera" || PlayerCtrl.Instance.Character.CharacterData.CharacterName == "Darlene")
             {
                 if (PlayerCtrl.Instance.Character.TimerCD_SpecialSkill > 1 && PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 1.2 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
                 {
@@ -535,45 +535,44 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             if (isHolstering)
             {
                 Debug.Log("HaveWeapon");
-                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
+                if (PlayerCtrl.Instance.Character.CharacterData.BodyType == BodyType.BigSize)
                 {
-                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.TitanPosHolster) return;
-                    weapon.gameObject.transform.localPosition = weapon.WeaponData.TitanPosHolster;
-                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.TitanRosHolster);
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.BigsizePosHolster) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.BigsizePosHolster;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.BigsizeRosHolster);
                 }
-                else if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
+                else if (PlayerCtrl.Instance.Character.CharacterData.BodyType == BodyType.Short)
                 {
-                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.DwarfPosHolster) return;
-                    weapon.gameObject.transform.localPosition = weapon.WeaponData.DwarfPosHolster;
-                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.DwarfRosHolster);
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.ShortPosHolster) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.ShortPosHolster;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.ShortRosHolster);
                 }
                 else
                 {
-                    Debug.Log("Siren");
-                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.HumanPosHolster) return;
-                    weapon.gameObject.transform.localPosition = weapon.WeaponData.HumanPosHolster;
-                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.HumanRosHolster);
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.NormalPosHolster) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.NormalPosHolster;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.NormalRosHolster);
                 }
             }
             if (!isHolstering)
             {
-                if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Titan)
+                if (PlayerCtrl.Instance.Character.CharacterData.BodyType == BodyType.BigSize)
                 {
-                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.TitanPosEquip) return;
-                    weapon.gameObject.transform.localPosition = weapon.WeaponData.TitanPosEquip;
-                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.TitanRosEquip);
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.BigsizePosEquip) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.BigsizePosEquip;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.BigsizeRosEquip);
                 }
-                else if (PlayerCtrl.Instance.Character.CharacterData.Species == Species.Dwarf)
+                else if (PlayerCtrl.Instance.Character.CharacterData.BodyType == BodyType.Short)
                 {
-                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.DwarfPosEquip) return;
-                    weapon.gameObject.transform.localPosition = weapon.WeaponData.DwarfPosEquip;
-                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.DwarfRosEquip);
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.ShortPosEquip) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.ShortPosEquip;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.ShortRosEquip);
                 }
                 else
                 {
-                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.HumanPosEquip) return;
-                    weapon.gameObject.transform.localPosition = weapon.WeaponData.HumanPosEquip;
-                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.HumanRosEquip);
+                    if (weapon.gameObject.transform.localPosition == weapon.WeaponData.NormalPosEquip) return;
+                    weapon.gameObject.transform.localPosition = weapon.WeaponData.NormalPosEquip;
+                    weapon.gameObject.transform.localRotation = Quaternion.Euler(weapon.WeaponData.NormalRosEquip);
                 }
             }
         }

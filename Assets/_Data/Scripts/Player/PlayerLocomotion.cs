@@ -29,7 +29,22 @@ public class PlayerLocomotion : PlayerAbstract
 
     private void Start()
     {
+        if(this.playerCtrl.Character)
+        {
+            this.HandleSpeed();
+            this.AirControl();
+        }
         this.check = true;
+    }
+
+    public void HandleSpeed()
+    {
+        float speed = 1;
+        this.speed = speed * (10 / (10 - (float)playerCtrl.Character.CharacterData.Agility));
+    }
+    public void AirControl()
+    {
+        this.airControl = speed * 1.7f;
     }
 
     public void SetOnEventAnimator()
@@ -41,9 +56,6 @@ public class PlayerLocomotion : PlayerAbstract
         }
     }
 
-    private void Update()
-    {
-    }
     private void OnDisable()
     {
         this.ResetLocomotion();
@@ -171,7 +183,11 @@ public class PlayerLocomotion : PlayerAbstract
 
     public Vector3 CalculateAircontrol()
     {
-        return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
+        if(IsSprinting)
+        {
+           return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 65);
+        }
+        return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 90);
     }
 
     public void HandleAnimatorMoveEvent()

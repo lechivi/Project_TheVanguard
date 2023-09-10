@@ -173,7 +173,7 @@ public class Character_Xerath : Character
         if (PlayerCtrl.HasInstance)
         {
             this.b_CameraOffset = PlayerCtrl.Instance.PlayerCamera.TPSCamera.GetComponent<CinemachineCameraOffset>().m_Offset;
-            this.a_OnEventAnimator.OnAnimatorMoveEvent += PlayerCtrl.Instance.PlayerLocomotion.HandleAnimatorMoveEvent;
+            //this.a_OnEventAnimator.OnAnimatorMoveEvent += PlayerCtrl.Instance.PlayerLocomotion.HandleAnimatorMoveEvent;
         }
     }
 

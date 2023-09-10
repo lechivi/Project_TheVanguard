@@ -22,7 +22,8 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
         }
         if (IscanFire)
         {
-            if (Input.GetMouseButtonDown(0) && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle)
+            if (Input.GetMouseButtonDown(0) && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle 
+                && weaponRaycast.Weapon.WeaponData.ItemName != "Deliverer")
             {
                 PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
                 weaponRaycast.FireBullet(crosshairTarget.position);
@@ -32,13 +33,13 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
                 }
             }
 
-            if (IsFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
+            if (IsFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle || IsFiring && weaponRaycast.Weapon.WeaponData.ItemName == "Deliverer")
             {
                 weaponRaycast.UpdateFiring(crosshairTarget.position);
                 PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
             }
 
-            if (!IsFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle)
+            if (!IsFiring && weaponRaycast.Weapon.WeaponData.WeaponType == WeaponType.AssaultRifle ||!IsFiring && weaponRaycast.Weapon.WeaponData.ItemName == "Deliverer")
             {
                 weaponRaycast.runtTimeFire = 0;
                 weaponRaycast.recoil.ResetIndex();

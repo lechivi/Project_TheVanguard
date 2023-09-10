@@ -8,6 +8,7 @@ public class CharacterDataSO : ScriptableObject
     public string CharacterName;
     public string CharacterClass;
     public Species Species;
+    public BodyType BodyType;
     public Sprite CharacterIcon;
     public GameObject CharacterModel;
     [TextAreaAttribute(5, 10)] public string CharacterDescription;
@@ -16,6 +17,7 @@ public class CharacterDataSO : ScriptableObject
     [Range(50, 100)] public int Health = 50;
     [Range(0, 10)] public int Power = 5;
     [Range(0, 10)] public int Defence = 5;
+    [Range(0,10)] public int Agility = 5;
     [Range(0, 10)] public int HitPoint = 5;
 
     [Header("SKILL")]

@@ -15,6 +15,7 @@ MonoBehaviour:
   CharacterName: Darlene
   CharacterClass: The Survivor
   Species: 1
+  BodyType: 0
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Resourceful scavenger and tinkerer surviving in a post-apocalyptic
@@ -22,6 +23,7 @@ MonoBehaviour:
   Health: 50
   Power: 5
   Defence: 5
+  Agility: 3
   HitPoint: 5
   ExecutionSkillTime: 0
   CooldownSkillTime: 5

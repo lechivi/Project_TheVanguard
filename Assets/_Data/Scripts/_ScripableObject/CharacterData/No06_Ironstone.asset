@@ -15,6 +15,7 @@ MonoBehaviour:
   CharacterName: 'Ironstone '
   CharacterClass: 
   Species: 1
+  BodyType: 1
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Skilled blacksmith and warrior from the depths of the earth,
@@ -22,6 +23,7 @@ MonoBehaviour:
   Health: 50
   Power: 5
   Defence: 5
+  Agility: 4
   HitPoint: 5
   ExecutionSkillTime: 0
   CooldownSkillTime: 5

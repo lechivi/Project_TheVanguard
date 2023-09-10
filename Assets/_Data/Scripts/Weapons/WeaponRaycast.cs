@@ -110,7 +110,7 @@ public class WeaponRaycast : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, distance))
         {
             if (hitEffect)
-            {
+            {                
                 hitEffect.transform.position = hitInfo.point;
                 hitEffect.transform.forward = hitInfo.normal;
                 hitEffect.Emit(1);
@@ -119,7 +119,8 @@ public class WeaponRaycast : MonoBehaviour
             bullet.transform.position = hitInfo.point;
             bullet.time = maxlifeTime;
             End = hitInfo.point;
-
+            var hitEnemy = hitInfo.collider.GetComponent<TestTakeDamage>();
+            if (hitEnemy) hitEnemy.TakeDamage(Weapon.WeaponData.RangedDamage);
             AddForceToHitInfo(ray, hitInfo);
 
         }

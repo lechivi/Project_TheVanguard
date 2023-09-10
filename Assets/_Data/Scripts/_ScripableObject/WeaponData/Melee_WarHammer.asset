@@ -15,15 +15,37 @@ MonoBehaviour:
   ItemName: War Hammer
   ItemValue: 0
   ItemType: 1
-  WeaponType: 5
   Icon: {fileID: 2420060032605386392, guid: cf8a88cddd0ecc749bae32b02fb79df6, type: 3}
   Model: {fileID: 4136580678883009909, guid: a6b3e168403528f458c153a7a3d7216b, type: 3}
+  BodyType: 0
+  BigsizePosHolster: {x: 0, y: 0, z: 0}
+  BigsizeRosHolster: {x: 0, y: 0, z: 0}
+  ShortPosHolster: {x: 0, y: 0, z: 0}
+  ShortRosHolster: {x: 0, y: 0, z: 0}
+  NormalPosHolster: {x: -0.181, y: 0.224, z: 0.221}
+  NormalRosHolster: {x: 1.953, y: 29.357, z: -103.984}
+  BigsizePosEquip: {x: 0, y: 0, z: 0}
+  BigsizeRosEquip: {x: 0, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0, z: 0}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0.119, y: 0.043, z: -0.005}
+  NormalRosEquip: {x: -10.868, y: -269.927, z: 256.553}
+  WeaponType: 5
+  ShotGunType: 0
+  MeleeType: 1
   rangedDamage: 0
-  fireRate: 0
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 0
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

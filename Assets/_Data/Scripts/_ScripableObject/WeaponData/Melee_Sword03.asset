@@ -17,15 +17,31 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 365690021235385015, guid: 09d266e890bfd5e4ab667c96100e4a7b, type: 3}
   Model: {fileID: 7116092528582663203, guid: ca9434768dbc3a84d90379a669ca1fb7, type: 3}
+  BodyType: 1
+  BigsizePosHolster: {x: -0.051, y: 0.379, z: 0.24}
+  BigsizeRosHolster: {x: 14.559, y: 26.585, z: -114.038}
+  ShortPosHolster: {x: -0.169, y: 0.342, z: 0.235}
+  ShortRosHolster: {x: 5.654, y: 25.657, z: -108.618}
+  NormalPosHolster: {x: -0.194, y: 0.223, z: 0.194}
+  NormalRosHolster: {x: 5.45, y: 22.641, z: -101.624}
+  BigsizePosEquip: {x: 0.118, y: 0.028, z: 0.135}
+  BigsizeRosEquip: {x: -0.027, y: 40.955, z: -101.881}
+  ShortPosEquip: {x: 0.147, y: 0.004, z: 0.093}
+  ShortRosEquip: {x: -12.34, y: 51.389, z: -121.846}
+  NormalPosEquip: {x: 0.119, y: 0.043, z: -0.005}
+  NormalRosEquip: {x: -10.868, y: -269.927, z: 256.553}
   WeaponType: 5
+  ShotGunType: 0
+  MeleeType: 1
   rangedDamage: 0
-  timeDelayShot: 0
+  accuracy: 0
+  timePerFireRate: 0
   fireRate: 0
   bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 0
   ammoPerShot: 0
   ammo: 0
-  maxAmmo: 0
   magazineSize: 0
   range: 0
   spreadAiming: 0

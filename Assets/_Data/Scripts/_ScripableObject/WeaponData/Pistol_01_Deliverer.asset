@@ -17,35 +17,39 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 7196992880718527406, guid: a97e2e08ab25b064dae1f02017defb63, type: 3}
   Model: {fileID: 2141981680209827496, guid: ece4d294ccf62684cb32ee4fbf8fdea5, type: 3}
-  species: 30
-  TitanPosHolster: {x: 0, y: 0, z: 0}
-  TitanRosHolster: {x: 0, y: 0, z: 0}
-  DwarfPosHolster: {x: 0, y: 0, z: 0}
-  DwarfRosHolster: {x: 0, y: 0, z: 0}
-  HumanPosHolster: {x: 0, y: 0, z: 0}
-  HumanRosHolster: {x: 0, y: 0, z: 0}
-  TitanPosEquip: {x: 0, y: 0, z: 0}
-  TitanRosEquip: {x: 0, y: 0, z: 0}
-  DwarfPosEquip: {x: 0, y: 0, z: 0}
-  DwarfRosEquip: {x: 0, y: 0, z: 0}
-  HumanPosEquip: {x: 0, y: 0, z: 0}
-  HumanRosEquip: {x: 0, y: 0, z: 0}
+  BodyType: 1
+  BigsizePosHolster: {x: 0.276, y: 0, z: -0.001}
+  BigsizeRosHolster: {x: 82.068, y: 172.674, z: 207.803}
+  ShortPosHolster: {x: 0.309, y: 0, z: 0.16}
+  ShortRosHolster: {x: 100.067, y: 61.033, z: 84.296}
+  NormalPosHolster: {x: -0.087, y: -0.058, z: -0.182}
+  NormalRosHolster: {x: -0.724, y: 100.808, z: -4.639}
+  BigsizePosEquip: {x: 0, y: 0.045, z: 0.074}
+  BigsizeRosEquip: {x: 0, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0.045, z: 0.095}
+  ShortRosEquip: {x: -1.48, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0.015, z: 0.073}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
   WeaponType: 1
   ShotGunType: 0
   MeleeType: 0
-  rangedDamage: 25
-  accuracy: 67
-  timePerFireRate: 0
-  fireRate: 66
-  bulletSpeed: 0
+  rangedDamage: 0
+  accuracy: 0
+  timePerFireRate: 1
+  fireRate: 10
+  bulletSpeed: 1000
   timeDelayPerShot: 0
   ammoType: 1
-  ammoPerShot: 0
-  ammo: 0
-  magazineSize: 12
-  range: 53
+  ammoPerShot: 1
+  ammo: 20
+  magazineSize: 20
+  range: 0
   spreadAiming: 0
   spreadNotAim: 0
-  spreads: []
+  spreads:
+  - -0.02
+  - 0.02
+  - -0.02
+  - 0.02
   meleeDamage: 0
   swingSpeed: 0

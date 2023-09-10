@@ -15,15 +15,41 @@ MonoBehaviour:
   ItemName: Victory
   ItemValue: 0
   ItemType: 1
-  WeaponType: 4
   Icon: {fileID: 8445887792516056611, guid: 18650ace9c4600a4f90d9fbccac94050, type: 3}
   Model: {fileID: 2984659460463470946, guid: 613abe1a798552247948bb85a85a854f, type: 3}
-  rangedDamage: 0
-  fireRate: 0
+  BodyType: 0
+  BigsizePosHolster: {x: -0.347, y: 0.564, z: 0.412}
+  BigsizeRosHolster: {x: 7.097, y: 130.71, z: -92.098}
+  ShortPosHolster: {x: -0.19, y: 0.246, z: 0.204}
+  ShortRosHolster: {x: 23.824, y: 121.624, z: 103.254}
+  NormalPosHolster: {x: -0.237, y: 0.088, z: 0.229}
+  NormalRosHolster: {x: 11.143, y: 111.816, z: 77.067}
+  BigsizePosEquip: {x: 0.016, y: -0.06, z: 0.246}
+  BigsizeRosEquip: {x: 0.287, y: 0.001, z: 0}
+  ShortPosEquip: {x: 0, y: -0.031, z: 0.097}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0, z: 0}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 4
+  ShotGunType: 0
+  MeleeType: 0
+  rangedDamage: 85
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 10000
+  timeDelayPerShot: 0.8
   ammoType: 4
-  magazineSize: 0
-  reloadTime: 0
+  ammoPerShot: 1
+  ammo: 10
+  magazineSize: 10
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads:
+  - -0.001
+  - 0.001
+  - -0.001
+  - 0.001
   meleeDamage: 0
   swingSpeed: 0

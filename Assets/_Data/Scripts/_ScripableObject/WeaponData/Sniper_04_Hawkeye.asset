@@ -12,33 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Sniper_04_Hawkeye
   m_EditorClassIdentifier: 
-  ItemName: 
+  ItemName: Hawkeye
   ItemValue: 0
   ItemType: 1
   Icon: {fileID: 5513720291159586698, guid: dcf58a8931f384b4c924cbd6e771a577, type: 3}
   Model: {fileID: 1937876462363981338, guid: ec489a38abaea2f46a3f909b56a37efe, type: 3}
-  Species: 1
-  TitanPosHolster: {x: -0.347, y: 0.564, z: 0.412}
-  TitanRosHolster: {x: 7.097, y: 130.71, z: -92.098}
-  DwarfPosHolster: {x: -0.19, y: 0.246, z: 0.204}
-  DwarfRosHolster: {x: 23.824, y: 121.624, z: 103.254}
-  HumanPosHolster: {x: -0.315, y: 0.082, z: 0.1}
-  HumanRosHolster: {x: -6.197, y: 113.041, z: 69.341}
-  TitanPosEquip: {x: 0.016, y: -0.06, z: 0.246}
-  TitanRosEquip: {x: 0.287, y: 0.001, z: 0}
-  DwarfPosEquip: {x: 0, y: -0.012, z: -0.04}
-  DwarfRosEquip: {x: 0, y: 0, z: 0}
-  HumanPosEquip: {x: 0, y: 0, z: 0}
-  HumanRosEquip: {x: 0, y: 0, z: 0}
+  BodyType: 2
+  BigsizePosHolster: {x: -0.347, y: 0.564, z: 0.412}
+  BigsizeRosHolster: {x: 7.097, y: 130.71, z: -92.098}
+  ShortPosHolster: {x: -0.19, y: 0.246, z: 0.204}
+  ShortRosHolster: {x: 23.824, y: 121.624, z: 103.254}
+  NormalPosHolster: {x: -0.315, y: 0.082, z: 0.1}
+  NormalRosHolster: {x: -6.197, y: 113.041, z: 69.341}
+  BigsizePosEquip: {x: 0.016, y: -0.06, z: 0.246}
+  BigsizeRosEquip: {x: 0.287, y: 0.001, z: 0}
+  ShortPosEquip: {x: 0, y: -0.012, z: -0.04}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0, z: 0}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
   WeaponType: 4
   ShotGunType: 0
   MeleeType: 0
-  rangedDamage: 0
+  rangedDamage: 120
   accuracy: 0
   timePerFireRate: 0
   fireRate: 0
   bulletSpeed: 10000
-  timeDelayPerShot: 1
+  timeDelayPerShot: 1.5
   ammoType: 4
   ammoPerShot: 1
   ammo: 5
