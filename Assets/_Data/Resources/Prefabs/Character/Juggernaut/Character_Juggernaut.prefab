@@ -81503,6 +81503,37 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &6026453173731174599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3860281511325948323}
+  m_Layer: 6
+  m_Name: CenterPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3860281511325948323
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026453173731174599}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9211289214715742084}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8662159532979189436
 GameObject:
   m_ObjectHideFlags: 0
@@ -93049,6 +93080,7 @@ GameObject:
   - component: {fileID: 9211289214715742091}
   - component: {fileID: 9211289214715742090}
   - component: {fileID: 6322229754018393977}
+  - component: {fileID: 3307966969718639348}
   m_Layer: 6
   m_Name: Character_Juggernaut
   m_TagString: Player
@@ -93075,6 +93107,7 @@ Transform:
   - {fileID: 9211289215672872120}
   - {fileID: 5490850171309901310}
   - {fileID: 4750582614720940756}
+  - {fileID: 3860281511325948323}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -73.407, z: 0}
@@ -93181,8 +93214,8 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.6
   m_Radius: 0.2
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_SlopeLimit: 70
+  m_StepOffset: 0.4
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.8, z: 0}
@@ -93204,6 +93237,19 @@ MonoBehaviour:
   aimSpine2: {fileID: 9211289214108814847}
   aimHead: {fileID: 9211289213809603381}
   weaponPose: {fileID: 9211289214392369707}
+--- !u!114 &3307966969718639348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211289214715742082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  centerPoint: {fileID: 3860281511325948323}
 --- !u!1 &9211289214726960461
 GameObject:
   m_ObjectHideFlags: 0

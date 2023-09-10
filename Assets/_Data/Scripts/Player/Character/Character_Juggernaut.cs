@@ -77,12 +77,24 @@ public class Character_Juggernaut : Character
         }
         if (Input.GetMouseButton(0))
         {
+            if (UIManager.HasInstance)
+            {
+                UI_ChargeSlider chargeSlider = UIManager.Instance.InGamePanel.AlwaysOnUI.UI_ChargeSlider;
+                chargeSlider.Show(null);
+                chargeSlider.SetSlider(this.timecharging, 12);
+            }
+
             ChargingEnergy();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             Fire();
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.InGamePanel.AlwaysOnUI.UI_ChargeSlider.Hide();
+            }
+
             Invoke("DeactiveLine", 0.1f);
         }
 
@@ -169,6 +181,8 @@ public class Character_Juggernaut : Character
             damageRangeExplosion = 10.7f;
             BomExplosion.gameObject.transform.localScale = new Vector3(7f, 7f, 7f);
         }
+
+
         if (timecharging >= 12) return;
         xScaleEnergyGl += (float)0.02 * Time.deltaTime;
         yScaleEnergyGl += (float)0.02 * Time.deltaTime;

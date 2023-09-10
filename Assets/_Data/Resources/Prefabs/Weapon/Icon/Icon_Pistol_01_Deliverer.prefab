@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7183438452017773814}
   - component: {fileID: 7134525231069821808}
   - component: {fileID: 3036421598573063206}
+  - component: {fileID: 2542955990890237722}
   m_Layer: 5
   m_Name: Icon_Pistol_01_Deliverer
   m_TagString: Untagged
@@ -199,6 +200,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 47aaec54e0b069d4fbe8da0a9a86e8ce, type: 2}
   weaponSlot: 02000000
+--- !u!114 &2542955990890237722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7196992880718527406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 7183438452017773814}
+  - {fileID: 7183453696288300556}
+  - {fileID: 7184792822339213058}
+  - {fileID: 7185152729561160890}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &7197203771396928492
 GameObject:
   m_ObjectHideFlags: 0

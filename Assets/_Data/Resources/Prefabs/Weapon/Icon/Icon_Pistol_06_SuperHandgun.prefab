@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1124721618101799955}
   - component: {fileID: 6135088002480886566}
+  - component: {fileID: 6530061510992907617}
   m_Layer: 5
   m_Name: Icon_Pistol_06_SuperHandgun
   m_TagString: Untagged
@@ -47,6 +48,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 9f8f980af4fcdb74e82d210eb8721b3e, type: 2}
   weaponSlot: 02000000
+--- !u!114 &6530061510992907617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3271413386191694232}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 7191120961239109067}
+  - {fileID: 7191105092278797511}
+  - {fileID: 7191308914518838317}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &7176600916481218495
 GameObject:
   m_ObjectHideFlags: 0

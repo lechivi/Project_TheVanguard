@@ -52,7 +52,7 @@ public class PlayerHealth : PlayerAbstract, IHealth
 
     public void Die()
     {
-        Debug.Log("Player HP = 0");
+        this.playerCtrl.Character.RagdollCtrl.EnableRagdoll();
     }
 
     public void TakeDamage(int damage, Vector3 force, Vector3 hitPoint, Rigidbody hitRigidbody)

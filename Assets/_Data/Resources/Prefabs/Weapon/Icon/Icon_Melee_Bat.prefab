@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422758991539337960}
   - component: {fileID: 7719723644453293018}
+  - component: {fileID: -8481364483310481588}
   m_Layer: 5
   m_Name: Icon_Melee_Bat
   m_TagString: Untagged
@@ -47,6 +48,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 7cde9bef95a9d6147aa91151a40f5c73, type: 2}
   weaponSlot: 03000000
+--- !u!114 &-8481364483310481588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1949832082346366202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 4526701969117383354}
+  - {fileID: 4527049183900970108}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &4505182282760793020
 GameObject:
   m_ObjectHideFlags: 0

@@ -181,6 +181,7 @@ GameObject:
   - component: {fileID: 8070843948841966791}
   - component: {fileID: 8120405899701004629}
   - component: {fileID: 4649040047492286599}
+  - component: {fileID: 1900269267346767864}
   m_Layer: 5
   m_Name: Icon_Rifle_02_November'sChild
   m_TagString: Untagged
@@ -285,6 +286,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 53331947f77dd4048a25b9d0f6d40e1e, type: 2}
   weaponSlot: 03000000
+--- !u!114 &1900269267346767864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8093344953519539871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 8070843948841966791}
+  - {fileID: 8072296039612558225}
+  - {fileID: 8072489206882665631}
+  - {fileID: 8072008096166313549}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &8093362273561454429
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1233741961049489158}
   - component: {fileID: 5737699474244560790}
+  - component: {fileID: -1241199748271079681}
   m_Layer: 5
   m_Name: Icon_Shotgun_03_Butcher
   m_TagString: Untagged
@@ -47,6 +48,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 9052ce524eb496f49aa80c83805e24f5, type: 2}
   weaponSlot: 03000000
+--- !u!114 &-1241199748271079681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390588199410819549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 4290289405705555971}
+  - {fileID: 4290598204246265171}
+  - {fileID: 4289843888146435051}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &4312939733256283397
 GameObject:
   m_ObjectHideFlags: 0

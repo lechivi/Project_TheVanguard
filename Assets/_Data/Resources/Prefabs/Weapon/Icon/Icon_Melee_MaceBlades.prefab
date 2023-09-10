@@ -108,6 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8383374698519276434}
   - component: {fileID: 13173949327868126}
+  - component: {fileID: -938030252907682984}
   m_Layer: 5
   m_Name: Icon_Melee_MaceBlades
   m_TagString: Untagged
@@ -145,3 +146,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 2eee633f9414efe40b28763178d9462c, type: 2}
   weaponSlot: 03000000
+--- !u!114 &-938030252907682984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7890642487267669274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 4219585999496479800}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}

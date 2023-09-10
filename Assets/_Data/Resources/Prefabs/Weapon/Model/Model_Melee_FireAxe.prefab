@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8253678018203338757}
   - component: {fileID: 4430581893848274293}
+  - component: {fileID: 7182510873514548612}
+  - component: {fileID: 3148155494542958260}
   m_Layer: 0
   m_Name: Model_Melee_FireAxe
   m_TagString: Untagged
@@ -47,6 +49,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 75e6a6f5b2cc286439cf8f6c97d794c3, type: 2}
   weaponSlot: 03000000
+--- !u!65 &7182510873514548612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498168641921918044}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.28813964, y: 1, z: 0.44}
+  m_Center: {x: -0.0021395683, y: 0.37, z: -0.0002527833}
+--- !u!114 &3148155494542958260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1498168641921918044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89ae4d736c9bee418d84297e738dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayerWeapon: 1
+  col: {fileID: 0}
 --- !u!1 &4158715697899555158
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,10 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Map02_Village.unity
     guid: 9eedaa87b4a5bc342a6c75eceaf45953
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Map04_Dungeon.unity
     guid: f249f045127dd054c8a7be6bc34a0438
   - enabled: 0
     path: Assets/Scenes/TestBattle.unity
     guid: 550eeb303fa803445857725efc06ad49
+  - enabled: 0
+    path: Assets/Scenes/HoangVillage.unity
+    guid: 2cb91c620d3221642a56eb8158c51598
   m_configObjects: {}

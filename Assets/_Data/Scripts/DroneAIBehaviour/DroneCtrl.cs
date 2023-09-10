@@ -87,7 +87,8 @@ public class DroneCtrl : SaiMonoBehaviour
 
     private void Update()
     {
-        if (this.detectTarget.IsDetectTarget() && Vector3.Distance(this.targetFollow.position, this.detectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint().position) < this.safeRange)
+        if (this.detectTarget.IsDetectTarget() 
+            /*&& Vector3.Distance(this.targetFollow.position, this.detectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint().position) < this.safeRange*/)
         {
             this.droneAiCtrl.DroneSM.ChangeState(DroneStateId.Attack);
         }

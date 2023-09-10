@@ -402,7 +402,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         return activeRaycastWeapon;
     }
 
-
     public void HosterAnimation()
     {
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();

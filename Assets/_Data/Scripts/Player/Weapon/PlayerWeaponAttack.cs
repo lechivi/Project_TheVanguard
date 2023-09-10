@@ -8,10 +8,6 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
     private float lastClicked;
     private string MeleeCombatType;
     private AnimatorStateInfo state;
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     public void HandleUpdateWeaponAttack()
     {

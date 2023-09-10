@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7040055341780168357}
   - component: {fileID: 6990765909941672453}
   - component: {fileID: 8241237553319589106}
+  - component: {fileID: -4650936074867288358}
   m_Layer: 5
   m_Name: Icon_Pistol_05_GoldRevol
   m_TagString: Untagged
@@ -116,6 +117,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 0d4903c2508626240874c572762dc999, type: 2}
   weaponSlot: 02000000
+--- !u!114 &-4650936074867288358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7053572165255466329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 7040055341780168357}
+  - {fileID: 7040123407171452043}
+  - {fileID: 7040107030710267763}
+  - {fileID: 7040285142209314935}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &7053579963555181287
 GameObject:
   m_ObjectHideFlags: 0

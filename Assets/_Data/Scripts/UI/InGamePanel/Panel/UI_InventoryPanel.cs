@@ -4,12 +4,14 @@ using UnityEngine;
 public class UI_InventoryPanel : BaseUIElement
 {
     [Header("INVENTORY PANEL")]
+    [SerializeField] private UiAppear uiAppear;
     [SerializeField] private UI_Inv_EquippedList equippedList;
     [SerializeField] private List<UI_DraggableItem> draggablesEquippedList = new List<UI_DraggableItem>();
     [SerializeField] private List<UI_DraggableItem> draggablesBackpackList = new List<UI_DraggableItem>();
 
     public UI_WeaponSlot SelectedWeaponSlot;
 
+    public UiAppear UiAppear { get => this.uiAppear; }
     public List<UI_DraggableItem> DraggablesEquippedList { get => this.draggablesEquippedList; }
     public List<UI_DraggableItem> DraggablesBackpackList { get => this.draggablesBackpackList; }
     public UI_Inv_EquippedList EquippedList { get => this.equippedList; }
@@ -17,26 +19,23 @@ public class UI_InventoryPanel : BaseUIElement
     protected override void LoadComponent()
     {
         base.LoadComponent();
+        if (this.uiAppear == null)
+            this.uiAppear = GetComponentInChildren<UiAppear>();
+
         if (this.equippedList == null)
             this.equippedList = GetComponentInChildren<UI_Inv_EquippedList>();
 
-        if (this.draggablesEquippedList.Count != transform.Find("Inv_EquippedList").GetComponentsInChildren<UI_DraggableItem>().Length)
-            foreach (var item in transform.Find("Inv_EquippedList").GetComponentsInChildren<UI_DraggableItem>())
+        if (this.draggablesEquippedList.Count != transform.Find("Container/Inv_EquippedList").GetComponentsInChildren<UI_DraggableItem>().Length)
+            foreach (var item in transform.Find("Container/Inv_EquippedList").GetComponentsInChildren<UI_DraggableItem>())
             {
                 this.draggablesEquippedList.Add(item);
             }
 
-        if (this.draggablesBackpackList.Count != transform.Find("Inv_BackpackList").GetComponentsInChildren<UI_DraggableItem>().Length)
-            foreach (var item in transform.Find("Inv_BackpackList").GetComponentsInChildren<UI_DraggableItem>())
+        if (this.draggablesBackpackList.Count != transform.Find("Container/Inv_BackpackList").GetComponentsInChildren<UI_DraggableItem>().Length)
+            foreach (var item in transform.Find("Container/Inv_BackpackList").GetComponentsInChildren<UI_DraggableItem>())
             {
                 this.draggablesBackpackList.Add(item);
             }
-    }
-
-
-    protected override void Awake()
-    {
-        base.Awake();
     }
 
     public void ResetSlot()

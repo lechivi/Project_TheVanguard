@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 7309745222491419130}
   - component: {fileID: 7333501984781193314}
   - component: {fileID: 4652507624137566514}
+  - component: {fileID: 6569644595070236716}
   m_Layer: 5
   m_Name: Icon_Rifle_03_BlackHand
   m_TagString: Untagged
@@ -200,6 +201,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 171f0b5ab5015244ea07b199bdf76cb0, type: 2}
   weaponSlot: 03000000
+--- !u!114 &6569644595070236716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7288736737000387588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 7309745222491419130}
+  - {fileID: 7309718947803661838}
+  - {fileID: 7309617558087353382}
+  - {fileID: 7309801737983620774}
+  - {fileID: 7309722373842562558}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &7288815711598345778
 GameObject:
   m_ObjectHideFlags: 0

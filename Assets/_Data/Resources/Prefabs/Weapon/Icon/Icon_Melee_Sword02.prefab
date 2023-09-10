@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3459559282030547929}
   - component: {fileID: 3509566865910238857}
   - component: {fileID: 3516738716638793633}
+  - component: {fileID: -1864963782466684663}
   m_Layer: 5
   m_Name: Icon_Melee_Sword02
   m_TagString: Untagged
@@ -113,3 +114,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: ea2119cd48137fe4eba35d5eff20c55a, type: 2}
   weaponSlot: 03000000
+--- !u!114 &-1864963782466684663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3482774521645311269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 3459559282030547929}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}

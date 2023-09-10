@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyHealth : EnemyAbstract, IHealth
 {
-    [SerializeField] private int maxHealth = 10;
+    [SerializeField] private int maxHealth = 50;
     [SerializeField] private int currentHealth;
 
     private bool isDeath;
@@ -31,21 +31,12 @@ public class EnemyHealth : EnemyAbstract, IHealth
     {
         this.currentHealth -= damage;
         this.enemyCtrl.GraphicEffect.PlayHitEffect();
+        this.enemyCtrl.Animator.SetTrigger(Random.Range(0, 2) == 0 ? "TakeDamage1" : "TakeDamage2");
+
         if (this.currentHealth <= 0)
         {
             this.currentHealth = 0;
             this.Die();
-        }
-    }
-
-    public void TakeDamage(int damage, Vector3 force, Vector3 hitPoint)
-    {
-        this.currentHealth -= damage;
-        this.enemyCtrl.GraphicEffect.PlayHitEffect();
-        if (this.currentHealth <= 0)
-        {
-            this.currentHealth = 0;
-            this.Die(force, hitPoint);
         }
     }
 
@@ -67,17 +58,14 @@ public class EnemyHealth : EnemyAbstract, IHealth
         this.enemyCtrl.EnemyRagdoll.EnableRagdoll();
     }
 
-    public void Die(Vector3 force, Vector3 hitPoint)
+    public void Die(Vector3 force, Vector3 hitPoint, Rigidbody hitRigidbody = null)
     {
         this.isDeath = true;
         this.enemyCtrl.EnemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Death);
-        this.enemyCtrl.EnemyRagdoll.TriggerRagdoll(force, hitPoint);
-    }
-
-    public void Die(Vector3 force, Vector3 hitPoint, Rigidbody hitRigidbody)
-    {
-        this.isDeath = true;
-        this.enemyCtrl.EnemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Death);
-        this.enemyCtrl.EnemyRagdoll.TriggerRagdoll(force, hitPoint, hitRigidbody);
+        this.enemyCtrl.EnemyRagdoll.EnableRagdoll();
+        if (hitRigidbody == null)
+            hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
+        else
+            this.enemyCtrl.EnemyRagdoll.ClosestRigidbody(hitPoint).AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
     }
 }

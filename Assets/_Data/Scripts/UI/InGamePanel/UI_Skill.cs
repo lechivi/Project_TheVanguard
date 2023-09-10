@@ -60,7 +60,7 @@ public class UI_Skill : BaseUIElement
         this.SetPhase(SkillPhase.Ready);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         this.SetPhase();
         this.DisplayFillImage();
@@ -70,10 +70,9 @@ public class UI_Skill : BaseUIElement
     {
         if (PlayerCtrl.HasInstance)
         {
-            if (PlayerCtrl.Instance.gameObject.activeSelf == false) return;
+            if (PlayerCtrl.Instance.gameObject.activeSelf == false || PlayerCtrl.Instance.Character == null) return;
 
             Character character = PlayerCtrl.Instance.Character;
-
             if (character.IsReadySpecialSkill && this.check1)
             {
                 this.check1 = false;
@@ -96,13 +95,16 @@ public class UI_Skill : BaseUIElement
     {
         if (PlayerCtrl.HasInstance)
         {
-            Character character = PlayerCtrl.Instance.Character;
+            if (PlayerCtrl.Instance.gameObject.activeSelf == false || PlayerCtrl.Instance.Character == null) return;
 
+            Character character = PlayerCtrl.Instance.Character;
             if (this.currentPhase == SkillPhase.Execution)
             {
-                this.timerExecution += Time.deltaTime;
-                this.timerText.SetText((character.ExecutionSpecialSkill - this.timerExecution).ToString("F1"));
-                this.executionFillIconImage.fillAmount = this.timerExecution / character.ExecutionSpecialSkill;
+                this.timerExecution -= Time.deltaTime;
+                if (this.timerExecution < 0)
+                    this.timerExecution = 0;
+                this.timerText.SetText(this.timerExecution.ToString("F1"));
+                this.executionFillIconImage.fillAmount = this.timerExecution / character.CharacterData.ExecutionSkillTime;
             }
             else if (this.currentPhase == SkillPhase.Cooldown)
             {
@@ -137,7 +139,7 @@ public class UI_Skill : BaseUIElement
             this.executionPanel.alpha = 1;
             this.cooldownPanel.alpha = 0;
             this.timerText.GetComponent<CanvasGroup>().alpha = 0.75f;
-            this.timerExecution = PlayerCtrl.Instance.Character.ExecutionSpecialSkill;
+            this.timerExecution = PlayerCtrl.Instance.Character.CharacterData.ExecutionSkillTime;
             this.animator.enabled = true;
             this.animator.SetTrigger("Execution");
             this.check1 = true;

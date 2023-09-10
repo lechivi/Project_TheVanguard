@@ -16,6 +16,11 @@ public class AlliancePlayer_InfoScanner : SaiMonoBehaviour, IInfoScanner
         return FactionType.Alliance;
     }
 
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
     public Transform GetCenterPoint()
     {
         return this.centerPoint;

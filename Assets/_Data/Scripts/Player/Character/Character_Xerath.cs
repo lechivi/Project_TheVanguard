@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEditor;
-using UnityEngine.Animations.Rigging;
 
 public class Character_Xerath : Character
 {

@@ -108,6 +108,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2084724179201191458}
   - component: {fileID: 685576515647052925}
+  - component: {fileID: 3322949015818254167}
+  - component: {fileID: 8973118001208612875}
   m_Layer: 0
   m_Name: Model_Melee_Sword06
   m_TagString: Untagged
@@ -144,4 +146,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 8853ab39f1c13014faaebc5e9256dd42, type: 2}
-  weaponSlot: 03000000
+  weaponSlot: 01000000
+--- !u!65 &3322949015818254167
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439997101661726800}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.28813964, y: 1.5060792, z: 0.47973648}
+  m_Center: {x: -0.0021395683, y: 0.37, z: -0.0002527833}
+--- !u!114 &8973118001208612875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8439997101661726800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89ae4d736c9bee418d84297e738dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayerWeapon: 1
+  col: {fileID: 0}

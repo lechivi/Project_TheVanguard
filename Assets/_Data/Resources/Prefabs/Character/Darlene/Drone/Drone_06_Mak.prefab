@@ -46,11 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 4096
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
   visibleTargets: []
+  detectionRange: 15
 --- !u!1 &727914571966202493
 GameObject:
   m_ObjectHideFlags: 0
@@ -257,7 +258,7 @@ MonoBehaviour:
   - {fileID: 1334024018159893867}
   - {fileID: 4570591188783158118}
   - {fileID: 2975296884092882384}
-  detectEnemy: {fileID: 0}
+  detectTarget: {fileID: 7995241134385807405}
   droneAiCtrl: {fileID: 5988221163385730827}
   droneHealth: {fileID: 1097795599072756947}
   targetFollow: {fileID: 0}
@@ -280,6 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerPoint: {fileID: 372967741693017502}
+  isNPC: 0
 --- !u!1 &1443727296688870691
 GameObject:
   m_ObjectHideFlags: 0

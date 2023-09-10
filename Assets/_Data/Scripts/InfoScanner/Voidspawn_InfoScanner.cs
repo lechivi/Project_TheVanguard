@@ -16,6 +16,11 @@ public class Voidspawn_InfoScanner : SaiMonoBehaviour, IInfoScanner
         return FactionType.Voidspawn;
     }
 
+    public Transform GetTransform()
+    {
+        return transform;
+    }
+
     public Transform GetCenterPoint()
     {
         return this.enemyCtrl.CenterPoint;

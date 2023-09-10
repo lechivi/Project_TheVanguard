@@ -444,6 +444,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1446971288066678669}
   - component: {fileID: 4642142437114786730}
+  - component: {fileID: 8698377989645695733}
   m_Layer: 5
   m_Name: Icon_Sniper_02_Victory
   m_TagString: Untagged
@@ -481,3 +482,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 3551117b47946894c88f51447d0ff82c, type: 2}
   weaponSlot: 03000000
+--- !u!114 &8698377989645695733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8445887792516056611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 8378077704331360233}
+  - {fileID: 8378194896637663891}
+  - {fileID: 8377582587818267159}
+  - {fileID: 8377789814841727281}
+  - {fileID: 8377156680304669265}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}

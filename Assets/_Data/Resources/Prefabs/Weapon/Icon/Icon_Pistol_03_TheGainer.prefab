@@ -684,6 +684,7 @@ GameObject:
   - component: {fileID: 4659824203706854413}
   - component: {fileID: 4620239375377917307}
   - component: {fileID: 2996979066233839796}
+  - component: {fileID: -3878434499318321225}
   m_Layer: 5
   m_Name: Icon_Pistol_03_TheGainer
   m_TagString: Untagged
@@ -787,6 +788,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: f61fda46c8dd8d949bd661a0b7850511, type: 2}
   weaponSlot: 02000000
+--- !u!114 &-3878434499318321225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4683345266131705801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 4659824203706854413}
+  - {fileID: 4659183868899518611}
+  - {fileID: 4659535741191088231}
+  - {fileID: 4660798130417541805}
+  - {fileID: 4659193067721445357}
+  - {fileID: 4660810042544653495}
+  - {fileID: 4661092468371017693}
+  - {fileID: 4659097652123073079}
+  - {fileID: 4659845093236031173}
+  - {fileID: 4660770983403287873}
+  - {fileID: 4660925539824994515}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &4683492136811890663
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class Enemy_AiCtrl : EnemyAbstract
 
     private void FixedUpdate()
     {
-        Debug.Log("CurState: " + this.EnemySM.CurrentState);
+        //Debug.Log("CurState: " + this.EnemySM.CurrentState);
         this.enemySM.FixedUpdate();
     }
 }

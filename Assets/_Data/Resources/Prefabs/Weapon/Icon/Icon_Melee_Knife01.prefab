@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7351499915612284672}
   - component: {fileID: 5385642904092891563}
+  - component: {fileID: -318302970761308386}
   m_Layer: 5
   m_Name: Icon_Melee_Knife01
   m_TagString: Untagged
@@ -47,6 +48,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 0f7b91baca371b04bb28490b78170c21, type: 2}
   weaponSlot: 01000000
+--- !u!114 &-318302970761308386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352364972703780450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 820051588791850996}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &808321280151252078
 GameObject:
   m_ObjectHideFlags: 0

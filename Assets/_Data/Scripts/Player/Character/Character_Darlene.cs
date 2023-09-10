@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character_Darlene : Character
@@ -47,7 +46,7 @@ public class Character_Darlene : Character
     {
         float offsetY = 1.5f;
         this.summonPoint = this.droneFollowPoint.transform.position;
-        this.summonFX.transform.position = new Vector3(this.summonPoint.x, offsetY, this.summonPoint.z);
+        this.summonFX.transform.position = new Vector3(this.summonPoint.x, offsetY + transform.position.y, this.summonPoint.z);
         this.summonFX.Play();
     }
 

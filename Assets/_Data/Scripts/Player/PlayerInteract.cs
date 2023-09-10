@@ -16,7 +16,7 @@ public class PlayerInteract : PlayerAbstract
         }
         else
         {
-            this.raycastOriginal = Camera.main.transform;
+            this.raycastOriginal = this.playerCtrl.PlayerCamera.MainCamera.transform;
         }
     }
 
@@ -29,9 +29,10 @@ public class PlayerInteract : PlayerAbstract
         }
     }
 
-
     public IInteractable GetInteractableObjectByRaycast()
     {
+        if (this.raycastOriginal == null) return null;
+
         Physics.Raycast(this.raycastOriginal.transform.position, this.raycastOriginal.transform.forward, 
             out RaycastHit hitInfo, this.interactDistance, this.pickupLayer);
         if (hitInfo.collider != null && hitInfo.transform.TryGetComponent(out IInteractable interactable))

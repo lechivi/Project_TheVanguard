@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5023806455983446911}
   - component: {fileID: 4406619787822000717}
+  - component: {fileID: 377832288735709197}
+  - component: {fileID: 2048972683167420717}
   m_Layer: 0
   m_Name: Model_Melee_Bat
   m_TagString: Untagged
@@ -47,6 +49,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 7cde9bef95a9d6147aa91151a40f5c73, type: 2}
   weaponSlot: 03000000
+--- !u!65 &377832288735709197
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551165291098977645}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.28813964, y: 1.1517317, z: 0.38387597}
+  m_Center: {x: -0.0021395683, y: 0.3208661, z: -0.0002527833}
+--- !u!114 &2048972683167420717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5551165291098977645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89ae4d736c9bee418d84297e738dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayerWeapon: 1
+  col: {fileID: 0}
 --- !u!1 &7530196476059348777
 GameObject:
   m_ObjectHideFlags: 0

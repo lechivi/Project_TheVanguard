@@ -179,6 +179,7 @@ GameObject:
   - component: {fileID: 8972904144246735307}
   - component: {fileID: 8950401752841796043}
   - component: {fileID: 3156255153124904142}
+  - component: {fileID: -7690709419555721009}
   m_Layer: 5
   m_Name: Icon_Pistol_02_DesertEagle
   m_TagString: Untagged
@@ -282,6 +283,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 1f07931fcc5367c408835f2a7d19f88d, type: 2}
   weaponSlot: 02000000
+--- !u!114 &-7690709419555721009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8995714266567274199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0, a: 1}
+  outlineWidth: 0.35
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+  renderers:
+  - {fileID: 8972904144246735307}
+  - {fileID: 8973046676571471321}
+  - {fileID: 8972247633886017175}
+  - {fileID: 8971500614123197069}
+  - {fileID: 8973090578058406947}
+  outlineMaskMaterial: {fileID: 0}
+  outlineFillMaterial: {fileID: 0}
 --- !u!1 &8995795029702653223
 GameObject:
   m_ObjectHideFlags: 0
