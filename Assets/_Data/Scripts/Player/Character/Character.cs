@@ -74,6 +74,12 @@ public class Character : SaiMonoBehaviour
             this.dealDamageCtrl = GetComponent<DealDamageCtrl>();
         if (this.takeDamageCtrl == null)
             this.takeDamageCtrl = GetComponent<TakeDamageCtrl>();
+        if (this.ragdollCtrl == null)
+        {
+            this.ragdollCtrl = GetComponentInChildren<RagdollCtrl>();
+            this.ragdollCtrl.Animator = this.animator;
+            this.ragdollCtrl.CharacterController = this.characterController;
+        }
     }
 
     protected virtual void LoadCharacterTransform()
