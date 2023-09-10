@@ -14,12 +14,12 @@ public class PlayerLocomotion : PlayerAbstract
     [Header("Movement Speed")]
     [SerializeField] private float rotationSpeed = 360f;
     [SerializeField] private float rotationSpeedTPS = 15f;
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpDamp;
-    [SerializeField] private float airControl;
-    [SerializeField] private float stepDown;
-    [SerializeField] private float jumpheight;
-    [SerializeField] private float gravity;
+    [SerializeField] private float speed = 1.5f;
+    [SerializeField] private float jumpDamp = 0.8f;
+    [SerializeField] private float airControl = 2.5f;
+    [SerializeField] private float stepDown = 0.4f;
+    [SerializeField] private float jumpheight = 3;
+    [SerializeField] private float gravity = 30;
     [SerializeField] private float speedDecrease;
     private Vector3 movementDirection;
     [SerializeField] private Vector3 rootMotion;
@@ -136,7 +136,6 @@ public class PlayerLocomotion : PlayerAbstract
         {
             if (this.movementDirection != Vector3.zero || this.movementDirection == Vector3.forward)
             {
-                //Debug.Log("Hello");
                 Quaternion toRatation = Quaternion.LookRotation(movementDirection, Vector3.up);
                 this.playerCtrl.PlayerTransform.rotation = Quaternion.RotateTowards(this.playerCtrl.PlayerTransform.rotation, toRatation, this.rotationSpeed * Time.deltaTime);
             }
@@ -144,8 +143,8 @@ public class PlayerLocomotion : PlayerAbstract
         else
         {
             float yawCamera = this.playerCtrl.PlayerCamera.MainCamera.transform.eulerAngles.y;
-            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
-
+            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, 
+                Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
         }
 
     }
@@ -167,11 +166,11 @@ public class PlayerLocomotion : PlayerAbstract
 
         return velocity;
     }
-    //
 
     public Vector3 CalculateAircontrol()
     {
-        return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
+        return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + 
+            (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 100);
     }
 
     public void HandleAnimatorMoveEvent()

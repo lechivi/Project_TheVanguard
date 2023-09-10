@@ -3,6 +3,7 @@ using UnityEngine;
 public class AllianceCompanion_InfoScanner : SaiMonoBehaviour, IInfoScanner
 {
     [SerializeField] private Transform centerPoint;
+    [SerializeField] private bool isNPC;
 
     private IHealth health;
 
@@ -30,6 +31,10 @@ public class AllianceCompanion_InfoScanner : SaiMonoBehaviour, IInfoScanner
         return FactionType.Alliance;
     }
 
+    public Transform GetTransform()
+    {
+        return transform;
+    }
     public Transform GetCenterPoint()
     {
         return this.centerPoint;
@@ -52,6 +57,11 @@ public class AllianceCompanion_InfoScanner : SaiMonoBehaviour, IInfoScanner
 
     public bool CanScan()
     {
+        if (this.isNPC)
+        {
+            Debug.Log("NPC");
+            return true;
+        }
         return !this.health.IsDeath();
     }
 }

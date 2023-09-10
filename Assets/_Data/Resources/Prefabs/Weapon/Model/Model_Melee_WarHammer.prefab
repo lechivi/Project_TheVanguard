@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4136580678883361211}
   - component: {fileID: 4136580678884181235}
   - component: {fileID: 4136580678885216643}
-  - component: {fileID: 4147016827641996261}
   - component: {fileID: 4147016827641996262}
+  - component: {fileID: 8832813744629297892}
+  - component: {fileID: 5404660294169184602}
   m_Layer: 0
   m_Name: Model_Melee_WarHammer
   m_TagString: Untagged
@@ -85,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4147016827641996261
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4136580678883009909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43993222493536710, guid: 3fd773361b100da46b7adaabfbd4d1ba, type: 2}
 --- !u!114 &4147016827641996262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +100,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 3770afb5165e20f499c1f0868cd1a782, type: 2}
   weaponSlot: 03000000
+--- !u!65 &8832813744629297892
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136580678883009909}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3904131, y: 1.6716175, z: 0.6590758}
+  m_Center: {x: -0.0021395683, y: 0.417122, z: -0.0002527833}
+--- !u!114 &5404660294169184602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136580678883009909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89ae4d736c9bee418d84297e738dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayerWeapon: 1
+  col: {fileID: 0}

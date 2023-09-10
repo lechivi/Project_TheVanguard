@@ -7,13 +7,14 @@ public class EnemyCtrl : SaiMonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Transform centerPoint;
+    [SerializeField] private TakeDamageCtrl takeDamageCtrl;
     [SerializeField] private GraphicEffect graphicEffect;
     [SerializeField] private DetectTarget detectTarget;
     [SerializeField] private Enemy_AiCtrl enemyAiCtrl;
     [SerializeField] private EnemyLocomotion enemyLocomotion;
     [SerializeField] private EnemyHealth enemyHealth;
     [SerializeField] private EnemyDebuffs enemyDebuffs;
-    [SerializeField] private EnemyRagdoll enemyRagdoll;
+    [SerializeField] private RagdollCtrl ragdollCtrl;
 
     public Animator Animator { get => this.animator; }
     public CharacterController CharacterController { get => this.characterController; }
@@ -25,7 +26,7 @@ public class EnemyCtrl : SaiMonoBehaviour
     public EnemyLocomotion EnemyLocomotion { get => this.enemyLocomotion; }
     public EnemyHealth EnemyHealth { get => this.enemyHealth; }
     public EnemyDebuffs EnemyDebuffs { get => this.enemyDebuffs; }
-    public EnemyRagdoll EnemyRagdoll { get => this.enemyRagdoll; }
+    public RagdollCtrl EnemyRagdoll { get => this.ragdollCtrl; }
 
     protected override void LoadComponent()
     {
@@ -40,7 +41,8 @@ public class EnemyCtrl : SaiMonoBehaviour
             this.navMeshAgent = GetComponent<NavMeshAgent>();
 
         if (this.centerPoint == null)
-            this.centerPoint = transform.Find("CenterPoint");
+            //this.centerPoint = transform.Find("CenterPoint");
+            this.centerPoint = transform.Find("Root/Hips/Spine_01/Spine_02");
 
         if (this.graphicEffect == null)
             this.graphicEffect = GetComponentInChildren<GraphicEffect>();
@@ -74,7 +76,17 @@ public class EnemyCtrl : SaiMonoBehaviour
         if (this.enemyDebuffs == null)
             this.enemyDebuffs = GetComponentInChildren<EnemyDebuffs>();
 
-        if (this.enemyRagdoll == null)
-            this.enemyRagdoll = GetComponentInChildren<EnemyRagdoll>();
+        if (this.ragdollCtrl == null)
+        {
+            this.ragdollCtrl = GetComponentInChildren<RagdollCtrl>();
+            this.ragdollCtrl.Animator = this.animator;
+            this.ragdollCtrl.CharacterController = this.characterController;
+        }
+
+        if (this.takeDamageCtrl == null)
+        {
+            this.takeDamageCtrl = GetComponent<TakeDamageCtrl>();
+            this.takeDamageCtrl.SetHealthObject(this.enemyHealth.gameObject);
+        }
     }
 }

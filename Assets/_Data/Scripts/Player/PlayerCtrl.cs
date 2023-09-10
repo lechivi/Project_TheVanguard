@@ -195,6 +195,8 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         this.PlayerLocomotion.SetOnEventAnimator();
         this.PlayerCamera.SetCameraTarget();
         this.PlayerWeapon.PlayerWeaponManager.WeaponSheathSlots = character.WeaponSheathSlots;
+
+        this.Character.TakeDamageCtrl.SetHealthObject(this.PlayerHealth.gameObject);
     }
 
     public void SetUI()

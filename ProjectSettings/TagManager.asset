@@ -7,6 +7,12 @@ TagManager:
   - Gun
   - PickupObject
   - CharacterSelection
+  - Enemy
+  - Ally
+  - EnemyCollider
+  - EnemyRagdoll
+  - PlayerCollider
+  - PlayerRagdoll
   layers:
   - Default
   - TransparentFX
@@ -21,9 +27,9 @@ TagManager:
   - TerrainOnly
   - Post Processing
   - Enemy
-  - 
-  - 
-  - 
+  - MovingObject
+  - EnemyRagdoll
+  - EnemyCollider
   - 
   - 
   - 

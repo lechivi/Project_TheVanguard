@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 9041116853367793800}
   - component: {fileID: 9015866802857225366}
   - component: {fileID: 9023577161607450894}
-  - component: {fileID: 9046747797493714014}
   - component: {fileID: 9076172108932369782}
+  - component: {fileID: 3076561287690795826}
+  - component: {fileID: 8807687600326093134}
   m_Layer: 0
   m_Name: Model_Melee_Sword02
   m_TagString: Untagged
@@ -85,20 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &9046747797493714014
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9038075402837665778}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43350254093689792, guid: 348f4c10f67baf14a9f1340732c1d568, type: 2}
 --- !u!114 &9076172108932369782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,3 +100,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: ea2119cd48137fe4eba35d5eff20c55a, type: 2}
   weaponSlot: 03000000
+--- !u!65 &3076561287690795826
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038075402837665778}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.28813964, y: 1.25, z: 0.591493}
+  m_Center: {x: -0.0021395683, y: 0.37, z: -0.0002527833}
+--- !u!114 &8807687600326093134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9038075402837665778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89ae4d736c9bee418d84297e738dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayerWeapon: 1
+  col: {fileID: 0}

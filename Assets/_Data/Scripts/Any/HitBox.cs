@@ -1,27 +1,41 @@
 using UnityEngine;
 
-public class HitBox : MonoBehaviour
+public class HitBox : SaiMonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
-    [SerializeField] private GameObject healthGameObject;
+    [SerializeField] private GameObject healthObject;
 
-    public GameObject HealthGameObject { get => this.healthGameObject; set => this.healthGameObject = value; }
+    public GameObject HealthObject { get => this.healthObject; set => this.healthObject = value; }
 
-    public void Setup(Rigidbody rb, GameObject healthGameObject)
+    protected override void LoadComponent()
     {
-        this.rb = rb;
-        this.healthGameObject = healthGameObject;
+        base.LoadComponent();
+        if (this.rb == null )
+            this.rb = GetComponent<Rigidbody>();
     }
 
-    public void OnHit(int damage, Vector3 force, Vector3 hitPoint)
-    {
-        if (this.healthGameObject == null || this.healthGameObject == null) return;
+    //public void Setup(Rigidbody rb, GameObject healthGameObject)
+    //{
+    //    this.rb = rb;
+    //    this.healthObject = healthGameObject;
+    //}
 
-        this.healthGameObject.GetComponent<IHealth>().TakeDamage(damage, force, hitPoint, this.rb);
+    public void OnHit(int damage)
+    {
+        if (this.healthObject == null) return;
+
+        this.healthObject.GetComponent<IHealth>().TakeDamage(damage);
+    }
+
+    public void OnHit(int damage, Vector3 force)
+    {
+        if (this.healthObject == null || this.rb == null) return;
+
+        this.healthObject.GetComponent<IHealth>().TakeDamage(damage, force, this.transform.position, this.rb);
     }
 
     public bool IsSetup()
     {
-        return this.rb != null && this.healthGameObject != null;
+        return this.rb != null && this.healthObject != null;
     }
 }

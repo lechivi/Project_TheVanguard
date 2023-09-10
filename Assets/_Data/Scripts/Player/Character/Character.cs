@@ -13,6 +13,9 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected Transform tps_LookAt;
     [SerializeField] protected Transform fps_Follow;
     [SerializeField] protected Transform[] weaponSheathSlots;
+    [SerializeField] protected DealDamageCtrl dealDamageCtrl;
+    [SerializeField] protected TakeDamageCtrl takeDamageCtrl;
+    [SerializeField] protected RagdollCtrl ragdollCtrl;
 
     [Space(10)]
     protected bool isReadySpecialSkill = true;
@@ -41,6 +44,9 @@ public class Character : SaiMonoBehaviour
     public Transform FPS_Follow { get => this.fps_Follow; }
     public OnEventAnimator EventAnimator { get => this.eventAnimator; }
     public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; }
+    public DealDamageCtrl DealDamageCtrl { get => this.dealDamageCtrl; }
+    public TakeDamageCtrl TakeDamageCtrl { get => this.takeDamageCtrl; }
+    public RagdollCtrl RagdollCtrl { get => this.ragdollCtrl; }
 
     public bool IsSpecialSkill { get => this.isSpecialSkill; }
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
@@ -63,6 +69,11 @@ public class Character : SaiMonoBehaviour
         this.LoadFPSFollow();
         this.LoadOnEventAnimator();
         this.LoadWeaponSheathSlots();
+
+        if (this.dealDamageCtrl == null)
+            this.dealDamageCtrl = GetComponent<DealDamageCtrl>();
+        if (this.takeDamageCtrl == null)
+            this.takeDamageCtrl = GetComponent<TakeDamageCtrl>();
     }
 
     protected virtual void LoadCharacterTransform()
@@ -187,7 +198,6 @@ public class Character : SaiMonoBehaviour
         if (PlayerCtrl.HasInstance)
         {
             PlayerCtrl.Instance.SetCharacter(this);
-
         }
     }
 

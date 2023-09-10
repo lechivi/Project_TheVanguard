@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 7258671158275090325}
   - component: {fileID: 7250512974409178983}
   - component: {fileID: 5913328743275049068}
+  - component: {fileID: 4025720757474878828}
+  - component: {fileID: 5608970135067280671}
   m_Layer: 0
   m_Name: Model_Melee_Knife04
   m_TagString: Untagged
@@ -98,3 +100,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponData: {fileID: 11400000, guid: 368d2fa4d2995d34d8cc9bfc70a79fd9, type: 2}
   weaponSlot: 01000000
+--- !u!65 &4025720757474878828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7262410541620119071}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.28813964, y: 0.62049913, z: 0.27469188}
+  m_Center: {x: -0.0021395683, y: 0.15453246, z: -0.0002527833}
+--- !u!114 &5608970135067280671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7262410541620119071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89ae4d736c9bee418d84297e738dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayerWeapon: 1
+  col: {fileID: 0}

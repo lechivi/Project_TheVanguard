@@ -10,8 +10,12 @@ public class UI_PlayerInfoScanner : BaseUIElement
     [SerializeField] private Slider slider;
     [SerializeField] private Image fillImage;
 
+    [SerializeField] private float delay = 2.5f;
     [SerializeField] private Color allyColor;
     [SerializeField] private Color enemyColor;
+
+    private IInfoScanner curScanObject;
+    private float timer;
 
     protected override void LoadComponent()
     {
@@ -31,18 +35,29 @@ public class UI_PlayerInfoScanner : BaseUIElement
 
     private void FixedUpdate()
     {
+
         if (PlayerCtrl.HasInstance)
         {
             if (PlayerCtrl.Instance.gameObject.activeSelf == false || PlayerCtrl.Instance.Character == null) return;
 
-            if (PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast() != null)
+            IInfoScanner targetScan = PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast();
+            if (targetScan != null)
             {
-                this.Show(null);
+                this.curScanObject = targetScan;
+                this.Show(targetScan);
             }
             else
             {
-                this.Hide();
-                this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Unknow);
+                if (this.curScanObject != null)
+                {
+                    this.timer += Time.fixedDeltaTime;
+                    if (this.timer > this.delay || !this.curScanObject.CanScan())
+                    {
+                        this.timer = 0;
+                        this.Hide();
+                        this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Unknow);
+                    }
+                }
             }
         }
         else
@@ -58,22 +73,31 @@ public class UI_PlayerInfoScanner : BaseUIElement
 
         if (PlayerCtrl.HasInstance)
         {
-            IInfoScanner targetScan = PlayerCtrl.Instance.PlayerInfoScanner.GetInfoScannerObjectByRaycast();
-            this.text.SetText(targetScan.GetTargetName());
-            if (targetScan.GetFactionType() == FactionType.Voidspawn)
+            if (data is IInfoScanner)
             {
-                this.fillImage.color = this.enemyColor;
-                this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Voidspawn);
-            }
-            else if (targetScan.GetFactionType() == FactionType.Alliance)
-            {
-                this.fillImage.color = this.allyColor;
-                this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Alliance);
-            }
+                IInfoScanner targetScan = data as IInfoScanner;
+                this.text.SetText(targetScan.GetTargetName());
+                if (targetScan.GetFactionType() == FactionType.Voidspawn)
+                {
+                    this.fillImage.color = this.enemyColor;
+                    this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Voidspawn);
+                }
+                else if (targetScan.GetFactionType() == FactionType.Alliance)
+                {
+                    this.fillImage.color = this.allyColor;
+                    this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Alliance);
+                }
 
-            IHealth health = targetScan.GetHealth();
-            this.slider.maxValue = health.GetMaxHealth();
-            this.slider.value = health.GetCurrentHealth();
+                IHealth health = targetScan.GetHealth();
+                this.slider.maxValue = health.GetMaxHealth();
+                this.slider.value = health.GetCurrentHealth();
+            }
         }
+    }
+
+    public override void Hide()
+    {
+        base.Hide();
+        this.curScanObject = null;
     }
 }

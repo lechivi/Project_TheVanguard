@@ -11,6 +11,8 @@ public class CutoutObject : SaiMonoBehaviour
     [SerializeField] private Material cutoutMaterial;
     private Dictionary<Transform, Material> originalMaterials = new Dictionary<Transform, Material>();
 
+    public Transform TargetObject { get => this.targetObject; set => this.targetObject = value; }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -18,7 +20,7 @@ public class CutoutObject : SaiMonoBehaviour
             this.mainCamera = Camera.main;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (this.targetObject == null) return;
 
@@ -27,22 +29,24 @@ public class CutoutObject : SaiMonoBehaviour
 
         Vector3 offset = this.targetObject.position - transform.position;
         RaycastHit[] hitObjects = Physics.RaycastAll(transform.position, offset, offset.magnitude, this.wallMask);
-
         foreach (RaycastHit hit in hitObjects)
         {
             Transform hitTransform = hit.transform;
-            if (!this.originalMaterials.TryGetValue(hitTransform, out Material material))
+            if (hitTransform.TryGetComponent<Renderer>(out Renderer renderer))
             {
-                material = hitTransform.GetComponent<Renderer>().material;
-                this.originalMaterials.Add(hitTransform, material);
-                this.cutoutMaterial.SetTexture("_MainTexture", material.mainTexture);
-                hitTransform.GetComponent<Renderer>().material = this.cutoutMaterial;
-            }
+                if (!this.originalMaterials.TryGetValue(hitTransform, out Material material))
+                {
+                    material = renderer.material;
+                    this.originalMaterials.Add(hitTransform, material);
+                    this.cutoutMaterial.SetTexture("_MainTexture", material.mainTexture);
+                    hitTransform.GetComponent<Renderer>().material = this.cutoutMaterial;
+                }
 
-            Material currentMaterial = hitTransform.GetComponent<Renderer>().material;
-            currentMaterial.SetVector("_CutoutPos", cutoutPosition);
-            currentMaterial.SetFloat("_CutoutSize", this.cutoutSize);
-            currentMaterial.SetFloat("_FalloffSize", this.falloffSize);
+                Material currentMaterial = renderer.material;
+                currentMaterial.SetVector("_CutoutPos", cutoutPosition);
+                currentMaterial.SetFloat("_CutoutSize", this.cutoutSize);
+                currentMaterial.SetFloat("_FalloffSize", this.falloffSize);
+            }
         }
 
         List<Transform> transformsToRemove = new List<Transform>();
@@ -60,4 +64,20 @@ public class CutoutObject : SaiMonoBehaviour
             this.originalMaterials.Remove(transformToRemove);
         }
     }
+
+    //void OnDrawGizmos()
+    //{
+    //    if (this.targetObject == null)
+    //        return;
+
+    //    Vector3 offset = this.targetObject.position - transform.position;
+    //    RaycastHit[] hitObjects = Physics.RaycastAll(transform.position, offset, offset.magnitude, this.wallMask);
+
+    //    Gizmos.color = Color.red;
+    //    foreach (var hit in hitObjects)
+    //    {
+    //        Gizmos.DrawLine(transform.position, hit.point);
+    //        Gizmos.DrawSphere(hit.point, 0.1f);
+    //    }
+    //}
 }
