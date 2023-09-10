@@ -64,7 +64,7 @@ public class HoangVillageSceneCtrl : SaiMonoBehaviour
     {
         if (AudioManager.HasInstance)
         {
-            AudioManager.Instance.PlayBgm(AUDIO.BGM_VILLAGE_TAVERN_LAROULETTE);
+            AudioManager.Instance.PlayBgm(AUDIO.BGM_BATTLE_BASE_TILE_002_01_BLACKSPACE);
         }
 
         if (InputManager.HasInstance)

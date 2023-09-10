@@ -7097,6 +7097,7 @@ MonoBehaviour:
   - {fileID: 4933383703044265309}
   dealDamageCtrl: {fileID: 3549100569075072622}
   takeDamageCtrl: {fileID: 710756214}
+  ragdollCtrl: {fileID: 0}
   poolingObject: {fileID: 6424896598924351204}
   droneFollowPoint: {fileID: 4821004516000118514}
   summonFX: {fileID: 2205641754554643505}
