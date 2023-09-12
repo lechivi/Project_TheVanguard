@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sniper_04_Hawkeye
   m_EditorClassIdentifier: 
   ItemName: Hawkeye
-  ItemValue: 0
+  ItemValue: 100
   ItemType: 1
   Icon: {fileID: 5513720291159586698, guid: dcf58a8931f384b4c924cbd6e771a577, type: 3}
   Model: {fileID: 1937876462363981338, guid: ec489a38abaea2f46a3f909b56a37efe, type: 3}

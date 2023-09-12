@@ -13,17 +13,39 @@ MonoBehaviour:
   m_Name: Rifle_04_Plasmacaster
   m_EditorClassIdentifier: 
   ItemName: Plasmacaster
-  ItemValue: 0
+  ItemValue: 70
   ItemType: 1
-  WeaponType: 2
   Icon: {fileID: 3798249422001739287, guid: 68cab0b9ffde00f49af965eb84b3481b, type: 3}
   Model: {fileID: 8547770153876791363, guid: 5fdcfbc2b144054489de75645201d981, type: 3}
+  BodyType: 0
+  BigsizePosHolster: {x: 0, y: 0, z: 0}
+  BigsizeRosHolster: {x: 0, y: 0, z: 0}
+  ShortPosHolster: {x: 0, y: 0, z: 0}
+  ShortRosHolster: {x: 0, y: 0, z: 0}
+  NormalPosHolster: {x: 0, y: 0, z: 0}
+  NormalRosHolster: {x: 0, y: 0, z: 0}
+  BigsizePosEquip: {x: 0, y: 0, z: 0}
+  BigsizeRosEquip: {x: 0, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0, z: 0}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0, z: 0}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 2
+  ShotGunType: 0
+  MeleeType: 0
   rangedDamage: 0
-  fireRate: 0
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 2
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

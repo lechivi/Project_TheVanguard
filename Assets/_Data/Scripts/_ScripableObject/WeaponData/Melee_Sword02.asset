@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Sword02
   m_EditorClassIdentifier: 
-  ItemName: Sword 02
-  ItemValue: 0
+  ItemName: Sword 2
+  ItemValue: 70
   ItemType: 1
   Icon: {fileID: 3482774521645311269, guid: 9dfeb0501821aed4f867e9b4594c7d29, type: 3}
   Model: {fileID: 9038075402837665778, guid: b675f7808a28e814f945c71590e21a7e, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   WeaponType: 5
   ShotGunType: 0
   MeleeType: 2
-  rangedDamage: 0
+  rangedDamage: 25
   accuracy: 0
   timePerFireRate: 0
   fireRate: 0
@@ -47,5 +47,5 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads: []
-  meleeDamage: 0
+  meleeDamage: 25
   swingSpeed: 0

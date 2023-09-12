@@ -12,20 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Shotgun_03_Butcher
   m_EditorClassIdentifier: 
-  ItemName: 
-  ItemValue: 0
+  ItemName: Butcher
+  ItemValue: 80
   ItemType: 0
   Icon: {fileID: 3390588199410819549, guid: 3da8a52f8a5e6b24983dd40f6b4fe3de, type: 3}
   Model: {fileID: 5371630196229813801, guid: e9422c7bc2511a744971300c8890ff6c, type: 3}
+  BodyType: 0
+  BigsizePosHolster: {x: 0, y: 0, z: 0}
+  BigsizeRosHolster: {x: 0, y: 0, z: 0}
+  ShortPosHolster: {x: 0, y: 0, z: 0}
+  ShortRosHolster: {x: 0, y: 0, z: 0}
+  NormalPosHolster: {x: 0, y: 0, z: 0}
+  NormalRosHolster: {x: 0, y: 0, z: 0}
+  BigsizePosEquip: {x: 0, y: 0, z: 0}
+  BigsizeRosEquip: {x: 0, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0, z: 0}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0, z: 0}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
   WeaponType: 4
+  ShotGunType: 0
+  MeleeType: 0
   rangedDamage: 0
-  timeDelayShot: 0
+  accuracy: 0
+  timePerFireRate: 0
   fireRate: 0
   bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 3
   ammoPerShot: 0
   ammo: 0
-  maxAmmo: 0
   magazineSize: 0
   range: 0
   spreadAiming: 0

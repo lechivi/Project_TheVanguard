@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rifle_03_AK12
   m_EditorClassIdentifier: 
   ItemName: AK12
-  ItemValue: 0
+  ItemValue: 60
   ItemType: 1
   Icon: {fileID: 7288736737000387588, guid: dd38ed6c20cdd0d4e9b4078176d89276, type: 3}
   Model: {fileID: 7619831155923391294, guid: 6ef6a109d1cfe444fa44bb2d8fe4d6a9, type: 3}

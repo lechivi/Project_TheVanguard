@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Melee_AxeNature
   m_EditorClassIdentifier: 
   ItemName: Nature Axe
-  ItemValue: 15
+  ItemValue: 50
   ItemType: 1
   Icon: {fileID: 927080979785737422, guid: bc3a425b10d82ef4993b3bff23a6be1f, type: 3}
   Model: {fileID: 6365626277572247524, guid: 4444be8e14820334dbcb53eedf236af0, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   WeaponType: 5
   ShotGunType: 0
   MeleeType: 1
-  rangedDamage: 0
+  rangedDamage: 10
   accuracy: 0
   timePerFireRate: 0
   fireRate: 0
@@ -47,5 +47,5 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads: []
-  meleeDamage: 0
+  meleeDamage: 10
   swingSpeed: 0

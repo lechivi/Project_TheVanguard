@@ -92,7 +92,8 @@ public class GameManager : BaseManager<GameManager>
 
     public void TravelToVillage()
     {
-        this.playerCtrl.PlayerWeapon.PlayerWeaponManager.SaveWeapon();
+        if (this.playerCtrl.Character != null)
+            this.playerCtrl.PlayerWeapon.PlayerWeaponManager.SaveWeapon();
 
         StartCoroutine(this.LoadScene((int)SceneIndex.Village));
         this.ResumeGame();

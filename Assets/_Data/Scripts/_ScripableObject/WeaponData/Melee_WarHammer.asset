@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Melee_WarHammer
   m_EditorClassIdentifier: 
   ItemName: War Hammer
-  ItemValue: 0
+  ItemValue: 80
   ItemType: 1
   Icon: {fileID: 2420060032605386392, guid: cf8a88cddd0ecc749bae32b02fb79df6, type: 3}
   Model: {fileID: 4136580678883009909, guid: a6b3e168403528f458c153a7a3d7216b, type: 3}
@@ -47,5 +47,5 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads: []
-  meleeDamage: 0
+  meleeDamage: 80
   swingSpeed: 0

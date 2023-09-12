@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Bat
   m_EditorClassIdentifier: 
-  ItemName: 
-  ItemValue: 0
+  ItemName: Bat
+  ItemValue: 20
   ItemType: 0
   Icon: {fileID: 1949832082346366202, guid: 65c350b15cc960047b10ee2510a29efe, type: 3}
   Model: {fileID: 5551165291098977645, guid: 079aed8600f50f14cbb99dc5ad3bce30, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   WeaponType: 5
   ShotGunType: 0
   MeleeType: 1
-  rangedDamage: 0
+  rangedDamage: 10
   accuracy: 0
   timePerFireRate: 0
   fireRate: 0
@@ -47,5 +47,5 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads: []
-  meleeDamage: 0
+  meleeDamage: 10
   swingSpeed: 0

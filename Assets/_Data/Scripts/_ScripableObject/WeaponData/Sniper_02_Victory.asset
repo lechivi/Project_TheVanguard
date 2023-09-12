@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sniper_02_Victory
   m_EditorClassIdentifier: 
   ItemName: Victory
-  ItemValue: 0
+  ItemValue: 80
   ItemType: 1
   Icon: {fileID: 8445887792516056611, guid: 18650ace9c4600a4f90d9fbccac94050, type: 3}
   Model: {fileID: 6254852180618784824, guid: fd337286b8fdc2a4e9babb0866e0ea60, type: 3}

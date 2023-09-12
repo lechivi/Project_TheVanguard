@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun_02_Venom
   m_EditorClassIdentifier: 
   ItemName: Venom
-  ItemValue: 0
+  ItemValue: 80
   ItemType: 1
   Icon: {fileID: 6565743542417853683, guid: 0d49b1c0889930645971e272fb0ecfae, type: 3}
   Model: {fileID: 8824270345280385828, guid: 70c5dd1609abdde478d4c9bde2200bb9, type: 3}

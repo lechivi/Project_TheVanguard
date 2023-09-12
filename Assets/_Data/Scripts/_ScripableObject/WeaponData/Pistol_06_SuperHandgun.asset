@@ -13,17 +13,39 @@ MonoBehaviour:
   m_Name: Pistol_06_SuperHandgun
   m_EditorClassIdentifier: 
   ItemName: Super Handgun
-  ItemValue: 0
+  ItemValue: 50
   ItemType: 1
-  WeaponType: 1
   Icon: {fileID: 3271413386191694232, guid: 44efc973b9540b84ab86bf1172999ae5, type: 3}
   Model: {fileID: 8172358562170093355, guid: 8e90e3e389e3c3449ac764ac9dfc22ed, type: 3}
+  BodyType: 0
+  BigsizePosHolster: {x: 0, y: 0, z: 0}
+  BigsizeRosHolster: {x: 0, y: 0, z: 0}
+  ShortPosHolster: {x: 0, y: 0, z: 0}
+  ShortRosHolster: {x: 0, y: 0, z: 0}
+  NormalPosHolster: {x: 0, y: 0, z: 0}
+  NormalRosHolster: {x: 0, y: 0, z: 0}
+  BigsizePosEquip: {x: 0, y: 0, z: 0}
+  BigsizeRosEquip: {x: 0, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0, z: 0}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0, z: 0}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 1
+  ShotGunType: 0
+  MeleeType: 0
   rangedDamage: 50
-  fireRate: 6
   accuracy: 60
+  timePerFireRate: 0
+  fireRate: 6
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 1
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 6
-  reloadTime: 0
   range: 53
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

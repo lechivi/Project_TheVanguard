@@ -105447,7 +105447,10 @@ MonoBehaviour:
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
-  renderers: []
+  renderers:
+  - {fileID: 3609197103932544622}
+  - {fileID: 3723027673615937586}
+  - {fileID: 3722889649582047014}
   outlineMaskMaterial: {fileID: 0}
   outlineFillMaterial: {fileID: 0}
 --- !u!114 &3745624842333349772

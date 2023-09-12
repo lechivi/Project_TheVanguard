@@ -13,17 +13,39 @@ MonoBehaviour:
   m_Name: Shotgun_04_Hellfire
   m_EditorClassIdentifier: 
   ItemName: Hellfire
-  ItemValue: 0
+  ItemValue: 90
   ItemType: 1
-  WeaponType: 3
   Icon: {fileID: 982737855399473057, guid: 0a6f213e46683794383207dde0a8c943, type: 3}
   Model: {fileID: 6647652703893825053, guid: 4ede1b18014a66f48b55ea9d0b07a847, type: 3}
+  BodyType: 0
+  BigsizePosHolster: {x: 0, y: 0, z: 0}
+  BigsizeRosHolster: {x: 0, y: 0, z: 0}
+  ShortPosHolster: {x: 0, y: 0, z: 0}
+  ShortRosHolster: {x: 0, y: 0, z: 0}
+  NormalPosHolster: {x: 0, y: 0, z: 0}
+  NormalRosHolster: {x: 0, y: 0, z: 0}
+  BigsizePosEquip: {x: 0, y: 0, z: 0}
+  BigsizeRosEquip: {x: 0, y: 0, z: 0}
+  ShortPosEquip: {x: 0, y: 0, z: 0}
+  ShortRosEquip: {x: 0, y: 0, z: 0}
+  NormalPosEquip: {x: 0, y: 0, z: 0}
+  NormalRosEquip: {x: 0, y: 0, z: 0}
+  WeaponType: 3
+  ShotGunType: 0
+  MeleeType: 0
   rangedDamage: 0
-  fireRate: 0
   accuracy: 0
+  timePerFireRate: 0
+  fireRate: 0
+  bulletSpeed: 0
+  timeDelayPerShot: 0
   ammoType: 3
+  ammoPerShot: 0
+  ammo: 0
   magazineSize: 0
-  reloadTime: 0
   range: 0
+  spreadAiming: 0
+  spreadNotAim: 0
+  spreads: []
   meleeDamage: 0
   swingSpeed: 0

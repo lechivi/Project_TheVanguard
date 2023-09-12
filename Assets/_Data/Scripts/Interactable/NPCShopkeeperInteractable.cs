@@ -18,7 +18,7 @@ public class NPCShopkeeperInteractable : NPCInteractable
             chatBubble.Setup(this.chatQuote[Random.Range(0, this.chatQuote.Count)], this.chatExistTime);
         }
 
-        this.npcCtrl.SetAnimaton(NPCBehaviour.Talk1.ToString(), this.chatExistTime);
+        this.npcCtrl.SetAnimaton("Talk", this.chatExistTime);
 
         Transform targetLookAt = this.interactorTransfrom.GetComponent<PlayerInteract>().PlayerCtrl.PlayerTransform;
         if (targetLookAt != null)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rifle_02_AK47
   m_EditorClassIdentifier: 
   ItemName: AK47
-  ItemValue: 0
+  ItemValue: 60
   ItemType: 1
   Icon: {fileID: 8093344953519539871, guid: e40b27f116e0d804bba21c2432cf87da, type: 3}
   Model: {fileID: 7060617416936867603, guid: 2314c6a35c5931341a1708c96ac872c1, type: 3}

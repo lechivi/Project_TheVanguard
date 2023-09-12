@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol_02_DesertEagle
   m_EditorClassIdentifier: 
   ItemName: DesertEagle
-  ItemValue: 0
+  ItemValue: 30
   ItemType: 1
   Icon: {fileID: 8995714266567274199, guid: 374c5f6f250aa044f8195ca3e1ffc072, type: 3}
   Model: {fileID: 1329825557711441940, guid: bf4fe4b84ad8c3749a6162061ea21fc0, type: 3}

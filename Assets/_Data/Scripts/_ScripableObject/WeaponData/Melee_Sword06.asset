@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Melee_Sword06
   m_EditorClassIdentifier: 
   ItemName: Wado Nimonji
-  ItemValue: 0
+  ItemValue: 70
   ItemType: 1
   Icon: {fileID: 5792169234966480384, guid: b0b952c4840fddb44924f07f83623e02, type: 3}
   Model: {fileID: 8439997101661726800, guid: 84b131b45a2149a42a04dd748b368d45, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   WeaponType: 5
   ShotGunType: 0
   MeleeType: 1
-  rangedDamage: 0
+  rangedDamage: 29
   accuracy: 0
   timePerFireRate: 0
   fireRate: 0
@@ -47,5 +47,5 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads: []
-  meleeDamage: 0
+  meleeDamage: 29
   swingSpeed: 0

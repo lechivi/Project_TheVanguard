@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Melee_Knife04
   m_EditorClassIdentifier: 
   ItemName: Knife 04
-  ItemValue: 0
+  ItemValue: 13
   ItemType: 1
   Icon: {fileID: 1307541170598548540, guid: 8c8cd2ef27d7c47418c6c385a18139d1, type: 3}
   Model: {fileID: 7262410541620119071, guid: 1d7b6bc806a1bf44dba57b9a513cc21f, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
   WeaponType: 5
   ShotGunType: 0
   MeleeType: 2
-  rangedDamage: 0
+  rangedDamage: 5
   accuracy: 0
   timePerFireRate: 0
   fireRate: 0
@@ -47,5 +47,5 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads: []
-  meleeDamage: 0
+  meleeDamage: 5
   swingSpeed: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rifle_01_ScarL
   m_EditorClassIdentifier: 
   ItemName: ScarL
-  ItemValue: 0
+  ItemValue: 60
   ItemType: 1
   Icon: {fileID: 1568828997337837238, guid: 2971478ebdd27c549be04e1b166eb701, type: 3}
   Model: {fileID: 8338794331710512354, guid: d75eaf3f54960924c9e26984e83ac9e4, type: 3}
