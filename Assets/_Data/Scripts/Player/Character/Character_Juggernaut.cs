@@ -242,11 +242,11 @@ public class Character_Juggernaut : Character
         if (Hit_Bool)
         {
             distance = (Hit.point - transform.position).magnitude;
-            if (distance < 20f && Input.GetMouseButtonUp(0))
+            if (distance < 20f && PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonUp)
             {
                 Invoke("EnableBomExplosion", 0.01f);
             }
-            if (distance >= 20f && Input.GetMouseButtonUp(0))
+            if (distance >= 20f && PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonUp)
             {
                 Invoke("EnableBomExplosion", 0.2f);
             }
