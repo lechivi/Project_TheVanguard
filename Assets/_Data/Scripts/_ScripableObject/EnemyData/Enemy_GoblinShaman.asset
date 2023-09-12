@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Goblin Shaman
   Health: 13
-  Damage: 4
-  Speed: 2
+  Damage: 9
+  Speed: 5
+  AttackRange: 2

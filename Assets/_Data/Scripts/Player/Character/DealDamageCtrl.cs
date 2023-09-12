@@ -20,10 +20,11 @@ public class DealDamageCtrl : SaiMonoBehaviour
 
     public void EnableDealDamageCollider(int isEnable)
     {
+        Debug.Log(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.IsHolstering);
         if (!PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
             Weapon melee = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.GetActiveWeapon();
-            if (melee.WeaponData.WeaponType == WeaponType.Melee)
+            if (melee && melee.WeaponData.WeaponType == WeaponType.Melee)
             {
                 this.dealDamageUnarmed.gameObject.SetActive(false);
 
@@ -40,8 +41,10 @@ public class DealDamageCtrl : SaiMonoBehaviour
                 {
                     foreach (var weapon in this.listDealDamageMelee)
                     {
+                        weapon.SetActiveDeal(true);
                         weapon.Col.enabled = true;
                     }
+                    return;
                 }
                 else
                 {
@@ -49,21 +52,21 @@ public class DealDamageCtrl : SaiMonoBehaviour
                     {
                         weapon.Col.enabled = false;
                     }
+                    return;
                 }
             }
         }
+
+        this.dealDamageUnarmed.gameObject.SetActive(true);
+
+        if (isEnable == 1)
+        {
+            this.dealDamageUnarmed.SetActiveDeal(true);
+            this.dealDamageUnarmed.Col.enabled = true;
+        }
         else
         {
-            this.dealDamageUnarmed.gameObject.SetActive(true);
-
-            if (isEnable == 1)
-            {
-                this.dealDamageUnarmed.Col.enabled = true;
-            }
-            else
-            {
-                this.dealDamageUnarmed.Col.enabled = false;
-            }
+            this.dealDamageUnarmed.Col.enabled = false;
         }
     }
 }

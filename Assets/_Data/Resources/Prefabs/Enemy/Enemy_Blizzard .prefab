@@ -2694,7 +2694,7 @@ GameObject:
   - component: {fileID: 8911549768414651817}
   - component: {fileID: 8911549768414651815}
   - component: {fileID: 8911549768414651816}
-  m_Layer: 14
+  m_Layer: 13
   m_Name: DealDamageBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

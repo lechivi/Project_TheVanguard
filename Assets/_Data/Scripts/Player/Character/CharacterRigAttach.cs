@@ -5,18 +5,18 @@ using UnityEngine.Animations.Rigging;
 
 public class CharacterRigAttach : SaiMonoBehaviour
 {
-    [SerializeField] private Transform aimLookMainFake;
+    //[SerializeField] private Transform aimLookMainFake;
     [SerializeField] private Transform leftHand;
-    [SerializeField] private MultiAimConstraint aimSpine1;
-    [SerializeField] private MultiAimConstraint aimSpine2;
-    [SerializeField] private MultiAimConstraint aimHead;
-    [SerializeField] private MultiAimConstraint weaponPose;
+    //[SerializeField] private MultiAimConstraint aimSpine1;
+    //[SerializeField] private MultiAimConstraint aimSpine2;
+    //[SerializeField] private MultiAimConstraint aimHead;
+    //[SerializeField] private MultiAimConstraint weaponPose;
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        if (this.aimLookMainFake == null)
-            this.aimLookMainFake = transform.Find("AimLookMainFake");
+        //if (this.aimLookMainFake == null)
+        //    this.aimLookMainFake = transform.Find("AimLookMainFake");
 
         if (this.leftHand == null)
             this.leftHand = transform.Find("Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L");
@@ -46,12 +46,12 @@ public class CharacterRigAttach : SaiMonoBehaviour
 
     private void FixedUpdate()
     {
-        if (GameManager.HasInstance)
-        {
-            if (GameManager.Instance.PlayerCtrl.Character != null)
-            {
-                this.aimLookMainFake.transform.localPosition = GameManager.Instance.PlayerCtrl.PlayerAim.AimLookMain.transform.position;
-            }
-        }
+        //    if (GameManager.HasInstance)
+        //    {
+        //        if (GameManager.Instance.PlayerCtrl.Character != null)
+        //        {
+        //            this.aimLookMainFake.transform.localPosition = GameManager.Instance.PlayerCtrl.PlayerAim.AimLookMain.transform.position;
+        //        }
+        //    }
     }
 }

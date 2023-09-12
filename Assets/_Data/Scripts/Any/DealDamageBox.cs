@@ -36,6 +36,10 @@ public class DealDamageBox : SaiMonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("EnemyCollider") && this.isPlayerWeapon)
+        {
+            Debug.Log("hit" + other.gameObject.name);
+        }
         if (other.CompareTag(this.isPlayerWeapon ? "EnemyCollider" : "PlayerCollider") && !this.hitCols.Contains(other))
         {
             this.hitCols.Add(other);

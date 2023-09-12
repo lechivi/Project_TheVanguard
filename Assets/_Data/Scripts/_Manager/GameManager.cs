@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : BaseManager<GameManager>
 {
     [SerializeField] private PlayerCtrl playerCtrl;
-    [SerializeField] private List<Character> listCharacter = new List<Character>();
+    //[SerializeField] private List<Character> listCharacter = new List<Character>();
     [SerializeField] private CharacterDataSO characterData;
 
     private bool isPlaying;
@@ -120,26 +120,26 @@ public class GameManager : BaseManager<GameManager>
         }
     }
 
-    public void GenerateCharacter(Vector3 position, Quaternion rotation)
-    {
-        if (this.characterData == null) return;
+    //public void GenerateCharacter(Vector3 position, Quaternion rotation)
+    //{
+    //    if (this.characterData == null) return;
 
-        Character character = null;
-        foreach (Character chr in this.listCharacter)
-        {
-            if (chr.CharacterData == this.characterData)
-            {
-                character = Instantiate(chr, position, rotation);
-                break;
-            }
-        }
-        if (character == null) return;
+    //    Character character = null;
+    //    foreach (Character chr in this.listCharacter)
+    //    {
+    //        if (chr.CharacterData == this.characterData)
+    //        {
+    //            character = Instantiate(chr, position, rotation);
+    //            break;
+    //        }
+    //    }
+    //    if (character == null) return;
 
-        this.playerCtrl.SetCharacter(character);
-        character.CharacterRigAttach.SetRig();
+    //    this.playerCtrl.SetCharacter(character);
+    //    character.CharacterRigAttach.SetRig();
 
-        this.playerCtrl.gameObject.SetActive(true);
-    }
+    //    this.playerCtrl.gameObject.SetActive(true);
+    //}
 
     public void GenerateCharacter(Character character)
     {

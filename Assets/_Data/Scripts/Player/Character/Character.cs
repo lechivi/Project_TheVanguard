@@ -17,6 +17,7 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected DealDamageCtrl dealDamageCtrl;
     [SerializeField] protected TakeDamageCtrl takeDamageCtrl;
     [SerializeField] protected RagdollCtrl ragdollCtrl;
+    [SerializeField] protected LeadTracker leadTracker;
 
     [Space(10)]
     protected bool isReadySpecialSkill = true;
@@ -49,6 +50,7 @@ public class Character : SaiMonoBehaviour
     public DealDamageCtrl DealDamageCtrl { get => this.dealDamageCtrl; }
     public TakeDamageCtrl TakeDamageCtrl { get => this.takeDamageCtrl; }
     public RagdollCtrl RagdollCtrl { get => this.ragdollCtrl; }
+    public LeadTracker LeadTracker { get => this.leadTracker; }
 
     public bool IsSpecialSkill { get => this.isSpecialSkill; }
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
@@ -72,21 +74,46 @@ public class Character : SaiMonoBehaviour
         this.LoadOnEventAnimator();
         this.LoadWeaponSheathSlots();
 
+        this.LoadDealDamageCtrl();
+        this.LoadTakeDamageCtrl();
+        this.LoadRagdollCtrl();
+        this.LoadCenterPoint();
+        this.LoadLeadTracker();
+    }
+
+    protected virtual void LoadDealDamageCtrl()
+    {
         if (this.dealDamageCtrl == null)
             this.dealDamageCtrl = GetComponent<DealDamageCtrl>();
+    }
+
+    protected virtual void LoadTakeDamageCtrl()
+    {
         if (this.takeDamageCtrl == null)
             this.takeDamageCtrl = GetComponent<TakeDamageCtrl>();
+    }
+
+    protected virtual void LoadRagdollCtrl()
+    {
         if (this.ragdollCtrl == null)
         {
             this.ragdollCtrl = GetComponentInChildren<RagdollCtrl>();
             this.ragdollCtrl.Animator = this.animator;
             this.ragdollCtrl.CharacterController = this.characterController;
         }
+    }
 
+    protected virtual void LoadCenterPoint()
+    {
         if (this.centerPoint == null)
             this.centerPoint = transform.Find("Root/Hips/Spine_01/Spine_02");
     }
 
+    protected virtual void LoadLeadTracker()
+    {
+        if (this.leadTracker == null)
+            this.leadTracker = GetComponent<LeadTracker>();
+    }
     protected virtual void LoadCharacterTransform()
     {
         if (this.characterTransform == null)

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Blizzard
   Health: 25
-  Damage: 5
+  Damage: 10
   Speed: 5
+  AttackRange: 2

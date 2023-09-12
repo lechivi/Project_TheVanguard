@@ -40,6 +40,7 @@ public class PlayerHealth : PlayerAbstract, IHealth
 
     public void TakeDamage(int damage)
     {
+        Debug.Log(damage);
         float damageTaken = (float)damage * (10f / (10f + this.defence + this.agility / 2f));
 
         this.currentHealth -= Mathf.RoundToInt(damageTaken);

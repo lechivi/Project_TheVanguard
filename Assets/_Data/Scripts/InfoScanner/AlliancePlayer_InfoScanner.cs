@@ -8,7 +8,7 @@ public class AlliancePlayer_InfoScanner : SaiMonoBehaviour, IInfoScanner
     {
         base.LoadComponent();
         if (this.centerPoint == null)
-            this.centerPoint = transform.Find("CenterPoint");
+            this.centerPoint = GetComponent<Character>().CenterPoint;
     }
 
     public FactionType GetFactionType()

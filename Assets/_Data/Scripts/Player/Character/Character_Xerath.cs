@@ -15,6 +15,11 @@ public class Character_Xerath : Character
     [SerializeField] private Transform b_TPS_LookAt;
     [SerializeField] private Transform b_FPS_Follow;
     [SerializeField] private OnEventAnimator b_OnEventAnimator;
+    [SerializeField] private DealDamageCtrl b_DealDamageCtrl;
+    [SerializeField] private TakeDamageCtrl b_TakeDamageCtrl;
+    [SerializeField] private RagdollCtrl b_RagdollCtrl;
+    [SerializeField] private Transform b_CenterPoint;
+    [SerializeField] private LeadTracker b_LeadTracker;
 
     [SerializeField] private GameObject alphaObj;
     [SerializeField] private CharacterController a_CharacterController;
@@ -23,6 +28,11 @@ public class Character_Xerath : Character
     [SerializeField] private Transform a_TPS_LookAt;
     [SerializeField] private Transform a_FPS_Follow;
     [SerializeField] private OnEventAnimator a_OnEventAnimator;
+    [SerializeField] private DealDamageCtrl a_DealDamageCtrl;
+    [SerializeField] private TakeDamageCtrl a_TakeDamageCtrl;
+    [SerializeField] private RagdollCtrl a_RagdollCtrl;
+    [SerializeField] private Transform a_CenterPoint;
+    [SerializeField] private LeadTracker a_LeadTracker;
 
     [Space(10)]
     [SerializeField] private Vector3 b_CameraOffset = new Vector3(0.75f, 0.12f, 0);
@@ -66,6 +76,22 @@ public class Character_Xerath : Character
         if (this.betaObj != null && this.b_OnEventAnimator == null)
             this.b_OnEventAnimator = this.betaObj.GetComponent<OnEventAnimator>();
 
+        if (this.betaObj != null && this.b_DealDamageCtrl == null)
+            this.b_DealDamageCtrl = this.betaObj.GetComponent<DealDamageCtrl>();
+
+        if (this.betaObj != null && this.b_TakeDamageCtrl == null)
+            this.b_TakeDamageCtrl = this.betaObj.GetComponent<TakeDamageCtrl>();
+
+        if (this.betaObj != null && this.b_RagdollCtrl == null)
+            this.b_RagdollCtrl = this.betaObj.GetComponent<RagdollCtrl>();
+
+        if (this.betaObj != null && this.b_LeadTracker == null)
+            this.b_LeadTracker = this.betaObj.GetComponent<LeadTracker>();
+
+        if (this.betaObj != null && this.b_CenterPoint == null)
+            this.b_CenterPoint = this.betaObj.transform.Find("Root/Hips/Spine_01/Spine_02");
+
+
         if (this.alphaObj == null)
             this.alphaObj = transform.Find("Xerath_Alpha").gameObject;
 
@@ -86,6 +112,21 @@ public class Character_Xerath : Character
 
         if (this.alphaObj != null && this.a_OnEventAnimator == null)
             this.a_OnEventAnimator = this.alphaObj.GetComponent<OnEventAnimator>();
+
+        if (this.alphaObj != null && this.a_DealDamageCtrl == null)
+            this.a_DealDamageCtrl = this.alphaObj.GetComponent<DealDamageCtrl>();
+
+        if (this.alphaObj != null && this.a_TakeDamageCtrl == null)
+            this.a_TakeDamageCtrl = this.alphaObj.GetComponent<TakeDamageCtrl>();
+
+        if (this.alphaObj != null && this.a_RagdollCtrl == null)
+            this.a_RagdollCtrl = this.alphaObj.GetComponent<RagdollCtrl>();
+
+        if (this.alphaObj != null && this.a_LeadTracker == null)
+            this.a_LeadTracker = this.alphaObj.GetComponent<LeadTracker>();
+
+        if (this.alphaObj != null && this.a_CenterPoint == null)
+            this.a_CenterPoint = this.alphaObj.transform.Find("Root/Hips/Spine_01/Spine_02");
     }
 
     protected override void LoadCharacterTransform()
@@ -163,6 +204,61 @@ public class Character_Xerath : Character
         else if (!this.isBeta && this.eventAnimator != this.a_OnEventAnimator)
         {
             this.eventAnimator = this.a_OnEventAnimator;
+        }
+    } 
+    protected override void LoadDealDamageCtrl()
+    {
+        if (this.isBeta && this.dealDamageCtrl != this.b_DealDamageCtrl)
+        {
+            this.dealDamageCtrl = this.b_DealDamageCtrl;
+        }
+        else if (!this.isBeta && this.dealDamageCtrl != this.a_DealDamageCtrl)
+        {
+            this.dealDamageCtrl = this.a_DealDamageCtrl;
+        }
+    }    
+    protected override void LoadTakeDamageCtrl()
+    {
+        if (this.isBeta && this.takeDamageCtrl != this.b_TakeDamageCtrl)
+        {
+            this.takeDamageCtrl = this.b_TakeDamageCtrl;
+        }
+        else if (!this.isBeta && this.takeDamageCtrl != this.a_TakeDamageCtrl)
+        {
+            this.takeDamageCtrl = this.a_TakeDamageCtrl;
+        }
+    }  
+    protected override void LoadRagdollCtrl()
+    {
+        if (this.isBeta && this.ragdollCtrl != this.b_RagdollCtrl)
+        {
+            this.ragdollCtrl = this.b_RagdollCtrl;
+        }
+        else if (!this.isBeta && this.ragdollCtrl != this.a_RagdollCtrl)
+        {
+            this.ragdollCtrl = this.a_RagdollCtrl;
+        }
+    }  
+    protected override void LoadLeadTracker()
+    {
+        if (this.isBeta && this.leadTracker != this.a_LeadTracker)
+        {
+            this.leadTracker = this.a_LeadTracker;
+        }
+        else if (!this.isBeta && this.leadTracker != this.b_LeadTracker)
+        {
+            this.leadTracker = this.b_LeadTracker;
+        }
+    }
+    protected override void LoadCenterPoint()
+    {
+        if (this.isBeta && this.centerPoint != this.a_CenterPoint)
+        {
+            this.centerPoint = this.a_CenterPoint;
+        }
+        else if (!this.isBeta && this.centerPoint != this.b_CenterPoint)
+        {
+            this.centerPoint = this.b_CenterPoint;
         }
     }
 
@@ -296,6 +392,11 @@ public class Character_Xerath : Character
         this.LoadTPSLookAt();
         this.LoadFPSFollow();
         this.LoadOnEventAnimator();
+        this.LoadDealDamageCtrl();
+        this.LoadTakeDamageCtrl();
+        this.LoadRagdollCtrl();
+        this.LoadLeadTracker();
+        this.LoadCenterPoint();
     }
 
     private void ChangerCameraOffset(bool isBeta)

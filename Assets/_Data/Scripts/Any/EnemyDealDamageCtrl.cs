@@ -18,6 +18,7 @@ public class EnemyDealDamageCtrl : SaiMonoBehaviour
     {
         if (isEnable == 1)
         {
+            this.dealDamageBox.SetActiveDeal(true);
             this.dealDamageBox.Col.enabled = true;
         }
         else

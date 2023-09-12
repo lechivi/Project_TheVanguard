@@ -98,10 +98,19 @@ public class DungeonSceneCtrl : SaiMonoBehaviour
             {
                 if (chr.CharacterData == GameManager.Instance.CharacterData)
                 {
-                    this.cutoutObject.TargetObject = chr.GetComponent<AlliancePlayer_InfoScanner>().GetCenterPoint();
-                    chr.transform.position = this.startTransform.position;
-                    chr.transform.rotation = this.startTransform.rotation;
-                    chr.gameObject.SetActive(true);
+                    if (chr is Character_Xerath)
+                    {
+                        Debug.Log("assa");
+                        Character character = chr as Character_Xerath;
+                        this.cutoutObject.TargetObject = chr.CenterPoint;
+                    }
+                    else
+                    {
+                        this.cutoutObject.TargetObject = chr.GetComponentInChildren<AlliancePlayer_InfoScanner>().GetCenterPoint();
+                    }
+                    chr.CharacterTransform.position = this.startTransform.position;
+                    chr.CharacterTransform.rotation = this.startTransform.rotation;
+                    chr.CharacterTransform.gameObject.SetActive(true);
 
                     GameManager.Instance.GenerateCharacter(chr);
                     break;

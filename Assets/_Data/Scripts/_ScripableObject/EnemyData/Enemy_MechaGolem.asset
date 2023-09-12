@@ -15,4 +15,5 @@ MonoBehaviour:
   EnemyName: Mecha Golem
   Health: 100
   Damage: 10
-  Speed: 10
+  Speed: 5
+  AttackRange: 7

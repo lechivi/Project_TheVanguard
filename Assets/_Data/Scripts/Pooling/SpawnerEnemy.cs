@@ -32,7 +32,9 @@ public class SpawnerEnemy : SaiMonoBehaviour
                 int need = this.maxEnemy - this.listCurEnemy.Count;
                 for (int i = 0; i < need; i++)
                 {
-                    this.listCurEnemy.Add(this.poolingObject.GetObject(transform.position, transform.rotation));
+                    Debug.Log("Spawn");
+                    Vector3 randomOffsetPos = new Vector3(Random.Range(-2, 2), 0, Random.Range(-2, 2));
+                    this.listCurEnemy.Add(this.poolingObject.GetObject(transform.position + randomOffsetPos, transform.rotation));
                 }
                 this.timer = 0;
             }

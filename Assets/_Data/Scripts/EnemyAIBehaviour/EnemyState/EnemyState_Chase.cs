@@ -5,7 +5,7 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
 {
     private Enemy_AiCtrl enemyAiCtrl;
     private float attackCD = 1.5f;
-    private float attackRange = 2;
+    //private float attackRange = 2;
     private float timer = 0;
     private float timePassed = 0;
 
@@ -74,7 +74,7 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
         this.timePassed += Time.deltaTime;
         if (this.timePassed >= this.attackCD)
         {
-            if (Vector3.Distance(followPos, this.enemyAiCtrl.EnemyCtrl.transform.position) <= this.attackRange)
+            if (Vector3.Distance(followPos, this.enemyAiCtrl.EnemyCtrl.transform.position) <= this.enemyAiCtrl.EnemyCtrl.EnemyData.AttackRange)
             {
                 this.enemyAiCtrl.EnemyCtrl.Animator.SetInteger("RandomAttack", Random.Range(0, 3));
                 this.enemyAiCtrl.EnemyCtrl.Animator.SetTrigger("Attack");
