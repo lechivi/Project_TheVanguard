@@ -1,30 +1,69 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DealDamageCtrl : SaiMonoBehaviour
 {
-    [SerializeField] protected DealDamageBox dealDamageBox;
+    [SerializeField] protected DealDamageBox dealDamageUnarmed;
+    [SerializeField] protected List<DealDamageBox> listDealDamageMelee = new List<DealDamageBox>();
 
-    public DealDamageBox DealDamageBox { get => this.dealDamageBox; }
+    public List<DealDamageBox> ListDealDamageMelee { get => this.listDealDamageMelee; set => this.listDealDamageMelee = value; }
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        if (this.dealDamageBox == null)
-            this.dealDamageBox = GetComponentInChildren<DealDamageBox>();
-            //this.dealDamageBox = transform.Find("Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/UnarmedFist_L").GetComponent<DealDamageBox>();
+        if (this.dealDamageUnarmed == null)
+            this.dealDamageUnarmed = GetComponentInChildren<DealDamageBox>();
+        //this.dealDamageBox = transform.Find("Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L/Shoulder_L/Elbow_L/Hand_L/UnarmedFist_L").GetComponent<DealDamageBox>();
 
     }
 
     public void EnableDealDamageCollider(int isEnable)
     {
-        //unarmed
-        if (isEnable == 1)
+        if (!PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
-            this.dealDamageBox.SetActiveDeal(true);
+            Weapon melee = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.GetActiveWeapon();
+            if (melee.WeaponData.WeaponType == WeaponType.Melee)
+            {
+                this.dealDamageUnarmed.gameObject.SetActive(false);
+
+                for (int i = 0; i < this.listDealDamageMelee.Count; i++)
+                {
+                    if (this.listDealDamageMelee[i] == null)
+                    {
+                        this.listDealDamageMelee.RemoveAt(i);
+                        i--;
+                    }
+                }
+
+                if (isEnable == 1)
+                {
+                    foreach (var weapon in this.listDealDamageMelee)
+                    {
+                        weapon.Col.enabled = true;
+                    }
+                }
+                else
+                {
+                    foreach (var weapon in this.listDealDamageMelee)
+                    {
+                        weapon.Col.enabled = false;
+                    }
+                }
+            }
         }
         else
         {
-            this.dealDamageBox.SetActiveDeal(false);
+            this.dealDamageUnarmed.gameObject.SetActive(true);
+
+            if (isEnable == 1)
+            {
+                this.dealDamageUnarmed.Col.enabled = true;
+            }
+            else
+            {
+                this.dealDamageUnarmed.Col.enabled = false;
+            }
         }
     }
 }

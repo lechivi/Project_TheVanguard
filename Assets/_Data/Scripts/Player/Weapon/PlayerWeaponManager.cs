@@ -159,6 +159,8 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         }
 
         this.equippedWeapons.Add(weapon);
+        this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(weapon.GetComponent<DealDamageBox>());
+
         this.SetSheathForWeapon(weapon);
         if (this.curWeaponIndex == -1)
         {
@@ -203,6 +205,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
         }
         this.backpackWeapons.Add(weapon);
+        this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(weapon.GetComponent<DealDamageBox>());
 
         this.SetSheathForWeapon(weapon);
     }
