@@ -73,6 +73,8 @@ public class InGamePanel : BaseUIElement
         this.alwaysOnUI.Hide();
         this.pauseMenu.Show(data);
         this.other.Hide();
+
+        CancelInvoke("SetPauseGame");
         Invoke("SetPauseGame", 0.5f);
     }
 
@@ -82,6 +84,7 @@ public class InGamePanel : BaseUIElement
         this.pauseMenu.Hide();
         this.other.Show(data);
 
+        CancelInvoke("SetPauseGame");
         Invoke("SetPauseGame", 0.5f);
     }
 
