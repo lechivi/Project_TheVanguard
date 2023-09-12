@@ -54,30 +54,42 @@ public class PlayerAim : PlayerAbstract
             if (isAimInput && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && !playerCtrl.PlayerWeapon.PlayerWeaponReload.IsReload)
             {
                 IsAim = true;
+                //if (weapon.Spreads[0] == weapon.Weapon.WeaponData.Spreads[0] / 100) return;
+                for (int i = 0; i < 4; i++)
+                {
+                    weapon.Spreads[i] = weapon.Weapon.WeaponData.Spreads[i] / 100;
+                }
             }
             else
             {
                 IsAim = false;
+                if (weapon.Spreads[0] == weapon.Weapon.WeaponData.Spreads[0]) return;
+                for (int i = 0; i < 4; i++)
+                {
+                    weapon.Spreads[i] = weapon.Weapon.WeaponData.Spreads[i];
+                }
             }
         }
     }
     public void AimWeapon()
     {
         WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (weapon && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && weapon.Weapon.WeaponData.WeaponType != WeaponType.Shotgun)
+        if (weapon)
         {
-            
-            //playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.WeaponType, IsAim);
-            playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.ItemName, IsAim);
-            if (weapon && weapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
+            if(!playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && weapon.Weapon.WeaponData.WeaponType != WeaponType.Shotgun)
             {
-                AimWeaponScope();
-                return;
-            }
-            if (IsAim)
-            {
-                playerCtrl.PlayerLocomotion.IsWalking = true;
-                playerCtrl.PlayerCamera.ChangePOVFPS(55);
+                //playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.WeaponType, IsAim);
+                playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.ItemName, IsAim);
+                if (weapon && weapon.Weapon.WeaponData.WeaponType == WeaponType.SniperRifle)
+                {
+                    AimWeaponScope();
+                    return;
+                }
+                if (IsAim)
+                {
+                    playerCtrl.PlayerLocomotion.IsWalking = true;
+                    playerCtrl.PlayerCamera.ChangePOVFPS(55);
+                }
             }
         }
     }

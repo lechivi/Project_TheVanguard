@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -21,7 +22,7 @@ public class Character_Juggernaut : Character
 
     public LineRenderer line;
     public LineRenderer lineHand;
-   [SerializeField] private LineRenderer lineMain;
+    [SerializeField] private LineRenderer lineMain;
     public Volume Volume;
     public float timesetExplosion;
     float timecharging;
@@ -30,6 +31,8 @@ public class Character_Juggernaut : Character
     bool Hit_Bool;
     bool isCharging;
     public float damageRangeExplosion;
+    private int level;
+    int power;
 
     protected override void LoadComponent()
     {
@@ -112,7 +115,7 @@ public class Character_Juggernaut : Character
 
     public void Fire()
     {
-        if(AudioManager.HasInstance)
+        if (AudioManager.HasInstance)
         {
             AudioManager.Instance.PlaySeStop(AUDIO.SE_CHARGING_JUGGERNAUT);
             AudioManager.Instance.PlaySe(AUDIO.SE_FIRE_LASER_JUGGERNAUT);
@@ -178,21 +181,25 @@ public class Character_Juggernaut : Character
         isCharging = true;
         if (timecharging >= 0 && timecharging < 3)
         {
+            level = 1;
             damageRangeExplosion = 1.4f;
             BomExplosion.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
         else if (timecharging >= 3 && timecharging < 6)
         {
+            level = 2;
             damageRangeExplosion = 4.1f;
             BomExplosion.gameObject.transform.localScale = new Vector3(3, 3, 3);
         }
         else if (timecharging >= 6 && timecharging < 12)
         {
+            level = 3;
             damageRangeExplosion = 6.5f;
             BomExplosion.gameObject.transform.localScale = new Vector3(4.5f, 4.5f, 4.5f);
         }
         else if (timecharging >= 12)
         {
+            level = 4;
             damageRangeExplosion = 10.7f;
             BomExplosion.gameObject.transform.localScale = new Vector3(7f, 7f, 7f);
         }
@@ -208,19 +215,42 @@ public class Character_Juggernaut : Character
 
     public void EnableBomExplosion()
     {
-        if(AudioManager.HasInstance)
+        float power;
+        if (AudioManager.HasInstance)
         {
             AudioManager.Instance.PlaySe(AUDIO.SE_SHOCKWAVE_EXPLOSION);
         }
         Debug.Log("Explosion");
         BomExplosion.gameObject.transform.position = Hit.point;
         BomExplosion.Play();
+        if (level == 1)
+        {
+            power = characterData.Power * 1.2f;
+            this.power = Mathf.RoundToInt(power);
+        }
+        else if (level == 2)
+        {
+            power = characterData.Power * 2f;
+            this.power = Mathf.RoundToInt(power);
+        }
+        else if (level == 3)
+        {
+            power = characterData.Power * 2.8f;
+            this.power = Mathf.RoundToInt(power);
+        }
+        else if (level == 4)
+        {
+            power = characterData.Power * 3.6f;
+            this.power = Mathf.RoundToInt(power);
+        }
         Collider[] colliders = Physics.OverlapSphere(Hit.point, damageRangeExplosion);
         foreach (Collider collider in colliders)
         {
-            if (collider.GetComponent<ColliderHit>())
+            var Enemy = collider.GetComponent<HitBox>();
+
+            if (Enemy && Enemy.CompareTag("EnemyCollider"))
             {
-                collider.GetComponent<ColliderHit>().Hit();
+                Enemy.OnHit(this.power);
             }
         }
     }

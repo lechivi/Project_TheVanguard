@@ -24,6 +24,7 @@ public class WeaponRaycast : MonoBehaviour
     private float bulletDrop = 0;
     public int currentAmmo;
     public int maxAmmo;
+    public float[] Spreads = new float[4];
 
     private void Awake()
     {
@@ -32,10 +33,17 @@ public class WeaponRaycast : MonoBehaviour
         recoil = GetComponent<RecoilWeapon>();
         maxAmmo = Weapon.WeaponData.MagazineSize;
         currentAmmo = maxAmmo;
-        if(hitEffect == null)
+        if (hitEffect == null)
         {
             hitEffect = transform.Find("FX/HitEffect_Asaka").GetComponent<ParticleSystem>();
         }
+    }
+    private void Start()
+    {
+        Spreads[0] = Weapon.WeaponData.Spreads[0];
+        Spreads[1] = Weapon.WeaponData.Spreads[1];
+        Spreads[2] = Weapon.WeaponData.Spreads[2];
+        Spreads[3] = Weapon.WeaponData.Spreads[3];
     }
 
     public virtual void DelayPerShot()
@@ -60,8 +68,8 @@ public class WeaponRaycast : MonoBehaviour
 
         for (int i = 0; i < Weapon.WeaponData.AmmoPerShot; i++)
         {
-            float xspread = Random.Range(Weapon.WeaponData.Spreads[0], Weapon.WeaponData.Spreads[1]);
-            float yspread = Random.Range(Weapon.WeaponData.Spreads[2], Weapon.WeaponData.Spreads[3]);
+            float xspread = Random.Range(Spreads[0], Spreads[1]);
+            float yspread = Random.Range(Spreads[2], Spreads[3]);
             Vector3 randomSpread = new Vector3(xspread, yspread, 0f);
             Vector3 raycastDirection = ((target - raycastOrigin.position).normalized + randomSpread) * Weapon.WeaponData.BulletSpeed;
             var bullet = ObjectPool.Instance.GetPooledObject();
@@ -115,7 +123,7 @@ public class WeaponRaycast : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo, distance))
         {
             if (hitEffect)
-            {                
+            {
                 hitEffect.transform.position = hitInfo.point;
                 hitEffect.transform.forward = hitInfo.normal;
                 hitEffect.Emit(1);
@@ -124,8 +132,14 @@ public class WeaponRaycast : MonoBehaviour
             bullet.transform.position = hitInfo.point;
             bullet.time = maxlifeTime;
             End = hitInfo.point;
-            var hitEnemy = hitInfo.collider.GetComponent<TestTakeDamage>();
-            if (hitEnemy) hitEnemy.TakeDamage(Weapon.WeaponData.RangedDamage);
+            var Enemy = hitInfo.collider.GetComponentInParent<HitBox>();
+            if (Enemy)
+            {
+                Debug.Log("Run");
+                // Enemy.OnHit(Weapon.WeaponData.RangedDamage);
+                Enemy.GetComponentInParent<HitBox>().OnHit(10);
+                Debug.Log(Enemy.name);
+            }
             AddForceToHitInfo(ray, hitInfo);
 
         }

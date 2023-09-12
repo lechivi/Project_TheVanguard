@@ -23,7 +23,7 @@ public class DealDamageCtrl : SaiMonoBehaviour
         if (!PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
             Weapon melee = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.GetActiveWeapon();
-            if (melee.WeaponData.WeaponType == WeaponType.Melee)
+            if (melee && melee.WeaponData.WeaponType == WeaponType.Melee)
             {
                 this.dealDamageUnarmed.gameObject.SetActive(false);
 
