@@ -6,7 +6,7 @@ public class ItemDataSO : ScriptableObject
 {
     [Header("COMMON")]
     public string ItemName;
-    public float ItemValue;
+    public int ItemValue;
     public ItemType ItemType;
     public GameObject Icon; //UI
     public GameObject Model;

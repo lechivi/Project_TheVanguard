@@ -21,7 +21,7 @@ public class Character_Juggernaut : Character
 
     public LineRenderer line;
     public LineRenderer lineHand;
-    private LineRenderer lineMain;
+   [SerializeField] private LineRenderer lineMain;
     public Volume Volume;
     public float timesetExplosion;
     float timecharging;
@@ -63,7 +63,18 @@ public class Character_Juggernaut : Character
         }
 
         if (!IsSpecialSkill) return;
-        if (Input.GetMouseButtonDown(0))
+        this.HandleSkill();
+        //
+        this.HandleAfterFire();
+        this.HandleRender();
+        this.HandleChargingEnergy();
+        this.Juggernaut_Raycast.UpdateBullets();
+
+    }
+
+    private void HandleSkill()
+    {
+        if (PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonDown)
         {
             if (PlayerCtrl.Instance.PlayerCamera.FPSCamera.gameObject.activeInHierarchy == true)
             {
@@ -75,7 +86,7 @@ public class Character_Juggernaut : Character
             }
             timesetExplosion = Time.time;
         }
-        if (Input.GetMouseButton(0))
+        if (PlayerCtrl.Instance.PlayerInput.Mouse0_GetButton)
         {
             if (UIManager.HasInstance)
             {
@@ -87,7 +98,7 @@ public class Character_Juggernaut : Character
             ChargingEnergy();
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonUp)
         {
             Fire();
             if (UIManager.HasInstance)
@@ -97,22 +108,19 @@ public class Character_Juggernaut : Character
 
             Invoke("DeactiveLine", 0.1f);
         }
-
-
-        //
-        this.HandleAfterFire();
-        this.HandleRender();
-        this.HandleChargingEnergy();
-        this.Juggernaut_Raycast.UpdateBullets();
-
     }
 
     public void Fire()
     {
-        Juggernaut_Raycast.FireBullet(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.CrosshairTarget.position);
-        lineMain.enabled = true;
-        isCharging = false;
-        Volume.enabled = true;
+        if(AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySeStop(AUDIO.SE_CHARGING_JUGGERNAUT);
+            AudioManager.Instance.PlaySe(AUDIO.SE_FIRE_LASER_JUGGERNAUT);
+        }
+        this.Juggernaut_Raycast.FireBullet(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.CrosshairTarget.position);
+        this.lineMain.enabled = true;
+        this.isCharging = false;
+        this.Volume.enabled = true;
     }
 
     public override void SpecialSkill()
@@ -160,6 +168,13 @@ public class Character_Juggernaut : Character
     private void ChargingEnergy()
     {
         timecharging = Time.time - timesetExplosion;
+        if (timecharging == 0)
+        {
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySe(AUDIO.SE_CHARGING_JUGGERNAUT);
+            }
+        }
         isCharging = true;
         if (timecharging >= 0 && timecharging < 3)
         {
@@ -193,6 +208,11 @@ public class Character_Juggernaut : Character
 
     public void EnableBomExplosion()
     {
+        if(AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_SHOCKWAVE_EXPLOSION);
+        }
+        Debug.Log("Explosion");
         BomExplosion.gameObject.transform.position = Hit.point;
         BomExplosion.Play();
         Collider[] colliders = Physics.OverlapSphere(Hit.point, damageRangeExplosion);
@@ -210,12 +230,12 @@ public class Character_Juggernaut : Character
         Vector3 ifNotHitpoint = crossHair - Juggernaut_Raycast.raycastOrigin.position;
         Vector3 direction = crossHair - Juggernaut_Raycast.raycastOrigin.position;
         Ray ray = new Ray(Juggernaut_Raycast.raycastOrigin.position, direction);
-        Hit_Bool = Physics.Raycast(ray, out Hit, 1000f);
+        Hit_Bool = Physics.Raycast(ray, out Hit, 1000f, 7);
         HitPositionLine = Hit_Bool ? Hit.point : ifNotHitpoint * 1000f;
         if (lineMain)
         {
             lineMain.SetPosition(0, Juggernaut_Raycast.raycastOrigin.position);
-            lineMain.SetPosition(1, HitPositionLine);
+            lineMain.SetPosition(1, crossHair);
         }
         float distance;
 

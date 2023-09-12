@@ -60,7 +60,7 @@ public class UI_Exc_ShopList : SaiMonoBehaviour
         if (!this.shopSlotList.Contains(itemSlot)) return;
 
         this.npc.ItemList.Remove(itemSlot.ItemData);
-        itemSlot.transform.SetAsLastSibling();
+        itemSlot.transform.SetAsLastSibling(); 
         itemSlot.Hide();
     }
 }

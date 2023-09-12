@@ -51,7 +51,10 @@ public class UI_Exc_InventoryList : SaiMonoBehaviour
             }
 
         //TODO: just example
-        this.currencyText.SetText(this.exchangePanel.PlayerCurrency.ToString());
+       /* if(PlayerCtrl.HasInstance)
+        {
+            this.currencyText.SetText(PlayerCtrl.Instance.PlayerCoin.CurrentCoint.ToString());
+        }*/
     }
 
 
@@ -65,7 +68,7 @@ public class UI_Exc_InventoryList : SaiMonoBehaviour
         {
             slot.Hide();
         }
-
+        this.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoint);
         List<Weapon> equippedWeapons = PlayerWeaponManager.Instance.EquippedWeapons.GetList();
         this.equippedListPanel.gameObject.SetActive(!PlayerWeaponManager.Instance.EquippedWeapons.IsAllNull());
         for (int i = 0; i < equippedWeapons.Count; i++)
@@ -116,7 +119,7 @@ public class UI_Exc_InventoryList : SaiMonoBehaviour
         }
     }
 
-    public void SetCurrencyText(float amount)
+    public void SetCurrencyText(int amount)
     {
         this.currencyText.SetText(amount.ToString());
     }

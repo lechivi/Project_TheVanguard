@@ -16,7 +16,7 @@ MonoBehaviour:
   ItemValue: 0
   ItemType: 1
   Icon: {fileID: 8445887792516056611, guid: 18650ace9c4600a4f90d9fbccac94050, type: 3}
-  Model: {fileID: 2984659460463470946, guid: 613abe1a798552247948bb85a85a854f, type: 3}
+  Model: {fileID: 6254852180618784824, guid: fd337286b8fdc2a4e9babb0866e0ea60, type: 3}
   BodyType: 0
   BigsizePosHolster: {x: -0.347, y: 0.564, z: 0.412}
   BigsizeRosHolster: {x: 7.097, y: 130.71, z: -92.098}

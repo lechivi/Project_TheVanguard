@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: DesertEagle
   ItemValue: 0
-  ItemType: 0
+  ItemType: 1
   Icon: {fileID: 8995714266567274199, guid: 374c5f6f250aa044f8195ca3e1ffc072, type: 3}
-  Model: {fileID: 6779385427265435993, guid: bb688cb57c689e8438861879580e7ce6, type: 3}
+  Model: {fileID: 1329825557711441940, guid: bf4fe4b84ad8c3749a6162061ea21fc0, type: 3}
   BodyType: 2
   BigsizePosHolster: {x: 0.252, y: 0.001, z: -0.011}
   BigsizeRosHolster: {x: 97.93201, y: -7.325989, z: 14.877}

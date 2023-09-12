@@ -39,9 +39,10 @@ public class PlayerHealth : PlayerAbstract, IHealth
 
     public void TakeDamage(int damage)
     {
-        int Agility = Mathf.RoundToInt(this.agility / 2);
-        int damageTaken = damage * (10 / (10 + defence + Agility));
-        this.currentHealth -= damageTaken;
+        
+        float damageTaken = (float)damage * (10f / (10f + (float)this.defence + (float)this.agility/2));
+
+        this.currentHealth -= Mathf.RoundToInt(damageTaken);
         if (this.currentHealth <= 0)
         {
             this.currentHealth = 0;
