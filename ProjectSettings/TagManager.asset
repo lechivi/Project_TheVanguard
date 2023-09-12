@@ -30,7 +30,7 @@ TagManager:
   - MovingObject
   - EnemyRagdoll
   - EnemyCollider
-  - 
+  - PlayerRagdoll
   - 
   - 
   - 

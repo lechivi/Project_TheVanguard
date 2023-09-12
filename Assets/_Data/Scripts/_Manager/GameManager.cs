@@ -31,6 +31,7 @@ public class GameManager : BaseManager<GameManager>
     public void StartGame()
     {
         this.isPlaying = true;
+        this.characterData = null;
         StartCoroutine(this.LoadScene(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
@@ -40,30 +41,70 @@ public class GameManager : BaseManager<GameManager>
 
         this.isPlaying = false;
         Time.timeScale = 0.0f;
+
+        this.IsShowCursor(true);
     }
 
     public void ResumeGame()
     {
         this.isPlaying = true;
         Time.timeScale = 1.0f;
+
+        this.IsShowCursor(false);
     }
 
-    public void BackToMainMenu()
+    public void IsShowCursor(bool showCursor)
     {
+        if (showCursor)
+        {
+            //Unlock & show cursor (PauseMenuCanvas enable)
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            //Lock & hide cursor (PauseMenuCanvas disable)
+            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+    public void MainMenu()
+    {
+        this.characterData = null;
+        this.playerCtrl.gameObject.SetActive(false);
         this.playerCtrl.ResetPlayer();
 
         this.ResumeGame();
-        StartCoroutine(this.LoadScene(0));
+        StartCoroutine(this.LoadScene((int) SceneIndex.MainMenu));
     }
 
     public void QuitGame()
     {
+        this.playerCtrl.gameObject.SetActive(false);
         this.playerCtrl.ResetPlayer();
 
 #if UNITY_EDITOR
         EditorApplication.isPlaying = false;
 #endif
         Application.Quit();
+    }
+
+    public void TravelToVillage()
+    {
+        this.playerCtrl.PlayerWeapon.PlayerWeaponManager.SaveWeapon();
+
+        StartCoroutine(this.LoadScene((int)SceneIndex.Village));
+        this.ResumeGame();
+    }
+
+    public void TravelToDungeon()
+    {
+        this.playerCtrl.PlayerWeapon.PlayerWeaponManager.SaveWeapon();
+
+        StartCoroutine(this.LoadScene((int) SceneIndex.Dungeon));
+        this.ResumeGame();
+        this.playerCtrl.PlayerInput.enabled = true;
     }
 
     public IEnumerator LoadScene(int sceneIndex)

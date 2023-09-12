@@ -62,6 +62,11 @@ public class NullAwareList<T>
         }
     }
 
+    public void Add(T child, int index)
+    {
+        this.list[index] = child;
+    }
+
     public void Remove(T child)
     {
         int childIndex = this.list.IndexOf(child);

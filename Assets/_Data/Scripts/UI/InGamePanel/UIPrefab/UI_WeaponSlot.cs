@@ -14,9 +14,6 @@ public class UI_WeaponSlot : SaiMonoBehaviour
     [SerializeField] protected Button inspectButton;
     [SerializeField] protected Button dropButton;
 
-    [SerializeField] protected WeaponDataSO weaponData;
-
-
     protected override void LoadComponent()
     {
         base.LoadComponent();

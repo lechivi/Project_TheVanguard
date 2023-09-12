@@ -62,6 +62,10 @@ public class InGamePanel : BaseUIElement
         this.alwaysOnUI.Show(data);
         this.pauseMenu.Hide();
         this.other.Hide();
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.ResumeGame();
+        }
     }
 
     public void ShowPauseMenu(object data)
@@ -69,6 +73,7 @@ public class InGamePanel : BaseUIElement
         this.alwaysOnUI.Hide();
         this.pauseMenu.Show(data);
         this.other.Hide();
+        Invoke("SetPauseGame", 0.5f);
     }
 
     public void ShowOther(object data)
@@ -76,5 +81,17 @@ public class InGamePanel : BaseUIElement
         this.alwaysOnUI.Hide();
         this.pauseMenu.Hide();
         this.other.Show(data);
+
+        Invoke("SetPauseGame", 0.5f);
     }
+
+    private void SetPauseGame()
+    {
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.PauseGame();
+        }
+    }
+
+
 }

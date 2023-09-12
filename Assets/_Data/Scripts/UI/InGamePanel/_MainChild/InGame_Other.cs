@@ -36,6 +36,10 @@ public class InGame_Other : BaseUIElement
         this.exchangePanel.Hide();
         this.victoryPanel.Show(null);
         this.losePanel.Hide();
+        //if (GameManager.HasInstance)
+        //{
+        //    GameManager.Instance.PauseGame();
+        //}
     }
 
     public void ShowLosePanel()
@@ -43,5 +47,9 @@ public class InGame_Other : BaseUIElement
         this.exchangePanel.Hide();
         this.victoryPanel.Hide();
         this.losePanel.Show(null);
+        //if (GameManager.HasInstance)
+        //{
+        //    GameManager.Instance.PauseGame();
+        //}
     }
 }

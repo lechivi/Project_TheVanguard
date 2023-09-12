@@ -23,11 +23,11 @@ public class EnemyState_Idle : IEnemyState
     public void Update()
     {
         DetectTarget detectTarget = this.enemyAiCtrl.EnemyCtrl.DetectTarget;
-        if (detectTarget.IsDetectTarget())
+        if (detectTarget.IsDetectTarget() && this.enemyAiCtrl.EnemyCtrl.Target != null)
         {
-            Vector3 targetDirection = detectTarget.FindClosest(FactionType.Alliance).GetCenterPoint().position - this.enemyAiCtrl.EnemyCtrl.CenterPoint.position;
+            Vector3 targetDirection = this.enemyAiCtrl.EnemyCtrl.Target.position - this.enemyAiCtrl.EnemyCtrl.transform.position;
             targetDirection.Normalize();
-            Vector3 transformDirection = this.enemyAiCtrl.EnemyCtrl.CenterPoint.forward;
+            Vector3 transformDirection = this.enemyAiCtrl.EnemyCtrl.transform.forward;
 
             float dotProduct = Vector3.Dot(targetDirection, transformDirection);
             if (dotProduct >= 0)

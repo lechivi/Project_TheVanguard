@@ -2,6 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public class SaveWeapon
+{
+    public WeaponDataSO WeaponData;
+    public int Index;
+
+    public SaveWeapon(WeaponDataSO weaponData, int index)
+    {
+        this.WeaponData = weaponData;
+        this.Index = index;
+    }
+}
+
 public class PlayerWeaponManager : PlayerWeaponAbstract
 {
     public static PlayerWeaponManager Instance;
@@ -16,7 +28,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     [SerializeField] private float dropForce = 3f;
     [SerializeField] private GameObject pickupObjectPrefab;
 
-    private int currentWeaponIndex = -1;
+    private List<SaveWeapon> saveEquippedWeapon = new List<SaveWeapon>();
+    private List<SaveWeapon> saveBackpackWeapon = new List<SaveWeapon>();
+
+    private int curWeaponIndex = -1;
     private bool isReadySwap = true;
 
     private bool isHolstering;
@@ -27,7 +42,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     public NullAwareList<Weapon> EquippedWeapons { get => this.equippedWeapons; }
     public NullAwareList<Weapon> BackpackWeapons { get => this.backpackWeapons; }
     public Transform[] WeaponSheathSlots { get => this.weaponSheathSlots; set => this.weaponSheathSlots = value; }
-
+    public int CurWeaponIndex { get => this.curWeaponIndex; }
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -45,43 +60,64 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         isHolstering = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            this.UpdateUI();
+        }
+    }
+
     public void HandleUpdateWeaponManager()
     {
         this.SetOffset();
         this.SetHolster(false);
         this.SetDefaultCurrentindex();
         this.HosterAnimation();
+    }
 
-        if (this.isReadySwap)
+    public void SaveWeapon()
+    {
+        for (int i = 0; i < this.equippedWeapons.GetList().Count; i++)
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (this.equippedWeapons.GetList()[i] != null)
             {
-                this.SetActiveWeapon(this.currentWeaponIndex + 1, false);
-            }
-
-            if (Input.mouseScrollDelta.y > 0)
-            {
-                this.SetActiveWeapon(this.currentWeaponIndex - 1, false);
-            }
-            if (Input.mouseScrollDelta.y < 0)
-            {
-                this.SetActiveWeapon(this.currentWeaponIndex + 1, false);
-            }
-
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                this.SetActiveWeapon(0, true);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                this.SetActiveWeapon(1, true);
-            }
-            if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                PlayerWeapon playerWeapon = transform.GetComponentInParent<PlayerWeapon>();
-                this.SetActiveWeapon(2, true);
+                SaveWeapon saveEquipped = new SaveWeapon(this.equippedWeapons.GetList()[i].WeaponData, i);
+                this.saveEquippedWeapon.Add(saveEquipped);
             }
         }
+
+        for (int i = 0; i < this.backpackWeapons.GetList().Count; i++)
+        {
+            if (this.backpackWeapons.GetList()[i] != null)
+            {
+                SaveWeapon saveBackpack = new SaveWeapon(this.backpackWeapons.GetList()[i].WeaponData, i);
+                this.saveBackpackWeapon.Add(saveBackpack);
+            }
+        }
+    }
+
+    public void LoadWeapon()
+    {
+        //if (this.playerWeapon.PlayerCtrl.Character == null) return;
+
+        foreach (SaveWeapon saveEquipped in this.saveEquippedWeapon)
+        {
+            Weapon weapon = Instantiate(saveEquipped.WeaponData.Model).GetComponent<Weapon>();
+            this.AddWeaponToEquipped(weapon, saveEquipped.Index);
+            if (saveEquipped.Index == this.curWeaponIndex)
+            {
+                this.SetActiveWeapon(this.curWeaponIndex, false);
+            }
+        }
+
+        foreach (SaveWeapon saveBackpack in this.saveBackpackWeapon)
+        {
+            Weapon weapon = Instantiate(saveBackpack.WeaponData.Model).GetComponent<Weapon>();
+            this.AddWeaponToBackpack(weapon, saveBackpack.Index);
+        }
+
+        this.UpdateUI();
     }
 
     public bool AddWeapon(Weapon weapon)
@@ -120,7 +156,26 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
         this.equippedWeapons.Add(weapon);
         this.SetSheathForWeapon(weapon);
-        if (this.currentWeaponIndex == -1)
+        if (this.curWeaponIndex == -1)
+        {
+            this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
+            //SetAnimationEquip(weapon);
+        }
+    }
+
+    private void AddWeaponToEquipped(Weapon weapon, int index)
+    {
+        WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
+        if (raycastWeapon != null)
+        {
+            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCamera;
+            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCamera;
+            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
+        }
+
+        this.equippedWeapons.Add(weapon, index);
+        this.SetSheathForWeapon(weapon);
+        if (this.curWeaponIndex == -1)
         {
             this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
             //SetAnimationEquip(weapon);
@@ -141,6 +196,19 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         this.SetSheathForWeapon(weapon);
     }
 
+    private void AddWeaponToBackpack(Weapon weapon, int index)
+    {
+        WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
+        if (raycastWeapon != null)
+        {
+            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCamera;
+            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCamera;
+            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
+        }
+        this.backpackWeapons.Add(weapon, index);
+
+        this.SetSheathForWeapon(weapon);
+    }
     private void SetSheathForWeapon(Weapon weapon)
     {
         weapon.transform.SetParent(this.weaponSheathSlots[(int)weapon.WeaponSlot[0] - 1]); //TODO: Change to RigLayer
@@ -156,11 +224,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     public void RemoveWeaponFromEquipped(int weaponIndex, bool isDrop)
     {
         Weapon weapon = this.equippedWeapons.GetList()[weaponIndex];
-        this.equippedWeapons.Remove(weapon);
-        if (isDrop)
-        {
-            this.DropWeapon(weapon);
-        }
+        this.RemoveWeaponFromEquipped(weapon, isDrop);
     }
 
     public void RemoveWeaponFromEquipped(Weapon weapon, bool isDrop)
@@ -170,16 +234,18 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             this.DropWeapon(weapon);
         }
+        else
+        {
+            Destroy(weapon.gameObject);
+        }
+
+        this.UpdateUI();
     }
 
     public void RemoveWeaponFromBackpack(int weaponIndex, bool isDrop)
     {
         Weapon weapon = this.backpackWeapons.GetList()[weaponIndex];
-        this.backpackWeapons.Remove(weapon);
-        if (isDrop)
-        {
-            this.DropWeapon(weapon);
-        }
+        this.RemoveWeaponFromBackpack(weapon, isDrop);
     }
 
     public void RemoveWeaponFromBackpack(Weapon weapon, bool isDrop)
@@ -189,6 +255,12 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             this.DropWeapon(weapon);
         }
+        else
+        {
+            Destroy(weapon.gameObject);
+        }
+
+        this.UpdateUI();
     }
 
     private void DropWeapon(Weapon weapon)
@@ -209,8 +281,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
             weaponRigidbody.AddForce((playerTransform.forward + randomDropDirection) * randomDropForce, ForceMode.Impulse);
         }
-
-        this.UpdateUI();
     }
 
     public void SwitchWeapon(WeaponList weaponListA, int weaponIndexA, WeaponList weaponListB, int weaponIndexB)
@@ -222,7 +292,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             weaponA = this.equippedWeapons.GetList()[weaponIndexA];
 
-            if (this.currentWeaponIndex == weaponIndexA && weaponA != null)
+            if (this.curWeaponIndex == weaponIndexA && weaponA != null)
             {
                 weaponA.gameObject.SetActive(false);
                 isTheCurrentWeaponA = true;
@@ -236,7 +306,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (weaponListB == WeaponList.EquippedWeapons)
         {
             weaponB = this.equippedWeapons.GetList()[weaponIndexB];
-            if (this.currentWeaponIndex == weaponIndexB && weaponB != null)
+            if (this.curWeaponIndex == weaponIndexB && weaponB != null)
             {
                 weaponB.gameObject.SetActive(false);
                 isTheCurrentWeaponB = true;
@@ -292,6 +362,8 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public void SetActiveWeapon(int weaponIndex, bool isAlpha)
     {
+        if (!this.isReadySwap) return;
+
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
         int weaponCount = listEquippedWeapon.Count;
         if (weaponCount == 0) return;
@@ -312,11 +384,12 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             //else if (weaponIndex < 0)
             //    weaponIndex = weaponCount - 1;
         }
-        if (weaponIndex == this.currentWeaponIndex && !isHolstering || listEquippedWeapon[weaponIndex] == null) return;
+        if ((weaponIndex == this.curWeaponIndex && listEquippedWeapon[weaponIndex].gameObject?.activeSelf == true)
+            && !isHolstering || listEquippedWeapon[weaponIndex] == null) return;
 
-        if (this.currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] != null)
+        if (this.curWeaponIndex > -1 && listEquippedWeapon[curWeaponIndex] != null)
         {
-            listEquippedWeapon[this.currentWeaponIndex].gameObject.SetActive(false);
+            listEquippedWeapon[this.curWeaponIndex].gameObject.SetActive(false);
             Debug.Log("Run");
         }
 
@@ -336,7 +409,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         // playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
 
 
-        this.currentWeaponIndex = weaponIndex;
+        this.curWeaponIndex = weaponIndex;
 
         this.UpdateUI();
         StartCoroutine(this.StartCooldown());
@@ -380,18 +453,18 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             backpackList[i].SetModel();
         }
 
-        if (this.currentWeaponIndex == -1) return;
-        inventoryPanel.EquippedList.SetEquipSlot(this.currentWeaponIndex);
+        if (this.curWeaponIndex == -1) return;
+        inventoryPanel.EquippedList.SetEquipSlot(this.curWeaponIndex);
     }
 
     public int GetCurrentWeaponIndex()
     {
-        return this.currentWeaponIndex;
+        return this.curWeaponIndex;
     }
     public Weapon GetActiveWeapon()
     {
-        if (this.currentWeaponIndex < 0/* && this.equippedWeapons.GetList()[this.currentWeaponIndex] == null*/) return null;
-        return this.equippedWeapons.GetList()[this.currentWeaponIndex];
+        if (this.curWeaponIndex < 0/* && this.equippedWeapons.GetList()[this.currentWeaponIndex] == null*/) return null;
+        return this.equippedWeapons.GetList()[this.curWeaponIndex];
     }
 
     public WeaponRaycast GetActiveRaycastWeapon()
@@ -405,7 +478,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     public void HosterAnimation()
     {
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
-        if (currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] == null || currentWeaponIndex == -1)
+        if (curWeaponIndex > -1 && listEquippedWeapon[curWeaponIndex] == null || curWeaponIndex == -1)
         {
             playerWeapon.PlayerCtrl.RigAnimator.SetBool("holster_weapon", true);
             return;
@@ -417,7 +490,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     {
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
 
-        if (button && currentWeaponIndex > -1 && listEquippedWeapon[currentWeaponIndex] != null)
+        if (button && curWeaponIndex > -1 && listEquippedWeapon[curWeaponIndex] != null)
         {
             isHolstering = !isHolstering;
         }
@@ -435,12 +508,12 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
                 originalHolster = true;
             }
 
-            if (playerWeapon.PlayerCtrl.PlayerLocomotion.IsSprinting == true && currentWeaponIndex > -1 ||
-                playerWeapon.PlayerCtrl.Character.IsSpecialSkill && currentWeaponIndex > -1)
+            if (playerWeapon.PlayerCtrl.PlayerLocomotion.IsSprinting == true && curWeaponIndex > -1 ||
+                playerWeapon.PlayerCtrl.Character.IsSpecialSkill && curWeaponIndex > -1)
             {
                 isHolstering = true;
             }
-            if (Input.GetKeyUp(KeyCode.LeftShift) && currentWeaponIndex > -1 || PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
+            if (Input.GetKeyUp(KeyCode.LeftShift) && curWeaponIndex > -1 || PlayerCtrl.Instance.Character.TimerCD_SpecialSkill < 0.05 && PlayerCtrl.Instance.Character.IsCoolingDownSpecicalSkill)
             {
                 isHolstering = originalHolster;
             }
@@ -457,11 +530,11 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     public void SetDefaultCurrentindex()
     {
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
-        if (currentWeaponIndex > -1)
+        if (curWeaponIndex > -1)
         {
-            if (listEquippedWeapon[currentWeaponIndex] == null)
+            if (listEquippedWeapon[curWeaponIndex] == null)
             {
-                currentWeaponIndex = -1;
+                curWeaponIndex = -1;
             }
         }
 

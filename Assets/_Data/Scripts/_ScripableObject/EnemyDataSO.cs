@@ -1,0 +1,10 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "EnemyData", menuName = "SO/EnemyData")]
+public class EnemyDataSO : ScriptableObject
+{
+    public string EnemyName;
+    public int Health;
+    public int Damage;
+    public float Speed;
+}

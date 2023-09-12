@@ -8,13 +8,15 @@ public class UI_InventoryPanel : BaseUIElement
     [SerializeField] private UI_Inv_EquippedList equippedList;
     [SerializeField] private List<UI_DraggableItem> draggablesEquippedList = new List<UI_DraggableItem>();
     [SerializeField] private List<UI_DraggableItem> draggablesBackpackList = new List<UI_DraggableItem>();
+    [SerializeField] private UI_Inv_WeaponInfo weaponInfo;
 
     public UI_WeaponSlot SelectedWeaponSlot;
 
     public UiAppear UiAppear { get => this.uiAppear; }
+    public UI_Inv_EquippedList EquippedList { get => this.equippedList; }
     public List<UI_DraggableItem> DraggablesEquippedList { get => this.draggablesEquippedList; }
     public List<UI_DraggableItem> DraggablesBackpackList { get => this.draggablesBackpackList; }
-    public UI_Inv_EquippedList EquippedList { get => this.equippedList; }
+    public UI_Inv_WeaponInfo WeaponInfo { get => this.weaponInfo; }
 
     protected override void LoadComponent()
     {
@@ -36,11 +38,14 @@ public class UI_InventoryPanel : BaseUIElement
             {
                 this.draggablesBackpackList.Add(item);
             }
+
+        if (this.weaponInfo == null)
+            this.weaponInfo = GetComponentInChildren<UI_Inv_WeaponInfo>();
     }
 
     public void ResetSlot()
     {
-        foreach (UI_DraggableItem item in draggablesEquippedList)
+        foreach (UI_DraggableItem item in this.draggablesEquippedList)
         {
             if (item.WeaponIconObject != null)
             {
@@ -48,7 +53,7 @@ public class UI_InventoryPanel : BaseUIElement
                 item.WeaponIconObject = null;
             }
         }
-        foreach (UI_DraggableItem item in draggablesBackpackList)
+        foreach (UI_DraggableItem item in this.draggablesBackpackList)
         {
             if (item.WeaponIconObject != null)
             {

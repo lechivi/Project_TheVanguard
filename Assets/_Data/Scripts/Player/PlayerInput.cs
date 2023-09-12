@@ -15,6 +15,10 @@ public class PlayerInput : PlayerAbstract
     public bool SpecialSkillInput;
     public bool BattleSkillInput;
     public bool HolsterInput;
+    public bool NextWeapon;
+    public bool _1stWeapon;
+    public bool _2ndWeapon;
+    public bool _3rdWeapon;
 
     public bool MenuOpenCloseInput;
 
@@ -47,6 +51,7 @@ public class PlayerInput : PlayerAbstract
         this.HandleSpecialSkillInput();
         this.HandleBattleSkillInput();
         this.HandleMenuOpenCloseInput();
+        this.HandleSwitchWeapon();
 
         if (AimInput)
             Debug.Log("Aim");
@@ -85,6 +90,11 @@ public class PlayerInput : PlayerAbstract
             this.playerControls.UI.MenuOpenClose.performed += i => this.MenuOpenCloseInput = true;
 
             this.playerControls.PlayerAction.Holster.performed += i => this.HolsterInput = true;
+
+            this.playerControls.PlayerAction.NextWeapon.performed += i => this.NextWeapon = true;
+            this.playerControls.PlayerAction._1stWeapon.performed += i => this._1stWeapon = true;
+            this.playerControls.PlayerAction._2ndWeapon.performed += i => this._2ndWeapon = true;
+            this.playerControls.PlayerAction._3rdWeapon.performed += i => this._3rdWeapon = true;
 
             this.IsPlayerActive = true;
             this.SetPlayerInput(true);
@@ -197,7 +207,7 @@ public class PlayerInput : PlayerAbstract
 
     private void HandleMenuOpenCloseInput()
     {
-        if (UIManager.HasInstance)
+        if (UIManager.HasInstance && GameManager.HasInstance)
         {
             if (this.MenuOpenCloseInput)
             {
@@ -216,14 +226,39 @@ public class PlayerInput : PlayerAbstract
         }
     }
 
+    private void HandleSwitchWeapon()
+    {
+        PlayerWeaponManager weaponManager = this.playerCtrl.PlayerWeapon.PlayerWeaponManager;
+        if (this.NextWeapon)
+        {
+            weaponManager.SetActiveWeapon(weaponManager.CurWeaponIndex + 1, false);
+            this.NextWeapon = false;
+        }
+        if (this._1stWeapon)
+        {
+            weaponManager.SetActiveWeapon(0, true);
+            this._1stWeapon = false;
+        }
+        if (this._2ndWeapon)
+        {
+            weaponManager.SetActiveWeapon(1, true);
+            this._2ndWeapon = false;
+        }
+        if (this._3rdWeapon)
+        {
+            weaponManager.SetActiveWeapon(2, true);
+            this._3rdWeapon = false;
+        }
+    }
+
     public void SetPlayerInput(bool isActive)
     {
         if (isActive)
         {
-            //Lock & hide cursor (PauseMenuCanvas disable)
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            ////Lock & hide cursor (PauseMenuCanvas disable)
+            //Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = false;
 
             this.playerControls.PlayerMovement.Enable();
             this.playerControls.PlayerAction.Enable();
@@ -231,9 +266,9 @@ public class PlayerInput : PlayerAbstract
         }
         else
         {
-            //Unlock & show cursor (PauseMenuCanvas enable)
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            ////Unlock & show cursor (PauseMenuCanvas enable)
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
 
             this.playerControls.PlayerMovement.Disable();
             this.playerControls.PlayerAction.Disable();

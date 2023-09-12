@@ -167,6 +167,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Look"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0803fcae-b46d-4774-b9b1-b463ca12c82e"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Look"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -277,6 +288,42 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""name"": ""Holster"",
                     ""type"": ""Button"",
                     ""id"": ""185e83a5-8b27-4942-a214-da4564c99998"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""NextWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""23340c1b-1c94-41be-a839-70ab2523c38f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""1stWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""2a95f91e-5bbf-4fd4-9176-bfa7865864c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""2ndWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""791a88f1-8812-4bbd-88a9-614d2e76b437"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""3rdWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf6149ad-16bb-491b-9bfc-0d0630d15fb4"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -517,12 +564,100 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""4657dc52-7819-407f-b67a-e194fc0a2332"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Holster"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""d06aacc1-ad18-401e-8a42-5620c23415d0"",
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard"",
                     ""action"": ""Walk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9e2a9edb-55a8-49c2-80fa-4d98bf527367"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""NextWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3803ed62-3460-4081-82db-fc7e258548ee"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""1stWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94c3c25b-5aef-4017-ad09-053ed900b0f4"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""1stWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b16a3f4-79e3-4524-aede-afd38c8e7789"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""2ndWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0df2ab2b-ef9d-475f-8816-d0589d625627"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""2ndWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1e91035e-19a6-43f7-99a9-fab22b7088ab"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""3rdWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8cc12d77-a876-40d8-a360-0fa74c505563"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""3rdWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1136,6 +1271,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerAction_SpecialSkill = m_PlayerAction.FindAction("SpecialSkill", throwIfNotFound: true);
         m_PlayerAction_BattleSkill = m_PlayerAction.FindAction("BattleSkill", throwIfNotFound: true);
         m_PlayerAction_Holster = m_PlayerAction.FindAction("Holster", throwIfNotFound: true);
+        m_PlayerAction_NextWeapon = m_PlayerAction.FindAction("NextWeapon", throwIfNotFound: true);
+        m_PlayerAction__1stWeapon = m_PlayerAction.FindAction("1stWeapon", throwIfNotFound: true);
+        m_PlayerAction__2ndWeapon = m_PlayerAction.FindAction("2ndWeapon", throwIfNotFound: true);
+        m_PlayerAction__3rdWeapon = m_PlayerAction.FindAction("3rdWeapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_MenuOpenClose = m_UI.FindAction("MenuOpenClose", throwIfNotFound: true);
@@ -1270,6 +1409,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerAction_SpecialSkill;
     private readonly InputAction m_PlayerAction_BattleSkill;
     private readonly InputAction m_PlayerAction_Holster;
+    private readonly InputAction m_PlayerAction_NextWeapon;
+    private readonly InputAction m_PlayerAction__1stWeapon;
+    private readonly InputAction m_PlayerAction__2ndWeapon;
+    private readonly InputAction m_PlayerAction__3rdWeapon;
     public struct PlayerActionActions
     {
         private @PlayerControls m_Wrapper;
@@ -1286,6 +1429,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @SpecialSkill => m_Wrapper.m_PlayerAction_SpecialSkill;
         public InputAction @BattleSkill => m_Wrapper.m_PlayerAction_BattleSkill;
         public InputAction @Holster => m_Wrapper.m_PlayerAction_Holster;
+        public InputAction @NextWeapon => m_Wrapper.m_PlayerAction_NextWeapon;
+        public InputAction @_1stWeapon => m_Wrapper.m_PlayerAction__1stWeapon;
+        public InputAction @_2ndWeapon => m_Wrapper.m_PlayerAction__2ndWeapon;
+        public InputAction @_3rdWeapon => m_Wrapper.m_PlayerAction__3rdWeapon;
         public InputActionMap Get() { return m_Wrapper.m_PlayerAction; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1331,6 +1478,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Holster.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnHolster;
                 @Holster.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnHolster;
                 @Holster.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnHolster;
+                @NextWeapon.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnNextWeapon;
+                @NextWeapon.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnNextWeapon;
+                @NextWeapon.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.OnNextWeapon;
+                @_1stWeapon.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_1stWeapon;
+                @_1stWeapon.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_1stWeapon;
+                @_1stWeapon.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_1stWeapon;
+                @_2ndWeapon.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_2ndWeapon;
+                @_2ndWeapon.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_2ndWeapon;
+                @_2ndWeapon.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_2ndWeapon;
+                @_3rdWeapon.started -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_3rdWeapon;
+                @_3rdWeapon.performed -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_3rdWeapon;
+                @_3rdWeapon.canceled -= m_Wrapper.m_PlayerActionActionsCallbackInterface.On_3rdWeapon;
             }
             m_Wrapper.m_PlayerActionActionsCallbackInterface = instance;
             if (instance != null)
@@ -1371,6 +1530,18 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Holster.started += instance.OnHolster;
                 @Holster.performed += instance.OnHolster;
                 @Holster.canceled += instance.OnHolster;
+                @NextWeapon.started += instance.OnNextWeapon;
+                @NextWeapon.performed += instance.OnNextWeapon;
+                @NextWeapon.canceled += instance.OnNextWeapon;
+                @_1stWeapon.started += instance.On_1stWeapon;
+                @_1stWeapon.performed += instance.On_1stWeapon;
+                @_1stWeapon.canceled += instance.On_1stWeapon;
+                @_2ndWeapon.started += instance.On_2ndWeapon;
+                @_2ndWeapon.performed += instance.On_2ndWeapon;
+                @_2ndWeapon.canceled += instance.On_2ndWeapon;
+                @_3rdWeapon.started += instance.On_3rdWeapon;
+                @_3rdWeapon.performed += instance.On_3rdWeapon;
+                @_3rdWeapon.canceled += instance.On_3rdWeapon;
             }
         }
     }
@@ -1615,6 +1786,10 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnSpecialSkill(InputAction.CallbackContext context);
         void OnBattleSkill(InputAction.CallbackContext context);
         void OnHolster(InputAction.CallbackContext context);
+        void OnNextWeapon(InputAction.CallbackContext context);
+        void On_1stWeapon(InputAction.CallbackContext context);
+        void On_2ndWeapon(InputAction.CallbackContext context);
+        void On_3rdWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

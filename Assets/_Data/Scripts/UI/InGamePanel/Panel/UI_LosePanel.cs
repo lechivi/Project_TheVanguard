@@ -15,7 +15,10 @@ public class UI_LosePanel : BaseUIElement
             AudioManager.Instance.PlaySe(AUDIO.SE_BTN_CLICKS);
         }
 
-        Debug.Log("back to village");
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.TravelToVillage();
+        }
     }
 
     public void OnClickMainMenuButton()
@@ -27,7 +30,7 @@ public class UI_LosePanel : BaseUIElement
 
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.BackToMainMenu();
+            GameManager.Instance.MainMenu();
         }
     }
 

@@ -4,6 +4,8 @@ public class DealDamageCtrl : SaiMonoBehaviour
 {
     [SerializeField] protected DealDamageBox dealDamageBox;
 
+    public DealDamageBox DealDamageBox { get => this.dealDamageBox; }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -18,11 +20,11 @@ public class DealDamageCtrl : SaiMonoBehaviour
         //unarmed
         if (isEnable == 1)
         {
-            this.dealDamageBox.Col.enabled = true;
+            this.dealDamageBox.SetActiveDeal(true);
         }
         else
         {
-            this.dealDamageBox.Col.enabled = false;
+            this.dealDamageBox.SetActiveDeal(false);
         }
     }
 }

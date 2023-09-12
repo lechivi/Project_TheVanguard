@@ -18,8 +18,7 @@ public class BaseUIElement : SaiMonoBehaviour
 
     public virtual void Show(object data)
     {
-        if (this.isSetActiveGameObjec || this.gameObject.activeSelf == false)
-            this.gameObject.SetActive(true);
+        this.gameObject.SetActive(true);
 
         this.SetActiveCanvasGroup(true);
     }

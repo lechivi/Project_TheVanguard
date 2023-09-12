@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class UI_Inv_WeaponInfo : BaseUIElement
 {
-    public static UI_Inv_WeaponInfo Instance;
-
     [Header("WEAPON INFO")]
     [SerializeField] private TMP_Text weaponNameText;
     [SerializeField] private TMP_Text valueText;
@@ -33,9 +31,6 @@ public class UI_Inv_WeaponInfo : BaseUIElement
 
     protected override void Awake()
     {
-        base.Awake();
-        UI_Inv_WeaponInfo.Instance = this;
-
         this.Hide();
     }
 

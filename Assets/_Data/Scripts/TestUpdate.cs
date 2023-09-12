@@ -46,22 +46,59 @@ public class TestUpdate : SaiMonoBehaviour
     //    }
     //}
 
-    private void Start()
-    {
-        if (UIManager.HasInstance)
-        {
-            UIManager.Instance.InGamePanel.Show(null);
-            UIManager.Instance.InGamePanel.ShowPauseMenu(null);
-            UIManager.Instance.LoadingPanel.Hide();
-        }
-        if (InputManager.HasInstance)
-        {
-            InputManager.Instance.Enable_Input_MainMenuScene();
-        }
+    //private void Start()
+    //{
+    //    if (UIManager.HasInstance)
+    //    {
+    //        UIManager.Instance.InGamePanel.Show(null);
+    //        UIManager.Instance.InGamePanel.ShowPauseMenu(null);
+    //        UIManager.Instance.LoadingPanel.Hide();
+    //    }
+    //    if (InputManager.HasInstance)
+    //    {
+    //        InputManager.Instance.Enable_Input_MainMenuScene();
+    //    }
 
-        if (AudioManager.HasInstance)
+    //    if (AudioManager.HasInstance)
+    //    {
+    //        AudioManager.Instance.PlayBgm(AUDIO.BGM_MAINMENU_ZANFONAOFDOOM);
+    //    }
+    //}
+
+    //public int damge = 10;
+    //public int Constant = 50;
+
+    //protected override void LoadComponent()
+    //{
+    //    base.LoadComponent();
+    //    for (int i = 1; i <= 10; i++) 
+    //    {
+    //        int damageReduction = (int) ((float) i / (i + this.Constant) * this.damge);
+    //        Debug.Log ("DEF_" + i + ": -" +  damageReduction + " => " + (int) (damge - damageReduction));
+    //    }
+    //}
+
+    //public RagdollCtrl RagdollCtrl;
+
+    //public void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.O))
+    //    {
+    //        this.RagdollCtrl.EnableRagdoll();
+    //    }
+    //    if (Input.GetKeyDown(KeyCode.L)) 
+    //    {
+    //        this.RagdollCtrl.DisableRagdoll() ;
+    //    }
+    //}
+
+    public MovingPlatform MovingPlatform;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.J)) 
         {
-            AudioManager.Instance.PlayBgm(AUDIO.BGM_MAINMENU_ZANFONAOFDOOM);
+            this.MovingPlatform.TriggerMove();
         }
     }
 }

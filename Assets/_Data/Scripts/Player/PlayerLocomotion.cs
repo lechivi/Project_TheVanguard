@@ -1,4 +1,5 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson.PunDemos;
 
@@ -21,11 +22,40 @@ public class PlayerLocomotion : PlayerAbstract
     [SerializeField] private float jumpheight = 3;
     [SerializeField] private float gravity = 30;
     [SerializeField] private float speedDecrease;
-    private Vector3 movementDirection;
     [SerializeField] private Vector3 rootMotion;
     [SerializeField] public Vector3 velocity;
-
+    private Vector3 movementDirection;
     private bool check = true;
+
+    [Space(10)]
+    [SerializeField, Range(0.1f, 5f)] private float historicalPositionDuration = 1;
+    [SerializeField, Range(0.001f, 1f)] private float historicalPostionInterval = 0.1f;
+
+    public Vector3 AverageVelocity
+    {
+        get
+        {
+            Vector3 average = Vector3.zero;
+            foreach(Vector3 velocity in this.historicalVelocities)
+            {
+                average += velocity;
+            }
+            average.y = 0;
+
+            return average / this.historicalVelocities.Count;
+        }
+    }
+
+    private Queue<Vector3> historicalVelocities;
+    private float lastPositionTime;
+    private int maxQueueSize;
+
+    protected override void Awake()
+    {
+        base.Awake();
+        this.maxQueueSize = Mathf.CeilToInt(1f / this.historicalPostionInterval * this.historicalPositionDuration);
+        this.historicalVelocities = new Queue<Vector3>(this.maxQueueSize);
+    }
 
     private void Start()
     {
@@ -35,25 +65,6 @@ public class PlayerLocomotion : PlayerAbstract
             this.AirControl();
         }
         this.check = true;
-    }
-
-    public void HandleSpeed()
-    {
-        float speed = 1;
-        this.speed = speed * (10 / (10 - (float)playerCtrl.Character.CharacterData.Agility));
-    }
-    public void AirControl()
-    {
-        this.airControl = speed * 1.7f;
-    }
-
-    public void SetOnEventAnimator()
-    {
-        if (this.playerCtrl.Character.EventAnimator && this.check == true)
-        {
-            this.check = false;
-            playerCtrl.Character.EventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
-        }
     }
 
     private void OnDisable()
@@ -66,6 +77,17 @@ public class PlayerLocomotion : PlayerAbstract
         HandleJump();
         Handle1DMode();
         // HandleSprinting();
+
+        if (this.lastPositionTime + this.historicalPostionInterval <= Time.time)
+        {
+            if (this.historicalVelocities.Count == this.maxQueueSize)
+            {
+                this.historicalVelocities.Dequeue();
+            }
+
+            this.historicalVelocities.Enqueue(this.playerCtrl.CharacterController.velocity);
+            this.lastPositionTime = Time.time;
+        }
     }
 
     public void HanldeAllMovementFix()
@@ -74,6 +96,26 @@ public class PlayerLocomotion : PlayerAbstract
         this.HandleRotation();
         this.HandleUpdateMove();
         // this.SetSpeed();
+    }
+
+    public void HandleSpeed()
+    {
+        float speed = 1;
+        this.speed = speed * (10 / (10 - (float)playerCtrl.Character.CharacterData.Agility));
+    }
+
+    public void AirControl()
+    {
+        this.airControl = speed * 1.7f;
+    }
+
+    public void SetOnEventAnimator()
+    {
+        if (this.playerCtrl.Character.EventAnimator && this.check == true)
+        {
+            this.check = false;
+            playerCtrl.Character.EventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+        }
     }
 
     public void SetSpeed()
@@ -190,6 +232,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     public void HandleAnimatorMoveEvent()
     {
+        if (this.playerCtrl.Animator == null) return;
         rootMotion += playerCtrl.Animator.deltaPosition;
     }
 

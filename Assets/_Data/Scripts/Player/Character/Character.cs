@@ -6,6 +6,7 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected CharacterDataSO characterData;
     [SerializeField] protected CharacterRigAttach characterRigAttach;
     [SerializeField] protected Transform characterTransform;
+    [SerializeField] protected Transform centerPoint;
     [SerializeField] protected CharacterController characterController;
     [SerializeField] protected OnEventAnimator eventAnimator;
     [SerializeField] protected Animator animator;
@@ -37,6 +38,7 @@ public class Character : SaiMonoBehaviour
     public CharacterDataSO CharacterData { get => this.characterData; }
     public CharacterRigAttach CharacterRigAttach { get => this.characterRigAttach; }
     public Transform CharacterTransform { get => this.characterTransform; }
+    public Transform CenterPoint { get => this.centerPoint; }
     public CharacterController CharacterController { get => this.characterController; }
     public Animator Animator { get => this.animator; }
     public Animator RigAnimator { get => this.rigAnimator; }
@@ -80,6 +82,9 @@ public class Character : SaiMonoBehaviour
             this.ragdollCtrl.Animator = this.animator;
             this.ragdollCtrl.CharacterController = this.characterController;
         }
+
+        if (this.centerPoint == null)
+            this.centerPoint = transform.Find("Root/Hips/Spine_01/Spine_02");
     }
 
     protected virtual void LoadCharacterTransform()

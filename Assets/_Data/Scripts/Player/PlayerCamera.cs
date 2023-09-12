@@ -14,7 +14,7 @@ public class PlayerCamera : PlayerAbstract
    // public CinemachineCameraOffset CameraOffsetTPS;
 
     public bool Check { get => this.check; set => this.check = value; }
-    public bool IsTPSCamera { get => this.isTPSCamera; }
+    public bool IsTPSCamera { get => this.isTPSCamera; set => this.isTPSCamera = value; }
 
     public void HandleUpdateCamera()
     {

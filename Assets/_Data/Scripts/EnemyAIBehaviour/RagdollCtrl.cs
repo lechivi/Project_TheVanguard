@@ -22,16 +22,6 @@ public class RagdollCtrl : SaiMonoBehaviour
             for (int i = 0; i < rigidbodies.Length; i++)
             {
                 this.listRagdollRigidbody.Add(rigidbodies[i]);
-
-                //HitBox hitBox = this.listRagdollRigidbody[i].transform.GetComponent<HitBox>();
-                //if (hitBox != null)
-                //{
-                //    if (!hitBox.IsSetup())
-                //        hitBox.Setup(this.listRagdollRigidbody[i], this.enemyCtrl.EnemyHealth.gameObject);
-                //    continue;
-                //}
-                //HitBox hitBoxAdd = this.listRagdollRigidbody[i].transform.AddComponent<HitBox>();
-                //hitBoxAdd.Setup(this.listRagdollRigidbody[i], this.enemyCtrl.EnemyHealth.gameObject);
                 if (rigidbodies[i].GetComponent<HitBox>() == null) 
                 {
                     rigidbodies[i].AddComponent<HitBox>();
@@ -42,27 +32,32 @@ public class RagdollCtrl : SaiMonoBehaviour
 
     public void DisableRagdoll()
     {
-        this.SetKinematic(1);
         this.animator.enabled = true;
+        this.animator.Rebind();
         this.characterController.enabled = true;
+        this.SetKinematic(true);
     }
 
     public void EnableRagdoll()
     {
         this.animator.enabled = false;
         this.characterController.enabled = false;
-        this.SetKinematic();
+        this.SetKinematic(false);
 
-        Invoke("SetKinemactic", 2f);
+        Invoke("SetKinematicFalse", 2f);
     }
 
-    private void SetKinematic(int isKinematic = 0)
+    private void SetKinematic(bool isKinematic)
     {
-        Debug.Log(isKinematic);
         for (int i = 0; i < this.listRagdollRigidbody.Count; i++)
         {
-            this.listRagdollRigidbody[i].isKinematic = isKinematic == 1 ? true : false;
+            this.listRagdollRigidbody[i].isKinematic = isKinematic;
         }
+    }
+
+    private void SetKinematicFalse()
+    {
+        this.SetKinematic(false);
     }
 
     public Rigidbody ClosestRigidbody(Vector3 hitPoint)

@@ -51,9 +51,12 @@ public class UI_WeaponInfo : BaseUIElement
                 }
                 else
                 {
-                    int curAmmo = playerWeaponManager.GetActiveRaycastWeapon().currentAmmo;
-                    int maxAmmo = activeWeapon.WeaponData.MagazineSize;
-                    this.SetWeapon(weaponType, curAmmo, maxAmmo);
+                    if (playerWeaponManager.GetActiveRaycastWeapon())
+                    {
+                        int curAmmo = playerWeaponManager.GetActiveRaycastWeapon().currentAmmo;
+                        int maxAmmo = activeWeapon.WeaponData.MagazineSize;
+                        this.SetWeapon(weaponType, curAmmo, maxAmmo);
+                    }
                 }
             }
         }

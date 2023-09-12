@@ -26,6 +26,10 @@ public class CharacterSelectionPanel : BaseUIElement
         this.chrInfoPanel.Hide();
         this.buttonNotePanel.Show(null);
 
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.IsShowCursor(true);
+        }
         //if (data is CharacterSelectionSceneCtrl)
         //{
         //    CharacterSelectionSceneCtrl newData = data as CharacterSelectionSceneCtrl;
@@ -56,7 +60,7 @@ public class CharacterSelectionPanel : BaseUIElement
     {
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.BackToMainMenu();
+            GameManager.Instance.MainMenu();
         }
     }
 

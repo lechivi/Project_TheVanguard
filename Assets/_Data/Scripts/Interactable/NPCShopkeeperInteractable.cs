@@ -1,27 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPCShopkeeperInteractable : MonoBehaviour, IInteractable
+public class NPCShopkeeperInteractable : NPCInteractable
 {
-    [SerializeField] private ChatBubble chatBubblePrefab;
-    [SerializeField] private string interactText;
-    [SerializeField] private List<string> chatQuote = new List<string>();
-
     public List<ItemDataSO> ItemList = new List<ItemDataSO>();
 
-    private Animator animator;
-    private NPCLookAt npcLookAt;
-    private Transform chatParent;
-    private Transform interactorTransfrom;
-
-    private void Awake()
-    {
-        this.animator = GetComponent<Animator>();
-        this.npcLookAt = GetComponent<NPCLookAt>();
-        this.chatParent = transform.Find("ChatParent");
-    }
-
-    public virtual void Interact(Transform interactorTransfrom)
+    public override void Interact(Transform interactorTransfrom)
     {
         this.interactorTransfrom = interactorTransfrom;
         if (this.chatBubblePrefab != null && this.chatQuote.Count > 0)
@@ -31,10 +15,10 @@ public class NPCShopkeeperInteractable : MonoBehaviour, IInteractable
                 Destroy(child.gameObject);
             }
             ChatBubble chatBubble = Instantiate(this.chatBubblePrefab, this.chatParent);
-            chatBubble.Setup(this.chatQuote[Random.Range(0, this.chatQuote.Count)], 4f);
+            chatBubble.Setup(this.chatQuote[Random.Range(0, this.chatQuote.Count)], this.chatExistTime);
         }
 
-        this.animator.SetTrigger("Talk");
+        this.npcCtrl.SetAnimaton(NPCBehaviour.Talk1.ToString(), this.chatExistTime);
 
         Transform targetLookAt = this.interactorTransfrom.GetComponent<PlayerInteract>().PlayerCtrl.PlayerTransform;
         if (targetLookAt != null)
@@ -42,22 +26,19 @@ public class NPCShopkeeperInteractable : MonoBehaviour, IInteractable
             this.npcLookAt.LookAtTarget(targetLookAt);
         }
 
+        if (AudioManager.HasInstance)
+        {
+            //int random = Random.Range(0, 3);
+            //if (random == 0)
+            //    AudioManager.Instance.PlayVc(this.isFemale ? AUDIO.VC_FEMALE_HEY_APP_ANNOUNCER_FEMALE_HEY_2 : AUDIO.VC_MALE_HEY_SOLDIER_HUNTER_HEY);
+            //else if (random == 1)
+            //    AudioManager.Instance.PlayVc(this.isFemale ? AUDIO.VC_FEMALE_HI_APP_ANNOUNCER_FEMALE_HI_1 : AUDIO.VC_MALE_HI_SOLDIER_HUNTER_HI_2);         
+            //else
+            //    AudioManager.Instance.PlayVc(this.isFemale ? AUDIO.VC_FEMALE_WELCOME_APP_ANNOUNCER_FEMALE_WELCOME_1 : AUDIO.VC_MALE_WELCOME_SOLDIER_HUNTER_WELCOME);         
+            AudioManager.Instance.PlayVc(this.isFemale ? AUDIO.VC_FEMALE_WELCOME_APP_ANNOUNCER_FEMALE_WELCOME_1 : AUDIO.VC_MALE_WELCOME_SOLDIER_HUNTER_WELCOME);
+        }
+
         Invoke("DisplayShopUI", 2f);
-    }
-
-    public string GetInteractableText()
-    {
-        return this.interactText;
-    }
-
-    public Transform GetTransform()
-    {
-        return transform;
-    }
-
-    public bool CanInteract()
-    {
-        return true;
     }
 
     private void DisplayShopUI()

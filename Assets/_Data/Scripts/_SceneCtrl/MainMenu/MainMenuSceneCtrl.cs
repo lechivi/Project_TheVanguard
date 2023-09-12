@@ -45,6 +45,11 @@ public class MainMenuSceneCtrl : SaiMonoBehaviour
         {
             AudioManager.Instance.PlayBgm(AUDIO.BGM_MAINMENU_ZANFONAOFDOOM);
         }
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.IsShowCursor(true);
+        }
     }
 
     public void SetBook(bool isOpen)

@@ -13,14 +13,14 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
     [SerializeField] private RectTransform rectTransform;
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private UI_WeaponSlot ui_WeaponSlotParent;
-    
+
     [SerializeField] private WeaponDataSO weaponData;
 
     public UI_WeaponSlot UI_WeaponSlotParent { get => this.ui_WeaponSlotParent; }
     public int WeaponSlotIndex;
     public WeaponList WeaponList;
     public GameObject WeaponIconObject;
-    
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -76,12 +76,12 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
     {
         if (this.weaponData != null)
         {
-            UI_Inv_WeaponInfo.Instance.Show(null);
-            UI_Inv_WeaponInfo.Instance.SetInformation(this.weaponData);
-
             if (UIManager.HasInstance)
             {
-                UIManager.Instance.InGamePanel.PauseMenu.InventoryPanel.SetSelectEquippedSlot(this.ui_WeaponSlotParent);
+                UI_InventoryPanel inventoryPanel = UIManager.Instance.InGamePanel.PauseMenu.InventoryPanel;
+                inventoryPanel.WeaponInfo.Show(null);
+                inventoryPanel.WeaponInfo.SetInformation(this.weaponData);
+                inventoryPanel.SetSelectEquippedSlot(this.ui_WeaponSlotParent);
             }
         }
     }
@@ -119,7 +119,7 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
         }
     }
 
-    public void SetWeaponData(WeaponDataSO weaponData )
+    public void SetWeaponData(WeaponDataSO weaponData)
     {
         this.weaponData = weaponData;
     }
@@ -141,7 +141,7 @@ public class UI_DraggableItem : SaiMonoBehaviour, IPointerDownHandler, IDragHand
         Debug.Log("ResetSlot");
         this.weaponData = null;
         Destroy(this.WeaponIconObject);
-        this.WeaponIconObject= null;
+        this.WeaponIconObject = null;
 
         //this.canvasGroup.blocksRaycasts = true;
         //this.ui_WeaponSlotParent.SetSelected(false);

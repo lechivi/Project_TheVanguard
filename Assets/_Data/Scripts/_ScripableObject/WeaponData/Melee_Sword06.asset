@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Melee_Sword06
   m_EditorClassIdentifier: 
-  ItemName: Sword 06
+  ItemName: Wado Nimonji
   ItemValue: 0
   ItemType: 1
   Icon: {fileID: 5792169234966480384, guid: b0b952c4840fddb44924f07f83623e02, type: 3}

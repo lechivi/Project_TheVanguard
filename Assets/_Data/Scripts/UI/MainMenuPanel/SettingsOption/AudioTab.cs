@@ -121,7 +121,7 @@ public class AudioTab : BaseUIElement
     {
         if (AudioManager.HasInstance && this.canPlayVc)
         {
-            AudioManager.Instance.PlayVc(AUDIO.VC_FEMALE_HI_APP_ANNOUNCER_FEMALE_HI_1, 0.5f);
+            AudioManager.Instance.PlayVc(AUDIO.VC_MALE_TAKECARE_SOLDIER_HUNTER_TAKE_CARE, 0.5f);
 
             AudioManager.Instance.ChangeVcVolume(value);
         }

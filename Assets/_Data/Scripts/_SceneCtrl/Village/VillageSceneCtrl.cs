@@ -83,6 +83,8 @@ public class VillageSceneCtrl : SaiMonoBehaviour
 
         if (GameManager.HasInstance)
         {
+            GameManager.Instance.ResumeGame();
+
             PlayerCtrl playerCtrl = GameManager.Instance.PlayerCtrl;
 
             PlayerCamera playerCamera = playerCtrl.PlayerCamera;
@@ -106,12 +108,13 @@ public class VillageSceneCtrl : SaiMonoBehaviour
             {
                 if (chr.CharacterData == GameManager.Instance.CharacterData)
                 {
-                    this.cutoutObject.TargetObject = chr.GetComponent<AlliancePlayer_InfoScanner>().GetCenterPoint();
+                    this.cutoutObject.TargetObject = chr.GetComponentInChildren<AlliancePlayer_InfoScanner>().GetCenterPoint();
                     chr.transform.position = pos;
                     chr.transform.rotation = rot;
                     chr.gameObject.SetActive(true);
 
                     GameManager.Instance.GenerateCharacter(chr);
+                    //PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.LoadWeapon();
                     break;
                 }
             }

@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -39,9 +40,9 @@ public class PlayerHealth : PlayerAbstract, IHealth
 
     public void TakeDamage(int damage)
     {
-        int Agility = Mathf.RoundToInt(this.agility / 2);
-        int damageTaken = damage * (10 / (10 + defence + Agility));
-        this.currentHealth -= damageTaken;
+        float damageTaken = (float)damage * (10f / (10f + this.defence + this.agility / 2f));
+
+        this.currentHealth -= Mathf.RoundToInt(damageTaken);
         if (this.currentHealth <= 0)
         {
             this.currentHealth = 0;
@@ -53,6 +54,25 @@ public class PlayerHealth : PlayerAbstract, IHealth
     public void Die()
     {
         this.playerCtrl.Character.RagdollCtrl.EnableRagdoll();
+        this.playerCtrl.PlayerInput.enabled = false;
+        //this.playerCtrl.PlayerCamera.FPSCamera.Follow =this.playerCtrl.Character.CenterPoint;
+        //this.playerCtrl.PlayerCamera.FPSCamera.LookAt = null;
+        //this.playerCtrl.PlayerCamera.FPSCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+        this.playerCtrl.PlayerCamera.IsTPSCamera = true;
+        this.playerCtrl.PlayerCamera.TPSCamera.Follow = this.playerCtrl.Character.CenterPoint;
+        this.playerCtrl.PlayerCamera.TPSCamera.LookAt = null;
+        this.playerCtrl.PlayerCamera.TPSCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+
+        Invoke("ShowLosePanel", 2f);
+    }
+
+    private void ShowLosePanel()
+    {
+        if (UIManager.HasInstance)
+        {
+            UIManager.Instance.InGamePanel.ShowOther(null);
+            UIManager.Instance.InGamePanel.Other.ShowLosePanel();
+        }
     }
 
     public void TakeDamage(int damage, Vector3 force, Vector3 hitPoint, Rigidbody hitRigidbody)

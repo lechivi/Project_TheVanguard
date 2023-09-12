@@ -1,12 +1,15 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyCtrl : SaiMonoBehaviour
 {
+    [SerializeField] private EnemyDataSO enemyData;
     [SerializeField] private Animator animator;
     [SerializeField] private CharacterController characterController;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Transform centerPoint;
+    [SerializeField] private DealDamageCtrl dealDamageCtrl;
     [SerializeField] private TakeDamageCtrl takeDamageCtrl;
     [SerializeField] private GraphicEffect graphicEffect;
     [SerializeField] private DetectTarget detectTarget;
@@ -16,6 +19,11 @@ public class EnemyCtrl : SaiMonoBehaviour
     [SerializeField] private EnemyDebuffs enemyDebuffs;
     [SerializeField] private RagdollCtrl ragdollCtrl;
 
+    public IInfoScanner CurTarget;
+    public Transform Target;    //For LookAt
+    public Vector3 FollowPos;   //For SetDestination NavMeshAgent
+
+    public EnemyDataSO EnemyData { get => this.enemyData; }
     public Animator Animator { get => this.animator; }
     public CharacterController CharacterController { get => this.characterController; }
     public NavMeshAgent NavMeshAgent { get => this.navMeshAgent; }
@@ -83,10 +91,70 @@ public class EnemyCtrl : SaiMonoBehaviour
             this.ragdollCtrl.CharacterController = this.characterController;
         }
 
+        if (this.dealDamageCtrl == null)
+            this.dealDamageCtrl = GetComponent<DealDamageCtrl>();
+
         if (this.takeDamageCtrl == null)
         {
             this.takeDamageCtrl = GetComponent<TakeDamageCtrl>();
             this.takeDamageCtrl.SetHealthObject(this.enemyHealth.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        if (this.enemyData != null)
+        {
+            transform.gameObject.name = this.enemyData.EnemyName;
+            this.enemyHealth.SetHealth(this.EnemyData.Health);
+            this.dealDamageCtrl.DealDamageBox.Damage = this.EnemyData.Damage;
+            this.navMeshAgent.speed = this.EnemyData.Speed;
+        }
+    }
+
+    private void Update()
+    {
+        IInfoScanner infoScanner = this.detectTarget.FindClosest(FactionType.Alliance);
+        if (infoScanner != null)
+        {
+            if (this.CurTarget != infoScanner)
+            {
+                this.CurTarget = infoScanner;
+            }
+
+            this.CurTarget.GetTransform().GetComponent<LeadTracker>().Add(this);
+        }
+        else
+        {
+            if (this.CurTarget != null)
+            {
+                this.CurTarget.GetTransform().GetComponent<LeadTracker>().Remove(this);
+                this.CurTarget = null;
+            }
+        }
+    }
+
+    public void DropWeapon()
+    {
+        Transform weapon = this.dealDamageCtrl.DealDamageBox.transform;
+        if (weapon)
+        {
+            this.dealDamageCtrl.DealDamageBox.enabled = false;
+            weapon.GetComponent<Collider>().enabled = true;
+            weapon.GetComponent<Collider>().isTrigger = false;
+            weapon.AddComponent<Rigidbody>();
+            weapon.SetParent(null);
+            weapon.gameObject.layer = LayerMask.NameToLayer("TerrainOnly");
+        }
+    }
+
+    public void ResetEnemy()
+    {
+        if (!this.enemyHealth.IsDeath()) return;
+
+        this.ragdollCtrl.DisableRagdoll();
+        this.dealDamageCtrl.DealDamageBox.ResetWeapon();
+        this.enemyHealth.ResetHealth();
+        this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
     }
 }

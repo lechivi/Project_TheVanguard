@@ -8,6 +8,7 @@ public class PopoutContainer : BaseUIElement
     [SerializeField] private CanvasGroup cs_StartPopout;
     [SerializeField] private CanvasGroup ig_MainMenuPopout;
     [SerializeField] private CanvasGroup ig_QuitPopout;
+    [SerializeField] private CanvasGroup ig_TravelDungeonPopout;
 
     protected virtual void OnEnable()
     {
@@ -22,8 +23,12 @@ public class PopoutContainer : BaseUIElement
             if (InputManager.Instance.Input_ChrSelScene.enabled)
             {
                 InputManager.Instance.Input_ChrSelScene.CanSelect = false;
-
             }
+        }
+
+        if (PlayerCtrl.HasInstance)
+        {
+            PlayerCtrl.Instance.PlayerInput.enabled = false;
         }
 
     }
@@ -40,6 +45,16 @@ public class PopoutContainer : BaseUIElement
 
             }
         }
+
+        if (PlayerCtrl.HasInstance)
+        {
+            PlayerCtrl.Instance.PlayerInput.enabled = true;
+        }
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.ResumeGame();
+        }
     }
 
     private void HideAllPopout()
@@ -49,6 +64,7 @@ public class PopoutContainer : BaseUIElement
         this.SetActiveCanvasGroup(this.cs_StartPopout, false);
         this.SetActiveCanvasGroup(this.ig_MainMenuPopout, false);
         this.SetActiveCanvasGroup(this.ig_QuitPopout, false);
+        this.SetActiveCanvasGroup(this.ig_TravelDungeonPopout, false);
     }
 
     protected virtual void SetActiveCanvasGroup(CanvasGroup canvasGroup, bool isActive)
@@ -82,6 +98,15 @@ public class PopoutContainer : BaseUIElement
         this.Show(null);
         this.SetActiveCanvasGroup(this.ig_QuitPopout, true);
     }
+    public void ShowIG_TravelDungeonPopout()
+    {
+        this.Show(null);
+        this.SetActiveCanvasGroup(this.ig_TravelDungeonPopout, true);
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.PauseGame();
+        }
+    }
 
     public virtual void OnClickNoButton()
     {
@@ -91,6 +116,11 @@ public class PopoutContainer : BaseUIElement
         }
 
         this.Hide();
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.IsShowCursor(true);
+        }
     }
 
     public virtual void OnClickPlay_YesButton() //MainMenu
@@ -119,7 +149,7 @@ public class PopoutContainer : BaseUIElement
 
         if (GameManager.HasInstance)
         {
-            GameManager.Instance.BackToMainMenu();
+            GameManager.Instance.MainMenu();
         }
     }
 
@@ -134,7 +164,21 @@ public class PopoutContainer : BaseUIElement
 
         if (GameManager.HasInstance)
         {
-            StartCoroutine(GameManager.Instance.LoadScene(2));
+            GameManager.Instance.TravelToVillage();
+        }
+    }
+
+    public virtual void OnClickTravelDungeon_YesButton()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_BTN_CLICKS);
+        }
+        this.Hide();
+
+        if (GameManager.HasInstance)
+        {
+            GameManager.Instance.TravelToDungeon();
         }
     }
 

@@ -7,7 +7,13 @@ public class EnemyHealth : EnemyAbstract, IHealth
 
     private bool isDeath;
 
-    private void Start()
+    public void SetHealth(int maxHealth)
+    {
+        this.maxHealth = maxHealth;
+        this.currentHealth = this.maxHealth;
+    }
+
+    public void ResetHealth()
     {
         this.currentHealth = this.maxHealth;
     }
@@ -56,13 +62,12 @@ public class EnemyHealth : EnemyAbstract, IHealth
         this.isDeath = true;
         this.enemyCtrl.EnemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Death);
         this.enemyCtrl.EnemyRagdoll.EnableRagdoll();
+        this.enemyCtrl.DropWeapon();
     }
 
     public void Die(Vector3 force, Vector3 hitPoint, Rigidbody hitRigidbody = null)
     {
-        this.isDeath = true;
-        this.enemyCtrl.EnemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Death);
-        this.enemyCtrl.EnemyRagdoll.EnableRagdoll();
+        this.Die();
         if (hitRigidbody == null)
             hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
         else
