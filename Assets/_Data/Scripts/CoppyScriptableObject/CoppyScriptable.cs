@@ -8,17 +8,19 @@ public class CoppyScriptable : SaiMonoBehaviour
 {
     public WeaponDataSO Source;
     public WeaponDataSO isCoppy;
-    int a = 5;
-    int b;
+    public int d;
+    public int c;
     protected override void LoadComponent()
     {
         base.LoadComponent();
         // this.CoppyScriptableObj();
-        b= this.Handle(ref a);
-        Debug.Log(b);
-        Debug.Log(a);
+        //this.Handle();
     }
 
+    private void Start()
+    {
+        c = d;
+    }
     public void CoppyScriptableObj()
     {
         /*        isCoppy.NormalPosHolster = Source.NormalPosHolster;
@@ -38,10 +40,5 @@ public class CoppyScriptable : SaiMonoBehaviour
 
     }
 
-    public  int Handle(ref int i)
-    {
-        i++;
-        return i;
-    }
-
+  
 }

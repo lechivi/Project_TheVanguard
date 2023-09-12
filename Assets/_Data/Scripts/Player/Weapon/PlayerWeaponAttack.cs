@@ -8,6 +8,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
     private float lastClicked;
     private string MeleeCombatType;
     private AnimatorStateInfo state;
+    private float delay;
 
     public void HandleUpdateWeaponAttack()
     {
@@ -18,7 +19,12 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
 
     public void Attack()
     {
-        if (Time.time - lastClicked < 0.7) return;
+        if (MeleeCombatType == "Unarmed_") delay = 0.4f;
+        if (MeleeCombatType == "LongMelee_") delay = 0.7f;
+        if (MeleeCombatType == "Knife_") delay = 0.5f;
+            Debug.Log(delay);
+        if (Time.time - lastClicked < delay) return;
+
         if (this.comboCounter >= 3)
             this.comboCounter = 0;
         this.comboCounter++;
@@ -58,18 +64,19 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
             return;
         }
 
-        if (PlayerWeapon.PlayerCtrl.PlayerInput.MovementInput != Vector2.zero || PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsJumping) // isMove or Jump 
-        {
-            PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(1, 0);
-            PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(2, 1);
-            state = this.PlayerWeapon.PlayerCtrl.Animator.GetCurrentAnimatorStateInfo(2);
-        }
-        else
-        {
-            PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(1, 1);
-            PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(2, 0);
-            state = this.PlayerWeapon.PlayerCtrl.Animator.GetCurrentAnimatorStateInfo(1);
-        }
+        /* if (PlayerWeapon.PlayerCtrl.PlayerInput.MovementInput != Vector2.zero || PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsJumping) // isMove or Jump 
+         {
+             PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(1, 0);
+             PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(2, 1);
+             state = this.PlayerWeapon.PlayerCtrl.Animator.GetCurrentAnimatorStateInfo(2);
+         }
+         else
+         {
+             PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(1, 1);
+             PlayerWeapon.PlayerCtrl.Animator.SetLayerWeight(2, 0);
+             state = this.PlayerWeapon.PlayerCtrl.Animator.GetCurrentAnimatorStateInfo(1);
+         }*/
+        state = this.PlayerWeapon.PlayerCtrl.Animator.GetCurrentAnimatorStateInfo(1);
         if (!state.IsTag("Attack")) return;
         string name = "Combo";
         for (int i = 0; i < 3; i++)

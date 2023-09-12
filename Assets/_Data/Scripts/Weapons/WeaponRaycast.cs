@@ -9,6 +9,7 @@ public class WeaponRaycast : MonoBehaviour
     [HideInInspector] public Weapon Weapon;
     [HideInInspector] public float runtTimeFire;
 
+
     //RaycastWeapon Variable
     public ParticleSystem[] muzzleflash;
     public ParticleSystem hitEffect;
@@ -31,6 +32,10 @@ public class WeaponRaycast : MonoBehaviour
         recoil = GetComponent<RecoilWeapon>();
         maxAmmo = Weapon.WeaponData.MagazineSize;
         currentAmmo = maxAmmo;
+        if(hitEffect == null)
+        {
+            hitEffect = transform.Find("FX/HitEffect_Asaka").GetComponent<ParticleSystem>();
+        }
     }
 
     public virtual void DelayPerShot()

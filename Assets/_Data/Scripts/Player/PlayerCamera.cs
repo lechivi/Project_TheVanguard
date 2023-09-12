@@ -3,7 +3,6 @@ using Cinemachine;
 
 public class PlayerCamera : PlayerAbstract
 {
-    private bool check = false;
     private bool isTPSCamera = true;
 
     public int POV;
@@ -11,29 +10,22 @@ public class PlayerCamera : PlayerAbstract
     public CinemachineFreeLook TPSCamera;
     public CinemachineVirtualCamera FPSCamera;
     public GameObject IgnoreRaycastZone;
-   // public CinemachineCameraOffset CameraOffsetTPS;
-
-    public bool Check { get => this.check; set => this.check = value; }
+    // public CinemachineCameraOffset CameraOffsetTPS;
     public bool IsTPSCamera { get => this.isTPSCamera; set => this.isTPSCamera = value; }
 
     public void HandleUpdateCamera()
     {
         SetOriginalCamera();
         HandleCamera();
-
-        if (this.check)
-        {
-            this.check = false;
-        }
     }
 
     private void SetOriginalCamera()
     {
-        if (TPSCamera.gameObject.activeInHierarchy == true && this.check)
+        if (TPSCamera.gameObject.activeInHierarchy == true && playerCtrl.PlayerInput.Mouse1_ButtonDown)
         {
             isTPSCamera = true;
         }
-        else if (FPSCamera.gameObject.activeInHierarchy == true && this.check)
+        else if (FPSCamera.gameObject.activeInHierarchy == true && playerCtrl.PlayerInput.Mouse1_ButtonDown)
         {
             isTPSCamera = false;
         }

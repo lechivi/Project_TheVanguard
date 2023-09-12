@@ -141,6 +141,33 @@ public class AudioManager : BaseManager<AudioManager>
         }
     }
 
+    public void PlaySeLoop(string seName, float delay = 0f)
+    {
+        if (!this.seDic.ContainsKey(seName))
+        {
+            Debug.Log($"'{seName}' There is no SE named");
+            return;
+        }
+
+        this.nextSeName = seName;
+        this.attachSeSource.clip = this.seDic[this.nextSeName] as AudioClip;
+        this.attachSeSource.Play(0);
+        this.attachSeSource.loop = true;
+    }
+
+    public void PlaySeStop(string seName, float delay = 0f)
+    {
+        if (!this.seDic.ContainsKey(seName))
+        {
+            Debug.Log($"'{seName}' There is no SE named");
+            return;
+        }
+
+        this.nextSeName = seName;
+        this.attachSeSource.clip = this.seDic[this.nextSeName] as AudioClip;
+        this.attachSeSource.Stop();
+    }
+
     private void DelayCanPlaySe()
     {
         this.canPlaySe = true;

@@ -73,7 +73,7 @@ public class UI_ExchangePanel : BaseUIElement
             Debug.Log("Can't get Weapon");
             return;
         }
-        if (soldItemSlot.ItemData.ItemValue > this.PlayerCurrency)
+        if (soldItemSlot.ItemData.ItemValue > PlayerCtrl.Instance.PlayerCoin.CurrentCoint)
         {
             Debug.Log("Don't have enought currency");
             return;
@@ -83,8 +83,8 @@ public class UI_ExchangePanel : BaseUIElement
             Debug.Log("Player bought a weapon");
 
             //Calculate player currency after buying
-            this.PlayerCurrency -= soldItemSlot.ItemData.ItemValue;
-            this.inventoryList.SetCurrencyText(this.PlayerCurrency);
+            PlayerCtrl.Instance.PlayerCoin.SubtractCoin(soldItemSlot.ItemData.ItemValue);
+            this.inventoryList.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoint);
 
             //Remove the bought item from shop
             this.shopList.RemoveItemFromShop(soldItemSlot);
@@ -116,8 +116,9 @@ public class UI_ExchangePanel : BaseUIElement
         }
 
         //Calculate player currency after buying
-        this.PlayerCurrency += soldItemSlot.ItemData.ItemValue;
-        this.inventoryList.SetCurrencyText(this.PlayerCurrency);
+        PlayerCtrl.Instance.PlayerCoin.AddCoin(soldItemSlot.ItemData.ItemValue);
+        //this.PlayerCurrency += soldItemSlot.ItemData.ItemValue;
+        this.inventoryList.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoint);
 
         //Add the sold item to shop
         this.shopList.AddItemToShop(soldItemSlot.ItemData);

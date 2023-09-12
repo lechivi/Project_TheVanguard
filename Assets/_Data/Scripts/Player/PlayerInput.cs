@@ -19,6 +19,10 @@ public class PlayerInput : PlayerAbstract
     public bool _1stWeapon;
     public bool _2ndWeapon;
     public bool _3rdWeapon;
+    public bool Mouse0_ButtonDown;
+    public bool Mouse0_GetButton;
+    public bool Mouse0_ButtonUp;
+    public bool Mouse1_ButtonDown;
 
     public bool MenuOpenCloseInput;
 
@@ -39,6 +43,8 @@ public class PlayerInput : PlayerAbstract
 
     public void HandleUpdateAllInput()
     {
+        this.HandleButtonDownInput();
+        this.HandleButtonUpInput();
         this.HandleHolsterInput();
         this.HandleMovementInput();
         this.HandleSprintInput();
@@ -73,10 +79,16 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.PlayerAction.Jump.performed += i => this.JumpInput = true;
 
+            this.playerControls.PlayerAction.Attack.started += i => this.Mouse0_ButtonDown = true;
+            this.playerControls.PlayerAction.Attack.performed += i => this.Mouse0_GetButton = true;
+            this.playerControls.PlayerAction.Attack.canceled += i => this.Mouse0_GetButton = false;
+            this.playerControls.PlayerAction.Attack.canceled += i => this.Mouse0_ButtonUp = true;
+
+
             this.playerControls.PlayerAction.Attack.performed += i => this.AttackInput = true;
             this.playerControls.PlayerAction.Attack.canceled += i => this.AttackInput = false;
 
-            this.playerControls.PlayerAction.Aim.started += i => this.playerCtrl.PlayerCamera.Check = true;
+            this.playerControls.PlayerAction.Aim.started += i => this.Mouse1_ButtonDown = true;
             this.playerControls.PlayerAction.Aim.performed += i => this.AimInput = true;
             this.playerControls.PlayerAction.Aim.canceled += i => this.AimInput = false;
 
@@ -103,6 +115,26 @@ public class PlayerInput : PlayerAbstract
         this.playerControls.Enable();
     }
 
+    private void HandleButtonDownInput()
+    {
+        if(this.Mouse1_ButtonDown)
+        {
+            this.Mouse1_ButtonDown = false;
+        }
+        if(this.Mouse0_ButtonDown)
+        {
+            this.Mouse0_ButtonDown = false;
+        }
+    }
+
+
+    private void HandleButtonUpInput()
+    {
+        if(this.Mouse0_ButtonUp)
+        {
+            this.Mouse0_ButtonUp = false;
+        }
+    }
     private void HandleHolsterInput()
     {
         if (HolsterInput)

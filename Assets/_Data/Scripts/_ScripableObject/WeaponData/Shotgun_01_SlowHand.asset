@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae50e050c7cb9cc4d8fec25ef931ee14, type: 3}
   m_Name: Shotgun_01_SlowHand
   m_EditorClassIdentifier: 
-  ItemName: Shotgun
+  ItemName: SlowHand
   ItemValue: 0
   ItemType: 1
   Icon: {fileID: 4147139860447680544, guid: b41e5248fe8350c44b23b281deefc8da, type: 3}

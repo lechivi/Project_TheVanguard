@@ -14,6 +14,7 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
     public PlayerCombatAction PlayerCombatAction;
     public PlayerHealth PlayerHealth;
     public PlayerCharacter PlayerCharacter;
+    public PlayerCoin PlayerCoin;
 
     [Header("TARGET PLAYER")]
     public Character Character;
@@ -38,6 +39,7 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         this.LoadPlayerCombat();
         this.LoadPlayerHealth();
         this.LoadPlayerCharacter();
+        this.LoadPlayerCoin();
 
         this.LoadPlayerTransform();
         this.LoadCharacterController();
@@ -145,6 +147,15 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         {
             this.PlayerCharacter = GetComponentInChildren<PlayerCharacter>();
             Debug.LogWarning(gameObject.name + ": LoadPlayerCharacter", gameObject);
+        }
+    }
+
+    protected virtual void LoadPlayerCoin()
+    {
+        if (this.PlayerCoin == null)
+        {
+            this.PlayerCoin = GetComponentInChildren<PlayerCoin>();
+            Debug.LogWarning(gameObject.name + ": LoadPlayerCoin", gameObject);
         }
     }
 

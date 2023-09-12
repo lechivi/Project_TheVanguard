@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: AK47
   ItemValue: 0
-  ItemType: 0
+  ItemType: 1
   Icon: {fileID: 8093344953519539871, guid: e40b27f116e0d804bba21c2432cf87da, type: 3}
-  Model: {fileID: 3506023523011908283, guid: 0a14240c16aa4a14db532c62c3537cc8, type: 3}
+  Model: {fileID: 7060617416936867603, guid: 2314c6a35c5931341a1708c96ac872c1, type: 3}
   BodyType: 0
   BigsizePosHolster: {x: -0.217, y: 0.508, z: 0.304}
   BigsizeRosHolster: {x: 7.097, y: 130.71, z: -92.098}

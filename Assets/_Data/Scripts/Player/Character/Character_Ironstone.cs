@@ -5,7 +5,8 @@ public class Character_Ironstone : Character
 {
     [Header("IRONSTONE")]
 
-    [SerializeField] private ParticleSystem Particle;
+    [SerializeField] private ParticleSystem HammerImpactEffect;
+    [SerializeField] private ParticleSystem TransformEffect;
     private AnimatorStateInfo state;
     public GameObject Hammer;
     private float timeDelta;
@@ -14,6 +15,18 @@ public class Character_Ironstone : Character
     private bool canAttack;
     public float damageRange = 3.5f;
 
+    private void Start()
+    {
+        if(this.HammerImpactEffect == null)
+        {
+           this.HammerImpactEffect = this.transform.Find("HammerImpactEFFECT").gameObject.GetComponent<ParticleSystem>();
+        }
+        if(this.TransformEffect == null)
+        {
+            this.TransformEffect = this.transform.Find("TransformEffect").gameObject.GetComponent<ParticleSystem>();
+        }
+
+    }
     protected override void Update()
     {
         base.Update();
@@ -50,19 +63,19 @@ public class Character_Ironstone : Character
 
         if (state.IsName("Attack"))
         {
+            PlayerCtrl.Instance.PlayerLocomotion.velocity.y -= 25 * Time.deltaTime;
             if (state.normalizedTime > 0.5)
             {
-                if (Particle.isPlaying)
+                if (HammerImpactEffect.isPlaying)
                 {
-                    Debug.Log("Particle"); return;
+                    return;
                 }
-                Particle.Play();
+                HammerImpactEffect.Play();
             }
-            PlayerCtrl.Instance.PlayerLocomotion.velocity.y -= 25 * Time.deltaTime;
         }
         else
         {
-            Particle.Stop();
+            HammerImpactEffect.Stop();
         }
 
     }
@@ -121,6 +134,7 @@ public class Character_Ironstone : Character
 
     public void Transform()
     {
+        Invoke("PlayTransformEffect", 0.5f);
         this.isSpecialSkill = true;
         this.isReadySpecialSkill = false;
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
@@ -133,5 +147,10 @@ public class Character_Ironstone : Character
         this.Animator.SetBool("RevertoForm", true);
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
         Hammer.gameObject.SetActive(false);
+    }
+
+    public void PlayTransformEffect()
+    {
+        TransformEffect.Play();
     }
 }

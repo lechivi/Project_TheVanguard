@@ -132,6 +132,10 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             this.AddWeaponToBackpack(this.GetNewWeapon(weapon));
             this.UpdateUI();
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySe(AUDIO.SE_WEA_PICKUP_METALITEMPICKUP);
+            }
             return true;
         }
         Debug.Log("Can't hold any more weapon");
@@ -179,6 +183,13 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
             //SetAnimationEquip(weapon);
+        }
+        else if (this.curWeaponIndex > -1)
+        {
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySe(AUDIO.SE_WEA_PICKUP_METALITEMPICKUP);
+            }
         }
     }
 
@@ -390,7 +401,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         if (this.curWeaponIndex > -1 && listEquippedWeapon[curWeaponIndex] != null)
         {
             listEquippedWeapon[this.curWeaponIndex].gameObject.SetActive(false);
-            Debug.Log("Run");
         }
 
 
