@@ -2855,10 +2855,10 @@ GameObject:
   - component: {fileID: 8911549768532926078}
   - component: {fileID: 8911549768532926079}
   - component: {fileID: 8911549768532926080}
-  - component: {fileID: 8911549768532926081}
   - component: {fileID: 8911549768532926082}
   - component: {fileID: 8911549768532926083}
   - component: {fileID: 8911549768532926074}
+  - component: {fileID: 802251020655005568}
   m_Layer: 12
   m_Name: 'Enemy_Blizzard '
   m_TagString: EnemyCollider
@@ -2950,7 +2950,7 @@ MonoBehaviour:
   characterController: {fileID: 8911549768532926074}
   navMeshAgent: {fileID: 8911549768532926077}
   centerPoint: {fileID: 8909110824832552303}
-  dealDamageCtrl: {fileID: 8911549768532926081}
+  enemyDealDamageCtrl: {fileID: 802251020655005568}
   takeDamageCtrl: {fileID: 8911549768532926083}
   graphicEffect: {fileID: 8911549768424706884}
   detectTarget: {fileID: 8911549768667985296}
@@ -2990,19 +2990,6 @@ MonoBehaviour:
   Velocity: 1
   DesiredVelocity: 1
   Path: 1
---- !u!114 &8911549768532926081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8911549768532926085}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cfa113e314eb748be7ddcaa42b7088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dealDamageBox: {fileID: 8911549768414651816}
 --- !u!114 &8911549768532926082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3065,6 +3052,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.3, z: 0}
+--- !u!114 &802251020655005568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8911549768532926085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdaded50ae605a4f98dece6932f8af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dealDamageBox: {fileID: 8911549768414651816}
 --- !u!1 &8911549768544125791
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,7 +3181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8911549769075351371
 Transform:
   m_ObjectHideFlags: 0

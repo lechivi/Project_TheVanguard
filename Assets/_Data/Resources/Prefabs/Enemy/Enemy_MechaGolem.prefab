@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 2741379137316304797}
   - component: {fileID: 2741379137316304796}
   - component: {fileID: 2741379137316304739}
-  - component: {fileID: 2741379137316304738}
   - component: {fileID: 2741379137316304737}
   - component: {fileID: 2741379137316304736}
   - component: {fileID: 2741379137316304793}
+  - component: {fileID: 4006867607844496283}
   m_Layer: 12
   m_Name: Enemy_MechaGolem
   m_TagString: EnemyCollider
@@ -109,7 +109,7 @@ MonoBehaviour:
   characterController: {fileID: 2741379137316304793}
   navMeshAgent: {fileID: 2741379137316304798}
   centerPoint: {fileID: 8834626863319699797}
-  dealDamageCtrl: {fileID: 2741379137316304738}
+  enemyDealDamageCtrl: {fileID: 4006867607844496283}
   takeDamageCtrl: {fileID: 2741379137316304736}
   graphicEffect: {fileID: 2741379137356855975}
   detectTarget: {fileID: 2741379137449122931}
@@ -149,19 +149,6 @@ MonoBehaviour:
   Velocity: 1
   DesiredVelocity: 1
   Path: 1
---- !u!114 &2741379137316304738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2741379137316304742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cfa113e314eb748be7ddcaa42b7088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dealDamageBox: {fileID: 4874285508871429051}
 --- !u!114 &2741379137316304737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +211,19 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 3, z: 0}
+--- !u!114 &4006867607844496283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2741379137316304742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdaded50ae605a4f98dece6932f8af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dealDamageBox: {fileID: 4874285508871429051}
 --- !u!1 &2741379137337487685
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4874285508871429048}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.35
@@ -682,7 +682,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4874285509247499312
 Transform:
   m_ObjectHideFlags: 0

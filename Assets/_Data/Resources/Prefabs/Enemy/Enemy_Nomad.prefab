@@ -47,9 +47,9 @@ GameObject:
   - component: {fileID: 2659740615699248954}
   - component: {fileID: 2659740615699248957}
   - component: {fileID: 2659740615699248956}
-  - component: {fileID: 5937571805246260750}
   - component: {fileID: 5937571805246260742}
   - component: {fileID: 5937571805246260761}
+  - component: {fileID: 5067005981883606759}
   m_Layer: 12
   m_Name: Enemy_Nomad
   m_TagString: EnemyCollider
@@ -159,7 +159,7 @@ MonoBehaviour:
   characterController: {fileID: 2659740615699248952}
   navMeshAgent: {fileID: 2659740615699248955}
   centerPoint: {fileID: 2659740617713938105}
-  dealDamageCtrl: {fileID: 0}
+  enemyDealDamageCtrl: {fileID: 0}
   takeDamageCtrl: {fileID: 5937571805246260761}
   graphicEffect: {fileID: 2659740616688466276}
   detectTarget: {fileID: 2659740616517771972}
@@ -199,19 +199,6 @@ MonoBehaviour:
   Velocity: 1
   DesiredVelocity: 1
   Path: 1
---- !u!114 &5937571805246260750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2659740615699248959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cfa113e314eb748be7ddcaa42b7088, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dealDamageBox: {fileID: 5937571805979072137}
 --- !u!114 &5937571805246260742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +243,19 @@ MonoBehaviour:
   - {fileID: 2659740616341552992}
   - {fileID: 2659740617806495439}
   isPlayer: 0
+--- !u!114 &5067005981883606759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2659740615699248959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdaded50ae605a4f98dece6932f8af9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dealDamageBox: {fileID: 0}
 --- !u!1 &2659740615775834626
 GameObject:
   m_ObjectHideFlags: 0

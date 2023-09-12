@@ -9,7 +9,7 @@ public class EnemyCtrl : SaiMonoBehaviour
     [SerializeField] private CharacterController characterController;
     [SerializeField] private NavMeshAgent navMeshAgent;
     [SerializeField] private Transform centerPoint;
-    [SerializeField] private DealDamageCtrl dealDamageCtrl;
+    [SerializeField] private EnemyDealDamageCtrl enemyDealDamageCtrl;
     [SerializeField] private TakeDamageCtrl takeDamageCtrl;
     [SerializeField] private GraphicEffect graphicEffect;
     [SerializeField] private DetectTarget detectTarget;
@@ -91,8 +91,8 @@ public class EnemyCtrl : SaiMonoBehaviour
             this.ragdollCtrl.CharacterController = this.characterController;
         }
 
-        if (this.dealDamageCtrl == null)
-            this.dealDamageCtrl = GetComponent<DealDamageCtrl>();
+        if (this.enemyDealDamageCtrl == null)
+            this.enemyDealDamageCtrl = GetComponent<EnemyDealDamageCtrl>();
 
         if (this.takeDamageCtrl == null)
         {
@@ -107,7 +107,7 @@ public class EnemyCtrl : SaiMonoBehaviour
         {
             transform.gameObject.name = this.enemyData.EnemyName;
             this.enemyHealth.SetHealth(this.EnemyData.Health);
-            this.dealDamageCtrl.DealDamageBox.Damage = this.EnemyData.Damage;
+            this.enemyDealDamageCtrl.DealDamageBox.Damage = this.EnemyData.Damage;
             this.navMeshAgent.speed = this.EnemyData.Speed;
         }
     }
@@ -136,10 +136,10 @@ public class EnemyCtrl : SaiMonoBehaviour
 
     public void DropWeapon()
     {
-        Transform weapon = this.dealDamageCtrl.DealDamageBox.transform;
+        Transform weapon = this.enemyDealDamageCtrl.DealDamageBox.transform;
         if (weapon)
         {
-            this.dealDamageCtrl.DealDamageBox.enabled = false;
+            this.enemyDealDamageCtrl.DealDamageBox.enabled = false;
             weapon.GetComponent<Collider>().enabled = true;
             weapon.GetComponent<Collider>().isTrigger = false;
             weapon.AddComponent<Rigidbody>();
@@ -153,7 +153,7 @@ public class EnemyCtrl : SaiMonoBehaviour
         if (!this.enemyHealth.IsDeath()) return;
 
         this.ragdollCtrl.DisableRagdoll();
-        this.dealDamageCtrl.DealDamageBox.ResetWeapon();
+        this.enemyDealDamageCtrl.DealDamageBox.ResetWeapon();
         this.enemyHealth.ResetHealth();
         this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
     }
