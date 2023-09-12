@@ -58,9 +58,6 @@ public class PlayerInput : PlayerAbstract
         this.HandleBattleSkillInput();
         this.HandleMenuOpenCloseInput();
         this.HandleSwitchWeapon();
-
-        if (AimInput)
-            Debug.Log("Aim");
     }
 
     public void SetInput()

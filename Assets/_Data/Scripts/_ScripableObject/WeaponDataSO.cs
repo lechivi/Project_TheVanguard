@@ -41,7 +41,7 @@ public class WeaponDataSO : ItemDataSO
     public MeleeType MeleeType;
 
     [Header("RANGED WEAPON")]
-    [SerializeField] private float rangedDamage;
+    [SerializeField] private int rangedDamage;
     [SerializeField] private float accuracy;
     [SerializeField] private float timePerFireRate;//
     [SerializeField] private float fireRate; //
@@ -66,7 +66,7 @@ public class WeaponDataSO : ItemDataSO
 
 
     #region Getter
-    public float RangedDamage { get => this.rangedDamage; private set => this.rangedDamage = value; }
+    public int RangedDamage { get => this.rangedDamage; private set => this.rangedDamage = value; }
     public float Accuracy { get => this.accuracy; private set => this.accuracy = value; }
     public float TimePerFireRate { get => this.timePerFireRate; private set => this.timePerFireRate = value; }
     public float FireRate { get => this.fireRate; private set => this.fireRate = value; }

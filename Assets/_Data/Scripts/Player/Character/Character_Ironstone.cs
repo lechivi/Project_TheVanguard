@@ -17,11 +17,11 @@ public class Character_Ironstone : Character
 
     private void Start()
     {
-        if(this.HammerImpactEffect == null)
+        if (this.HammerImpactEffect == null)
         {
-           this.HammerImpactEffect = this.transform.Find("HammerImpactEFFECT").gameObject.GetComponent<ParticleSystem>();
+            this.HammerImpactEffect = this.transform.Find("HammerImpactEFFECT").gameObject.GetComponent<ParticleSystem>();
         }
-        if(this.TransformEffect == null)
+        if (this.TransformEffect == null)
         {
             this.TransformEffect = this.transform.Find("TransformEffect").gameObject.GetComponent<ParticleSystem>();
         }
@@ -39,16 +39,16 @@ public class Character_Ironstone : Character
     {
         if (PlayerCtrl.Instance.PlayerInput.MovementInput != Vector2.zero)
         {
-            Animator.SetLayerWeight(3, 0);
-            Animator.SetLayerWeight(4, 1);
-            state = Animator.GetCurrentAnimatorStateInfo(4);
+            Animator.SetLayerWeight(2, 0);
+            Animator.SetLayerWeight(3, 1);
+            state = Animator.GetCurrentAnimatorStateInfo(3);
         }
         else
         {
             Debug.Log("Idle");
-            Animator.SetLayerWeight(3, 1);
-            Animator.SetLayerWeight(4, 0);
-            state = Animator.GetCurrentAnimatorStateInfo(4);
+            Animator.SetLayerWeight(2, 1);
+            Animator.SetLayerWeight(3, 0);
+            state = Animator.GetCurrentAnimatorStateInfo(2);
             state = Animator.GetCurrentAnimatorStateInfo(3);
 
         }
@@ -100,7 +100,7 @@ public class Character_Ironstone : Character
     {
         Animator.SetTrigger("AttackHammer");
         canAttack = false;
-        NovaImpactDamage();
+        //NovaImpactDamage();
     }
 
     public void NovaImpactDamage()
@@ -108,9 +108,10 @@ public class Character_Ironstone : Character
         Collider[] colliders = Physics.OverlapSphere(transform.position, damageRange);
         foreach (Collider collider in colliders)
         {
-            if (collider.GetComponent<ColliderHit>())
+            var enemy = collider.GetComponent<HitBox>();
+            if (enemy && enemy.CompareTag("EnemyCollider"))
             {
-                collider.GetComponent<ColliderHit>().Hit();
+                enemy.OnHit(characterData.Power * 2);
             }
         }
     }

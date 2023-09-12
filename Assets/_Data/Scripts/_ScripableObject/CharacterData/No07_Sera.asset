@@ -15,6 +15,7 @@ MonoBehaviour:
   CharacterName: Sera
   CharacterClass: The Enchantress
   Species: 1
+  BodyType: 0
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Mystical and powerful being with control over arcane energies,
@@ -22,6 +23,7 @@ MonoBehaviour:
   Health: 50
   Power: 5
   Defence: 5
+  Agility: 3
   HitPoint: 5
   ExecutionSkillTime: 3
   CooldownSkillTime: 2
