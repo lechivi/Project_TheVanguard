@@ -37,18 +37,22 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
 
         if (this.enemyAiCtrl.EnemyCtrl.CurInfoScanTarget == null) return;
 
-        if (this.enemyAiCtrl.EnemyCtrl.Target != null)
-        {
-            Vector3 followPos = this.enemyAiCtrl.EnemyCtrl.FollowPos;
-            Debug.Log("Start Chase");
-            this.FollowTarget(followPos);
-            this.AttackTarget(followPos);
-        }
-        else
-        {
-            this.enemyAiCtrl.EnemyCtrl.Animator.Rebind();
-            this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
-        }
+        Vector3 followPos = this.enemyAiCtrl.EnemyCtrl.FollowPos;
+        Debug.Log("Start Chase");
+        this.FollowTarget(followPos);
+        this.AttackTarget(followPos);
+        //if (this.enemyAiCtrl.EnemyCtrl.Target != null)
+        //{
+        //    Vector3 followPos = this.enemyAiCtrl.EnemyCtrl.FollowPos;
+        //    Debug.Log("Start Chase");
+        //    this.FollowTarget(followPos);
+        //    this.AttackTarget(followPos);
+        //}
+        //else
+        //{
+        //    this.enemyAiCtrl.EnemyCtrl.Animator.Rebind();
+        //    this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
+        //}
 
     }
 
@@ -65,7 +69,7 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
 
     private void FollowTarget(Vector3 followPos)
     {
-        Transform target = this.enemyAiCtrl.EnemyCtrl.Target;
+        Transform target = this.enemyAiCtrl.EnemyCtrl.CurInfoScanTarget.GetCenterPoint();
         this.enemyAiCtrl.EnemyCtrl.transform.LookAt(new Vector3(target.position.x, this.enemyAiCtrl.EnemyCtrl.transform.position.y, target.position.z));
         //this.enemyAiCtrl.EnemyCtrl.NavMeshAgent.SetDestination(followPos);
 

@@ -24484,7 +24484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPoint: {fileID: 7761803776279807839}
+  centerPoint: {fileID: 6076713924855634429}
 --- !u!114 &7761803776802992180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24650,6 +24650,7 @@ MonoBehaviour:
   takeDamageCtrl: {fileID: 7761803776802992185}
   ragdollCtrl: {fileID: 2203716341765632095}
   leadTracker: {fileID: 7111150365587022263}
+  alliancePlayer_InfoScanner: {fileID: 7761803777466207691}
   xerath_Beta: {fileID: 6076713923290811252}
   xerath_Alpha: {fileID: 6076713924608875489}
   betaObj: {fileID: 6076713923290811257}
@@ -24664,6 +24665,7 @@ MonoBehaviour:
   b_RagdollCtrl: {fileID: 2203716341765632095}
   b_CenterPoint: {fileID: 6076713924855634429}
   b_LeadTracker: {fileID: 8986516654433606165}
+  b_AlliancePlayerInfoScanner: {fileID: 7761803776802992187}
   alphaObj: {fileID: 6076713924608875495}
   a_CharacterController: {fileID: 6076713924608875493}
   a_Animator: {fileID: 6076713924608875492}
@@ -24676,6 +24678,7 @@ MonoBehaviour:
   a_RagdollCtrl: {fileID: 2087547567388876345}
   a_CenterPoint: {fileID: 354789433899445597}
   a_LeadTracker: {fileID: 7111150365587022263}
+  a_AlliancePlayerInfoScanner: {fileID: 7761803777466207691}
   b_CameraOffset: {x: 0, y: 0, z: 0}
   a_CameraOffset: {x: 0.75, y: 0.25, z: -0.25}
   transformFX: {fileID: 6263102137132887010}
@@ -28565,7 +28568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 251edae286b414649807de5226787a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  centerPoint: {fileID: 7761803776302004542}
+  centerPoint: {fileID: 354789433899445597}
 --- !u!114 &7761803777466207684
 MonoBehaviour:
   m_ObjectHideFlags: 0

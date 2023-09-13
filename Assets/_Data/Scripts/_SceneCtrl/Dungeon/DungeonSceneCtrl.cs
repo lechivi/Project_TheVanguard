@@ -1,6 +1,8 @@
 using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.Rendering.DebugUI.Table;
 
 public class DungeonSceneCtrl : SaiMonoBehaviour
 {
@@ -98,21 +100,15 @@ public class DungeonSceneCtrl : SaiMonoBehaviour
             {
                 if (chr.CharacterData == GameManager.Instance.CharacterData)
                 {
-                    if (chr is Character_Xerath)
-                    {
-                        Debug.Log("assa");
-                        Character character = chr as Character_Xerath;
-                        this.cutoutObject.TargetObject = chr.CenterPoint;
-                    }
-                    else
-                    {
-                        this.cutoutObject.TargetObject = chr.GetComponentInChildren<AlliancePlayer_InfoScanner>().GetCenterPoint();
-                    }
-                    chr.CharacterTransform.position = this.startTransform.position;
-                    chr.CharacterTransform.rotation = this.startTransform.rotation;
-                    chr.CharacterTransform.gameObject.SetActive(true);
+                    Character newCharacter = Instantiate(chr);
+                    newCharacter.name = newCharacter.CharacterData.CharacterName;
 
-                    GameManager.Instance.GenerateCharacter(chr);
+                    this.cutoutObject.TargetObject = newCharacter.GetComponentInChildren<AlliancePlayer_InfoScanner>().GetCenterPoint();
+                    newCharacter.CharacterTransform.position = this.startTransform.position;
+                    newCharacter.CharacterTransform.rotation = this.startTransform.rotation;
+                    newCharacter.gameObject.SetActive(true);
+
+                    GameManager.Instance.GenerateCharacter(newCharacter);
                     break;
                 }
             }

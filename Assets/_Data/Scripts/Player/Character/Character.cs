@@ -18,6 +18,7 @@ public class Character : SaiMonoBehaviour
     [SerializeField] protected TakeDamageCtrl takeDamageCtrl;
     [SerializeField] protected RagdollCtrl ragdollCtrl;
     [SerializeField] protected LeadTracker leadTracker;
+    [SerializeField] protected AlliancePlayer_InfoScanner alliancePlayer_InfoScanner;
 
     [Space(10)]
     protected bool isReadySpecialSkill = true;
@@ -51,6 +52,7 @@ public class Character : SaiMonoBehaviour
     public TakeDamageCtrl TakeDamageCtrl { get => this.takeDamageCtrl; }
     public RagdollCtrl RagdollCtrl { get => this.ragdollCtrl; }
     public LeadTracker LeadTracker { get => this.leadTracker; }
+    public AlliancePlayer_InfoScanner AlliancePlayer_InfoScanner { get => this.alliancePlayer_InfoScanner; }
 
     public bool IsSpecialSkill { get => this.isSpecialSkill; }
     public bool IsReadySpecialSkill { get => this.isReadySpecialSkill; }
@@ -79,6 +81,7 @@ public class Character : SaiMonoBehaviour
         this.LoadRagdollCtrl();
         this.LoadCenterPoint();
         this.LoadLeadTracker();
+        this.LoadAlliancePlayer_InfoScanner();
     }
 
     protected virtual void LoadDealDamageCtrl()
@@ -188,6 +191,12 @@ public class Character : SaiMonoBehaviour
             this.weaponSheathSlots[1] = rigLayer_WeaponAim.Find("WeaponSlotRight_Contains");
             this.weaponSheathSlots[2] = rigLayer_WeaponAim.Find("WeaponSlotBack_Contains");
         }
+    }
+
+    protected virtual void LoadAlliancePlayer_InfoScanner()
+    {
+        if (this.alliancePlayer_InfoScanner == null)
+            this.alliancePlayer_InfoScanner = GetComponent<AlliancePlayer_InfoScanner>();
     }
 
     private void Start()
