@@ -59,4 +59,18 @@ public class InGame_AlwaysOnUI : BaseUIElement
         this.ui_HealthBarSlider.Show(null);
         this.ui_ChargeSlider.Hide();
     }
+
+    public void SetShowScope (bool isShow)
+    {
+        if(isShow)
+        {
+            this.scope.Show(null);
+            this.crosshair.Hide();
+        }
+        else
+        {
+            this.scope.Hide();
+            this.crosshair.Show(null);
+        }
+    }
 }

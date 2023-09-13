@@ -12,6 +12,14 @@ public class AudioAnimationEventRig : MonoBehaviour
             AudioManager.Instance.PlaySe(AUDIO.SE_WEARAN_RIFLE_SHOT_ASSAULT_A_SHTL_SINGLE_01);
         }
     }
+
+    public void ShotgunShotSE_small()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_WEARAN_PISTOL_SHOT_HANDGUN_B_SHOT_SINGLE_03);
+        }
+    }
     public void ShotgunShotSE()
     {
         if (AudioManager.HasInstance)
@@ -31,6 +39,14 @@ public class AudioAnimationEventRig : MonoBehaviour
         if (AudioManager.HasInstance)
         {
             AudioManager.Instance.PlaySe(AUDIO.SE_WEARAN_PISTOL_SHOT_HANDGUN_B_SHOT_SINGLE_03);
+        }
+    }
+
+    public void PistolShotSE_Big()
+    {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_WEARAN_RIFLE_SHOT_ASSAULT_A_SHTL_SINGLE_01);
         }
     }
 

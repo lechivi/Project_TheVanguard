@@ -29,7 +29,8 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
                 weaponRaycast.FireBullet(crosshairTarget.position);
                 if (weaponRaycast.Weapon.WeaponData.ShotGunType == ShotGunType.Slowhand)
                 {
-                    DelayShotgun();
+                   // DelayReloadPerShot();
+                   PlayerWeapon.PlayerWeaponReload.DelayReloadPerShot();
                 }
             }
 
@@ -57,9 +58,10 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
         SetisDelay(false);
     }
 
-    public void DelayShotgun()
+    public void DelayReloadPerShot()
     {
         PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_pershot");
+        //PlayerWeapon.PlayerWeaponReload.IsReload = true;
         timedelta = 0;
         SetisDelay(true);
     }

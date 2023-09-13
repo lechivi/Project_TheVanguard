@@ -49,6 +49,11 @@ public class RecoilWeapon : MonoBehaviour
         verticalRecoil = recoilPattern[index].y;
         index = NextIndex(index);
         if (raycastWeapon.Weapon.WeaponData.ShotGunType == ShotGunType.Slowhand) return;
+        if(raycastWeapon.Weapon.WeaponData.ItemName == "Deliverer")
+        {
+            rigController.Play("WeaponRecoil_machinePistol", 1, 0.0f);
+            return;
+        }
         rigController.Play("WeaponRecoil_" + raycastWeapon.Weapon.WeaponData.WeaponType, 1, 0.0f);
     }
     private void Update()

@@ -40,7 +40,7 @@ public class GameManager : BaseManager<GameManager>
         if (!this.isPlaying) return;
 
         this.isPlaying = false;
-        Time.timeScale = 0.0f;
+       // Time.timeScale = 0.0f;
 
         this.IsShowCursor(true);
     }
