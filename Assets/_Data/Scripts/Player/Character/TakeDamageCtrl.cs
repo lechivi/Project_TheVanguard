@@ -8,7 +8,7 @@ public class TakeDamageCtrl : SaiMonoBehaviour
     [SerializeField] private bool isPlayer;
 
     private readonly string playerColMainTag = "PlayerCollider";
-    private readonly string playerRagdollTag = "PlayerRagdoll";   
+    private readonly string playerRagdollTag = "PlayerRagdoll";
     private readonly string enemyColMainTag = "EnemyCollider";
     private readonly string enemyRagdollTag = "EnemyRagdoll";
 
@@ -22,17 +22,20 @@ public class TakeDamageCtrl : SaiMonoBehaviour
         }
 
         if (this.listRagdollHitBox.Count == 0)
-            foreach(HitBox hitBox in transform.Find("Root").GetComponentsInChildren<HitBox>())
+            if (transform.Find("Root") != null)
             {
-                this.listRagdollHitBox.Add(hitBox);
-                hitBox.tag = this.isPlayer ? this.playerRagdollTag : this.enemyRagdollTag;
+                foreach (HitBox hitBox in transform.Find("Root").GetComponentsInChildren<HitBox>())
+                {
+                    this.listRagdollHitBox.Add(hitBox);
+                    hitBox.tag = this.isPlayer ? this.playerRagdollTag : this.enemyRagdollTag;
+                }
             }
     }
 
     public void SetHealthObject(GameObject healthObject)
     {
         this.colMainHitBox.HealthObject = healthObject;
-        foreach(HitBox hitBox in this.listRagdollHitBox)
+        foreach (HitBox hitBox in this.listRagdollHitBox)
         {
             hitBox.HealthObject = healthObject;
         }

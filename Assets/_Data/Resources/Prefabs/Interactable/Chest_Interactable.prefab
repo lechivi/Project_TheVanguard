@@ -218,9 +218,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactText: Open chest
   weapons:
-  - {fileID: 5913328743275049068, guid: 1d7b6bc806a1bf44dba57b9a513cc21f, type: 3}
-  - {fileID: -2103877707425704042, guid: 3892ee2083f1b1744a5127a0f1c41d1e, type: 3}
-  - {fileID: 1425464984176160664, guid: 2ad8a0000022bed4584644504622b40e, type: 3}
+  - {fileID: 5033426438475030215, guid: d75eaf3f54960924c9e26984e83ac9e4, type: 3}
+  - {fileID: 6907431106035634459, guid: 6ef6a109d1cfe444fa44bb2d8fe4d6a9, type: 3}
+  - {fileID: 6313855153163011382, guid: 2314c6a35c5931341a1708c96ac872c1, type: 3}
+  - {fileID: 3342369628199719176, guid: 4b6dae631a05c5c4d9b9363c34050a8e, type: 3}
+  - {fileID: -7625584663639781181, guid: 9b1b0f181b8e98c448b95e787d8f0c97, type: 3}
+  - {fileID: 1126065154830065571, guid: fd337286b8fdc2a4e9babb0866e0ea60, type: 3}
   pickupObjectPrefab: {fileID: 1351851723991012624, guid: 416d59da41474ad40a03d773659977e7, type: 3}
 --- !u!1 &4094559151115357524
 GameObject:

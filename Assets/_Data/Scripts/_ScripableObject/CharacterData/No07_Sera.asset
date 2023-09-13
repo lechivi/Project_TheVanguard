@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Sera
   CharacterClass: The Enchantress
-  Species: 1
+  Species: 5
   BodyType: 0
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}

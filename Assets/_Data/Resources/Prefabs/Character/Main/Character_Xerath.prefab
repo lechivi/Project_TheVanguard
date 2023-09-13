@@ -4724,7 +4724,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6505566109413590016}
-  m_LocalRotation: {x: 0.69758165, y: 0.69758254, z: -0.11566906, w: -0.11566862}
+  m_LocalRotation: {x: -0.69758165, y: -0.69758165, z: 0.115671575, w: 0.115671575}
   m_LocalPosition: {x: -86.43799, y: -5.55, z: -27.913538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4735,7 +4735,7 @@ Transform:
   - {fileID: 6505566110193517872}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -161.17, z: 90}
 --- !u!114 &6505566109413590017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4979,7 +4979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cfa113e314eb748be7ddcaa42b7088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dealDamageUnarmed: {fileID: 0}
+  dealDamageUnarmed: {fileID: 1191649193133149018}
   listDealDamageMelee: []
 --- !u!114 &7326175305351851754
 MonoBehaviour:

@@ -17,38 +17,42 @@ public class EnemyState_Idle : IEnemyState
 
     public void Enter()
     {
-        
+
     }
 
     public void Update()
     {
-        DetectTarget detectTarget = this.enemyAiCtrl.EnemyCtrl.DetectTarget;
-        if (detectTarget.IsDetectTarget() && this.enemyAiCtrl.EnemyCtrl.Target != null)
+        DebuffsType curDebuff = this.enemyAiCtrl.EnemyCtrl.EnemyDebuffs.CurDebuff;
+        if (curDebuff == DebuffsType.None)
         {
-            Vector3 targetDirection = this.enemyAiCtrl.EnemyCtrl.Target.position - this.enemyAiCtrl.EnemyCtrl.transform.position;
-            targetDirection.Normalize();
-            Vector3 transformDirection = this.enemyAiCtrl.EnemyCtrl.transform.forward;
-
-            float dotProduct = Vector3.Dot(targetDirection, transformDirection);
-            if (dotProduct >= 0)
+            DetectTarget detectTarget = this.enemyAiCtrl.EnemyCtrl.DetectTarget;
+            if (detectTarget.IsDetectTarget() && this.enemyAiCtrl.EnemyCtrl.Target != null)
             {
-                this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Chase);
+                Vector3 targetDirection = this.enemyAiCtrl.EnemyCtrl.Target.position - this.enemyAiCtrl.EnemyCtrl.transform.position;
+                targetDirection.Normalize();
+                Vector3 transformDirection = this.enemyAiCtrl.EnemyCtrl.transform.forward;
+
+                float dotProduct = Vector3.Dot(targetDirection, transformDirection);
+                if (dotProduct >= 0)
+                {
+                    this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Chase);
+                }
             }
         }
-        else
+
+        else if (curDebuff == DebuffsType.Electrocuted)
         {
 
         }
-
     }
 
     public void FixedUpdate()
     {
-        
+
     }
 
     public void Exit()
     {
-        
+
     }
 }

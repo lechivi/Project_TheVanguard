@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Juggernaut
   CharacterClass: 
-  Species: 1
+  Species: 6
   BodyType: 2
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
@@ -23,8 +23,9 @@ MonoBehaviour:
   Health: 50
   Power: 5
   Defence: 5
+  Agility: 5
   HitPoint: 5
-  ExecutionSkillTime: 1000
+  ExecutionSkillTime: 20
   CooldownSkillTime: 3
   SpecialSkillName: Badass Laser
   SpecialSkillIcon: {fileID: 21300000, guid: 19bbea7fac4bc664b9fd22b99b58a4a2, type: 3}

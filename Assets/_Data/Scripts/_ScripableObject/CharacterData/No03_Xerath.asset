@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Xerath
   CharacterClass: The Beast
-  Species: 1
+  Species: 7
   BodyType: 0
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
@@ -23,7 +23,7 @@ MonoBehaviour:
   Health: 50
   Power: 5
   Defence: 5
-  Agility: 3.5
+  Agility: 3
   HitPoint: 7
   ExecutionSkillTime: 15
   CooldownSkillTime: 3

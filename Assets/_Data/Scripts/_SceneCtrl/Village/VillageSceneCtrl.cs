@@ -108,12 +108,15 @@ public class VillageSceneCtrl : SaiMonoBehaviour
             {
                 if (chr.CharacterData == GameManager.Instance.CharacterData)
                 {
-                    this.cutoutObject.TargetObject = chr.GetComponentInChildren<AlliancePlayer_InfoScanner>().GetCenterPoint();
-                    chr.transform.position = pos;
-                    chr.transform.rotation = rot;
-                    chr.gameObject.SetActive(true);
+                    Character newCharacter = Instantiate(chr);
+                    newCharacter.name = newCharacter.CharacterData.CharacterName;
 
-                    GameManager.Instance.GenerateCharacter(chr);
+                    this.cutoutObject.TargetObject = newCharacter.GetComponentInChildren<AlliancePlayer_InfoScanner>().GetCenterPoint();
+                    newCharacter.transform.position = pos;
+                    newCharacter.transform.rotation = rot;
+                    newCharacter.gameObject.SetActive(true);
+
+                    GameManager.Instance.GenerateCharacter(newCharacter);
                     //PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.LoadWeapon();
                     break;
                 }

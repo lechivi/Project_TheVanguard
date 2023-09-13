@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DealDamageCtrl : SaiMonoBehaviour
@@ -20,7 +19,6 @@ public class DealDamageCtrl : SaiMonoBehaviour
 
     public void EnableDealDamageCollider(int isEnable)
     {
-        Debug.Log(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.IsHolstering);
         if (!PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
             Weapon melee = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.GetActiveWeapon();

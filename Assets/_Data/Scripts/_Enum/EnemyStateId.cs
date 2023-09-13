@@ -5,5 +5,6 @@ public enum EnemyStateId
     Follow,
     Chase,
     Attack,
-    Death
+    Death,
+    Debuff_Electrocuted,
 }

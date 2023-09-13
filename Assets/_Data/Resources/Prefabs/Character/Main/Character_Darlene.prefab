@@ -5195,6 +5195,7 @@ MonoBehaviour:
   dealDamageCtrl: {fileID: 7166707062129285508}
   takeDamageCtrl: {fileID: 7166707062129285511}
   ragdollCtrl: {fileID: 1376022656870004314}
+  leadTracker: {fileID: 0}
   poolingObject: {fileID: 5346138045828264960}
   droneFollowPoint: {fileID: 5908506383421445142}
   summonFX: {fileID: 974077338443880149}
@@ -5313,7 +5314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listEnemy: []
-  delay: 1.5
+  delay: 2
   radius: 1.5
 --- !u!1 &5908506383421445141
 GameObject:

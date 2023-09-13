@@ -84760,7 +84760,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4597949741382395314
 Transform:
   m_ObjectHideFlags: 0
@@ -84935,7 +84935,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cfa113e314eb748be7ddcaa42b7088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dealDamageUnarmed: {fileID: 0}
+  dealDamageUnarmed: {fileID: 4619039900657229379}
   listDealDamageMelee: []
 --- !u!114 &4597949741382395326
 MonoBehaviour:
@@ -85754,6 +85754,11 @@ MonoBehaviour:
   isDelay: 0
   currentAmmo: 0
   maxAmmo: 0
+  Spreads:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &4597949741765095605
 MonoBehaviour:
   m_ObjectHideFlags: 0

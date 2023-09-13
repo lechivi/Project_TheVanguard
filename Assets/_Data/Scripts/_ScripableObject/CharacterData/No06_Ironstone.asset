@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: 'Ironstone '
   CharacterClass: 
-  Species: 1
+  Species: 4
   BodyType: 1
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}

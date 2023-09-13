@@ -2,16 +2,26 @@ using UnityEngine;
 
 public class DroneHealth : SaiMonoBehaviour, IHealth
 {
+    [SerializeField] private DroneCtrl droneCtrl;
     [SerializeField] private int maxHealth = 30;
     [SerializeField] private int currentHealth;
 
-    private bool isDeath;
+    protected override void LoadComponent()
+    {
+        base.LoadComponent();
+        if (this.droneCtrl == null)
+            this.droneCtrl = GetComponentInParent<DroneCtrl>();
+    }
 
     private void OnEnable()
     {
-        this.currentHealth = this.maxHealth;
+        this.SetupHealth();
     }
 
+    public void SetupHealth()
+    {
+        this.currentHealth = this.maxHealth;
+    }
     public int GetCurrentHealth()
     {
         return this.currentHealth;
@@ -24,13 +34,13 @@ public class DroneHealth : SaiMonoBehaviour, IHealth
 
     public bool IsDeath()
     {
-        return this.isDeath;
+        return this.currentHealth <= 0;
     }
 
     public void TakeDamage(int damage)
     {
         this.currentHealth -= damage;
-        if (this.currentHealth <= 0 ) 
+        if (this.currentHealth <= 0) 
         {
             this.currentHealth = 0;
             this.Die();
@@ -39,7 +49,8 @@ public class DroneHealth : SaiMonoBehaviour, IHealth
 
     private void Die()
     {
-        this.isDeath = true;
+        StopCoroutine(this.droneCtrl.LifeTimeOfDrone());
+        StartCoroutine(this.droneCtrl.ShutdownDrone());
         Debug.Log("DronHP = 0", gameObject);
     }
 

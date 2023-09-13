@@ -90,6 +90,17 @@ public class GameManager : BaseManager<GameManager>
         Application.Quit();
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            if (GameManager.HasInstance)
+            {
+                GameManager.Instance.TravelToVillage();
+            }
+        }
+    }
     public void TravelToVillage()
     {
         if (this.playerCtrl.Character != null)

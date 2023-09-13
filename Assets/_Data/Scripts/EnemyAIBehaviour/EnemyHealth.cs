@@ -37,7 +37,9 @@ public class EnemyHealth : EnemyAbstract, IHealth
     {
         this.currentHealth -= damage;
         this.enemyCtrl.GraphicEffect.PlayHitEffect();
-        this.enemyCtrl.Animator.SetTrigger(Random.Range(0, 2) == 0 ? "TakeDamage1" : "TakeDamage2");
+
+        if (this.enemyCtrl.EnemyDebuffs.CurDebuff != DebuffsType.Electrocuted)
+            this.enemyCtrl.Animator.SetTrigger(Random.Range(0, 2) == 0 ? "TakeDamage1" : "TakeDamage2");
 
         if (this.currentHealth <= 0)
         {

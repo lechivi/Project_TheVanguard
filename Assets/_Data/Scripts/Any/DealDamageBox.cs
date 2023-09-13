@@ -38,12 +38,16 @@ public class DealDamageBox : SaiMonoBehaviour
     {
         if (other.CompareTag("EnemyCollider") && this.isPlayerWeapon)
         {
-            Debug.Log("hit" + other.gameObject.name);
+            Debug.Log("Hit enemy: " + other.gameObject.name + "_ -" + this.damage);
+        }
+        if (other.CompareTag("PlayerCollider") && !this.isPlayerWeapon)
+        {
+            Debug.Log("Hit alliance: " + other.gameObject.name + "_ -" + this.damage);
         }
         if (other.CompareTag(this.isPlayerWeapon ? "EnemyCollider" : "PlayerCollider") && !this.hitCols.Contains(other))
         {
             this.hitCols.Add(other);
-            other.GetComponent<HitBox>().OnHit(this.damage);
+            other.GetComponentInChildren<HitBox>().OnHit(this.damage);
         }
     }
 

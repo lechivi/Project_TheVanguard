@@ -8,4 +8,5 @@ public class EnemyDataSO : ScriptableObject
     public int Damage;
     public float Speed;
     public float AttackRange;
+    public float DetectionRange = 10;
 }

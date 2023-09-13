@@ -60,13 +60,13 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         isHolstering = false;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            this.UpdateUI();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.U))
+    //    {
+    //        this.UpdateUI();
+    //    }
+    //}
 
     public void HandleUpdateWeaponManager()
     {
@@ -124,18 +124,22 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     {
         if (this.equippedWeapons.GetList().Count < this.maxEquippedWeapon || (this.equippedWeapons.IsContainsNull() && this.equippedWeapons.GetList().Count <= this.maxEquippedWeapon))
         {
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySe(AUDIO.SE_WEA_PICKUP_METALITEMPICKUP);
+            }
             this.AddWeaponToEquipped(this.GetNewWeapon(weapon));
             this.UpdateUI();
             return true;
         }
         if (this.backpackWeapons.GetList().Count < this.maxBackpackWeapon || (this.backpackWeapons.IsContainsNull() && this.backpackWeapons.GetList().Count <= this.maxBackpackWeapon))
         {
-            this.AddWeaponToBackpack(this.GetNewWeapon(weapon));
-            this.UpdateUI();
             if (AudioManager.HasInstance)
             {
                 AudioManager.Instance.PlaySe(AUDIO.SE_WEA_PICKUP_METALITEMPICKUP);
             }
+            this.AddWeaponToBackpack(this.GetNewWeapon(weapon));
+            this.UpdateUI();
             return true;
         }
         Debug.Log("Can't hold any more weapon");
@@ -150,23 +154,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     private void AddWeaponToEquipped(Weapon weapon)
     {
-        WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
-        if (raycastWeapon != null)
-        {
-            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCamera;
-            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCamera;
-            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
-        }
-
-        this.equippedWeapons.Add(weapon);
-        this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(weapon.GetComponent<DealDamageBox>());
-
-        this.SetSheathForWeapon(weapon);
-        if (this.curWeaponIndex == -1)
-        {
-            this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
-            //SetAnimationEquip(weapon);
-        }
+        this.AddWeaponToEquipped(weapon, -1);
     }
 
     private void AddWeaponToEquipped(Weapon weapon, int index)
@@ -179,35 +167,29 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
         }
 
-        this.equippedWeapons.Add(weapon, index);
+        if (index == -1)
+            this.equippedWeapons.Add(weapon);
+        else
+            this.equippedWeapons.Add(weapon, index);
+
+        DealDamageBox dealDamageBox = weapon.GetComponent<DealDamageBox>();
+        if (dealDamageBox != null)
+        {
+            dealDamageBox.Damage = this.CalculateMeleeDamage(weapon);
+            this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(dealDamageBox);
+        }
+
         this.SetSheathForWeapon(weapon);
         if (this.curWeaponIndex == -1)
         {
             this.SetActiveWeapon(this.equippedWeapons.GetList().IndexOf(weapon), false);
             //SetAnimationEquip(weapon);
         }
-        else if (this.curWeaponIndex > -1)
-        {
-            if (AudioManager.HasInstance)
-            {
-                AudioManager.Instance.PlaySe(AUDIO.SE_WEA_PICKUP_METALITEMPICKUP);
-            }
-        }
     }
 
     private void AddWeaponToBackpack(Weapon weapon)
     {
-        WeaponRaycast raycastWeapon = weapon.GetComponent<WeaponRaycast>();
-        if (raycastWeapon != null)
-        {
-            raycastWeapon.recoil.playerFPSCam = playerWeapon.PlayerCtrl.PlayerCamera.FPSCamera;
-            raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCamera;
-            raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
-        }
-        this.backpackWeapons.Add(weapon);
-        this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(weapon.GetComponent<DealDamageBox>());
-
-        this.SetSheathForWeapon(weapon);
+        this.AddWeaponToBackpack(weapon, -1);
     }
 
     private void AddWeaponToBackpack(Weapon weapon, int index)
@@ -219,10 +201,29 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             raycastWeapon.recoil.playerTPSCam = playerWeapon.PlayerCtrl.PlayerCamera.TPSCamera;
             raycastWeapon.recoil.rigController = playerWeapon.PlayerCtrl.RigAnimator;
         }
-        this.backpackWeapons.Add(weapon, index);
+
+        if (index == -1)
+            this.backpackWeapons.Add(weapon);
+        else
+            this.backpackWeapons.Add(weapon, index);
+
+        DealDamageBox dealDamageBox = weapon.GetComponent<DealDamageBox>();
+        if (dealDamageBox != null)
+        {
+            dealDamageBox.Damage = this.CalculateMeleeDamage(weapon);
+            this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(dealDamageBox);
+        }
 
         this.SetSheathForWeapon(weapon);
     }
+
+    private int CalculateMeleeDamage(Weapon weapon)
+    {
+        int powerChr = this.playerWeapon.PlayerCtrl.Character.CharacterData.Power;
+        int meleeDamage = (int)weapon.WeaponData.MeleeDamage;
+        return (int)(meleeDamage * (1 + (float)(powerChr / (powerChr + 12))));
+    }
+
     private void SetSheathForWeapon(Weapon weapon)
     {
         weapon.transform.SetParent(this.weaponSheathSlots[(int)weapon.WeaponSlot[0] - 1]); //TODO: Change to RigLayer

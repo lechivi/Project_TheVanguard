@@ -5,8 +5,10 @@ using UnityEngine;
 public class Character_Sera : Character
 {
     [Header("SERA")]
-    [SerializeField] private float timer1 = 0.1f;
+    [SerializeField] private int skillDamage = 2;
+    [SerializeField] private float dealySkillDealDamage = 1;
     [SerializeField] private int maxScanTimes = 3;
+    [SerializeField] private float timer1 = 0.1f;
     [SerializeField] private float scanRange = 3f;
     [SerializeField] private PoolingObject poolingObject;
     [SerializeField] private ParticleSystem lightningStrikeFx;
@@ -14,7 +16,8 @@ public class Character_Sera : Character
     [SerializeField] private ElectricLine electricLine;
 
     private Transform enemyHit;
-
+    private bool isDealDamageEnemies;
+    private float timerSkillDealDamage;
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -29,6 +32,28 @@ public class Character_Sera : Character
 
         if (this.electricLine == null)
             this.electricLine = GetComponentInChildren<ElectricLine>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        this.DealDamageEnemies();
+    }
+
+    private void DealDamageEnemies()
+    {
+        if (!this.isDealDamageEnemies || this.scannerEnemy.Enemies.Count == 0) return;
+
+        this.timerSkillDealDamage += Time.deltaTime;
+        if (this.timerSkillDealDamage > this.dealySkillDealDamage)
+        {
+            this.timerSkillDealDamage = 0;
+            foreach (EnemyCtrl e in this.scannerEnemy.Enemies)
+            {
+                e.EnemyHealth.TakeDamage(this.skillDamage);
+            }
+        }
     }
 
     public override void SpecialSkill()
@@ -69,6 +94,9 @@ public class Character_Sera : Character
         List<EnemyCtrl> listEnemy = this.scannerEnemy.Enemies;
         List<ParticleSystem> listFx = new List<ParticleSystem>();
 
+        this.isDealDamageEnemies = true; //Deal damage enemies
+        this.timerSkillDealDamage = this.dealySkillDealDamage;
+
         if (listEnemy.Count > 1)
         {
             this.electricLine.SetListPoint(listEnemy);
@@ -80,11 +108,14 @@ public class Character_Sera : Character
         for (int i = 0; i < listEnemy.Count; i++)
         {
             ParticleSystem fx = this.poolingObject.GetObject(listEnemy[i].CenterPoint.position, listEnemy[i].CenterPoint.rotation).GetComponent<ParticleSystem>();
-            listEnemy[i].Animator.SetTrigger("Electrocuted");
+            //float timeMinus = i / (listEnemy.Count + 2);
+            listEnemy[i].EnemyDebuffs.Electrocuted(this.characterData.ExecutionSkillTime - this.timer1);
             fx.Play();
             listFx.Add(fx);
         }
         yield return new WaitForSeconds(this.characterData.ExecutionSkillTime - this.timer1);
+
+        this.isDealDamageEnemies = false;
 
         if (listEnemy.Count > 1)
         {
@@ -92,7 +123,7 @@ public class Character_Sera : Character
         }
         for (int i = 0; i < listEnemy.Count; i++)
         {
-            listEnemy[i].Animator.Rebind();
+            //listEnemy[i].Animator.Rebind();
             listFx[i].gameObject.SetActive(false);
         }
     }

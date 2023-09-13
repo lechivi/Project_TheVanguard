@@ -8,6 +8,7 @@ public class DroneCtrl : SaiMonoBehaviour
     [Header("REFERENCE")]
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private FloatingObject floatingObj;
+    [SerializeField] private TakeDamageCtrl takeDamageCtrl;
     [SerializeField] private Transform shotPoint;
     [SerializeField] private ParticleSystem laserFx;
     [SerializeField] private ParticleSystem timeoutFx;
@@ -27,7 +28,11 @@ public class DroneCtrl : SaiMonoBehaviour
     [SerializeField] private float maxDistanceFromEnemy = 5f;
     [SerializeField] private float safeRange = 15f;
 
+    private float delayAttack = 3f;
+    private float timerAttack;
+
     public NavMeshAgent Agent { get => this.agent; }
+    public TakeDamageCtrl TakeDamageCtrl { get => this.takeDamageCtrl; }
     public Transform TargetFollow { get => this.targetFollow; }
     public ParticleSystem LaserFx { get => this.laserFx; }
     public ParticleSystem MoveFx { get => this.moveFx; }
@@ -79,11 +84,17 @@ public class DroneCtrl : SaiMonoBehaviour
 
         if (this.droneHealth == null)
             this.droneHealth = GetComponentInChildren<DroneHealth>();
+
+        if (this.takeDamageCtrl == null)
+        {
+            this.takeDamageCtrl = GetComponent<TakeDamageCtrl>();
+            //this.takeDamageCtrl.SetHealthObject(this.droneHealth.gameObject);
+        }
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        this.detectTarget.DetectionRange = this.detectionRange;
+        gameObject.name = "MAK - Cool Drone";
     }
 
     private void Update()
@@ -109,36 +120,49 @@ public class DroneCtrl : SaiMonoBehaviour
         }
     }
 
-    private IEnumerator LifeTimeOfDrone()
-    {
-        float fxTime = 1.05f;
-        yield return new WaitForSeconds(this.lifeTime - fxTime);
-
-        this.timeoutFx.Play();
-        yield return new WaitForSeconds(fxTime);
-
-        gameObject.SetActive(false);
-    }
-
     public void SetupDrone(Transform targetFollow, float lifeTime)
     {
         this.targetFollow = targetFollow;
         this.lifeTime = lifeTime;
+        this.droneHealth.SetupHealth();
+        this.detectTarget.DetectionRange = this.detectionRange;
 
         StartCoroutine(this.LifeTimeOfDrone());
     }
 
-    float delay = 2f;
-    float timer;
+    public IEnumerator LifeTimeOfDrone()
+    {
+        float fxTime = 1.05f;
+        yield return new WaitForSeconds(this.lifeTime - fxTime);
+
+        StartCoroutine(this.ShutdownDrone());
+    }
+
+    public IEnumerator ShutdownDrone()
+    {
+        this.timeoutFx.Play();
+        yield return new WaitForSeconds(1.05f);
+
+        GetComponent<LeadTracker>().ClearList();
+        gameObject.SetActive(false);
+        this.droneAiCtrl.DroneSM.ChangeState(DroneStateId.Idle);
+    }
+
     public void ShotLaser()
     {
+        if (this.DroneHealth.IsDeath())
+        {
+            this.laserFx.Stop();
+            return;
+        }
+
         this.shotPoint.LookAt(this.detectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint());
         this.laserFx.Play();
 
-        timer += Time.deltaTime;
-        if (this.timer > delay)
+        this.timerAttack += Time.deltaTime;
+        if (this.timerAttack > delayAttack)
         {
-            this.timer = 0;
+            this.timerAttack = 0;
             EnemyCtrl enemyCtrl = this.detectTarget.FindClosest(FactionType.Voidspawn).GetTransform().GetComponent<EnemyCtrl>();
             if (enemyCtrl != null)
             {

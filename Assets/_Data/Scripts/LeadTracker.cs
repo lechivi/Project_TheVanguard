@@ -27,6 +27,16 @@ public class LeadTracker : MonoBehaviour
         }
     }
 
+    public void ClearList()
+    {
+        for (int i = 0; i < listEnemy.Count; ++i)
+        {
+            this.listEnemy[i].Target = null;
+            this.listEnemy.RemoveAt(i);
+            i--;
+        }
+    }
+
     private void FixedUpdate()
     {
         if (this.listEnemy.Count > 0)

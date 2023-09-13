@@ -4,6 +4,14 @@ public class WeaponPickupInteractable : MonoBehaviour, IInteractable
 {
     [SerializeField] protected string interactText;
     [SerializeField] private Weapon weapon;
+    [SerializeField] private Transform fakeParent;
+    private Vector3 offsetPot;
+
+    private void Start()
+    {
+        if (this.fakeParent == null) return;
+        this.offsetPot = transform.position - fakeParent.position;
+    }
 
     public void Interact(Transform interactorTransfrom)
     {
@@ -32,5 +40,11 @@ public class WeaponPickupInteractable : MonoBehaviour, IInteractable
     public bool CanInteract()
     {
         return true;
+    }
+
+    private void FixedUpdate()
+    {
+        if (this.fakeParent == null) return;
+        this.transform.position = this.fakeParent.position + this.offsetPot;
     }
 }

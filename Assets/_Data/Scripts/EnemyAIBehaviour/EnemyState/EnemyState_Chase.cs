@@ -26,14 +26,30 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
     public void Enter()
     {
         this.timePassed = this.attackCD;
+        this.timer = 0;
     }
 
     public void Update()
     {
-        if (this.enemyAiCtrl.EnemyCtrl.CurTarget == null) return;
-        Vector3 followPos = this.enemyAiCtrl.EnemyCtrl.FollowPos;
-        this.FollowTarget(followPos);
-        this.AttackTarget(followPos);
+        Debug.Log("Update Chase");
+        if (this.enemyAiCtrl.EnemyCtrl.EnemyDebuffs.CurDebuff == DebuffsType.Electrocuted)
+            this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
+
+        if (this.enemyAiCtrl.EnemyCtrl.CurInfoScanTarget == null) return;
+
+        if (this.enemyAiCtrl.EnemyCtrl.Target != null)
+        {
+            Vector3 followPos = this.enemyAiCtrl.EnemyCtrl.FollowPos;
+            Debug.Log("Start Chase");
+            this.FollowTarget(followPos);
+            this.AttackTarget(followPos);
+        }
+        else
+        {
+            this.enemyAiCtrl.EnemyCtrl.Animator.Rebind();
+            this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
+        }
+
     }
 
     public void FixedUpdate()
@@ -51,9 +67,10 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
     {
         Transform target = this.enemyAiCtrl.EnemyCtrl.Target;
         this.enemyAiCtrl.EnemyCtrl.transform.LookAt(new Vector3(target.position.x, this.enemyAiCtrl.EnemyCtrl.transform.position.y, target.position.z));
+        //this.enemyAiCtrl.EnemyCtrl.NavMeshAgent.SetDestination(followPos);
 
-        this.timer -= Time.deltaTime;
-        if (this.timer < 0)
+        this.timer += Time.deltaTime;
+        if (this.timer > this.enemyAiCtrl.AiConfig.MaxTime)
         {
             Vector3 direction = target.position - this.enemyAiCtrl.EnemyCtrl.transform.position;
             direction.y = 0;
@@ -64,8 +81,8 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
                 //    navMeshAgent.SetDestination(target.position);
                 //else
                 //    navMeshAgent.SetDestination(target.position + PlayerCtrl.Instance.PlayerLocomotion.AverageVelocity * this.movementPredictionTime);
+                this.timer = 0;
             }
-            this.timer = this.enemyAiCtrl.AiConfig.MaxDistance;
         }
     }
 
@@ -74,7 +91,8 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
         this.timePassed += Time.deltaTime;
         if (this.timePassed >= this.attackCD)
         {
-            if (Vector3.Distance(followPos, this.enemyAiCtrl.EnemyCtrl.transform.position) <= this.enemyAiCtrl.EnemyCtrl.EnemyData.AttackRange)
+            if (Vector3.Distance(followPos, this.enemyAiCtrl.EnemyCtrl.transform.position) 
+                <= this.enemyAiCtrl.EnemyCtrl.EnemyData.AttackRange)
             {
                 this.enemyAiCtrl.EnemyCtrl.Animator.SetInteger("RandomAttack", Random.Range(0, 3));
                 this.enemyAiCtrl.EnemyCtrl.Animator.SetTrigger("Attack");

@@ -19,7 +19,7 @@ public class EnemyCtrl : SaiMonoBehaviour
     [SerializeField] private EnemyDebuffs enemyDebuffs;
     [SerializeField] private RagdollCtrl ragdollCtrl;
 
-    public IInfoScanner CurTarget;
+    public IInfoScanner CurInfoScanTarget;
     public Transform Target;    //For LookAt
     public Vector3 FollowPos;   //For SetDestination NavMeshAgent
 
@@ -109,6 +109,7 @@ public class EnemyCtrl : SaiMonoBehaviour
             this.enemyHealth.SetHealth(this.EnemyData.Health);
             this.enemyDealDamageCtrl.DealDamageBox.Damage = this.EnemyData.Damage;
             this.navMeshAgent.speed = this.EnemyData.Speed;
+            this.detectTarget.DetectionRange = this.enemyData.DetectionRange;
         }
     }
 
@@ -117,22 +118,48 @@ public class EnemyCtrl : SaiMonoBehaviour
         IInfoScanner infoScanner = this.detectTarget.FindClosest(FactionType.Alliance);
         if (infoScanner != null)
         {
-            if (this.CurTarget != infoScanner)
+            if (this.CurInfoScanTarget != infoScanner)
             {
-                this.CurTarget = infoScanner;
+                this.CurInfoScanTarget = infoScanner;
             }
 
-            this.CurTarget.GetTransform().GetComponent<LeadTracker>().Add(this);
+            if (infoScanner is AlliancePlayer_InfoScanner)
+            {
+                this.CurInfoScanTarget.GetTransform().GetComponent<Character>().LeadTracker.Add(this);
+            }
+            if (infoScanner is AllianceCompanion_InfoScanner)
+            {
+                this.CurInfoScanTarget.GetTransform().GetComponent<LeadTracker>().Add(this);
+            }
         }
         else
         {
-            if (this.CurTarget != null)
+            if (this.CurInfoScanTarget != null)
             {
-                this.CurTarget.GetTransform().GetComponent<LeadTracker>().Remove(this);
-                this.CurTarget = null;
+                if (infoScanner is AlliancePlayer_InfoScanner)
+                {
+                    this.CurInfoScanTarget.GetTransform().GetComponent<Character>().LeadTracker.Remove(this);
+                }
+                if (infoScanner is AllianceCompanion_InfoScanner)
+                {
+                    this.CurInfoScanTarget.GetTransform().GetComponent<LeadTracker>().Remove(this);
+                }
+                this.CurInfoScanTarget = null;
             }
         }
+
+        if (this.Target != null && this.checkDetect)
+        {
+            this.checkDetect = false;
+            this.animator.SetTrigger(Random.Range(0, 2) == 0 ? "Detect1" : "Detect2");
+        }
+        if (this.Target == null)
+        {
+            this.checkDetect = true;
+        }
     }
+
+    private bool checkDetect;
 
     public void DropWeapon()
     {
@@ -153,8 +180,9 @@ public class EnemyCtrl : SaiMonoBehaviour
         if (!this.enemyHealth.IsDeath()) return;
 
         this.ragdollCtrl.DisableRagdoll();
-        this.enemyDealDamageCtrl.DealDamageBox.ResetWeapon();
         this.enemyHealth.ResetHealth();
+        this.enemyDebuffs.ResetDebuffs();
+        this.enemyDealDamageCtrl.DealDamageBox.ResetWeapon();
         this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
     }
 }

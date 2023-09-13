@@ -84,8 +84,8 @@ public class Outline : SaiMonoBehaviour
     private List<ListVector3> bakeValues = new List<ListVector3>();
 
     [SerializeField] private Renderer[] renderers;
-    [SerializeField] private Material outlineMaskMaterial;
-    [SerializeField] private Material outlineFillMaterial;
+    private Material outlineMaskMaterial;
+    private Material outlineFillMaterial;
 
     private bool needsUpdate;
 
@@ -110,7 +110,7 @@ public class Outline : SaiMonoBehaviour
         outlineFillMaterial.name = "OutlineFill (Instance)";
 
         // Retrieve or generate smooth normals
-        //LoadSmoothNormals();
+        LoadSmoothNormals();
 
         // Apply material properties immediately
         needsUpdate = true;

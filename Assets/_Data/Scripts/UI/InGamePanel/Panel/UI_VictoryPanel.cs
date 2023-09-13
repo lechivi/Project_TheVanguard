@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class UI_VictoryPanel : BaseUIElement
 {
     public override void Show(object data)
