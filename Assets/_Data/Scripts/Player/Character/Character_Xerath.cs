@@ -83,7 +83,7 @@ public class Character_Xerath : Character
             this.b_TakeDamageCtrl = this.betaObj.GetComponent<TakeDamageCtrl>();
 
         if (this.betaObj != null && this.b_RagdollCtrl == null)
-            this.b_RagdollCtrl = this.betaObj.GetComponent<RagdollCtrl>();
+            this.b_RagdollCtrl = this.betaObj.GetComponentInChildren<RagdollCtrl>();
 
         if (this.betaObj != null && this.b_LeadTracker == null)
             this.b_LeadTracker = this.betaObj.GetComponent<LeadTracker>();
@@ -120,7 +120,7 @@ public class Character_Xerath : Character
             this.a_TakeDamageCtrl = this.alphaObj.GetComponent<TakeDamageCtrl>();
 
         if (this.alphaObj != null && this.a_RagdollCtrl == null)
-            this.a_RagdollCtrl = this.alphaObj.GetComponent<RagdollCtrl>();
+            this.a_RagdollCtrl = this.alphaObj.GetComponentInChildren<RagdollCtrl>();
 
         if (this.alphaObj != null && this.a_LeadTracker == null)
             this.a_LeadTracker = this.alphaObj.GetComponent<LeadTracker>();

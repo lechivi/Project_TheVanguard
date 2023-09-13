@@ -13434,6 +13434,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerWeapon: {fileID: 704298020}
+  IsAttack: 0
 --- !u!4 &1982617159
 Transform:
   m_ObjectHideFlags: 0

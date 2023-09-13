@@ -152,6 +152,7 @@ public class EnemyCtrl : SaiMonoBehaviour
         {
             this.checkDetect = false;
             this.animator.SetTrigger(Random.Range(0, 2) == 0 ? "Detect1" : "Detect2");
+            transform.LookAt(new Vector3(this.Target.position.x, transform.position.y, this.Target.position.z));
         }
         if (this.Target == null)
         {

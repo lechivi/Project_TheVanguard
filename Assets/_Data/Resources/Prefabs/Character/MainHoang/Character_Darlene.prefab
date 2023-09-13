@@ -5055,7 +5055,6 @@ GameObject:
   - component: {fileID: 8003384442071366115}
   - component: {fileID: 8003384442071366114}
   - component: {fileID: 5592838943170179507}
-  - component: {fileID: 5068156651995501716}
   m_Layer: 6
   m_Name: Character_Darlene
   m_TagString: PlayerCollider
@@ -5196,7 +5195,7 @@ MonoBehaviour:
   dealDamageCtrl: {fileID: 8003384442071366112}
   takeDamageCtrl: {fileID: 8003384442071366115}
   ragdollCtrl: {fileID: 2268799319078524478}
-  leadTracker: {fileID: 0}
+  leadTracker: {fileID: 5592838943170179507}
   poolingObject: {fileID: 5068156651995501668}
   droneFollowPoint: {fileID: 6745199157348430962}
   summonFX: {fileID: 135221824853538481}
@@ -5256,7 +5255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cfa113e314eb748be7ddcaa42b7088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dealDamageUnarmed: {fileID: 0}
+  dealDamageUnarmed: {fileID: 2268799319981739802}
   listDealDamageMelee: []
 --- !u!114 &8003384442071366115
 MonoBehaviour:
@@ -5317,21 +5316,6 @@ MonoBehaviour:
   listEnemy: []
   delay: 1
   radius: 2
---- !u!114 &5068156651995501716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5117090366756231778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7af754a1c49ea34ca7c9c6aed1b24d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  listEnemy: []
-  delay: 1
-  radius: 1
 --- !u!1 &6538522726875354281
 GameObject:
   m_ObjectHideFlags: 0

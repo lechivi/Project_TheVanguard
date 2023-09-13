@@ -23,7 +23,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
         if (MeleeCombatType == "Unarmed_") delay = 0.4f;
         if (MeleeCombatType == "LongMelee_") delay = 0.7f;
         if (MeleeCombatType == "Knife_") delay = 0.5f;
-        Debug.Log(delay);
+        //Debug.Log(delay);
         if (Time.time - lastClicked < delay) return;
         this.IsAttack = true;
         if (this.comboCounter >= 3)

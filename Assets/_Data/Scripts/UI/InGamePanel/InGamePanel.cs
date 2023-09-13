@@ -59,17 +59,21 @@ public class InGamePanel : BaseUIElement
 
     public void ShowAlwaysOnUI(object data)
     {
+        Debug.Log("ShowAlways");
         this.alwaysOnUI.Show(data);
         this.pauseMenu.Hide();
         this.other.Hide();
+
         if (GameManager.HasInstance)
         {
             GameManager.Instance.ResumeGame();
         }
+        CancelInvoke("SetPauseGame");
     }
 
     public void ShowPauseMenu(object data)
     {
+        Debug.Log("ShowPauseMenu");
         this.alwaysOnUI.Hide();
         this.pauseMenu.Show(data);
         this.other.Hide();

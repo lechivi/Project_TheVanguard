@@ -38,6 +38,14 @@ public class OpenSceneEditor : EditorWindow
            (string.Format(_scenePath, "Map04_Dungeon"), OpenSceneMode.Single);
     }
 
+    [MenuItem("OpenScene/HoangVillage", false, 8)]
+    public static void HoangVillage()
+    {
+        EditorSceneManager.SaveScene(SceneManager.GetActiveScene());
+        EditorSceneManager.OpenScene
+           (string.Format(_scenePath, "HoangVillage"), OpenSceneMode.Single);
+    }
+
     [MenuItem("OpenScene/TestBattle", false, 9)]
     public static void TestBattle()
     {

@@ -22,7 +22,7 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
         }
         if (IscanFire)
         {
-            if (Input.GetMouseButtonDown(0) && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle 
+            if (this.PlayerWeapon.PlayerCtrl.PlayerInput.Mouse0_ButtonDown && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle 
                 && weaponRaycast.Weapon.WeaponData.ItemName != "Deliverer")
             {
                 PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
