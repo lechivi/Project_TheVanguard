@@ -80,7 +80,8 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
                 AttachMagazine();
                 break;
             case "exitdelay_shotgun":
-                PlayerWeapon.PlayerWeaponActive.SetisDelay(false);
+               // PlayerWeapon.PlayerWeaponActive.SetisDelay(false);
+                this.ChangeIsReload();
                 break;
         }
     }
@@ -126,6 +127,14 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     public void ChangeIsReload()
     {
         isReload = false;
+    }
+
+    public void DelayReloadPerShot()
+    {
+        PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_pershot");
+        isReload = true;
+/*        timedelta = 0;
+        SetisDelay(true);*/
     }
 
 }

@@ -611,7 +611,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3345340185572126315}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.111, y: 0.09499931, z: 1.0350003}
+  m_LocalPosition: {x: 0.111, y: 0.039, z: 0.997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10479,6 +10479,11 @@ MonoBehaviour:
   isDelay: 0
   currentAmmo: 0
   maxAmmo: 0
+  Spreads:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!114 &3615669786116879641
 MonoBehaviour:
   m_ObjectHideFlags: 0

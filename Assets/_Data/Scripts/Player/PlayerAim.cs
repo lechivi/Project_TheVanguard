@@ -35,7 +35,12 @@ public class PlayerAim : PlayerAbstract
             {
                 playerCtrl.PlayerCamera.ChangeSpeedTPSCam(300f, 1.5f);
             }
+            if (UIManager.HasInstance)
+            {
+                UIManager.Instance.InGamePanel.AlwaysOnUI.Crosshair.Show(null);
+            }
         }
+
 
     }
 
@@ -76,7 +81,7 @@ public class PlayerAim : PlayerAbstract
         WeaponRaycast weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (weapon)
         {
-            if(!playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && weapon.Weapon.WeaponData.WeaponType != WeaponType.Shotgun)
+            if (!playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering && weapon.Weapon.WeaponData.WeaponType != WeaponType.Shotgun)
             {
                 //playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.WeaponType, IsAim);
                 playerCtrl.RigAnimator.SetBool("aim_" + weapon.Weapon.WeaponData.ItemName, IsAim);
@@ -87,6 +92,10 @@ public class PlayerAim : PlayerAbstract
                 }
                 if (IsAim)
                 {
+                    if (UIManager.HasInstance)
+                    {
+                        UIManager.Instance.InGamePanel.AlwaysOnUI.Crosshair.Hide();
+                    }
                     playerCtrl.PlayerLocomotion.IsWalking = true;
                     playerCtrl.PlayerCamera.ChangePOVFPS(55);
                 }
@@ -105,11 +114,8 @@ public class PlayerAim : PlayerAbstract
         {
             playerCtrl.PlayerCamera.MainCamera.cullingMask |= 1 << 7;
             playerCtrl.PlayerCamera.MainCamera.cullingMask |= 1 << 6;
+            UIManager.Instance.InGamePanel.AlwaysOnUI.Scope.Hide();
 
-            if (UIManager.HasInstance)
-            {
-                UIManager.Instance.InGamePanel.AlwaysOnUI.Scope.Hide();
-            }
         }
     }
 
@@ -124,7 +130,9 @@ public class PlayerAim : PlayerAbstract
         if (UIManager.HasInstance)
         {
             UIManager.Instance.InGamePanel.AlwaysOnUI.Scope.Show(null);
+            UIManager.Instance.InGamePanel.AlwaysOnUI.Crosshair.Hide();
         }
+
     }
 
 }

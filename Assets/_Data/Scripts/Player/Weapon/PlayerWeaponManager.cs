@@ -74,6 +74,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         this.SetHolster(false);
         this.SetDefaultCurrentindex();
         this.HosterAnimation();
+       // this.SetCanSwitchWeapon();
     }
 
     public void SaveWeapon()
@@ -377,6 +378,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public void SetActiveWeapon(int weaponIndex, bool isAlpha)
     {
+        if (!SetCanSwitchWeapon()) return;
         if (!this.isReadySwap) return;
 
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
@@ -502,6 +504,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public void SetHolster(bool button)
     {
+        if (!SetCanSwitchWeapon()) return;
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
 
         if (button && curWeaponIndex > -1 && listEquippedWeapon[curWeaponIndex] != null)
@@ -662,5 +665,14 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
                 }
             }
         }
+    }
+
+    public bool SetCanSwitchWeapon()
+    {
+        if (playerWeapon.PlayerCtrl.PlayerAim.IsAim == true || playerWeapon.PlayerWeaponReload.IsReload == true || playerWeapon.PlayerWeaponAttack.IsAttack == true)
+        {
+            return false;
+        }
+        return true;
     }
 }

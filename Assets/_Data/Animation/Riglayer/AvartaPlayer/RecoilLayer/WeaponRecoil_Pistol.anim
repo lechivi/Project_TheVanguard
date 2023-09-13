@@ -416,7 +416,7 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.21666667
-    functionName: PistolShotSE
+    functionName: PistolShotSE_Big
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

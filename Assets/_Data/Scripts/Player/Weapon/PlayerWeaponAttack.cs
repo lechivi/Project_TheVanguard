@@ -9,6 +9,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
     private string MeleeCombatType;
     private AnimatorStateInfo state;
     private float delay;
+    public bool IsAttack;
 
     public void HandleUpdateWeaponAttack()
     {
@@ -24,7 +25,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
         if (MeleeCombatType == "Knife_") delay = 0.5f;
         Debug.Log(delay);
         if (Time.time - lastClicked < delay) return;
-
+        this.IsAttack = true;
         if (this.comboCounter >= 3)
             this.comboCounter = 0;
         this.comboCounter++;
@@ -87,6 +88,7 @@ public class PlayerWeaponAttack : PlayerWeaponAbstract
                 {
                     this.comboCounter = 0;
                     this.PlayerWeapon.PlayerCtrl.Animator.SetBool("Attack", false);
+                    this.IsAttack = false;
 
                     for (int j = i + 1; j > 0; j--)
                     {
