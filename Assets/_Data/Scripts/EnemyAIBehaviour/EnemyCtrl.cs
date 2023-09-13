@@ -19,8 +19,8 @@ public class EnemyCtrl : SaiMonoBehaviour
     [SerializeField] private EnemyDebuffs enemyDebuffs;
     [SerializeField] private RagdollCtrl ragdollCtrl;
 
-    public IInfoScanner CurInfoScanTarget;
-    public Transform Target;    //For LookAt
+    public IInfoScanner CurInfoScanTarget;//For LookAt
+    //public Transform Target;    
     public Vector3 FollowPos;   //For SetDestination NavMeshAgent
 
     public EnemyDataSO EnemyData { get => this.enemyData; }
@@ -125,7 +125,11 @@ public class EnemyCtrl : SaiMonoBehaviour
 
             if (infoScanner is AlliancePlayer_InfoScanner)
             {
-                this.CurInfoScanTarget.GetTransform().GetComponent<Character>().LeadTracker.Add(this);
+                Character character = this.CurInfoScanTarget.GetTransform().GetComponent<Character>();
+                if (character != null)
+                    character.LeadTracker.Add(this);
+                else //XERATH
+                    this.CurInfoScanTarget.GetTransform().GetComponentInParent<Character>().LeadTracker.Add(this);
             }
             if (infoScanner is AllianceCompanion_InfoScanner)
             {
@@ -138,7 +142,11 @@ public class EnemyCtrl : SaiMonoBehaviour
             {
                 if (infoScanner is AlliancePlayer_InfoScanner)
                 {
-                    this.CurInfoScanTarget.GetTransform().GetComponent<Character>().LeadTracker.Remove(this);
+                    Character character = this.CurInfoScanTarget.GetTransform().GetComponent<Character>();
+                    if (character != null)
+                        character.LeadTracker.Remove(this);
+                    else //XERATH
+                        this.CurInfoScanTarget.GetTransform().GetComponentInParent<Character>().LeadTracker.Remove(this);
                 }
                 if (infoScanner is AllianceCompanion_InfoScanner)
                 {
@@ -148,19 +156,19 @@ public class EnemyCtrl : SaiMonoBehaviour
             }
         }
 
-        if (this.Target != null && this.checkDetect)
+        if (this.CurInfoScanTarget != null && this.checkDetect)
         {
             this.checkDetect = false;
             this.animator.SetTrigger(Random.Range(0, 2) == 0 ? "Detect1" : "Detect2");
-            transform.LookAt(new Vector3(this.Target.position.x, transform.position.y, this.Target.position.z));
+            transform.LookAt(new Vector3(this.CurInfoScanTarget.GetCenterPoint().position.x, transform.position.y, this.CurInfoScanTarget.GetCenterPoint().position.z));
         }
-        if (this.Target == null)
+        if (this.CurInfoScanTarget == null)
         {
             this.checkDetect = true;
         }
     }
 
-    private bool checkDetect;
+    private bool checkDetect = true;
 
     public void DropWeapon()
     {

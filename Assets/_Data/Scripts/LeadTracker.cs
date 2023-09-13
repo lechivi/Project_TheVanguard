@@ -13,7 +13,7 @@ public class LeadTracker : MonoBehaviour
     {
         if (!this.listEnemy.Contains(enemy))
         {
-            enemy.Target = transform;
+            //enemy.Target = transform;
             this.listEnemy.Add(enemy);
         }
     }
@@ -23,7 +23,7 @@ public class LeadTracker : MonoBehaviour
         if (this.listEnemy.Contains(enemy))
         { 
             this.listEnemy.Remove(enemy);
-            enemy.Target = null;
+            //enemy.Target = null;
         }
     }
 
@@ -31,7 +31,7 @@ public class LeadTracker : MonoBehaviour
     {
         for (int i = 0; i < listEnemy.Count; ++i)
         {
-            this.listEnemy[i].Target = null;
+            //this.listEnemy[i].Target = null;
             this.listEnemy.RemoveAt(i);
             i--;
         }
@@ -42,7 +42,11 @@ public class LeadTracker : MonoBehaviour
         if (this.listEnemy.Count > 0)
         {
             Invoke("MakeAgentsCircleTarget", this.delay);
-        }  
+        } 
+        if (this.listEnemy.Count == 0)
+        {
+
+        }
     }
 
     private void MakeAgentsCircleTarget()

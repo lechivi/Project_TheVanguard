@@ -40,6 +40,7 @@ public class DroneHealth : SaiMonoBehaviour, IHealth
     public void TakeDamage(int damage)
     {
         this.currentHealth -= damage;
+        this.droneCtrl.GraphicEffect.PlayHitEffect();
         if (this.currentHealth <= 0) 
         {
             this.currentHealth = 0;

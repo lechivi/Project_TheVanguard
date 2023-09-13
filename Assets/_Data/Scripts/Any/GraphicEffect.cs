@@ -34,7 +34,11 @@ public class GraphicEffect : MonoBehaviour
             this.blinkTimer -= Time.deltaTime;
             float lerp = Mathf.Clamp01(this.blinkTimer / this.blinkDuration);
             float intensity = (lerp * this.blinkIntensity) + 1f;
-            this.skinnedMeshRenderer.material.color = this.blinkColor * intensity;
+            if (this.skinnedMeshRenderer != null)
+            {
+                this.skinnedMeshRenderer.material.color = this.blinkColor * intensity;
+            }
+
             for (int i = 0; i < this.listMeshRenderer.Count; i++)
             {
                 this.listMeshRenderer[i].material.color = this.blinkColor * intensity;

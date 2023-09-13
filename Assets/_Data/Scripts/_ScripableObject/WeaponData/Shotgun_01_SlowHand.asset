@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shotgun_01_SlowHand
   m_EditorClassIdentifier: 
   ItemName: SlowHand
-  ItemValue: 80
+  ItemValue: 999
   ItemType: 1
   Icon: {fileID: 4147139860447680544, guid: b41e5248fe8350c44b23b281deefc8da, type: 3}
   Model: {fileID: 8824270345280385828, guid: 9b1b0f181b8e98c448b95e787d8f0c97, type: 3}

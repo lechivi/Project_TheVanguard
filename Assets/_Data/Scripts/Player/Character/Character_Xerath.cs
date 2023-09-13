@@ -20,6 +20,7 @@ public class Character_Xerath : Character
     [SerializeField] private RagdollCtrl b_RagdollCtrl;
     [SerializeField] private Transform b_CenterPoint;
     [SerializeField] private LeadTracker b_LeadTracker;
+    [SerializeField] private AlliancePlayer_InfoScanner b_AlliancePlayerInfoScanner;
 
     [SerializeField] private GameObject alphaObj;
     [SerializeField] private CharacterController a_CharacterController;
@@ -33,6 +34,7 @@ public class Character_Xerath : Character
     [SerializeField] private RagdollCtrl a_RagdollCtrl;
     [SerializeField] private Transform a_CenterPoint;
     [SerializeField] private LeadTracker a_LeadTracker;
+    [SerializeField] private AlliancePlayer_InfoScanner a_AlliancePlayerInfoScanner;
 
     [Space(10)]
     [SerializeField] private Vector3 b_CameraOffset = new Vector3(0.75f, 0.12f, 0);
@@ -91,6 +93,9 @@ public class Character_Xerath : Character
         if (this.betaObj != null && this.b_CenterPoint == null)
             this.b_CenterPoint = this.betaObj.transform.Find("Root/Hips/Spine_01/Spine_02");
 
+        if (this.betaObj != null && this.b_AlliancePlayerInfoScanner == null)
+            this.b_AlliancePlayerInfoScanner = this.betaObj.GetComponent<AlliancePlayer_InfoScanner>();
+
 
         if (this.alphaObj == null)
             this.alphaObj = transform.Find("Xerath_Alpha").gameObject;
@@ -127,6 +132,9 @@ public class Character_Xerath : Character
 
         if (this.alphaObj != null && this.a_CenterPoint == null)
             this.a_CenterPoint = this.alphaObj.transform.Find("Root/Hips/Spine_01/Spine_02");
+
+        if (this.alphaObj != null && this.a_AlliancePlayerInfoScanner == null)
+            this.a_AlliancePlayerInfoScanner = this.alphaObj.GetComponent<AlliancePlayer_InfoScanner>();
     }
 
     protected override void LoadCharacterTransform()
@@ -259,6 +267,18 @@ public class Character_Xerath : Character
         else if (!this.isBeta && this.centerPoint != this.b_CenterPoint)
         {
             this.centerPoint = this.b_CenterPoint;
+        }
+    }
+
+    protected override void LoadAlliancePlayer_InfoScanner()
+    {
+        if (this.isBeta && this.alliancePlayer_InfoScanner != this.a_AlliancePlayerInfoScanner)
+        {
+            this.alliancePlayer_InfoScanner = this.a_AlliancePlayerInfoScanner;
+        }
+        else if (!this.isBeta && this.alliancePlayer_InfoScanner != this.b_AlliancePlayerInfoScanner)
+        {
+            this.alliancePlayer_InfoScanner = this.b_AlliancePlayerInfoScanner;
         }
     }
 

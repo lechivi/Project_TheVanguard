@@ -17,6 +17,7 @@ public class DroneCtrl : SaiMonoBehaviour
     [SerializeField] private DetectTarget detectTarget;
     [SerializeField] private Drone_AiCtrl droneAiCtrl;
     [SerializeField] private DroneHealth droneHealth;
+    [SerializeField] private GraphicEffect graphicEffect;
 
     [Space(10)]
     [SerializeField] private int damage = 1;
@@ -39,6 +40,7 @@ public class DroneCtrl : SaiMonoBehaviour
     public DetectTarget DetectTarget { get => this.detectTarget; }
     public Drone_AiCtrl DroneAiCtrl { get => this.droneAiCtrl; }
     public DroneHealth DroneHealth { get => this.droneHealth; }
+    public GraphicEffect GraphicEffect { get => this.graphicEffect; }
     public float RotationSpeed { get => this.rotationSpeed; }
     public float DetectionRange { get => this.detectionRange; }
     public float MaxDistanceFromPlayer { get => this.maxDistanceFromPlayer; }
@@ -89,6 +91,19 @@ public class DroneCtrl : SaiMonoBehaviour
         {
             this.takeDamageCtrl = GetComponent<TakeDamageCtrl>();
             //this.takeDamageCtrl.SetHealthObject(this.droneHealth.gameObject);
+        }
+
+        if (this.graphicEffect == null)
+        {
+            this.graphicEffect = GetComponentInChildren<GraphicEffect>();
+            MeshRenderer[] meshRenderers = GetComponentsInChildren<MeshRenderer>();
+            if (this.graphicEffect.ListMeshRenderer.Count != meshRenderers.Length)
+            {
+                for (int i = 0; i < meshRenderers.Length; i++)
+                {
+                    this.graphicEffect.ListMeshRenderer.Add(meshRenderers[i]);
+                }
+            }
         }
     }
 
