@@ -76,7 +76,7 @@ public class PlayerInput : PlayerAbstract
 
             this.playerControls.PlayerAction.Jump.performed += i => this.JumpInput = true;
 
-            this.playerControls.PlayerAction.Attack.started += i => this.Mouse0_ButtonDown = true;
+            this.playerControls.PlayerAction.Attack.performed += i => this.Mouse0_ButtonDown = true;
             this.playerControls.PlayerAction.Attack.performed += i => this.Mouse0_GetButton = true;
             this.playerControls.PlayerAction.Attack.canceled += i => this.Mouse0_GetButton = false;
             this.playerControls.PlayerAction.Attack.canceled += i => this.Mouse0_ButtonUp = true;
