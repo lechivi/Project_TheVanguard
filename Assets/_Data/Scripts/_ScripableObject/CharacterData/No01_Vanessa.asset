@@ -15,13 +15,15 @@ MonoBehaviour:
   CharacterName: Vanessa
   CharacterClass: The Rose Of Western
   Species: 1
+  BodyType: 0
   CharacterIcon: {fileID: 0}
   CharacterModel: {fileID: 0}
   CharacterDescription: Skilled gunslinger and cowgirl from the Western territories,
     known for her quick draw and precision shooting.
-  Health: 50
+  Health: 75
   Power: 5
   Defence: 5
+  Agility: 5
   HitPoint: 5
   ExecutionSkillTime: 0
   CooldownSkillTime: 0

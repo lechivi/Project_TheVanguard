@@ -199,8 +199,9 @@ public class Character : SaiMonoBehaviour
             this.alliancePlayer_InfoScanner = GetComponent<AlliancePlayer_InfoScanner>();
     }
 
-    private void Start()
+    protected virtual void Start()
     {
+
         if (this.characterData != null)
         {
             this.cooldownSpecialSkill = this.characterData.CooldownSkillTime;
@@ -252,7 +253,6 @@ public class Character : SaiMonoBehaviour
     {
         this.timerCD_SpecialSkill += Time.deltaTime;
         if (this.timerCD_SpecialSkill < this.cooldownSpecialSkill) return;
-
         this.timerCD_SpecialSkill = 0;
         this.isReadySpecialSkill = true;
         this.isCoolingDownSpecicalSkill = false;

@@ -33,12 +33,12 @@ MonoBehaviour:
   WeaponType: 4
   ShotGunType: 0
   MeleeType: 0
-  rangedDamage: 85
+  rangedDamage: 90
   accuracy: 0
   timePerFireRate: 0
   fireRate: 0
   bulletSpeed: 10000
-  timeDelayPerShot: 0.8
+  timeDelayPerShot: 0.7
   ammoType: 4
   ammoPerShot: 1
   ammo: 10

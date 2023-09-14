@@ -140,7 +140,7 @@ public class WeaponRaycast : MonoBehaviour
                 Enemy.GetComponentInParent<HitBox>().OnHit(10);
                 Debug.Log(Enemy.name);
             }
-            AddForceToHitInfo(ray, hitInfo);
+           // AddForceToHitInfo(ray, hitInfo);
 
         }
         bullet.transform.position = End;

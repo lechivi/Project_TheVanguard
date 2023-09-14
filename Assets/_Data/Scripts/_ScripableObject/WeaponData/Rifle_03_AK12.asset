@@ -41,8 +41,8 @@ MonoBehaviour:
   timeDelayPerShot: 0
   ammoType: 2
   ammoPerShot: 1
-  ammo: 30
-  magazineSize: 30
+  ammo: 35
+  magazineSize: 35
   range: 0
   spreadAiming: 0
   spreadNotAim: 0

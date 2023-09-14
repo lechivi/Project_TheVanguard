@@ -14,9 +14,11 @@ public class Character_Ironstone : Character
     [SerializeField] private float transformTime;
     private bool canAttack;
     public float damageRange = 3.5f;
+    [SerializeField] private int powerSkill;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         if (this.HammerImpactEffect == null)
         {
             this.HammerImpactEffect = this.transform.Find("HammerImpactEFFECT").gameObject.GetComponent<ParticleSystem>();
@@ -111,7 +113,7 @@ public class Character_Ironstone : Character
             var enemy = collider.GetComponent<HitBox>();
             if (enemy && enemy.CompareTag("EnemyCollider"))
             {
-                enemy.OnHit(characterData.Power * 2);
+                enemy.OnHit(powerSkill);
             }
         }
     }
@@ -127,7 +129,7 @@ public class Character_Ironstone : Character
     private IEnumerator TransformationCoroutine()
     {
         this.Transform();
-        yield return new WaitForSeconds(this.transformTime);
+        yield return new WaitForSeconds(CharacterData.ExecutionSkillTime);
         this.RevertoForm();
         yield return new WaitForSeconds(1f);
         this.Animator.SetBool("RevertoForm", false);
@@ -144,7 +146,7 @@ public class Character_Ironstone : Character
     public void RevertoForm()
     {
         this.isSpecialSkill = false;
-        isCoolingDownSpecicalSkill = true;
+        this.isCoolingDownSpecicalSkill = true;
         this.Animator.SetBool("RevertoForm", true);
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
         Hammer.gameObject.SetActive(false);

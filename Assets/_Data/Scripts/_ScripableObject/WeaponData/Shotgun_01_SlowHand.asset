@@ -33,7 +33,7 @@ MonoBehaviour:
   WeaponType: 3
   ShotGunType: 2
   MeleeType: 0
-  rangedDamage: 8
+  rangedDamage: 6
   accuracy: 0
   timePerFireRate: 0
   fireRate: 4
@@ -41,7 +41,7 @@ MonoBehaviour:
   timeDelayPerShot: 1.5
   ammoType: 3
   ammoPerShot: 8
-  ammo: 1
+  ammo: 6
   magazineSize: 6
   range: 0
   spreadAiming: 0

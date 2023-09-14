@@ -20,11 +20,11 @@ MonoBehaviour:
   CharacterModel: {fileID: 0}
   CharacterDescription: Resourceful scavenger and tinkerer surviving in a post-apocalyptic
     wasteland, using her engineering skills to create robotic allies.
-  Health: 50
-  Power: 5
-  Defence: 5
-  Agility: 3
-  HitPoint: 5
+  Health: 75
+  Power: 9
+  Defence: 4
+  Agility: 4
+  HitPoint: 4
   ExecutionSkillTime: 0
   CooldownSkillTime: 5
   SpecialSkillName: Say Hi To My Friend

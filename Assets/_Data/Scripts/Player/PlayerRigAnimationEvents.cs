@@ -15,4 +15,24 @@ public class PlayerRigAnimationEvents : MonoBehaviour
     {
         AnimationEvent.Invoke(eventName);
     }
+
+    public void DetachMagazine()
+    {
+        PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponReload.DetachMagazine();
+    }
+
+    public void DropMagazine()
+    {
+        PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponReload.DropMagazine();
+    }
+
+    public void RefillMagazine()
+    {
+        PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponReload.RefillMagazine();
+    }
+
+    public void  AttachMagazine()
+    {
+        PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponReload.AttachMagazine();
+    }
 }

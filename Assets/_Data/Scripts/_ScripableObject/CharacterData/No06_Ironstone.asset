@@ -20,13 +20,13 @@ MonoBehaviour:
   CharacterModel: {fileID: 0}
   CharacterDescription: Skilled blacksmith and warrior from the depths of the earth,
     clad in sturdy armor and wielding powerful melee weapons.
-  Health: 50
+  Health: 75
   Power: 5
-  Defence: 5
-  Agility: 4
-  HitPoint: 5
-  ExecutionSkillTime: 0
-  CooldownSkillTime: 5
+  Defence: 7
+  Agility: 3
+  HitPoint: 7
+  ExecutionSkillTime: 20
+  CooldownSkillTime: 20
   SpecialSkillName: Hammer Impact
   SpecialSkillIcon: {fileID: 21300000, guid: 03cada70f1f86134dabd594f85c12618, type: 3}
   SpecialSkillDescription: "Ironstone becomes more and more powerful\r."

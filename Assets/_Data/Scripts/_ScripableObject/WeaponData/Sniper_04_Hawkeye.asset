@@ -38,11 +38,11 @@ MonoBehaviour:
   timePerFireRate: 0
   fireRate: 0
   bulletSpeed: 10000
-  timeDelayPerShot: 1.5
+  timeDelayPerShot: 1.3
   ammoType: 4
   ammoPerShot: 1
-  ammo: 5
-  magazineSize: 5
+  ammo: 8
+  magazineSize: 8
   range: 0
   spreadAiming: 0
   spreadNotAim: 0

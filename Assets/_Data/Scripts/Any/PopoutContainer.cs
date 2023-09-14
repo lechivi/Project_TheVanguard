@@ -166,6 +166,11 @@ public class PopoutContainer : BaseUIElement
         {
             GameManager.Instance.TravelToVillage();
         }
+        if (InputManager.Instance.Input_ChrSelScene.enabled)
+        {
+            InputManager.Instance.Input_ChrSelScene.CanSelect = false;
+            InputManager.Instance.Disable_Input_All();
+        }
     }
 
     public virtual void OnClickTravelDungeon_YesButton()
