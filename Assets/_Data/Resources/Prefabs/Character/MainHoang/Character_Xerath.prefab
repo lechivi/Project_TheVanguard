@@ -1350,6 +1350,7 @@ Transform:
   - {fileID: 354808153330293473}
   - {fileID: 356862179770304075}
   - {fileID: 355197021348939177}
+  - {fileID: 6379650667096061225}
   m_Father: {fileID: 354672112520767295}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3846,7 +3847,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2203716341562201483
 GameObject:
@@ -3972,6 +3973,68 @@ MonoBehaviour:
   - {fileID: 8972216794366702988}
   animator: {fileID: 6076713923290811254}
   characterController: {fileID: 6076713923290811255}
+--- !u!1 &4779132895483122600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6379650667096061225}
+  - component: {fileID: 5656451632315129918}
+  - component: {fileID: 5321209277416943306}
+  m_Layer: 13
+  m_Name: DealDamageBox
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6379650667096061225
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779132895483122600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 356695471563530645}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5656451632315129918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779132895483122600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89ae4d736c9bee418d84297e738dcbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  isPlayerWeapon: 1
+  col: {fileID: 5321209277416943306}
+  originParent: {fileID: 354852695593864757}
+--- !u!135 &5321209277416943306
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779132895483122600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6075370051231990896
 GameObject:
   m_ObjectHideFlags: 0
@@ -24599,7 +24662,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6076713923291519697
 Transform:
   m_ObjectHideFlags: 0
@@ -24651,6 +24714,7 @@ MonoBehaviour:
   ragdollCtrl: {fileID: 2203716341765632095}
   leadTracker: {fileID: 7111150365587022263}
   alliancePlayer_InfoScanner: {fileID: 7761803777466207691}
+  aplhaFistDamage: 7
   xerath_Beta: {fileID: 6076713923290811252}
   xerath_Alpha: {fileID: 6076713924608875489}
   betaObj: {fileID: 6076713923290811257}
@@ -28457,7 +28521,7 @@ GameObject:
   - component: {fileID: 1673404899438785173}
   m_Layer: 6
   m_Name: Xerath_Alpha
-  m_TagString: EnemyCollider
+  m_TagString: PlayerCollider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28514,7 +28578,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.8
+  m_Height: 1.6
   m_Radius: 0.3
   m_SlopeLimit: 70
   m_StepOffset: 0.3
@@ -28554,6 +28618,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   character_Xerath: {fileID: 6076713923291519698}
+  fistL: {fileID: 5656451632315129918}
+  fistR: {fileID: 2203716341505212636}
   animator: {fileID: 6076713924608875492}
   coolDownTime: 0.1
 --- !u!114 &7761803777466207691
@@ -28607,7 +28673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listEnemy: []
   delay: 1
-  radius: 1
+  radius: 1.2
 --- !u!114 &9195181472912019667
 MonoBehaviour:
   m_ObjectHideFlags: 0

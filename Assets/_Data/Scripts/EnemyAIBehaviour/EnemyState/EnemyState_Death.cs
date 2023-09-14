@@ -18,7 +18,7 @@ public class EnemyState_Death : IEnemyState
 
     public void Enter()
     {
-        
+        //this.enemyAiCtrl.EnemyCtrl.NavMeshAgent.enabled = false;
     }
 
     public void Update()

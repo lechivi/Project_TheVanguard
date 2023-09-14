@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerCoin : PlayerAbstract
 {
-    [SerializeField] private int currentCoint = 1000;
-    public int CurrentCoint { get { return currentCoint; } }
+    [SerializeField] private int currentCoin = 1000;
+    public int CurrentCoin { get { return currentCoin; } }
 
     public void SubtractCoin(int amount)
     {
-        currentCoint -= amount;
+        currentCoin -= amount;
     }
 
     public void AddCoin(int amount)
     {
-        currentCoint += amount;
+        currentCoin += amount;
     }
 }

@@ -73,7 +73,7 @@ public class VillageSceneCtrl : SaiMonoBehaviour
     {
         if (AudioManager.HasInstance)
         {
-            AudioManager.Instance.PlayBgm(AUDIO.BGM_VILLAGE_TAVERN_LAROULETTE);
+            AudioManager.Instance.PlayBgm(AUDIO.BGM_VILLAGE_COBBLESTONE_VILLAGE);
         }
 
         if (InputManager.HasInstance)

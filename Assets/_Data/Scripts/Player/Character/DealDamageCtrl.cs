@@ -40,7 +40,6 @@ public class DealDamageCtrl : SaiMonoBehaviour
                     foreach (var weapon in this.listDealDamageMelee)
                     {
                         weapon.SetActiveDeal(true);
-                        weapon.Col.enabled = true;
                     }
                     return;
                 }
@@ -48,7 +47,7 @@ public class DealDamageCtrl : SaiMonoBehaviour
                 {
                     foreach (var weapon in this.listDealDamageMelee)
                     {
-                        weapon.Col.enabled = false;
+                        weapon.SetActiveDeal(false);
                     }
                     return;
                 }
@@ -60,11 +59,10 @@ public class DealDamageCtrl : SaiMonoBehaviour
         if (isEnable == 1)
         {
             this.dealDamageUnarmed.SetActiveDeal(true);
-            this.dealDamageUnarmed.Col.enabled = true;
         }
         else
         {
-            this.dealDamageUnarmed.Col.enabled = false;
+            this.dealDamageUnarmed.SetActiveDeal(false);
         }
     }
 }

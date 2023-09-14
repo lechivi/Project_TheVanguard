@@ -1,18 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TeleportZone : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Transform spawnPoint;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        
+        if (this.spawnPoint == null) return;
+
+        Character character = other.GetComponentInParent<Character>();
+        if (character != null)
+        {
+            character.gameObject.SetActive(false);
+            character.CharacterTransform.position = this.spawnPoint.position;
+            character.CharacterTransform.rotation = this.spawnPoint.rotation;
+            character.gameObject.SetActive(true);
+            return;
+        }
+
+        EnemyCtrl enemy = other.GetComponentInParent<EnemyCtrl>();
+        if (enemy != null)
+        {
+            enemy.gameObject.SetActive(true);
+            return;
+        }
+
+        other.gameObject.SetActive(false);
     }
 }

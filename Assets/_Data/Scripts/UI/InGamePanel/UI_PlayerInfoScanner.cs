@@ -48,6 +48,8 @@ public class UI_PlayerInfoScanner : BaseUIElement
             }
             else
             {
+                this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Unknow);
+
                 if (this.curScanObject != null)
                 {
                     this.timer += Time.fixedDeltaTime;
@@ -55,7 +57,7 @@ public class UI_PlayerInfoScanner : BaseUIElement
                     {
                         this.timer = 0;
                         this.Hide();
-                        this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Unknow);
+                        //this.alwaysOnUi.Crosshair.SetCrosshairTarget(FactionType.Unknow);
                     }
                 }
             }

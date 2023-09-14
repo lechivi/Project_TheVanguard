@@ -3,6 +3,8 @@
 public class Xerath_Alpha : SaiMonoBehaviour
 {
     [SerializeField] private Character_Xerath character_Xerath;
+    [SerializeField] private DealDamageBox fistL;
+    [SerializeField] private DealDamageBox fistR;
     [SerializeField] private Animator animator;
     [SerializeField] private float coolDownTime = 0.1f;
 
@@ -11,6 +13,11 @@ public class Xerath_Alpha : SaiMonoBehaviour
     private float lastClicked;
     private float lastComboEnd = 0;
     private string[] combos = new string[3];
+
+    private float level0 = 1;
+    private float level1 = 1.5f;
+    private float level2 = 2f;
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -19,14 +26,22 @@ public class Xerath_Alpha : SaiMonoBehaviour
 
         if (this.animator == null)
             this.animator = GetComponent<Animator>();
+
+        if (this.fistL == null)
+            this.fistL = transform.Find("Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_L").GetComponentInChildren<DealDamageBox>();
+
+        if (this.fistR == null)
+            this.fistR = transform.Find("Root/Hips/Spine_01/Spine_02/Spine_03/Clavicle_R").GetComponentInChildren<DealDamageBox>();
     }
 
-    protected override void Awake()
+    private void Start()
     {
-        base.Awake();
         this.combos[0] = "Unarmed01";
         this.combos[1] = "Unarmed02";
         this.combos[2] = "Unarmed03";
+
+        this.fistL.Damage = this.character_Xerath.AlphaFistDamage;
+        this.fistR.Damage = this.character_Xerath.AlphaFistDamage;
     }
 
     private void OnEnable()
@@ -35,7 +50,6 @@ public class Xerath_Alpha : SaiMonoBehaviour
     }
     private void Update()
     {
-
         this.ResetComboState();
     }
 
@@ -103,5 +117,49 @@ public class Xerath_Alpha : SaiMonoBehaviour
         this.currentComboIndex++;
         if (this.currentComboIndex >= this.combos.Length)
             this.currentComboIndex = 0;
+    }
+
+    public void SetLevelDamage(int level)   //Call in animation
+    {
+        if (level == 0) 
+        {
+            this.fistL.Damage = (int) (this.character_Xerath.AlphaFistDamage * this.level0);
+            this.fistR.Damage = (int) (this.character_Xerath.AlphaFistDamage * this.level0);
+        }
+        else if (level == 1)
+        {
+            this.fistL.Damage = (int)(this.character_Xerath.AlphaFistDamage * this.level1);
+            this.fistR.Damage = (int)(this.character_Xerath.AlphaFistDamage * this.level1);
+        }
+        else
+        {
+            this.fistL.Damage = (int)(this.character_Xerath.AlphaFistDamage * this.level2);
+            this.fistR.Damage = (int)(this.character_Xerath.AlphaFistDamage * this.level2);
+        }
+    }
+
+    public void EnableDealDamageCollider_XerathAlpha(int index) //Call in animation
+    {
+
+        if (index == 0)
+        {
+            this.fistL.SetActiveDeal(false);
+            this.fistR.SetActiveDeal(false);
+        }
+        else if (index == 1)
+        {
+            this.fistL.SetActiveDeal(true);
+            this.fistR.SetActiveDeal(false);
+        }   
+        else if (index == 2)
+        {
+            this.fistL.SetActiveDeal(false);
+            this.fistR.SetActiveDeal(true);
+        }
+        else
+        {
+            this.fistL.SetActiveDeal(true);
+            this.fistR.SetActiveDeal(true);
+        }
     }
 }

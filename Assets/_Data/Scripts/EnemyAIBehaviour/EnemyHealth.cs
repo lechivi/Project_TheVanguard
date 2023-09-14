@@ -35,6 +35,8 @@ public class EnemyHealth : EnemyAbstract, IHealth
 
     public void TakeDamage(int damage)
     {
+        if (this.isDeath) return;
+
         this.currentHealth -= damage;
         this.enemyCtrl.GraphicEffect.PlayHitEffect();
 
@@ -62,9 +64,7 @@ public class EnemyHealth : EnemyAbstract, IHealth
     public void Die()
     {
         this.isDeath = true;
-        this.enemyCtrl.EnemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Death);
-        this.enemyCtrl.EnemyRagdoll.EnableRagdoll();
-        this.enemyCtrl.DropWeapon();
+        this.enemyCtrl.SetDeath();
     }
 
     public void Die(Vector3 force, Vector3 hitPoint, Rigidbody hitRigidbody = null)
@@ -73,6 +73,6 @@ public class EnemyHealth : EnemyAbstract, IHealth
         if (hitRigidbody == null)
             hitRigidbody.AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
         else
-            this.enemyCtrl.EnemyRagdoll.ClosestRigidbody(hitPoint).AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
+            this.enemyCtrl.RagdollCtrl.ClosestRigidbody(hitPoint).AddForceAtPosition(force, hitPoint, ForceMode.Impulse);
     }
 }

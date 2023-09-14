@@ -32,7 +32,7 @@ public class Crosshair : BaseUIElement
                 this.image.color = allyColor; 
                 break;
             case FactionType.Voidspawn:
-                this.image.color = enemyColor; 
+                this.image.color = enemyColor;
                 break;
         }
     }

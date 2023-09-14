@@ -73,18 +73,28 @@ public class UI_ExchangePanel : BaseUIElement
             Debug.Log("Can't get Weapon");
             return;
         }
-        if (soldItemSlot.ItemData.ItemValue > PlayerCtrl.Instance.PlayerCoin.CurrentCoint)
+        if (soldItemSlot.ItemData.ItemValue > PlayerCtrl.Instance.PlayerCoin.CurrentCoin)
         {
             Debug.Log("Don't have enought currency");
+
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySe(AUDIO.SE_ERROR);
+            }
             return;
         }
         if (PlayerWeaponManager.Instance.AddWeapon(boughtWeapon))
         {
             Debug.Log("Player bought a weapon");
 
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySe(AUDIO.SE_MISC_COINS1);
+            }
+
             //Calculate player currency after buying
             PlayerCtrl.Instance.PlayerCoin.SubtractCoin(soldItemSlot.ItemData.ItemValue);
-            this.inventoryList.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoint);
+            this.inventoryList.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoin);
 
             //Remove the bought item from shop
             this.shopList.RemoveItemFromShop(soldItemSlot);
@@ -97,7 +107,20 @@ public class UI_ExchangePanel : BaseUIElement
     public void OnSellButtonClicked()
     {
         UI_Exc_ItemSlot soldItemSlot = this.itemInformation.SelectedItemSlot;
-        if (soldItemSlot == null) return;
+        if (soldItemSlot == null)
+        {
+            if (AudioManager.HasInstance)
+            {
+                AudioManager.Instance.PlaySe(AUDIO.SE_ERROR);
+            }
+
+            return;
+        }
+
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_MISC_COINS1);
+        }
 
         int index = this.inventoryList.CheckListContain(soldItemSlot);
         switch (index)
@@ -118,7 +141,7 @@ public class UI_ExchangePanel : BaseUIElement
         //Calculate player currency after buying
         PlayerCtrl.Instance.PlayerCoin.AddCoin(soldItemSlot.ItemData.ItemValue);
         //this.PlayerCurrency += soldItemSlot.ItemData.ItemValue;
-        this.inventoryList.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoint);
+        this.inventoryList.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoin);
 
         //Add the sold item to shop
         this.shopList.AddItemToShop(soldItemSlot.ItemData);

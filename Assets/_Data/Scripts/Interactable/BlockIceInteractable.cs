@@ -21,6 +21,9 @@ public class BlockIceInteractable : MonoBehaviour, IInteractable
 
     public void Interact(Transform interactorTransfrom)
     {
-        
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_ERROR);
+        }
     }
 }

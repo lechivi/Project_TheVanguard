@@ -113580,6 +113580,7 @@ MonoBehaviour:
   takeDamageCtrl: {fileID: 6983457825389108067}
   ragdollCtrl: {fileID: 2251565999811709328}
   leadTracker: {fileID: 1099063819478851000}
+  alliancePlayer_InfoScanner: {fileID: 1642360090357461136}
   TitanID: 0
   Gun_JuggernautModel: {fileID: 6983457824137039771}
   Juggernaut_Raycast: {fileID: 6983457825503497815}
@@ -113607,7 +113608,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.8
   m_Radius: 0.2
-  m_SlopeLimit: 45
+  m_SlopeLimit: 70
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
@@ -113697,7 +113698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listEnemy: []
   delay: 1
-  radius: 1
+  radius: 1.2
 --- !u!114 &1642360090357461136
 MonoBehaviour:
   m_ObjectHideFlags: 0

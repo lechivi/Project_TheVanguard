@@ -41,7 +41,7 @@ public class LeadTracker : MonoBehaviour
     {
         if (this.listEnemy.Count > 0)
         {
-            Invoke("MakeAgentsCircleTarget", this.delay);
+            Invoke("MakeAgentsNoiseCircleTarget", this.delay);
         } 
         if (this.listEnemy.Count == 0)
         {

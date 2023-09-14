@@ -26,6 +26,11 @@ public class DoorInteractable : MonoBehaviour, IInteractable
         this.animator.SetTrigger("Trigger");
         this.animator.SetBool("IsOpen", this.isOpen);
 
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_MISC_DOOR_OPENDOOR_18);
+        }
+
     }
 
     public string GetInteractableText()

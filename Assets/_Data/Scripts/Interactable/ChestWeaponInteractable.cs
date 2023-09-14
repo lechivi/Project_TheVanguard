@@ -22,6 +22,11 @@ public class ChestWeaponInteractable : MonoBehaviour, IInteractable
         this.isOpen = true;
         this.animator.SetTrigger("Trigger");
         this.animator.SetBool("IsOpen", true);
+
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_CHEST_OPEN_CHESTOPEN1);
+        }
     }
 
     public string GetInteractableText()

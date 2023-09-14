@@ -14220,7 +14220,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7267406251308716557
 Transform:
   m_ObjectHideFlags: 0
@@ -14321,7 +14321,7 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.8
   m_Radius: 0.3
-  m_SlopeLimit: 45
+  m_SlopeLimit: 70
   m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
@@ -14356,6 +14356,7 @@ MonoBehaviour:
   takeDamageCtrl: {fileID: 4893288047294616506}
   ragdollCtrl: {fileID: 7333294683970950306}
   leadTracker: {fileID: 503082905474918233}
+  alliancePlayer_InfoScanner: {fileID: 0}
   HammerImpactEffect: {fileID: 8269250626209620762}
   TransformEffect: {fileID: 7333294682526050833}
   Hammer: {fileID: 1281849237427647883}

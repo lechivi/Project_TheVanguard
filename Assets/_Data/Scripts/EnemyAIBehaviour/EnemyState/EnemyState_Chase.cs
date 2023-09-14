@@ -9,7 +9,7 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
     private float timer = 0;
     private float timePassed = 0;
 
-    private bool useMovementPrediction = false;
+    //private bool useMovementPrediction = false;
     //private float movementPredictionThreshold = 0;
     //private float movementPredictionTime = 1;
 
@@ -31,14 +31,10 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
 
     public void Update()
     {
-        Debug.Log("Update Chase");
-        if (this.enemyAiCtrl.EnemyCtrl.EnemyDebuffs.CurDebuff == DebuffsType.Electrocuted)
-            this.enemyAiCtrl.EnemySM.ChangeState(EnemyStateId.Idle);
-
+        if (!this.enemyAiCtrl.EnemyCtrl.NavMeshAgent.enabled) return;
         if (this.enemyAiCtrl.EnemyCtrl.CurInfoScanTarget == null) return;
 
         Vector3 followPos = this.enemyAiCtrl.EnemyCtrl.FollowPos;
-        Debug.Log("Start Chase");
         this.FollowTarget(followPos);
         this.AttackTarget(followPos);
         //if (this.enemyAiCtrl.EnemyCtrl.Target != null)
@@ -93,9 +89,10 @@ public class EnemyState_Chase : MonoBehaviour, IEnemyState
     private void AttackTarget(Vector3 followPos)
     {
         this.timePassed += Time.deltaTime;
-        if (this.timePassed >= this.attackCD)
+        if (this.enemyAiCtrl.EnemyCtrl.CurInfoScanTarget == null) return;
+        if (this.timePassed > this.attackCD)
         {
-            if (Vector3.Distance(followPos, this.enemyAiCtrl.EnemyCtrl.transform.position) 
+            if (Vector3.Distance(followPos, this.enemyAiCtrl.EnemyCtrl.transform.position)
                 <= this.enemyAiCtrl.EnemyCtrl.EnemyData.AttackRange)
             {
                 this.enemyAiCtrl.EnemyCtrl.Animator.SetInteger("RandomAttack", Random.Range(0, 3));

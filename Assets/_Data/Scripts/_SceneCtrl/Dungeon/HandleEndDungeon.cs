@@ -26,6 +26,12 @@ public class HandleEndDungeon : MonoBehaviour
 
     private IEnumerator ArrayAction()
     {
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlaySe(AUDIO.SE_WIN_NOTIFICATIONS_9);
+            AudioManager.Instance.PlayBgm(AUDIO.BGM_WIN_STEALTHY_NIGHT_SHADOW, 1.5f);
+        }
+
         yield return new WaitForSeconds(1f);
 
         //play sound

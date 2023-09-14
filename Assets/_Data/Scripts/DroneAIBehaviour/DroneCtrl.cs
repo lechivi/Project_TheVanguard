@@ -156,9 +156,10 @@ public class DroneCtrl : SaiMonoBehaviour
     public IEnumerator ShutdownDrone()
     {
         this.timeoutFx.Play();
+        //GetComponent<AllianceCompanion_InfoScanner>()?.enabled = false;
+        GetComponent<LeadTracker>()?.ClearList();
         yield return new WaitForSeconds(1.05f);
 
-        GetComponent<LeadTracker>().ClearList();
         gameObject.SetActive(false);
         this.droneAiCtrl.DroneSM.ChangeState(DroneStateId.Idle);
     }

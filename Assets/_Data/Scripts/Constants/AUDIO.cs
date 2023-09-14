@@ -2,9 +2,15 @@
 {
 	public const string BGM_BATTLE_AMAZEINGHAMSTER_BREAKBEAT_VERSION = "Bgm_Battle_aMAZEingHamster_Breakbeat_version";
 	public const string BGM_BATTLE_BASE_TILE_002_01_BLACKSPACE = "Bgm_Battle_Base_Tile_002_01_BlackSpace";
+	public const string BGM_BATTLE_DUNGEON_BOINC_BACK = "Bgm_Battle_Dungeon_Boinc_Back";
+	public const string BGM_BOSS_I_WILL_BEAT_YOU = "Bgm_Boss_I_Will_Beat_You";
+	public const string BGM_BOSS_I_WILL_BEAT_YOU_EXTENDED = "Bgm_Boss_I_Will_Beat_You_Extended";
 	public const string BGM_CHRSEL_FORESTINSTRUMENTALAMB_DAY = "Bgm_ChrSel_ForestInstrumentalAmb_Day";
+	public const string BGM_LOSE_AMAZEING_HAMSTER_PIANO_VERSION = "Bgm_Lose_aMAZEing_Hamster_Piano_Version";
 	public const string BGM_MAINMENU_ZANFONAOFDOOM = "Bgm_MainMenu_ZanfonaOfDoom";
+	public const string BGM_VILLAGE_COBBLESTONE_VILLAGE = "Bgm_Village_Cobblestone_Village";
 	public const string BGM_VILLAGE_TAVERN_LAROULETTE = "Bgm_Village_Tavern_LaRoulette";
+	public const string BGM_WIN_STEALTHY_NIGHT_SHADOW = "Bgm_Win_Stealthy_Night_Shadow";
 	
 	public const string SE_BTN_BOOK_00_PAGE1 = "Se_Btn_Book_00_Page1";
 	public const string SE_BTN_BOOK_01_PAGE_TURN_14 = "Se_Btn_Book_01_Page_Turn_14";
@@ -17,8 +23,19 @@
 	public const string SE_CHR_IRONSTONE_IMPACT = "Se_Chr_Ironstone_Impact";
 	public const string SE_CHR_IRONSTONE_SKILL_DARKACTIVATIONDISTORTED = "Se_Chr_Ironstone_Skill_DarkActivationDistorted";
 	public const string SE_CHR_SERA_SKILL_LIGHTNING_SPELL_05 = "Se_Chr_Sera_Skill_Lightning_Spell_05";
+	public const string SE_CHR_SERA_SKILL_LIGHTNING_SPELL_08 = "Se_Chr_Sera_Skill_Lightning_Spell_08";
 	public const string SE_CHR_XERATH_SKILL_RETRO_STINGER_10 = "Se_Chr_Xerath_Skill_Retro_Stinger_10";
+	public const string SE_DEFROST_ICE_BUFF_05 = "Se_Defrost_Ice_Buff_05";
+	public const string SE_DOORSTONE_DOORSTONESMALL = "Se_DoorStone_DoorStoneSmall";
+	public const string SE_ERROR = "Se_Error";
 	public const string SE_FIRE_LASER_JUGGERNAUT = "Se_Fire_Laser_Juggernaut";
+	public const string SE_GOBLIN_DETECT_JAYHI = "Se_Goblin_Detect_Jayhi";
+	public const string SE_GOBLIN_DETECT_JGAAAH = "Se_Goblin_Detect_Jgaaah";
+	public const string SE_GOBLIN_DETECT_NAHHGG = "Se_Goblin_Detect_Nahhgg";
+	public const string SE_GOBLIN_DETECT_NIEAAGGG = "Se_Goblin_Detect_Nieaaggg";
+	public const string SE_GOBLIN_DIE_DIE01 = "Se_Goblin_Die_Die01";
+	public const string SE_GOBLIN_DIE_DIE03 = "Se_Goblin_Die_Die03";
+	public const string SE_GOBLIN_DIE_DIE04 = "Se_Goblin_Die_Die04";
 	public const string SE_INV_CLOSE_BAGCLOSE = "Se_Inv_Close_BagClose";
 	public const string SE_INV_OPN_BAGOPEN = "Se_Inv_Opn_BagOpen";
 	public const string SE_MISC_CAMPFIRE_1 = "Se_Misc_Campfire_1";
@@ -27,11 +44,16 @@
 	public const string SE_MISC_ROBOT_FIRE_CAST_LOOP_02 = "Se_Misc_Robot_Fire_Cast_Loop_02";
 	public const string SE_MISC_SERA_LIGHTNING_CAST_LOOP_01 = "Se_Misc_Sera_Lightning_Cast_Loop_01";
 	public const string SE_MISC_TELEPORT_TELEPORTBEAMSRISE = "Se_Misc_Teleport_TeleportBeamsRise";
+	public const string SE_ORDE_DETECT_ANGRY001 = "Se_Orde_Detect_Angry001";
+	public const string SE_ORDE_DETECT_LETSGOWAR = "Se_Orde_Detect_LetsgoWar";
+	public const string SE_ORDE_DIE_HIT007 = "Se_Orde_Die_Hit007";
+	public const string SE_ORDE_DIE_IMHURT001 = "Se_Orde_Die_Imhurt001";
 	public const string SE_PUNCH_WHOOSH_03 = "Se_Punch_Whoosh_03";
 	public const string SE_PUNCH_WHOOSH_04 = "Se_Punch_Whoosh_04";
 	public const string SE_PUNCH_WHOOSH_05 = "Se_Punch_Whoosh_05";
 	public const string SE_PUNCH_WHOOSH_06 = "Se_Punch_Whoosh_06";
 	public const string SE_SHOCKWAVE_EXPLOSION = "Se_ShockWave_Explosion";
+	public const string SE_TELEPORT_HEAL_05 = "Se_Teleport_Heal_05";
 	public const string SE_TRANSFORM = "Se_Transform";
 	public const string SE_WEA_DROP_METALITEMDROP = "Se_Wea_Drop_MetalItemDrop";
 	public const string SE_WEA_PICKUP_METALITEMPICKUP = "Se_Wea_Pickup_MetalItemPickUp";
@@ -60,6 +82,7 @@
 	public const string SE_WEARAN_SNIPER_RELOAD_RIFLE_A_RELOAD_01 = "Se_WeaRan_Sniper_Reload_rifle_A_reload_01";
 	public const string SE_WEARAN_SNIPER_SHOT_RIFLE_A_SHTL_SINGLE_01 = "Se_WeaRan_Sniper_Shot_rifle_A_shTL_single_01";
 	public const string SE_WEAUNA_SYNTH_WHOOSH_2 = "Se_WeaUna_Synth_Whoosh_2";
+	public const string SE_WIN_NOTIFICATIONS_9 = "Se_Win_Notifications_9";
 	
 	public const string VC_FEMALE_BYE_APP_ANNOUNCER_FEMALE_BYE_1 = "Vc_Female_Bye_App_Announcer_Female_Bye_1";
 	public const string VC_FEMALE_BYEBYE_APP_ANNOUNCER_FEMALE_BYE_BYE = "Vc_Female_ByeBye_App_Announcer_Female_Bye_Bye";

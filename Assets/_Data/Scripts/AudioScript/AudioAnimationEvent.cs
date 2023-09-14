@@ -51,7 +51,7 @@ public class AudioAnimationEvent : MonoBehaviour
     {
         if (AudioManager.HasInstance)
         {
-            AudioManager.Instance.PlaySe(AUDIO.SE_CHR_SERA_SKILL_LIGHTNING_SPELL_05);
+            AudioManager.Instance.PlaySe(AUDIO.SE_CHR_SERA_SKILL_LIGHTNING_SPELL_08);
         }
     }
 

@@ -4,6 +4,7 @@ using UnityEngine;
 public class Character_Xerath : Character
 {
     [Header("XERATH")]
+    [SerializeField] private int aplhaFistDamage = 7;
     [SerializeField] private Xerath_Beta xerath_Beta;
     [SerializeField] private Xerath_Alpha xerath_Alpha;
 
@@ -43,6 +44,8 @@ public class Character_Xerath : Character
     [SerializeField] private ParticleSystem timeoutFX;
 
     [SerializeField] private bool isBeta = true;
+
+    public int AlphaFistDamage { get => this.aplhaFistDamage; }
 
     protected override void LoadComponent()
     {
@@ -249,36 +252,36 @@ public class Character_Xerath : Character
     }  
     protected override void LoadLeadTracker()
     {
-        if (this.isBeta && this.leadTracker != this.a_LeadTracker)
-        {
-            this.leadTracker = this.a_LeadTracker;
-        }
-        else if (!this.isBeta && this.leadTracker != this.b_LeadTracker)
+        if (this.isBeta && this.leadTracker != this.b_LeadTracker)
         {
             this.leadTracker = this.b_LeadTracker;
+        }
+        else if (!this.isBeta && this.leadTracker != this.a_LeadTracker)
+        {
+            this.leadTracker = this.a_LeadTracker;
         }
     }
     protected override void LoadCenterPoint()
     {
-        if (this.isBeta && this.centerPoint != this.a_CenterPoint)
-        {
-            this.centerPoint = this.a_CenterPoint;
-        }
-        else if (!this.isBeta && this.centerPoint != this.b_CenterPoint)
+        if (this.isBeta && this.centerPoint != this.b_CenterPoint)
         {
             this.centerPoint = this.b_CenterPoint;
+        }
+        else if (!this.isBeta && this.centerPoint != this.a_CenterPoint)
+        {
+            this.centerPoint = this.a_CenterPoint;
         }
     }
 
     protected override void LoadAlliancePlayer_InfoScanner()
     {
-        if (this.isBeta && this.alliancePlayer_InfoScanner != this.a_AlliancePlayerInfoScanner)
-        {
-            this.alliancePlayer_InfoScanner = this.a_AlliancePlayerInfoScanner;
-        }
-        else if (!this.isBeta && this.alliancePlayer_InfoScanner != this.b_AlliancePlayerInfoScanner)
+        if (this.isBeta && this.alliancePlayer_InfoScanner != this.b_AlliancePlayerInfoScanner)
         {
             this.alliancePlayer_InfoScanner = this.b_AlliancePlayerInfoScanner;
+        }
+        else if (!this.isBeta && this.alliancePlayer_InfoScanner != this.a_AlliancePlayerInfoScanner)
+        {
+            this.alliancePlayer_InfoScanner = this.a_AlliancePlayerInfoScanner;
         }
     }
 
@@ -417,6 +420,15 @@ public class Character_Xerath : Character
         this.LoadRagdollCtrl();
         this.LoadLeadTracker();
         this.LoadCenterPoint();
+
+        if (PlayerCtrl.HasInstance)
+        {
+            CutoutObject cutoutObject = PlayerCtrl.Instance.PlayerCamera.MainCamera.GetComponent<CutoutObject>();
+            if (cutoutObject != null)
+            {
+                cutoutObject.TargetObject = this.centerPoint;
+            }
+        }
     }
 
     private void ChangerCameraOffset(bool isBeta)

@@ -71,7 +71,7 @@ public class DungeonSceneCtrl : SaiMonoBehaviour
     {
         if (AudioManager.HasInstance)
         {
-            AudioManager.Instance.PlayBgm(AUDIO.BGM_BATTLE_BASE_TILE_002_01_BLACKSPACE);
+            AudioManager.Instance.PlayBgm(AUDIO.BGM_BATTLE_DUNGEON_BOINC_BACK);
         }
 
         if (InputManager.HasInstance)
@@ -101,6 +101,7 @@ public class DungeonSceneCtrl : SaiMonoBehaviour
                 if (chr.CharacterData == GameManager.Instance.CharacterData)
                 {
                     Character newCharacter = Instantiate(chr);
+                    this.chr = newCharacter;
                     newCharacter.name = newCharacter.CharacterData.CharacterName;
 
                     this.cutoutObject.TargetObject = newCharacter.GetComponentInChildren<AlliancePlayer_InfoScanner>().GetCenterPoint();
@@ -117,6 +118,20 @@ public class DungeonSceneCtrl : SaiMonoBehaviour
         if (UIManager.HasInstance)
         {
             UIManager.Instance.Enable_UI_InGamePanel();
+        }
+    }
+
+    private Character chr;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            chr.gameObject.SetActive(false);
+            chr.CharacterTransform.position = this.startTransform.position;
+            chr.CharacterTransform.rotation = this.startTransform.rotation;
+            chr.gameObject.SetActive(true);
+
         }
     }
 }

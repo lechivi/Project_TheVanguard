@@ -68,7 +68,7 @@ public class UI_Exc_InventoryList : SaiMonoBehaviour
         {
             slot.Hide();
         }
-        this.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoint);
+        this.SetCurrencyText(PlayerCtrl.Instance.PlayerCoin.CurrentCoin);
         List<Weapon> equippedWeapons = PlayerWeaponManager.Instance.EquippedWeapons.GetList();
         this.equippedListPanel.gameObject.SetActive(!PlayerWeaponManager.Instance.EquippedWeapons.IsAllNull());
         for (int i = 0; i < equippedWeapons.Count; i++)

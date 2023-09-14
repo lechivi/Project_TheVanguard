@@ -18,6 +18,8 @@ public class EnemyDebuffs : EnemyAbstract
         //this.TimeLow = 0f;
         //this.TimeStun = 0f;
         //this.TimeElectrocuted = 0f;
+        if (this.enemyCtrl.NavMeshAgent.enabled == false)
+            this.enemyCtrl.NavMeshAgent.enabled = true;
     }
 
     public void Slow(float timeDebuff)
@@ -38,6 +40,8 @@ public class EnemyDebuffs : EnemyAbstract
         //this.TimeElectrocuted = timeDebuff;
 
         this.enemyCtrl.Animator.SetTrigger("Electrocuted");
+        if (this.enemyCtrl.EnemyData.EnemyType != EnemyType.Boss)
+            this.enemyCtrl.NavMeshAgent.enabled = false;
 
         CancelInvoke("ResetDebuffs");
         Invoke("ResetDebuffs", timeDebuff);

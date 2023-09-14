@@ -64,6 +64,11 @@ public class PlayerHealth : PlayerAbstract, IHealth
         this.playerCtrl.PlayerCamera.TPSCamera.LookAt = null;
         this.playerCtrl.PlayerCamera.TPSCamera.GetComponent<CinemachineInputProvider>().enabled = false;
 
+        if (AudioManager.HasInstance)
+        {
+            AudioManager.Instance.PlayBgm(AUDIO.BGM_LOSE_AMAZEING_HAMSTER_PIANO_VERSION, 1.5f);
+        }
+
         Invoke("ShowLosePanel", 2f);
     }
 

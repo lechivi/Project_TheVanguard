@@ -4,25 +4,31 @@ using UnityEngine;
 public class UI_InventoryPanel : BaseUIElement
 {
     [Header("INVENTORY PANEL")]
-    [SerializeField] private UiAppear uiAppear;
+    [SerializeField] private UiAppear uiAppearContainer;
+    [SerializeField] private UiAppear uiAppearCoin;
     [SerializeField] private UI_Inv_EquippedList equippedList;
     [SerializeField] private List<UI_DraggableItem> draggablesEquippedList = new List<UI_DraggableItem>();
     [SerializeField] private List<UI_DraggableItem> draggablesBackpackList = new List<UI_DraggableItem>();
     [SerializeField] private UI_Inv_WeaponInfo weaponInfo;
+    [SerializeField] private UI_Coin coin;
 
     public UI_WeaponSlot SelectedWeaponSlot;
 
-    public UiAppear UiAppear { get => this.uiAppear; }
+    //public UiAppear UiAppearContainer { get => this.uiAppearContainer; }
     public UI_Inv_EquippedList EquippedList { get => this.equippedList; }
     public List<UI_DraggableItem> DraggablesEquippedList { get => this.draggablesEquippedList; }
     public List<UI_DraggableItem> DraggablesBackpackList { get => this.draggablesBackpackList; }
     public UI_Inv_WeaponInfo WeaponInfo { get => this.weaponInfo; }
+    public UI_Coin Coin { get => this.coin; }
 
     protected override void LoadComponent()
     {
         base.LoadComponent();
-        if (this.uiAppear == null)
-            this.uiAppear = GetComponentInChildren<UiAppear>();
+        if (this.uiAppearContainer == null)
+            this.uiAppearContainer = transform.Find("Container").GetComponent<UiAppear>();
+
+        if (this.uiAppearCoin == null)
+            this.uiAppearCoin = transform.Find("UI_Coin").GetComponent<UiAppear>();
 
         if (this.equippedList == null)
             this.equippedList = GetComponentInChildren<UI_Inv_EquippedList>();
@@ -41,6 +47,23 @@ public class UI_InventoryPanel : BaseUIElement
 
         if (this.weaponInfo == null)
             this.weaponInfo = GetComponentInChildren<UI_Inv_WeaponInfo>();
+
+        if (this.coin == null)
+            this.coin = GetComponentInChildren<UI_Coin>();
+    }
+
+    public override void Show(object data)
+    {
+        base.Show(data);
+
+        this.weaponInfo.Hide();
+        this.coin.Show(null);
+    }
+
+    public void ApearUI()
+    {
+        this.uiAppearContainer.Appear();
+        this.uiAppearCoin.Appear();
     }
 
     public void ResetSlot()

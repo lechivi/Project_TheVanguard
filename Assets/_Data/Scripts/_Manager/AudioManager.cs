@@ -103,6 +103,14 @@ public class AudioManager : BaseManager<AudioManager>
         }
     }
 
+    public void PauseBgm()
+    {
+        if (this.attachBgmSource.clip != null)
+        {
+            this.attachBgmSource.Stop();
+        }
+    }
+
     public void PlaySe(AudioClip audio)
     {
         this.attachSeSource.PlayOneShot(audio);
