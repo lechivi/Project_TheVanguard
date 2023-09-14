@@ -2284,7 +2284,7 @@ MonoBehaviour:
   scanRange: 3
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 49152
+    m_Bits: 53248
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -22875,7 +22875,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300010, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
   m_Bones:

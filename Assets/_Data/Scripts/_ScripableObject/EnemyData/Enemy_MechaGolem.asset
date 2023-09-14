@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Enemy_MechaGolem
   m_EditorClassIdentifier: 
   EnemyName: Mecha Golem
+  EnemyType: 3
   Health: 300
   Damage: 10
   Speed: 5

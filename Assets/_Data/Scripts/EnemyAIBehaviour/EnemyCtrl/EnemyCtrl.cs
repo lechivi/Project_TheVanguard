@@ -120,6 +120,9 @@ public class EnemyCtrl : SaiMonoBehaviour
 
     protected virtual void Update()
     {
+        if (this.enemyHealth.IsDeath())
+            return;
+
         IInfoScanner infoScanner = this.detectTarget.FindClosest(FactionType.Alliance);
         if (infoScanner != null)
         {

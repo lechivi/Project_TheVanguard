@@ -1,6 +1,4 @@
-using Cinemachine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using Cinemachine;
 using UnityEngine;
 
 public class PlayerHealth : PlayerAbstract, IHealth
@@ -11,6 +9,9 @@ public class PlayerHealth : PlayerAbstract, IHealth
     private int agility;
     private bool isDeath;
     [SerializeField] private int x = 5;
+
+    public delegate void TakeDamageEvent();
+    public event TakeDamageEvent OnTakeDamage;
 
     private void Start()
     {
@@ -40,20 +41,27 @@ public class PlayerHealth : PlayerAbstract, IHealth
 
     public void TakeDamage(int damage)
     {
+        if (this.isDeath) return;
+
         Debug.Log("PLAYER -" + damage);
         float damageTaken = (float)damage * (10f / (10f + this.defence + this.agility / 2f));
-
         this.currentHealth -= Mathf.RoundToInt(damageTaken);
+
+        if (OnTakeDamage != null)
+        {
+            OnTakeDamage();
+        }
+
         if (this.currentHealth <= 0)
         {
             this.currentHealth = 0;
-            this.isDeath = true;
             this.Die();
         }
     }
 
     public void Die()
     {
+        this.isDeath = true;
         this.playerCtrl.Character.RagdollCtrl.EnableRagdoll();
         this.playerCtrl.PlayerInput.enabled = false;
         //this.playerCtrl.PlayerCamera.FPSCamera.Follow =this.playerCtrl.Character.CenterPoint;

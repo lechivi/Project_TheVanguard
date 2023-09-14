@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Enemy_Nomad
   m_EditorClassIdentifier: 
   EnemyName: Nomad
+  EnemyType: 1
   Health: 12
   Damage: 5
   Speed: 4

@@ -108,7 +108,8 @@ public class Character_Sera : Character
         for (int i = 0; i < listEnemy.Count; i++)
         {
             ParticleSystem fx = this.poolingObject.GetObject(listEnemy[i].CenterPoint.position, listEnemy[i].CenterPoint.rotation).GetComponent<ParticleSystem>();
-            listEnemy[i].EnemyDebuffs.Electrocuted(this.characterData.ExecutionSkillTime - this.timer1);
+            float timeMinus = (float) i / (listEnemy.Count);
+            listEnemy[i].EnemyDebuffs.Electrocuted(this.characterData.ExecutionSkillTime - this.timer1 - timeMinus);
             fx.Play();
             listFx.Add(fx);
         }

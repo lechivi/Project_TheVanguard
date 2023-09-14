@@ -5196,6 +5196,7 @@ MonoBehaviour:
   takeDamageCtrl: {fileID: 8003384442071366115}
   ragdollCtrl: {fileID: 2268799319078524478}
   leadTracker: {fileID: 5592838943170179507}
+  alliancePlayer_InfoScanner: {fileID: 0}
   poolingObject: {fileID: 5068156651995501668}
   droneFollowPoint: {fileID: 6745199157348430962}
   summonFX: {fileID: 135221824853538481}
@@ -5315,7 +5316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   listEnemy: []
   delay: 1
-  radius: 2
+  radius: 1
 --- !u!1 &6538522726875354281
 GameObject:
   m_ObjectHideFlags: 0
@@ -8991,7 +8992,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300014, guid: ffdfcb810f2918b4f8fe9f917f07bc78, type: 3}
   m_Bones:

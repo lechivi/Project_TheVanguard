@@ -6,6 +6,7 @@ public class InGame_AlwaysOnUI : BaseUIElement
 {
     [Header("ALWAYS ON UI")]
     [SerializeField] private Scope scope;
+    [SerializeField] private BloodOverlap bloodOverlay;
     [SerializeField] private Crosshair crosshair;
     [SerializeField] private UI_PlayerInteract ui_PlayerInteract;
     [SerializeField] private UI_PlayerInfoScanner ui_PlayerInfoScanner;
@@ -15,6 +16,7 @@ public class InGame_AlwaysOnUI : BaseUIElement
     [SerializeField] private UI_ChargeSlider ui_ChargeSlider;
 
     public Scope Scope { get => this.scope; }
+    public BloodOverlap BloodOverlap { get => this.bloodOverlay; }
     public Crosshair Crosshair { get => this.crosshair; }
     public UI_PlayerInteract UI_PlayerInteract { get => this.ui_PlayerInteract; }
     public UI_PlayerInfoScanner UI_PlayerInfoScanner { get => this.ui_PlayerInfoScanner; }
@@ -27,6 +29,9 @@ public class InGame_AlwaysOnUI : BaseUIElement
         base.LoadComponent();
         if (this.scope == null)
             this.scope = GetComponentInChildren<Scope>();
+
+        if (this.bloodOverlay == null)
+            this.bloodOverlay = GetComponentInChildren<BloodOverlap>();
 
         if (this.crosshair == null)
             this.crosshair = GetComponentInChildren<Crosshair>();

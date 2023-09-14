@@ -174,7 +174,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             this.equippedWeapons.Add(weapon, index);
 
         DealDamageBox dealDamageBox = weapon.GetComponent<DealDamageBox>();
-        if (dealDamageBox != null)
+        if (dealDamageBox != null && weapon.WeaponData.WeaponType == WeaponType.Melee)
         {
             dealDamageBox.Damage = this.CalculateMeleeDamage(weapon);
             this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(dealDamageBox);
@@ -209,7 +209,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             this.backpackWeapons.Add(weapon, index);
 
         DealDamageBox dealDamageBox = weapon.GetComponent<DealDamageBox>();
-        if (dealDamageBox != null)
+        if (dealDamageBox != null && weapon.WeaponData.WeaponType == WeaponType.Melee)
         {
             dealDamageBox.Damage = this.CalculateMeleeDamage(weapon);
             this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(dealDamageBox);
