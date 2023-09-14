@@ -17,13 +17,13 @@ MonoBehaviour:
   ItemType: 1
   Icon: {fileID: 5792169234966480384, guid: b0b952c4840fddb44924f07f83623e02, type: 3}
   Model: {fileID: 8439997101661726800, guid: 84b131b45a2149a42a04dd748b368d45, type: 3}
-  BodyType: 1
-  BigsizePosHolster: {x: -0.051, y: 0.379, z: 0.24}
-  BigsizeRosHolster: {x: 14.559, y: 26.585, z: -114.038}
-  ShortPosHolster: {x: -0.119, y: 0.331, z: 0.308}
-  ShortRosHolster: {x: 6.56, y: 43.593, z: -107.512}
-  NormalPosHolster: {x: -0.1, y: 0.172, z: 0.151}
-  NormalRosHolster: {x: 0.123, y: 24.787, z: -99.847}
+  BodyType: 2
+  BigsizePosHolster: {x: -0.2, y: 0.14, z: 0.04}
+  BigsizeRosHolster: {x: 65.315, y: -78.051, z: -263.413}
+  ShortPosHolster: {x: -0.32, y: 0.202, z: 0.078}
+  ShortRosHolster: {x: 114.235, y: -270.244, z: -433.347}
+  NormalPosHolster: {x: -0.049, y: 0.043, z: 0.174}
+  NormalRosHolster: {x: 4.046, y: 80.194, z: -184.467}
   BigsizePosEquip: {x: 0.277, y: -0.016, z: -0.003}
   BigsizeRosEquip: {x: -0.027, y: 40.955, z: -101.881}
   ShortPosEquip: {x: 0.223, y: -0.123, z: 0.007}
