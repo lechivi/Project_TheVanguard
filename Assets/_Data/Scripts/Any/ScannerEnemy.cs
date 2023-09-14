@@ -3,11 +3,12 @@ using UnityEngine;
 
 public class ScannerEnemy : MonoBehaviour
 {
-    [SerializeField] private int maxScanTimes = 3;
-    [SerializeField] private float scanRange = 3f;
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private List<EnemyCtrl> enemies = new List<EnemyCtrl>();
+
+    private int maxScanTimes = 3;
+    private float scanRange = 5f;
 
     public int MaxSearchTimes { get => this.maxScanTimes; set => this.maxScanTimes = value; }
     public float SearchRadius { get => this.scanRange; set => this.scanRange = value; }

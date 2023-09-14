@@ -9,7 +9,7 @@ public class Character_Sera : Character
     [SerializeField] private float dealySkillDealDamage = 1;
     [SerializeField] private int maxScanTimes = 3;
     [SerializeField] private float timer1 = 0.1f;
-    [SerializeField] private float scanRange = 3f;
+    [SerializeField] private float scanRange = 5f;
     [SerializeField] private PoolingObject poolingObject;
     [SerializeField] private ParticleSystem lightningStrikeFx;
     [SerializeField] private ScannerEnemy scannerEnemy;

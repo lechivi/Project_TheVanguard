@@ -42,7 +42,7 @@ public class SwitchCamera : SaiMonoBehaviour
 
     public virtual void SwitchPriority(int index)
     {
-        Debug.Log(index);
+        //Debug.Log(index);
         this.currentIndex = index;
 
         if (this.vcamMain == null || this.listVcam == null) return;

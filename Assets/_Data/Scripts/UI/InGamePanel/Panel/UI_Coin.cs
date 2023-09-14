@@ -20,7 +20,6 @@ public class UI_Coin : BaseUIElement
 
         if (PlayerCtrl.HasInstance)
         {
-            Debug.Log("found coin");
             this.coinText.SetText(PlayerCtrl.Instance.PlayerCoin.CurrentCoin.ToString());
         }
     }

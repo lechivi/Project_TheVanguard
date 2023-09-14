@@ -251,11 +251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e692347e8671ed44a4a971ad3a0f189, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxScanTimes: 3
-  scanRange: 3
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 2048
+    m_Bits: 53248
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -24975,9 +24973,12 @@ MonoBehaviour:
   takeDamageCtrl: {fileID: 3633251867425880562}
   ragdollCtrl: {fileID: 7217169664565763557}
   leadTracker: {fileID: 6260841171428345092}
-  timer1: 0.1
+  alliancePlayer_InfoScanner: {fileID: 0}
+  skillDamage: 2
+  dealySkillDealDamage: 1
   maxScanTimes: 3
-  scanRange: 3
+  timer1: 0.1
+  scanRange: 5
   poolingObject: {fileID: 8496909972856406430}
   lightningStrikeFx: {fileID: 1201649677161470963}
   scannerEnemy: {fileID: 1301388997677497012}
