@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: No05_Juggernaut
   m_EditorClassIdentifier: 
   CharacterName: Juggernaut
-  CharacterClass: 
+  CharacterClass: The Titan
   Species: 6
   BodyType: 2
   CharacterIcon: {fileID: 0}

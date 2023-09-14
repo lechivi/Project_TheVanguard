@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: No06_Ironstone
   m_EditorClassIdentifier: 
   CharacterName: 'Ironstone '
-  CharacterClass: 
+  CharacterClass: The Dwarf
   Species: 4
   BodyType: 1
   CharacterIcon: {fileID: 0}
