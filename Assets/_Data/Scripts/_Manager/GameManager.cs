@@ -167,7 +167,7 @@ public class GameManager : BaseManager<GameManager>
         //    }
         //}
         //if (character == null) return;
-
+        this.playerCtrl.gameObject.SetActive(false);
         this.playerCtrl.SetCharacter(character);
         character.CharacterRigAttach.SetRig();
         this.playerCtrl.gameObject.SetActive(true);

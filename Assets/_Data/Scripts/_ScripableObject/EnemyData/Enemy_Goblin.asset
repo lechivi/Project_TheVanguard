@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Goblin
   EnemyType: 1
-  Health: 10
+  Health: 70
   Damage: 5
   Speed: 5
   AttackRange: 1.5

@@ -53,6 +53,12 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         }
     }
 
+    private void OnDisable()
+    {
+        Debug.Log("PlayerCtrl Disable");
+        this.PlayerLocomotion.SeOnDisableLocomation();
+    }
+
     protected virtual void LoadPlayerManager()
     {
         if (this.PlayerManager == null)

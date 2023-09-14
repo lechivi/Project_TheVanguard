@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Enemy_GoblinShaman
   m_EditorClassIdentifier: 
   EnemyName: Goblin Shaman
-  Health: 13
+  EnemyType: 0
+  Health: 80
   Damage: 9
   Speed: 5
   AttackRange: 2
+  DetectionRange: 10

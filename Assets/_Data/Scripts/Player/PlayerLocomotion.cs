@@ -1,7 +1,6 @@
 ﻿
 using System.Collections.Generic;
 using UnityEngine;
-using UnityStandardAssets.Characters.ThirdPerson.PunDemos;
 
 public class PlayerLocomotion : PlayerAbstract
 {
@@ -36,7 +35,7 @@ public class PlayerLocomotion : PlayerAbstract
         get
         {
             Vector3 average = Vector3.zero;
-            foreach(Vector3 velocity in this.historicalVelocities)
+            foreach (Vector3 velocity in this.historicalVelocities)
             {
                 average += velocity;
             }
@@ -59,16 +58,22 @@ public class PlayerLocomotion : PlayerAbstract
 
     private void Start()
     {
-        if(this.playerCtrl.Character)
+        if (this.playerCtrl.Character)
         {
             this.HandleSpeed();
             this.AirControl();
         }
-        this.check = true;
     }
 
-    private void OnDisable()
+    public void SeOnDisableLocomation()
     {
+        this.check = true;
+        //if (this.playerCtrl.Character.EventAnimator)
+        //{
+        //    Debug.Log("Locomotion_disable");
+        //    playerCtrl.Character.EventAnimator.OnAnimatorMoveEvent -= HandleAnimatorMoveEvent;
+        //}
+
         this.ResetLocomotion();
     }
 
@@ -111,20 +116,33 @@ public class PlayerLocomotion : PlayerAbstract
 
     public void SetOnEventAnimator()
     {
+        //Debug.Log("SetOnEventAnimator");
+        //Debug.Log("check: " + this.check);
         if (this.playerCtrl.Character.EventAnimator && this.check == true)
         {
             this.check = false;
-            playerCtrl.Character.EventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+            Character chr = this.playerCtrl.Character;
+            if (chr is Character_Xerath)
+            {
+                Debug.Log("EVENT");
+                Character_Xerath xerath = chr as Character_Xerath;
+                xerath.B_OnEventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+                xerath.A_OnEventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+            }
+            else
+            {
+                chr.EventAnimator.OnAnimatorMoveEvent += HandleAnimatorMoveEvent;
+            }
         }
     }
 
-    public void SetSpeed()
-    {
-        if (playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring)
-        {
-            speed /= speedDecrease;
-        }
-    }
+    //public void SetSpeed()
+    //{
+    //    if (playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring)
+    //    {
+    //        speed /= speedDecrease;
+    //    }
+    //}
     private void Handle1DMode()
     {
         this.playerCtrl.Animator.SetFloat("TypeMove", this.Is1D ? 0 : 1);
@@ -150,10 +168,10 @@ public class PlayerLocomotion : PlayerAbstract
 
     public void SetIsSprinting(bool SprintingInput)
     {
-        bool canSprint = (playerCtrl.PlayerInput.MovementInput != Vector2.zero) && 
-            (!playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring) && (!playerCtrl.PlayerAim.IsAim) && 
+        bool canSprint = (playerCtrl.PlayerInput.MovementInput != Vector2.zero) &&
+            (!playerCtrl.PlayerWeapon.PlayerWeaponActive.IsFiring) && (!playerCtrl.PlayerAim.IsAim) &&
             (!playerCtrl.PlayerWeapon.PlayerWeaponReload.IsReload);
-        if (canSprint && SprintingInput )
+        if (canSprint && SprintingInput)
         {
             this.IsSprinting = true;
         }
@@ -197,7 +215,7 @@ public class PlayerLocomotion : PlayerAbstract
         else
         {
             float yawCamera = this.playerCtrl.PlayerCamera.MainCamera.transform.eulerAngles.y;
-            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation, 
+            this.playerCtrl.PlayerTransform.rotation = Quaternion.Slerp(this.playerCtrl.PlayerTransform.rotation,
                 Quaternion.Euler(0, yawCamera, 0), rotationSpeedTPS * Time.fixedDeltaTime);
         }
 
@@ -223,9 +241,9 @@ public class PlayerLocomotion : PlayerAbstract
 
     public Vector3 CalculateAircontrol()
     {
-        if(IsSprinting)
+        if (IsSprinting)
         {
-           return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 65);
+            return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 65);
         }
         return ((this.playerCtrl.PlayerTransform.forward * playerCtrl.PlayerInput.MovementInput.y) + (this.playerCtrl.PlayerTransform.right * playerCtrl.PlayerInput.MovementInput.x)) * (airControl / 90);
     }

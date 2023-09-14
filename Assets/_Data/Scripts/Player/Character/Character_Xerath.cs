@@ -46,6 +46,8 @@ public class Character_Xerath : Character
     [SerializeField] private bool isBeta = true;
 
     public int AlphaFistDamage { get => this.aplhaFistDamage; }
+    public OnEventAnimator B_OnEventAnimator { get => this.b_OnEventAnimator; }
+    public OnEventAnimator A_OnEventAnimator { get => this.a_OnEventAnimator; }
 
     protected override void LoadComponent()
     {
@@ -285,8 +287,10 @@ public class Character_Xerath : Character
         }
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         if (PlayerCtrl.HasInstance)
         {
             this.b_CameraOffset = PlayerCtrl.Instance.PlayerCamera.TPSCamera.GetComponent<CinemachineCameraOffset>().m_Offset;
@@ -420,6 +424,7 @@ public class Character_Xerath : Character
         this.LoadRagdollCtrl();
         this.LoadLeadTracker();
         this.LoadCenterPoint();
+        this.LoadAlliancePlayer_InfoScanner();
 
         if (PlayerCtrl.HasInstance)
         {

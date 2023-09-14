@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Nomad
   EnemyType: 1
-  Health: 12
+  Health: 100
   Damage: 5
   Speed: 4
   AttackRange: 1.5
