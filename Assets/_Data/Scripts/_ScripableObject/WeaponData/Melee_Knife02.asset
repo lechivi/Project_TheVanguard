@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Knife 2
   ItemValue: 10
-  ItemType: 0
+  ItemType: 1
   Icon: {fileID: 7707642243962312383, guid: 305f8edb78591004f85eaa020240501e, type: 3}
   Model: {fileID: 8219807986706157517, guid: 88624f460d964654984081cc040d19dd, type: 3}
   BodyType: 0

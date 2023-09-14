@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Butcher
   ItemValue: 80
-  ItemType: 0
+  ItemType: 1
   Icon: {fileID: 3390588199410819549, guid: 3da8a52f8a5e6b24983dd40f6b4fe3de, type: 3}
   Model: {fileID: 5371630196229813801, guid: e9422c7bc2511a744971300c8890ff6c, type: 3}
   BodyType: 0

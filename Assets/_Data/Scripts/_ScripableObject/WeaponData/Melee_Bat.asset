@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemName: Bat
   ItemValue: 20
-  ItemType: 0
+  ItemType: 1
   Icon: {fileID: 1949832082346366202, guid: 65c350b15cc960047b10ee2510a29efe, type: 3}
   Model: {fileID: 5551165291098977645, guid: 079aed8600f50f14cbb99dc5ad3bce30, type: 3}
   BodyType: 0
