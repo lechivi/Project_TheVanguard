@@ -7,7 +7,6 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
 
     public bool IsFiring = false;
     public bool IscanFire;
-    private float timedelta = 0;
     public Transform CrosshairTarget { get => this.crosshairTarget; set => this.crosshairTarget = value; }
 
     public void HandleUpdateFiring()
@@ -22,7 +21,7 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
         }
         if (IscanFire)
         {
-            if (this.PlayerWeapon.PlayerCtrl.PlayerInput.Mouse0_ButtonDown && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle 
+            if (Input.GetMouseButtonDown(0) && weaponRaycast.Weapon.WeaponData.WeaponType != WeaponType.AssaultRifle 
                 && weaponRaycast.Weapon.WeaponData.ItemName != "Deliverer")
             {
                 PlayerWeapon.PlayerCtrl.PlayerLocomotion.IsWalking = true;
@@ -50,21 +49,21 @@ public class PlayerWeaponActive : PlayerWeaponAbstract
 
     }
 
-    public void DelayPerShot(float timedelay)
+   /* public void DelayPerShot(float timedelay)
     {
         timedelta += Time.deltaTime;
         if (timedelta < timedelay) return;
         timedelta = 0;
         SetisDelay(false);
-    }
+    }*/
 
-    public void DelayReloadPerShot()
+   /* public void DelayReloadPerShot()
     {
         PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_pershot");
         //PlayerWeapon.PlayerWeaponReload.IsReload = true;
         timedelta = 0;
         SetisDelay(true);
-    }
+    }*/
 
     public void SetIsCanFire()
     {

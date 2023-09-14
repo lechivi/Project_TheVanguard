@@ -603,9 +603,9 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.73333335
-    functionName: OnAnimationEvent
-    data: exitdelay_shotgun
+  - time: 0.9
+    functionName: Exitdelay_ShotgunSlowhand
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

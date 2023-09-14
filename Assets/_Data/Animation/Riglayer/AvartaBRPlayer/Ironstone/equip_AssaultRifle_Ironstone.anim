@@ -92,7 +92,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: -24.403, y: 0.075, z: -0.016}
+        value: {x: 13.594, y: 2.814, z: 0.335}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -214,7 +214,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: {x: 0.062045675, y: -3.0162697, z: 4.4970326}
+        value: {x: -0.036985055, y: -3.0341613, z: 4.5981355}
         inSlope: {x: 0, y: 0, z: 0}
         outSlope: {x: 0, y: 0, z: 0}
         tangentMode: 0
@@ -1317,7 +1317,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.062045675
+        value: -0.036985055
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1336,7 +1336,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -3.0162697
+        value: -3.0341613
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1355,7 +1355,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 4.4970326
+        value: 4.5981355
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1374,7 +1374,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -24.403
+        value: 13.594
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1393,7 +1393,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.075
+        value: 2.814
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1412,7 +1412,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: -0.016
+        value: 0.335
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -1521,7 +1521,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: RigLayer_WeaponAim/WeaponSlotBack_Contains
+    path: WeaponHolder/WeaponPivot/left_hand_grip
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1531,7 +1531,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: RigLayer_WeaponAim/WeaponSlotBack_Contains
+    path: WeaponHolder/WeaponPivot/left_hand_grip
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1541,7 +1541,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: RigLayer_WeaponAim/WeaponSlotBack_Contains
+    path: WeaponHolder/WeaponPivot/left_hand_grip
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1611,7 +1611,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.x
-    path: WeaponHolder/WeaponPivot/left_hand_grip
+    path: RigLayer_WeaponAim/WeaponSlotBack_Contains
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1621,7 +1621,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.y
-    path: WeaponHolder/WeaponPivot/left_hand_grip
+    path: RigLayer_WeaponAim/WeaponSlotBack_Contains
     classID: 4
     script: {fileID: 0}
   - curve:
@@ -1631,7 +1631,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_LocalEulerAngles.z
-    path: WeaponHolder/WeaponPivot/left_hand_grip
+    path: RigLayer_WeaponAim/WeaponSlotBack_Contains
     classID: 4
     script: {fileID: 0}
   m_HasGenericRootTransform: 0
