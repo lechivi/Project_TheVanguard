@@ -14,7 +14,7 @@ public class Character_Ironstone : Character
     [SerializeField] private float transformTime;
     private bool canAttack;
     public float damageRange = 3.5f;
-    [SerializeField] private int powerSkill;
+    [SerializeField] private int powerSkill = 35;
 
     protected override void Start()
     {

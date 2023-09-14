@@ -34,8 +34,8 @@ public class Character_Juggernaut : Character
     private float damageRangeExplosion;
     private int numShot;
     [Header("STAT")]
-    [SerializeField] private int maxNumShot;
-    [SerializeField] private int powerSkill;
+    [SerializeField] private int maxNumShot = 1;
+    [SerializeField] private int powerSkill = 30;
 
     protected override void LoadComponent()
     {

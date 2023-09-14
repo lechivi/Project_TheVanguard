@@ -35,4 +35,9 @@ public class PlayerRigAnimationEvents : MonoBehaviour
     {
         PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponReload.AttachMagazine();
     }
+
+    public void Exitdelay_ShotgunSlowhand()
+    {
+        PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponReload.ChangeIsReload();
+    }
 }
