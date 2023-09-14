@@ -20,12 +20,12 @@ MonoBehaviour:
   CharacterModel: {fileID: 0}
   CharacterDescription: Alien warrior from a distant galaxy, possessing incredible
     strength and unique abilities.
-  Health: 50
+  Health: 75
   Power: 5
-  Defence: 5
+  Defence: 8
   Agility: 3
-  HitPoint: 7
-  ExecutionSkillTime: 30
+  HitPoint: 9
+  ExecutionSkillTime: 15
   CooldownSkillTime: 3
   SpecialSkillName: Beast Rage
   SpecialSkillIcon: {fileID: 21300000, guid: c7e0306fb1a04084e841b51bad7ef9d5, type: 3}

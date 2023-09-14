@@ -60,13 +60,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         isHolstering = false;
     }
 
-    //private void Update()
-    //{
-    //    if (Input.GetKeyDown(KeyCode.U))
-    //    {
-    //        this.UpdateUI();
-    //    }
-    //}
 
     public void HandleUpdateWeaponManager()
     {

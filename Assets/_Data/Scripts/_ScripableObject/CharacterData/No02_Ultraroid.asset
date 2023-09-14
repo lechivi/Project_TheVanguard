@@ -20,7 +20,7 @@ MonoBehaviour:
   CharacterModel: {fileID: 0}
   CharacterDescription: Experimental robotic creation with powerful energy capabilities,
     seeking to understand human emotions and experiences.
-  Health: 50
+  Health: 75
   Power: 5
   Defence: 5
   Agility: 5

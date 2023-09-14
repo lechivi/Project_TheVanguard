@@ -20,11 +20,11 @@ MonoBehaviour:
   CharacterModel: {fileID: 0}
   CharacterDescription: Mystical and powerful being with control over arcane energies,
     using her magic to protect and heal her allies.
-  Health: 50
-  Power: 5
-  Defence: 5
+  Health: 75
+  Power: 8
+  Defence: 3
   Agility: 3
-  HitPoint: 5
+  HitPoint: 8
   ExecutionSkillTime: 3
   CooldownSkillTime: 2
   SpecialSkillName: "Siren\u2019s Radiance"

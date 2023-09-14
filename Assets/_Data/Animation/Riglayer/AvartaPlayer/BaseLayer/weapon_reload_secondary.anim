@@ -618,8 +618,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: OnAnimationEvent
-    data: detach_magazine
+    functionName: DetachMagazine
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -632,22 +632,22 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.13333334
-    functionName: OnAnimationEvent
-    data: drop_magazine
+    functionName: DropMagazine
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.16666667
-    functionName: OnAnimationEvent
-    data: refill_magazine
+    functionName: RefillMagazine
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.26666668
-    functionName: OnAnimationEvent
-    data: attach_magazine
+    functionName: AttachMagazine
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

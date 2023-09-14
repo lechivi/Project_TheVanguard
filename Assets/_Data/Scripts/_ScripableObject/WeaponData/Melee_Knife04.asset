@@ -47,5 +47,5 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads: []
-  meleeDamage: 5
+  meleeDamage: 10
   swingSpeed: 0

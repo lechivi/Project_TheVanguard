@@ -77,10 +77,10 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
                 RefillMagazine();
                 break;
             case "attach_magazine":
+                Debug.Log("ANIMATIONEVENT");
                 AttachMagazine();
                 break;
             case "exitdelay_shotgun":
-               // PlayerWeapon.PlayerWeaponActive.SetisDelay(false);
                 this.ChangeIsReload();
                 break;
         }
@@ -90,6 +90,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     {
         WeaponRaycast weapon = this.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         magazineHand = Instantiate(weapon.magazine, leftHand, true);
+        magazineHand.transform.localPosition = Vector3.zero;
         weapon.magazine.SetActive(false);
     }
 
@@ -117,7 +118,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
         {
             this.PlayerWeapon.PlayerCtrl.RigAnimator.ResetTrigger("reload_Pistol");
         }
-        else 
+        else
         {
             this.PlayerWeapon.PlayerCtrl.RigAnimator.ResetTrigger("reload_weapon");
         }
@@ -133,8 +134,6 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
     {
         PlayerWeapon.PlayerCtrl.RigAnimator.SetTrigger("reload_pershot");
         isReload = true;
-/*        timedelta = 0;
-        SetisDelay(true);*/
     }
 
 }

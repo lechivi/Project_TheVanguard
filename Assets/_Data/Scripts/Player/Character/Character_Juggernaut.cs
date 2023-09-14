@@ -1,4 +1,5 @@
 using System.Collections;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -7,30 +8,34 @@ public class Character_Juggernaut : Character
     [Header("JUGGERNAUT")]
     public int TitanID;
     //public float transformTime;
-    public GameObject Gun_JuggernautModel;
-    public WeaponRaycast Juggernaut_Raycast;
-    public Transform raycastOriginHand;
-    public Transform raycastOrigin;
-    public ParticleSystem EnergyGlobe;
-    public ParticleSystem EnergyGlobeHand;
-    public ParticleSystem BomExplosion;
-    float xScaleEnergyGl;
-    float yScaleEnergyGl;
-    float zScaleEnergyGl;
+    [SerializeField] private GameObject Gun_JuggernautModel;
+    [SerializeField] private WeaponRaycast Juggernaut_Raycast;
+    [SerializeField] private Transform raycastOriginHand;
+    [SerializeField] private Transform raycastOrigin;
+    [SerializeField] private ParticleSystem EnergyGlobe;
+    [SerializeField] private ParticleSystem EnergyGlobeHand;
+    [SerializeField] private ParticleSystem BomExplosion;
+    [SerializeField] private Volume Volume;
+    [SerializeField] private LineRenderer line;
+    [SerializeField] private LineRenderer lineHand;
 
-    public LineRenderer line;
-    public LineRenderer lineHand;
-    [SerializeField] private LineRenderer lineMain;
-    public Volume Volume;
-    public float timesetExplosion;
-    float timecharging;
+    private LineRenderer lineMain;
+    private float xScaleEnergyGl;
+    private float yScaleEnergyGl;
+    private float zScaleEnergyGl;
+
+    private float timesetExplosion;
+    private float timecharging;
     RaycastHit Hit;
     Vector3 HitPositionLine;
     bool Hit_Bool;
     bool isCharging;
-    public float damageRangeExplosion;
-    private int level;
-    int power;
+    private int levelSkill;
+    private float damageRangeExplosion;
+    private int numShot;
+    [Header("STAT")]
+    [SerializeField] private int maxNumShot;
+    [SerializeField] private int powerSkill;
 
     protected override void LoadComponent()
     {
@@ -42,11 +47,12 @@ public class Character_Juggernaut : Character
     protected override void Awake()
     {
         base.Awake();
-        line.enabled = false;
-        lineHand.enabled = false;
-        Volume.enabled = false;
-        Juggernaut_Raycast = Gun_JuggernautModel.GetComponentInParent<WeaponRaycast>();
-        Gun_JuggernautModel.SetActive(false);
+        this.line.enabled = false;
+        this.lineHand.enabled = false;
+        this.Volume.enabled = false;
+        this.Juggernaut_Raycast = Gun_JuggernautModel.GetComponentInParent<WeaponRaycast>();
+        this.Gun_JuggernautModel.SetActive(false);
+        this.numShot = this.maxNumShot;
     }
 
     protected override void Update()
@@ -56,26 +62,61 @@ public class Character_Juggernaut : Character
         //ExecutionPhase
         if (!this.isReadySpecialSkill && !this.isCoolingDownSpecicalSkill)
         {
-            if (Juggernaut_Raycast.currentAmmo <= 0)
+            if (/*Juggernaut_Raycast.currentAmmo <= 0*/numShot <= 0)
             {
-                StopCoroutine(TransformationCoroutine());
-                RevertoForm();
+                //StopCoroutine(TransformationCoroutine());
+                Invoke("RevertoForm", 0.1f);
+                this.isCoolingDownSpecicalSkill = true;
             }
         }
+        this.Juggernaut_Raycast.UpdateBullets();
 
-        if (!IsSpecialSkill) return;
+        if (!IsSpecialSkill || numShot <= 0) return;
         this.HandleSkill();
         //
         this.HandleAfterFire();
         this.HandleRender();
         this.HandleChargingEnergy();
-        this.Juggernaut_Raycast.UpdateBullets();
 
+    }
+
+    public override void SpecialSkill()
+    {
+        base.SpecialSkill();
+        if (this.isReadySpecialSkill)
+        {
+            // StartCoroutine(TransformationCoroutine());
+            this.Transform();
+            Invoke("RevertoForm", this.characterData.ExecutionSkillTime);
+        }
+
+    }
+    public void Transform()
+    {
+        this.numShot = this.maxNumShot;
+        this.isSpecialSkill = true;
+        this.isReadySpecialSkill = false;
+        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
+        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseRight(CombatAction.CharacterSpecific);
+        this.rigAnimator.SetBool("transform", true);
+    }
+
+    public void RevertoForm()
+    {
+        CancelInvoke("RevertoForm");
+        this.isSpecialSkill = false;
+        this.isCoolingDownSpecicalSkill = true;
+        this.SetOriginalScaleParticle();
+        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
+        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseRight(CombatAction.None);
+        this.RigAnimator.SetBool("transform", false);
+        PlayerCtrl.Instance.PlayerCamera.MainCamera.cullingMask |= 1 << 6;
+        this.Gun_JuggernautModel.gameObject.SetActive(false);
     }
 
     private void HandleSkill()
     {
-        if (PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonDown)
+        if (/*PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonDown*/Input.GetMouseButtonDown(0))
         {
             if (PlayerCtrl.Instance.PlayerCamera.FPSCamera.gameObject.activeInHierarchy == true)
             {
@@ -87,7 +128,7 @@ public class Character_Juggernaut : Character
             }
             timesetExplosion = Time.time;
         }
-        if (PlayerCtrl.Instance.PlayerInput.Mouse0_GetButton)
+        if (/*PlayerCtrl.Instance.PlayerInput.Mouse0_GetButton*/Input.GetMouseButton(0))
         {
             if (UIManager.HasInstance)
             {
@@ -99,14 +140,13 @@ public class Character_Juggernaut : Character
             ChargingEnergy();
         }
 
-        if (PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonUp)
+        if (/*PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonUp*/Input.GetMouseButtonUp(0) /*|| timecharging >= (this.characterData.ExecutionSkillTime - 5)*/)
         {
             Fire();
             if (UIManager.HasInstance)
             {
                 UIManager.Instance.InGamePanel.AlwaysOnUI.UI_ChargeSlider.Hide();
             }
-
             Invoke("DeactiveLine", 0.1f);
         }
     }
@@ -118,20 +158,13 @@ public class Character_Juggernaut : Character
             AudioManager.Instance.PlaySeStop(AUDIO.SE_CHARGING_JUGGERNAUT);
             AudioManager.Instance.PlaySe(AUDIO.SE_FIRE_LASER_JUGGERNAUT);
         }
+        this.numShot--;
         this.Juggernaut_Raycast.FireBullet(PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.CrosshairTarget.position);
         this.lineMain.enabled = true;
         this.isCharging = false;
         this.Volume.enabled = true;
     }
 
-    public override void SpecialSkill()
-    {
-        base.SpecialSkill();
-        if (this.isReadySpecialSkill)
-        {
-            StartCoroutine(TransformationCoroutine());
-        }
-    }
 
     private void HandleChargingEnergy()
     {
@@ -179,31 +212,31 @@ public class Character_Juggernaut : Character
         isCharging = true;
         if (timecharging >= 0 && timecharging < 3)
         {
-            level = 1;
+            levelSkill = 1;
             damageRangeExplosion = 1.4f;
             BomExplosion.gameObject.transform.localScale = new Vector3(1, 1, 1);
         }
         else if (timecharging >= 3 && timecharging < 6)
         {
-            level = 2;
+            levelSkill = 2;
             damageRangeExplosion = 4.1f;
             BomExplosion.gameObject.transform.localScale = new Vector3(3, 3, 3);
         }
         else if (timecharging >= 6 && timecharging < 12)
         {
-            level = 3;
+            levelSkill = 3;
             damageRangeExplosion = 6.5f;
             BomExplosion.gameObject.transform.localScale = new Vector3(4.5f, 4.5f, 4.5f);
         }
         else if (timecharging >= 12)
         {
-            level = 4;
+            levelSkill = 4;
             damageRangeExplosion = 10.7f;
             BomExplosion.gameObject.transform.localScale = new Vector3(7f, 7f, 7f);
         }
 
 
-        if (timecharging >= 12) return;
+        //if (timecharging >= 12) return;
         xScaleEnergyGl += (float)0.02 * Time.deltaTime;
         yScaleEnergyGl += (float)0.02 * Time.deltaTime;
         zScaleEnergyGl += (float)0.02 * Time.deltaTime;
@@ -218,28 +251,28 @@ public class Character_Juggernaut : Character
         {
             AudioManager.Instance.PlaySe(AUDIO.SE_SHOCKWAVE_EXPLOSION);
         }
-        Debug.Log("Explosion");
         BomExplosion.gameObject.transform.position = Hit.point;
         BomExplosion.Play();
-        if (level == 1)
+        if (levelSkill == 1)
         {
-            power = characterData.Power * 1.2f;
-            this.power = Mathf.RoundToInt(power);
+            power = this.powerSkill * 1.2f;
+            this.powerSkill = Mathf.RoundToInt(power);
         }
-        else if (level == 2)
+        else if (levelSkill == 2)
         {
-            power = characterData.Power * 2f;
-            this.power = Mathf.RoundToInt(power);
+            power = this.powerSkill * 2f;
+            this.powerSkill = Mathf.RoundToInt(power);
+            Debug.Log(this.powerSkill);
         }
-        else if (level == 3)
+        else if (levelSkill == 3)
         {
-            power = characterData.Power * 2.8f;
-            this.power = Mathf.RoundToInt(power);
+            power = this.powerSkill * 2.8f;
+            this.powerSkill = Mathf.RoundToInt(power);
         }
-        else if (level == 4)
+        else if (levelSkill == 4)
         {
-            power = characterData.Power * 3.6f;
-            this.power = Mathf.RoundToInt(power);
+            power = this.powerSkill * 3.6f;
+            this.powerSkill = Mathf.RoundToInt(power);
         }
         Collider[] colliders = Physics.OverlapSphere(Hit.point, damageRangeExplosion);
         foreach (Collider collider in colliders)
@@ -248,37 +281,37 @@ public class Character_Juggernaut : Character
 
             if (Enemy && Enemy.CompareTag("EnemyCollider"))
             {
-                Enemy.OnHit(this.power);
+                Enemy.OnHit(this.powerSkill);
             }
         }
     }
     private void HandleAfterFire()
     {
         Vector3 crossHair = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponActive.CrosshairTarget.position;
-        Vector3 ifNotHitpoint = crossHair - Juggernaut_Raycast.raycastOrigin.position;
         Vector3 direction = crossHair - Juggernaut_Raycast.raycastOrigin.position;
         Ray ray = new Ray(Juggernaut_Raycast.raycastOrigin.position, direction);
-        Hit_Bool = Physics.Raycast(ray, out Hit, 1000f, 7);
-        HitPositionLine = Hit_Bool ? Hit.point : ifNotHitpoint * 1000f;
+        Hit_Bool = Physics.Raycast(ray, out Hit, 1000f);
+        HitPositionLine = Hit_Bool ? Hit.point : /*ifNotHitpoint * 1000f;*/crossHair;
         if (lineMain)
         {
             lineMain.SetPosition(0, Juggernaut_Raycast.raycastOrigin.position);
-            lineMain.SetPosition(1, crossHair);
+            lineMain.SetPosition(1, HitPositionLine);
         }
         float distance;
-
         if (Hit_Bool)
         {
             distance = (Hit.point - transform.position).magnitude;
-            if (distance < 20f && PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonUp)
+            if (Input.GetMouseButtonUp(0))
             {
-                Invoke("EnableBomExplosion", 0.01f);
+                if (distance < 20f)
+                {
+                    Invoke("EnableBomExplosion", 0.01f);
+                }
+                else if (distance >= 20f)
+                {
+                    Invoke("EnableBomExplosion", 0.2f);
+                }
             }
-            if (distance >= 20f && PlayerCtrl.Instance.PlayerInput.Mouse0_ButtonUp)
-            {
-                Invoke("EnableBomExplosion", 0.2f);
-            }
-
         }
     }
 
@@ -331,31 +364,9 @@ public class Character_Juggernaut : Character
     private IEnumerator TransformationCoroutine()
     {
         this.Transform();
-        Debug.Log("StartCRT");
         yield return new WaitForSeconds(this.characterData.ExecutionSkillTime);
-
+        Debug.Log("Error");
         this.RevertoForm();
     }
 
-    public void Transform()
-    {
-        this.isSpecialSkill = true;
-        this.isReadySpecialSkill = false;
-        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.CharacterSpecific);
-        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseRight(CombatAction.CharacterSpecific);
-        this.rigAnimator.SetBool("transform", true);
-    }
-
-    public void RevertoForm()
-    {
-        this.Juggernaut_Raycast.currentAmmo = this.Juggernaut_Raycast.maxAmmo;
-        this.isSpecialSkill = false;
-        this.isCoolingDownSpecicalSkill = true;
-        this.SetOriginalScaleParticle();
-        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
-        PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseRight(CombatAction.None);
-        this.RigAnimator.SetBool("transform", false);
-        PlayerCtrl.Instance.PlayerCamera.MainCamera.cullingMask |= 1 << 6;
-        this.Gun_JuggernautModel.gameObject.SetActive(false);
-    }
 }
