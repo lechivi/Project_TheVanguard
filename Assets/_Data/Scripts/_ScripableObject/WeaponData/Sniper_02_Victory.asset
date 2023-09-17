@@ -47,9 +47,9 @@ MonoBehaviour:
   spreadAiming: 0
   spreadNotAim: 0
   spreads:
-  - -0.001
-  - 0.001
-  - -0.001
-  - 0.001
+  - 0
+  - 0
+  - 0
+  - 0
   meleeDamage: 0
   swingSpeed: 0

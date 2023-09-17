@@ -171,5 +171,6 @@ public class GameManager : BaseManager<GameManager>
         this.playerCtrl.SetCharacter(character);
         character.CharacterRigAttach.SetRig();
         this.playerCtrl.gameObject.SetActive(true);
+        
     }
 }

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyName: Mecha Golem
   EnemyType: 3
-  Health: 450
-  Damage: 10
+  Health: 1000
+  Damage: 20
   Speed: 5
   AttackRange: 7
   DetectionRange: 25

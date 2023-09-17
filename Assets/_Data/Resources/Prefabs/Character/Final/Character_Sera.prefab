@@ -1617,7 +1617,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4107741421976549422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.0739999, y: 0.283, z: 28.136}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22142,7 +22142,7 @@ GameObject:
   - component: {fileID: 8205042551415529406}
   m_Layer: 16
   m_Name: Ankle_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22330,7 +22330,7 @@ GameObject:
   - component: {fileID: 1364842740394690974}
   m_Layer: 16
   m_Name: Elbow_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22487,7 +22487,7 @@ GameObject:
   - component: {fileID: 5995873696595630879}
   m_Layer: 16
   m_Name: LowerLeg_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22772,7 +22772,7 @@ GameObject:
   - component: {fileID: 64134564905085304}
   m_Layer: 16
   m_Name: Ankle_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22929,7 +22929,7 @@ GameObject:
   - component: {fileID: 727921718119440687}
   m_Layer: 16
   m_Name: Spine_02
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23054,7 +23054,7 @@ GameObject:
   - component: {fileID: 4645388139787551829}
   m_Layer: 16
   m_Name: Hand_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23275,7 +23275,7 @@ GameObject:
   - component: {fileID: 4580066581374883619}
   m_Layer: 16
   m_Name: UpperLeg_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23401,7 +23401,7 @@ GameObject:
   - component: {fileID: 3459184878439308009}
   m_Layer: 16
   m_Name: UpperLeg_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23622,7 +23622,7 @@ GameObject:
   - component: {fileID: 1488066882339211443}
   m_Layer: 16
   m_Name: LowerLeg_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23937,7 +23937,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300010, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
   m_Bones:
@@ -24043,7 +24043,7 @@ GameObject:
   - component: {fileID: 495417833571343552}
   m_Layer: 16
   m_Name: Hand_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24171,7 +24171,7 @@ GameObject:
   - component: {fileID: 5094868180419763871}
   m_Layer: 16
   m_Name: Shoulder_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24328,7 +24328,7 @@ GameObject:
   - component: {fileID: 1028275319426044032}
   m_Layer: 16
   m_Name: Hips
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24441,7 +24441,7 @@ GameObject:
   - component: {fileID: 5578039129888446278}
   m_Layer: 16
   m_Name: Head
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24726,7 +24726,7 @@ GameObject:
   - component: {fileID: 4560296821282956632}
   m_Layer: 16
   m_Name: Shoulder_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24884,7 +24884,7 @@ GameObject:
   - component: {fileID: 6095398739817634491}
   m_Layer: 16
   m_Name: Elbow_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

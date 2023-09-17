@@ -19,7 +19,6 @@ public class BloodOverlap : BaseUIElement
         if (PlayerCtrl.HasInstance)
         {
             PlayerCtrl.Instance.PlayerHealth.OnTakeDamage += TriggerHit;
-            Debug.Log("Dk event");
         }
     }
 

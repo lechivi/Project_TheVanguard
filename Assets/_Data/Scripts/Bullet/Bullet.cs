@@ -19,8 +19,8 @@ public class Bullet : MonoBehaviour
         isActive = false;
         intitialPosition = Vector3.zero;
         intitialVelocity = Vector3.zero;
-        tracer.emitting = false;
-        tracer.Clear();
+/*        tracer.emitting = false;
+        tracer.Clear();*/
 
     }
 
@@ -31,9 +31,9 @@ public class Bullet : MonoBehaviour
         time = 0f;
         intitialPosition = position;
         intitialVelocity = velocity;
-        WeaponRaycast weapon = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+/*        WeaponRaycast weapon = PlayerCtrl.Instance.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (weapon && weapon.Weapon.WeaponData.WeaponType != WeaponType.Shotgun) return;
         tracer.AddPosition(position);
-        tracer.emitting = true;
+        tracer.emitting = true;*/
     }
 }

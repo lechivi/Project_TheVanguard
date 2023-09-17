@@ -371,7 +371,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public void SetActiveWeapon(int weaponIndex, bool isAlpha)
     {
-        if (!SetCanSwitchWeapon()) return;
+        if (!SetCanSwitchWeapon(true)) return;
         if (!this.isReadySwap) return;
 
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
@@ -415,7 +415,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
             SetAnimationEquip(listEquippedWeapon[weaponIndex]);
         }
 
-        // playerWeapon.PlayerCtrl.RigAnimator.SetTrigger("equip");
 
 
         this.curWeaponIndex = weaponIndex;
@@ -472,7 +471,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
     }
     public Weapon GetActiveWeapon()
     {
-        if (this.curWeaponIndex < 0/* && this.equippedWeapons.GetList()[this.currentWeaponIndex] == null*/) return null;
+        if (this.curWeaponIndex < 0) return null;
         return this.equippedWeapons.GetList()[this.curWeaponIndex];
     }
 
@@ -497,7 +496,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
 
     public void SetHolster(bool button)
     {
-        if (!SetCanSwitchWeapon()) return;
+        if (!SetCanSwitchWeapon(false)) return;
         List<Weapon> listEquippedWeapon = this.equippedWeapons.GetList();
 
         if (button && curWeaponIndex > -1 && listEquippedWeapon[curWeaponIndex] != null)
@@ -616,7 +615,6 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         {
             if (isHolstering)
             {
-                Debug.Log("HaveWeapon");
                 if (PlayerCtrl.Instance.Character.CharacterData.BodyType == BodyType.BigSize)
                 {
                     if (weapon.gameObject.transform.localPosition == weapon.WeaponData.BigsizePosHolster) return;
@@ -660,12 +658,23 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         }
     }
 
-    public bool SetCanSwitchWeapon()
+    public bool SetCanSwitchWeapon(bool forEquip)
     {
-        if (playerWeapon.PlayerCtrl.PlayerAim.IsAim == true || playerWeapon.PlayerWeaponReload.IsReload == true || playerWeapon.PlayerWeaponAttack.IsAttack == true)
+        if (forEquip)
         {
-            return false;
+            if (playerWeapon.PlayerCtrl.PlayerAim.IsAim == true || playerWeapon.PlayerWeaponReload.IsReload == true || playerWeapon.PlayerWeaponAttack.IsAttack == true || PlayerCtrl.Instance.Character.IsSpecialSkill)
+            {
+                return false;
+            }
+            return true;
         }
-        return true;
+        else
+        {
+            if (playerWeapon.PlayerCtrl.PlayerAim.IsAim == true || playerWeapon.PlayerWeaponReload.IsReload == true || playerWeapon.PlayerWeaponAttack.IsAttack == true)
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

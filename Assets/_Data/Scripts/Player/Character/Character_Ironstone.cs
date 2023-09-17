@@ -10,8 +10,7 @@ public class Character_Ironstone : Character
     private AnimatorStateInfo state;
     public GameObject Hammer;
     private float timeDelta;
-    [SerializeField] private float delayAttack;
-    [SerializeField] private float transformTime;
+    [SerializeField] private float delayAttack = 2f;
     private bool canAttack;
     public float damageRange = 3.5f;
     [SerializeField] private int powerSkill = 35;
@@ -32,7 +31,7 @@ public class Character_Ironstone : Character
     protected override void Update()
     {
         base.Update();
-        if (isReadySpecialSkill) return;
+        if (this.isReadySpecialSkill) return;
         this.HandleStateAnima();
         this.DelayAttack();
     }
@@ -47,11 +46,10 @@ public class Character_Ironstone : Character
         }
         else
         {
-            Debug.Log("Idle");
             Animator.SetLayerWeight(2, 1);
             Animator.SetLayerWeight(3, 0);
             state = Animator.GetCurrentAnimatorStateInfo(2);
-            state = Animator.GetCurrentAnimatorStateInfo(3);
+            //state = Animator.GetCurrentAnimatorStateInfo(3);
 
         }
 
@@ -85,11 +83,12 @@ public class Character_Ironstone : Character
     public override void ActionMouseL()
     {
         base.ActionMouseL();
-        if (canAttack)
+        if (this.canAttack)
         {
             this.Attack();
         }
     }
+
 
     public void DelayAttack()
     {
@@ -147,7 +146,7 @@ public class Character_Ironstone : Character
     {
         this.isSpecialSkill = false;
         this.isCoolingDownSpecicalSkill = true;
-        this.Animator.SetBool("RevertoForm", true);
+        this.Animator.SetBool("RevertoForm", true);;
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
         Hammer.gameObject.SetActive(false);
     }

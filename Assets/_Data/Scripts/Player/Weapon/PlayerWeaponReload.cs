@@ -7,7 +7,7 @@ public class PlayerWeaponReload : PlayerWeaponAbstract
 
     private bool isReload;
 
-    public bool IsReload { get => this.isReload; }
+    public bool IsReload { get => this.isReload; set => this.isReload = value; }
     public Transform LeftHand { get => this.leftHand; set => this.leftHand = value; }
 
     private void Start()

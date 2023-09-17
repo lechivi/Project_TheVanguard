@@ -99,6 +99,7 @@ public class VillageSceneCtrl : SaiMonoBehaviour
             playerCtrl.PlayerAim.AimLookAt = this.aimLookAt;
 
             playerCtrl.PlayerWeapon.PlayerWeaponActive.CrosshairTarget = this.crosshairTarget;
+            playerCtrl.ResetBool();
 
             //GameManager.Instance.GenerateCharacter(transform.position, transform.rotation);
             Vector3 pos = this.isTutorial ? this.startTransform1.position : this.startTransform2.position;

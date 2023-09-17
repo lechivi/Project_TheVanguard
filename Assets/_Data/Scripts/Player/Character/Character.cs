@@ -219,6 +219,7 @@ public class Character : SaiMonoBehaviour
         {
             this.CoolingdownBattleSkill();
         }
+        Debug.Log("IsSpecialSkill" + isSpecialSkill);
     }
 
     public virtual void ActionMouseL()

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3085290695050579253}
   m_Layer: 16
   m_Name: Elbow_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -348,7 +348,7 @@ GameObject:
   - component: {fileID: 5991104519519418427}
   m_Layer: 16
   m_Name: Root
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 8213782704458918619}
   m_Layer: 16
   m_Name: Shoulder_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -831,7 +831,7 @@ GameObject:
   - component: {fileID: 4359741754396396621}
   m_Layer: 16
   m_Name: Hand_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -991,7 +991,7 @@ GameObject:
   - component: {fileID: 8328963279597126820}
   m_Layer: 16
   m_Name: Elbow_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1117,7 +1117,7 @@ GameObject:
   - component: {fileID: 3196500420481730229}
   m_Layer: 16
   m_Name: Hand_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1244,7 +1244,7 @@ GameObject:
   - component: {fileID: 7887945599182788501}
   m_Layer: 16
   m_Name: UpperLeg_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1433,7 +1433,7 @@ GameObject:
   - component: {fileID: 4401008198822448310}
   m_Layer: 16
   m_Name: Shoulder_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1687,7 +1687,7 @@ GameObject:
   - component: {fileID: 3506685878917528726}
   m_Layer: 16
   m_Name: Ankle_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1812,7 +1812,7 @@ GameObject:
   - component: {fileID: 1277512594494170744}
   m_Layer: 16
   m_Name: UpperLeg_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2160,7 +2160,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300012, guid: 792e61d487156d94db0fd45793a62d76, type: 3}
   m_Bones:
@@ -2412,7 +2412,7 @@ GameObject:
   - component: {fileID: 531571992391029885}
   m_Layer: 16
   m_Name: Ankle_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2537,7 +2537,7 @@ GameObject:
   - component: {fileID: 4796750513864833490}
   m_Layer: 16
   m_Name: LowerLeg_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2695,7 +2695,7 @@ GameObject:
   - component: {fileID: 6065633234280837741}
   m_Layer: 16
   m_Name: Head
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2937,7 +2937,7 @@ GameObject:
   - component: {fileID: 1462742180143105154}
   m_Layer: 16
   m_Name: LowerLeg_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3349,7 +3349,7 @@ GameObject:
   - component: {fileID: 8751832162421789313}
   m_Layer: 16
   m_Name: Spine_02
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49714,7 +49714,6 @@ MonoBehaviour:
   TransformEffect: {fileID: 8931458813513226093}
   Hammer: {fileID: 1152351710023239927}
   delayAttack: 2
-  transformTime: 10
   damageRange: 3.5
   powerSkill: 35
 --- !u!114 &6764267401680531140

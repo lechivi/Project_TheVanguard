@@ -24,7 +24,7 @@ public class DroneState_Idle : IDroneState
 
     public void Enter()
     {
-        this.droneAiCtrl.DroneCtrl.Agent.stoppingDistance = 0f;
+        this.droneAiCtrl.DroneCtrl.Agent.stoppingDistance = this.droneAiCtrl.DroneCtrl.MaxDistanceFromPlayer;
 
         if (this.moveFx != null/* && !this.moveFx.isPlaying*/)
         {
