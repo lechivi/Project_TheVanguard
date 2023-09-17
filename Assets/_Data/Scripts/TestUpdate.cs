@@ -92,13 +92,77 @@ public class TestUpdate : SaiMonoBehaviour
     //    }
     //}
 
-    public MovingPlatform MovingPlatform;
+    //public MovingPlatform MovingPlatform;
+
+    //private void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.J)) 
+    //    {
+    //        this.MovingPlatform.TriggerMove();
+    //    }
+    //}
+
+    //public GameEvent OnPlayerHealthChanged;
+
+    //protected override void LoadComponent()
+    //{
+    //    base.LoadComponent();
+    //    this.OnPlayerHealthChanged.Raise(this, 10);
+    //}
+
+    //public void ShowInt(Component sender, object data)
+    //{
+    //    Debug.Log("Call");
+    //    if (sender is TestUpdate)
+    //    {
+    //        int index = (int)data;
+    //        Debug.Log("-" + data.ToString() + "HP");
+    //    }
+    //}
+
+    //public GameEventListener gameEventListener;
+
+    //private void Update()
+    //{
+    //    this.gameEventListener.Response.AddListener(this.Add);
+    //}
+
+    //private void Add(Component sender, object data)
+    //{
+    //}
+
+    //private void Start()
+    //{
+    //    // Add a listener to the Response event
+    //    gameEventListener.Response.AddListener(YourCustomMethod);
+    //}
+
+    //private void YourCustomMethod(Component sender, object data)
+    //{
+    //    // Handle the event here
+    //    Debug.Log("Event received from " + sender + " with data: " + data);
+    //}
+
+    public int max = 10;
+    public int cur;
+
+    private void Start()
+    {
+        this.cur = this.max;
+        if (ListenerManager.HasInstance)
+        {
+            ListenerManager.Instance.BroadCast(ListenType.UpdatePlayerHealth, this);
+            Debug.Log("cast");
+        }
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J)) 
+        if (Input.GetKeyDown(KeyCode.Space)) 
         {
-            this.MovingPlatform.TriggerMove();
+            this.cur -= 1;
+            ListenerManager.Instance.BroadCast(ListenType.UpdatePlayerHealth, this);
+            Debug.Log("cast");
         }
     }
 }

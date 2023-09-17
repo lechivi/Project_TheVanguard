@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ChatBubble : MonoBehaviour
+public class ChatBubble : SaiMonoBehaviour
 {
     [SerializeField] private Vector2 padding = new Vector2(4f, 4f);
 
-    private Animator animator;
-    private SpriteRenderer backgroundSprite;
-    private TMP_Text text;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer backgroundSprite;
+    [SerializeField] private TMP_Text text;
 
-    private void Awake()
+    protected override void LoadComponent()
     {
-        this.animator = GetComponent<Animator>();
-        this.backgroundSprite = GetComponentInChildren<SpriteRenderer>();
-        this.text = GetComponentInChildren<TMP_Text>();
+        base.LoadComponent();
+        if (this.animator == null)
+            this.animator = GetComponent<Animator>();
+
+        if (this.backgroundSprite == null)
+            this.backgroundSprite = GetComponentInChildren<SpriteRenderer>();
+
+        if (this.text == null)
+            this.text = GetComponentInChildren<TMP_Text>();
     }
 
     public void Setup(string text, float timeExist)
@@ -26,7 +32,7 @@ public class ChatBubble : MonoBehaviour
         Vector2 textSize = this.text.GetRenderedValues(false);
         Vector2 offset = new Vector2(-this.padding.x / 2f, 0f);
         this.backgroundSprite.size = textSize + this.padding;
-        this.backgroundSprite.transform.localPosition = new Vector2(this.backgroundSprite.size.x / 2, 0f) + offset;
+        this.backgroundSprite.transform.localPosition = new Vector2(this.padding.x / 2f, 0f) + offset;
 
         this.animator.SetTrigger("FadeIn");
 

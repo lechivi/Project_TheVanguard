@@ -18,21 +18,59 @@ public class UI_HealthBarSlider : BaseUIElement
             this.valueText = GetComponentInChildren<TMP_Text>();
     }
 
-    private void FixedUpdate()
+    private void OnEnable()
     {
-        if (PlayerCtrl.HasInstance)
+        if (ListenerManager.HasInstance)
         {
-            PlayerHealth health = PlayerCtrl.Instance.PlayerHealth;
-            this.SetSlider(health.GetCurrentHealth(), health.GetMaxHealth());
+            ListenerManager.Instance.Register(ListenType.UpdatePlayerHealth, this.SetSlider);
+            Debug.Log("Register");
         }
     }
 
-    public void SetSlider(int value, int max)
+    //private void OnDisable()
+    //{
+    //    if (ListenerManager.HasInstance)
+    //    {
+    //        ListenerManager.Instance.Unregister(ListenerType.UpdatePlayerHealth, this.SetSlider);
+    //        Debug.Log("Unregister");
+    //    }
+    //}
+    //private void FixedUpdate()
+    //{
+    //    if (PlayerCtrl.HasInstance)
+    //    {
+    //        PlayerHealth health = PlayerCtrl.Instance.PlayerHealth;
+    //        this.SetSlider(health.GetCurrentHealth(), health.GetMaxHealth());
+    //    }
+    //}
+
+    public void Hit(Component sender, object data)
     {
-        if (value != this.slider.value)
-            this.slider.value = value;
-        if (max != this.slider.maxValue)
-            this.slider.maxValue = max;
+        if (sender is PlayerHealth)
+        {
+            PlayerHealth playerHealth = sender as PlayerHealth;
+            if (playerHealth == null) return;
+
+            this.slider.maxValue = playerHealth.GetMaxHealth();
+            this.slider.value = playerHealth.GetCurrentHealth();
+        }
+    }
+
+    public void SetSlider(object value)
+    {
+        Debug.Log("assssssssss");
+        if (value == null) return;
+
+        if (value is PlayerHealth playerHealth)
+        {
+            int cur = playerHealth.GetCurrentHealth();
+            int max = playerHealth.GetMaxHealth();
+            if (cur != this.slider.value)
+                this.slider.value = cur;
+            if (max != this.slider.maxValue)
+                this.slider.maxValue = max;
+
+        }
     }
 
     public void OnSliderChangeValue(float value)

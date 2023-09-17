@@ -67,7 +67,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         this.SetHolster(false);
         this.SetDefaultCurrentindex();
         this.HosterAnimation();
-       // this.SetCanSwitchWeapon();
+        // this.SetCanSwitchWeapon();
     }
 
     public void SaveWeapon()
@@ -169,7 +169,7 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         DealDamageBox dealDamageBox = weapon.GetComponent<DealDamageBox>();
         if (dealDamageBox != null && weapon.WeaponData.WeaponType == WeaponType.Melee)
         {
-            dealDamageBox.Damage = this.CalculateMeleeDamage(weapon);
+            dealDamageBox.Damage = CharacterStatsCalculate.DamgeDeal(this.playerWeapon.PlayerCtrl.Character.CharacterData, weapon.WeaponData);
             this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(dealDamageBox);
         }
 
@@ -204,18 +204,11 @@ public class PlayerWeaponManager : PlayerWeaponAbstract
         DealDamageBox dealDamageBox = weapon.GetComponent<DealDamageBox>();
         if (dealDamageBox != null && weapon.WeaponData.WeaponType == WeaponType.Melee)
         {
-            dealDamageBox.Damage = this.CalculateMeleeDamage(weapon);
+            dealDamageBox.Damage = CharacterStatsCalculate.DamgeDeal(this.playerWeapon.PlayerCtrl.Character.CharacterData, weapon.WeaponData);
             this.playerWeapon.PlayerCtrl.Character.DealDamageCtrl.ListDealDamageMelee.Add(dealDamageBox);
         }
 
         this.SetSheathForWeapon(weapon);
-    }
-
-    private int CalculateMeleeDamage(Weapon weapon)
-    {
-        int powerChr = this.playerWeapon.PlayerCtrl.Character.CharacterData.Power;
-        int meleeDamage = (int)weapon.WeaponData.MeleeDamage;
-        return (int)(meleeDamage * (1 + (float)(powerChr / (powerChr + 12))));
     }
 
     private void SetSheathForWeapon(Weapon weapon)

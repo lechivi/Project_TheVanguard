@@ -16,10 +16,9 @@ public class BloodOverlap : BaseUIElement
 
     private void Start()
     {
-        if (PlayerCtrl.HasInstance)
+        if (ListenerManager.HasInstance)
         {
-            PlayerCtrl.Instance.PlayerHealth.OnTakeDamage += TriggerHit;
-            Debug.Log("Dk event");
+            ListenerManager.Instance.Register(ListenType.UpdatePlayerHealth, this.OnPlayerHealthChanged);
         }
     }
 
@@ -30,54 +29,35 @@ public class BloodOverlap : BaseUIElement
 
     bool lowHP = true;
 
-    private void FixedUpdate()
-    {
-        if (PlayerCtrl.HasInstance)
-        {
-            PlayerHealth playerHealth = PlayerCtrl.Instance.PlayerHealth;
-            if (playerHealth.IsDeath())
-            {
-                if (this.canvasGroup.alpha != 1)
-                    this.canvasGroup.alpha = 1;
-            }
-            else
-            {
-                //int curHHealth = playerHealth.GetCurrentHealth();
-                //int maxHealth = playerHealth.GetMaxHealth();
-
-                //if (curHHealth <= (int)maxHealth / 10)
-                //{
-                //    if (this.lowHP)
-                //    {
-                //        this.animator.SetBool("LowHP", true);
-                //        this.lowHP = false;
-                //    }
-                //}
-                //else
-                //{
-                //    if (!this.lowHP)
-                //    {
-                //        this.animator.SetBool("LowHP", false);
-                //        this.lowHP = true;
-                //    }
-
-                //}
-                //this.animator.SetBool("LowHP", curHHealth <= (int)maxHealth / 10 ? true : false);
-            }
-        }
-    }
-
     private void OnDestroy()
     {
-        if (PlayerCtrl.HasInstance)
+        if (ListenerManager.HasInstance)
         {
-            PlayerCtrl.Instance.PlayerHealth.OnTakeDamage -= TriggerHit;
+            ListenerManager.Instance.Unregister(ListenType.UpdatePlayerHealth, this.OnPlayerHealthChanged);
         }
     }
 
-    private void TriggerHit()
+    private void OnPlayerHealthChanged(object value)
     {
-        Debug.Log("Hit");
-        this.animator.SetTrigger("Hit");
+        if (value == null) return;
+        if (value is PlayerHealth playerHealth)
+        {
+            int cur = playerHealth.GetCurrentHealth();
+            int max = playerHealth.GetMaxHealth();
+
+            if (cur < max)
+            {
+                if (cur <= (int)max / 10)
+                {
+                    if (this.animator.GetBool("LowHP") == false)
+                        this.animator.SetBool("LowHP", true);
+                }
+                else
+                {
+                    this.animator.SetBool("LowHP", false);
+                    this.animator.SetTrigger("Hit");
+                }
+            }
+        }
     }
 }

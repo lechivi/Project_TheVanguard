@@ -105,8 +105,7 @@ public class PlayerLocomotion : PlayerAbstract
 
     public void HandleSpeed()
     {
-        float speed = 1;
-        this.speed = speed * (10 / (10 - (float)playerCtrl.Character.CharacterData.Agility));
+        this.speed = CharacterStatsCalculate.Speed(this.playerCtrl.Character.CharacterData);
     }
 
     public void AirControl()

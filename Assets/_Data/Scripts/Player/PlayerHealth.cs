@@ -5,22 +5,30 @@ public class PlayerHealth : PlayerAbstract, IHealth
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
-    private int defence;
-    private int agility;
     private bool isDeath;
-    [SerializeField] private int x = 5;
 
-    public delegate void TakeDamageEvent();
-    public event TakeDamageEvent OnTakeDamage;
+    //[SerializeField] private GameEvent onPlayerHealthChanged;
+    //public delegate void TakeDamageEvent();
+    //public event TakeDamageEvent OnTakeDamage;
 
     private void Start()
     {
+        this.ResetHealth();
+    }
+
+    public void ResetHealth()
+    {
         if (this.playerCtrl.Character)
         {
-            this.maxHealth = this.playerCtrl.Character.CharacterData.Health + this.playerCtrl.Character.CharacterData.HitPoint * x;
+            this.maxHealth = CharacterStatsCalculate.MaxHealth(this.playerCtrl.Character.CharacterData);
             this.currentHealth = this.maxHealth;
-            this.defence = playerCtrl.Character.CharacterData.Defence;
-            this.agility = playerCtrl.Character.CharacterData.Agility;
+
+            if (ListenerManager.HasInstance)
+            {
+                ListenerManager.Instance.BroadCast(ListenType.UpdatePlayerHealth, this);
+                Debug.Log("BroadCast");
+
+            }
         }
     }
 
@@ -44,12 +52,11 @@ public class PlayerHealth : PlayerAbstract, IHealth
         if (this.isDeath) return;
 
         Debug.Log("PLAYER -" + damage);
-        float damageTaken = (float)damage * (10f / (10f + this.defence + this.agility / 2f));
-        this.currentHealth -= Mathf.RoundToInt(damageTaken);
-
-        if (OnTakeDamage != null)
+        this.currentHealth -= CharacterStatsCalculate.DamageTake(this.playerCtrl.Character.CharacterData, damage);
+        if (ListenerManager.HasInstance)
         {
-            OnTakeDamage();
+            ListenerManager.Instance.BroadCast(ListenType.UpdatePlayerHealth, this);
+            Debug.Log("BroadCast");
         }
 
         if (this.currentHealth <= 0)
@@ -64,9 +71,7 @@ public class PlayerHealth : PlayerAbstract, IHealth
         this.isDeath = true;
         this.playerCtrl.Character.RagdollCtrl.EnableRagdoll();
         this.playerCtrl.PlayerInput.enabled = false;
-        //this.playerCtrl.PlayerCamera.FPSCamera.Follow =this.playerCtrl.Character.CenterPoint;
-        //this.playerCtrl.PlayerCamera.FPSCamera.LookAt = null;
-        //this.playerCtrl.PlayerCamera.FPSCamera.GetComponent<CinemachineInputProvider>().enabled = false;
+
         this.playerCtrl.PlayerCamera.IsTPSCamera = true;
         this.playerCtrl.PlayerCamera.TPSCamera.Follow = this.playerCtrl.Character.CenterPoint;
         this.playerCtrl.PlayerCamera.TPSCamera.LookAt = null;

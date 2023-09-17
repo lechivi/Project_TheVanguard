@@ -29,5 +29,6 @@ MonoBehaviour:
   CooldownSkillTime: 1
   SpecialSkillName: Badass Laser
   SpecialSkillIcon: {fileID: 21300000, guid: 19bbea7fac4bc664b9fd22b99b58a4a2, type: 3}
-  SpecialSkillDescription: Juggernaut unleashes a barrage of five unique laser beams.
+  SpecialSkillDescription: Using his high-tech weapon to shot laser (When laser hit
+    target, it made a shock wave explosion)
   ListSkin: []
