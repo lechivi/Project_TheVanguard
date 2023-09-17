@@ -85,7 +85,6 @@ public class Character_Juggernaut : Character
         base.SpecialSkill();
         if (this.isReadySpecialSkill)
         {
-            // StartCoroutine(TransformationCoroutine());
             this.Transform();
             Invoke("RevertoForm", this.characterData.ExecutionSkillTime);
         }
@@ -107,6 +106,7 @@ public class Character_Juggernaut : Character
         this.isSpecialSkill = false;
         this.isCoolingDownSpecicalSkill = true;
         this.SetOriginalScaleParticle();
+        Debug.Log("ErrorJuggerNaut");
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
         PlayerCtrl.Instance.PlayerCombatAction.SetActionMouseRight(CombatAction.None);
         this.RigAnimator.SetBool("transform", false);
@@ -358,15 +358,6 @@ public class Character_Juggernaut : Character
     public override void ActionMouseR(bool inputButton)
     {
         // if (isCharging) return;
-        PlayerCtrl.Instance.PlayerAim.IsAim = inputButton;
+        //PlayerCtrl.Instance.PlayerAim.IsAim = inputButton;
     }
-
-    private IEnumerator TransformationCoroutine()
-    {
-        this.Transform();
-        yield return new WaitForSeconds(this.characterData.ExecutionSkillTime);
-        Debug.Log("Error");
-        this.RevertoForm();
-    }
-
 }

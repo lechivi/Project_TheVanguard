@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyName: Goblin Shaman
   EnemyType: 0
   Health: 80
-  Damage: 9
+  Damage: 8
   Speed: 5
   AttackRange: 2
   DetectionRange: 10

@@ -47,6 +47,8 @@ public class DroneCtrl : SaiMonoBehaviour
     public float MaxDistanceFromEnemy { get => this.maxDistanceFromEnemy; }
     public float SafeRange { get => this.safeRange; }
 
+    public IInfoScanner TargetInfoScanner { get; private set; }
+
     protected override void LoadComponent()
     {
         base.LoadComponent();
@@ -133,6 +135,8 @@ public class DroneCtrl : SaiMonoBehaviour
             }
 
         }
+
+        this.TargetInfoScanner = this.detectTarget.FindClosest(FactionType.Voidspawn);
     }
 
     public void SetupDrone(Transform targetFollow, float lifeTime)
@@ -166,27 +170,29 @@ public class DroneCtrl : SaiMonoBehaviour
 
     public void ShotLaser()
     {
+        if (this.TargetInfoScanner == null) return;
+
         if (this.DroneHealth.IsDeath())
         {
             this.laserFx.Stop();
             return;
         }
 
-        this.shotPoint.LookAt(this.detectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint());
+        this.shotPoint.LookAt(this.TargetInfoScanner.GetCenterPoint());
         this.laserFx.Play();
 
         this.timerAttack += Time.deltaTime;
         if (this.timerAttack > delayAttack)
         {
             this.timerAttack = 0;
-            EnemyCtrl enemyCtrl = this.detectTarget.FindClosest(FactionType.Voidspawn).GetTransform().GetComponent<EnemyCtrl>();
+            EnemyCtrl enemyCtrl = this.TargetInfoScanner.GetTransform().GetComponent<EnemyCtrl>();
             if (enemyCtrl != null)
             {
                 enemyCtrl.EnemyHealth.TakeDamage(this.damage);
             }
         }
 
-        EnemyCtrl enemy = this.detectTarget.FindClosest(FactionType.Voidspawn).GetTransform().GetComponent<EnemyCtrl>();
+        EnemyCtrl enemy = this.TargetInfoScanner.GetTransform().GetComponent<EnemyCtrl>();
         if (enemy != null)
         {
             if (enemy.EnemyHealth.IsDeath())

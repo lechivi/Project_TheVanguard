@@ -55,7 +55,6 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
 
     private void OnDisable()
     {
-        Debug.Log("PlayerCtrl Disable");
         this.PlayerLocomotion.SeOnDisableLocomation();
     }
 
@@ -235,5 +234,13 @@ public class PlayerCtrl : BaseManager<PlayerCtrl>
         this.CharacterController = null;
         this.Animator = null;
         this.RigAnimator = null;
+    }
+
+    public void ResetBool()
+    {
+        this.PlayerAim.IsAim = false;
+        this.PlayerWeapon.PlayerWeaponReload.IsReload = false;
+        this.PlayerCombatAction.SetActionMouseLeft(CombatAction.None);
+        this.PlayerCombatAction.SetActionMouseRight(CombatAction.None);
     }
 }

@@ -19922,7 +19922,7 @@ GameObject:
   - component: {fileID: 3835311539319823492}
   m_Layer: 16
   m_Name: UpperLeg_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20871,7 +20871,7 @@ GameObject:
   - component: {fileID: 7336126776506922851}
   m_Layer: 16
   m_Name: LowerLeg_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20997,7 +20997,7 @@ GameObject:
   - component: {fileID: 2014529788651260330}
   m_Layer: 16
   m_Name: Hand_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -21824,7 +21824,7 @@ GameObject:
   - component: {fileID: 6088435681499980474}
   m_Layer: 16
   m_Name: Ankle_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22033,7 +22033,7 @@ GameObject:
   - component: {fileID: 6376104801735172408}
   m_Layer: 16
   m_Name: Elbow_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -22308,7 +22308,7 @@ GameObject:
   - component: {fileID: 3548696243347468525}
   m_Layer: 16
   m_Name: Ankle_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23070,7 +23070,7 @@ GameObject:
   - component: {fileID: 8769550769008405062}
   m_Layer: 16
   m_Name: Spine_02
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23340,7 +23340,7 @@ GameObject:
   - component: {fileID: 571391081934697809}
   m_Layer: 16
   m_Name: Elbow_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23670,7 +23670,7 @@ GameObject:
   - component: {fileID: 5103897564559298414}
   m_Layer: 16
   m_Name: Shoulder_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23940,7 +23940,7 @@ GameObject:
   - component: {fileID: 1471409876417029629}
   m_Layer: 16
   m_Name: Hips
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24083,7 +24083,7 @@ GameObject:
   - component: {fileID: 4083361766508648372}
   m_Layer: 16
   m_Name: Head
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24209,7 +24209,7 @@ GameObject:
   - component: {fileID: 8757346320789638884}
   m_Layer: 16
   m_Name: Shoulder_L
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24395,7 +24395,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300002, guid: f13349cc09b03d447a26b54d406aaa8e, type: 3}
   m_Bones:
@@ -24532,7 +24532,7 @@ GameObject:
   - component: {fileID: 2201633138091529327}
   m_Layer: 16
   m_Name: Hand_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24660,7 +24660,7 @@ GameObject:
   - component: {fileID: 6423734214739363852}
   m_Layer: 16
   m_Name: LowerLeg_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25980,7 +25980,7 @@ GameObject:
   - component: {fileID: 3608228803232428580}
   m_Layer: 16
   m_Name: UpperLeg_R
-  m_TagString: EnemyRagdoll
+  m_TagString: PlayerRagdoll
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28262,7 +28262,7 @@ SkinnedMeshRenderer:
   m_SortingOrder: 0
   serializedVersion: 2
   m_Quality: 0
-  m_UpdateWhenOffscreen: 0
+  m_UpdateWhenOffscreen: 1
   m_SkinnedMotionVectors: 1
   m_Mesh: {fileID: 4300002, guid: 44202c79934aa8c45b2495a49b6e99b1, type: 3}
   m_Bones:

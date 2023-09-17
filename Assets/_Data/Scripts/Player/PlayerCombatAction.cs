@@ -7,7 +7,12 @@ public class PlayerCombatAction : PlayerAbstract
     private CombatAction combatActionMouseL;
     private CombatAction combatActionMouseR;
 
-    public  void HandleUpdateCombarAction()
+
+    private void Update()
+    {
+        Debug.Log(this.combatActionMouseL.ToString());
+    }
+    public void HandleUpdateCombarAction()
     {
         SetConditionMouseL();
         SetConditionMouseR();
@@ -45,7 +50,7 @@ public class PlayerCombatAction : PlayerAbstract
 
     public void ActionMouseR(bool useButton, bool InputButton)
     {
-        if(useButton)
+        if (useButton)
         {
             switch (this.combatActionMouseR)
             {
@@ -109,18 +114,21 @@ public class PlayerCombatAction : PlayerAbstract
 
     public void SetConditionMouseL()
     {
-        if (combatActionMouseL == CombatAction.CharacterSpecific) return;
-        Weapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveWeapon();
-        WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
-        if (gun && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
+        if (combatActionMouseL != CombatAction.CharacterSpecific)
         {
-            this.combatActionMouseL = CombatAction.RangedWeapon;
-            this.combatActionMouseR = CombatAction.RangedWeapon;
-        }
-        if (gun == null || gun !=null && playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
-        {
-            this.combatActionMouseL = CombatAction.MeleeWeapon;
-            this.combatActionMouseR = CombatAction.MeleeWeapon;
+            // Weapon weapon = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveWeapon();
+            WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
+            if (gun && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
+            {
+                this.combatActionMouseL = CombatAction.RangedWeapon;
+                this.combatActionMouseR = CombatAction.RangedWeapon;
+            }
+            if (gun == null || gun != null && playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
+            {
+                Debug.Log("melee");
+                this.combatActionMouseL = CombatAction.MeleeWeapon;
+                this.combatActionMouseR = CombatAction.MeleeWeapon;
+            }
         }
     }
 
@@ -130,8 +138,11 @@ public class PlayerCombatAction : PlayerAbstract
         WeaponRaycast gun = playerCtrl.PlayerWeapon.PlayerWeaponManager.GetActiveRaycastWeapon();
         if (gun && !playerCtrl.PlayerWeapon.PlayerWeaponManager.IsHolstering)
         {
-            this.combatActionMouseL = CombatAction.RangedWeapon;
             this.combatActionMouseR = CombatAction.RangedWeapon;
+        }
+        else
+        {
+            this.combatActionMouseR = CombatAction.None;
         }
 
     }

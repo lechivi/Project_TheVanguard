@@ -33,7 +33,7 @@ MonoBehaviour:
   WeaponType: 2
   ShotGunType: 0
   MeleeType: 0
-  rangedDamage: 30
+  rangedDamage: 17
   accuracy: 0
   timePerFireRate: 1
   fireRate: 7

@@ -133,12 +133,9 @@ public class WeaponRaycast : MonoBehaviour
             bullet.time = maxlifeTime;
             End = hitInfo.point;
             var Enemy = hitInfo.collider.GetComponentInParent<HitBox>();
-            if (Enemy)
+            if (Enemy && !Enemy.CompareTag("PlayerRagdoll") && !Enemy.CompareTag("PlayerCollider"))
             {
-                Debug.Log("Run");
-                // Enemy.OnHit(Weapon.WeaponData.RangedDamage);
-                Enemy.GetComponentInParent<HitBox>().OnHit(10);
-                Debug.Log(Enemy.name);
+                Enemy.GetComponentInParent<HitBox>().OnHit(Weapon.WeaponData.RangedDamage);
             }
            // AddForceToHitInfo(ray, hitInfo);
 

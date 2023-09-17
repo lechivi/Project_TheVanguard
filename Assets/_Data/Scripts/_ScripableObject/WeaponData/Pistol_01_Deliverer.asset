@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pistol_01_Deliverer
   m_EditorClassIdentifier: 
   ItemName: Deliverer
-  ItemValue: 30
+  ItemValue: 60
   ItemType: 1
   Icon: {fileID: 7196992880718527406, guid: a97e2e08ab25b064dae1f02017defb63, type: 3}
   Model: {fileID: 5119333105807257205, guid: 4b6dae631a05c5c4d9b9363c34050a8e, type: 3}

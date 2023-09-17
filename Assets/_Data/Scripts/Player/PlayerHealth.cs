@@ -5,11 +5,8 @@ public class PlayerHealth : PlayerAbstract, IHealth
 {
     [SerializeField] private int maxHealth;
     [SerializeField] private int currentHealth;
+    
     private bool isDeath;
-
-    //[SerializeField] private GameEvent onPlayerHealthChanged;
-    //public delegate void TakeDamageEvent();
-    //public event TakeDamageEvent OnTakeDamage;
 
     private void Start()
     {

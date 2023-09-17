@@ -1,8 +1,6 @@
 using Cinemachine;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class DungeonSceneCtrl : SaiMonoBehaviour
 {
@@ -95,6 +93,7 @@ public class DungeonSceneCtrl : SaiMonoBehaviour
             playerCtrl.PlayerAim.AimLookAt = this.aimLookAt;
 
             playerCtrl.PlayerWeapon.PlayerWeaponActive.CrosshairTarget = this.crosshairTarget;
+            playerCtrl.ResetBool();
 
             foreach (Character chr in this.listCharacter)
             {

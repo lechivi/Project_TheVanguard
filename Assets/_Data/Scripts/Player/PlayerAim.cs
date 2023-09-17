@@ -60,19 +60,19 @@ public class PlayerAim : PlayerAbstract
             {
                 IsAim = true;
                 //if (weapon.Spreads[0] == weapon.Weapon.WeaponData.Spreads[0] / 100) return;
-                for (int i = 0; i < 4; i++)
+/*                for (int i = 0; i < 4; i++)
                 {
                     weapon.Spreads[i] = weapon.Weapon.WeaponData.Spreads[i] / 100;
-                }
+                }*/
             }
             else
             {
                 IsAim = false;
-                if (weapon.Spreads[0] == weapon.Weapon.WeaponData.Spreads[0]) return;
+/*                if (weapon.Spreads[0] == weapon.Weapon.WeaponData.Spreads[0]) return;
                 for (int i = 0; i < 4; i++)
                 {
                     weapon.Spreads[i] = weapon.Weapon.WeaponData.Spreads[i];
-                }
+                }*/
             }
         }
     }

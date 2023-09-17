@@ -30,7 +30,7 @@ MonoBehaviour:
   ShortRosEquip: {x: 0, y: 0, z: 0}
   NormalPosEquip: {x: 0.119, y: 0.043, z: -0.005}
   NormalRosEquip: {x: -10.868, y: -269.927, z: 256.553}
-  WeaponType: 5
+  WeaponType: 0
   ShotGunType: 0
   MeleeType: 1
   rangedDamage: 0

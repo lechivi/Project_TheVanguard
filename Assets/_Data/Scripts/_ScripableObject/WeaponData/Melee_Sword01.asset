@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Melee_Sword01
   m_EditorClassIdentifier: 
   ItemName: Sword 1
-  ItemValue: 70
+  ItemValue: 30
   ItemType: 1
   Icon: {fileID: 7194428329620772256, guid: b4aa8e8efa4856549864f688a83a6b29, type: 3}
   Model: {fileID: 7828777135105929840, guid: 8ece1459af73606499ee7f873190c3a5, type: 3}

@@ -45,12 +45,12 @@ public class DroneState_Attack : IDroneState
         DroneCtrl droneCtrl = this.droneAiCtrl.DroneCtrl;
         if (droneCtrl.TargetFollow != null)
         {
-            Transform closestEnemy = droneCtrl.DetectTarget.FindClosest(FactionType.Voidspawn).GetCenterPoint();
-            if (closestEnemy == null) return;
+            IInfoScanner closestTarget = this.droneAiCtrl.DroneCtrl.TargetInfoScanner;
+            if (closestTarget == null) return;
 
-            droneCtrl.Agent.SetDestination(closestEnemy.transform.position);
+            droneCtrl.Agent.SetDestination(closestTarget.GetCenterPoint().transform.position);
 
-            Quaternion targetRotation = Quaternion.LookRotation(closestEnemy.position - droneCtrl.transform.position);
+            Quaternion targetRotation = Quaternion.LookRotation(closestTarget.GetCenterPoint().position - droneCtrl.transform.position);
             droneCtrl.transform.rotation = Quaternion.Slerp(droneCtrl.transform.rotation, targetRotation, Time.fixedDeltaTime * droneCtrl.RotationSpeed);
         }
     }

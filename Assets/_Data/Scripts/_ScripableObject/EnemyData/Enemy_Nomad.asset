@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyName: Nomad
   EnemyType: 1
   Health: 100
-  Damage: 5
+  Damage: 7
   Speed: 4
   AttackRange: 1.5
   DetectionRange: 10
